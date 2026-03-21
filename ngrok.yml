@@ -1,0 +1,9 @@
+# Ngrok config to expose Blue Wave for sharing
+# Usage: ngrok start --config ngrok.yml backend frontend
+tunnels:
+  backend:
+    addr: 4001
+    proto: http
+  frontend:
+    addr: 5174
+    proto: http

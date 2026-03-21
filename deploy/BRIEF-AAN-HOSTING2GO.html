@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brief aan Hosting2Go</title>
+  <style>
+    body { font-family: Georgia, serif; max-width: 600px; margin: 40px auto; padding: 20px; line-height: 1.6; color: #333; }
+    h1 { font-size: 1.3em; margin-bottom: 0.5em; }
+    h2 { font-size: 1.1em; margin-top: 1.5em; margin-bottom: 0.5em; }
+    .meta { font-size: 0.95em; color: #666; margin-bottom: 1.5em; }
+    p { margin: 0.8em 0; }
+    ul { margin: 0.5em 0; padding-left: 1.5em; }
+    hr { border: none; border-top: 1px solid #ccc; margin: 1.5em 0; }
+    .signature { margin-top: 2em; }
+    .placeholder { color: #999; }
+    @media print { body { margin: 20px; } }
+  </style>
+</head>
+<body>
+
+<h1>Brief aan Hosting2Go – Blue Wave op zebra-onlinedesign.com</h1>
+<p class="meta"><strong>Onderwerp:</strong> Vraag om ondersteuning bij het live zetten van een Node.js webapplicatie</p>
+<hr>
+
+<p>Beste Hosting2Go,</p>
+
+<p>Ik heb een webapplicatie genaamd <strong>“The Blue Wave”</strong> – een landingpagina voor het FIFA World Cup 2026-initiatief op Curaçao. De applicatie is voor het domein <strong>zebra-onlinedesign.com</strong>.</p>
+
+<p>Omdat ik niet veel ervaring heb met servers en hosting, vraag ik jullie hulp om deze applicatie werkend te maken op mijn hosting bij Hosting2Go.</p>
+
+<hr>
+<h2>Wat ik wil bereiken</h2>
+<ul>
+  <li>De Blue Wave-landingpagina live op <strong>zebra-onlinedesign.com</strong></li>
+  <li>Bezoekers kunnen zich inschrijven via een formulier</li>
+  <li>Na inschrijving krijgen ze automatisch een bedankmail (met afbeelding)</li>
+  <li>Ik ontvang een melding bij elke nieuwe inschrijving</li>
+</ul>
+
+<hr>
+<h2>Wat er technisch nodig is</h2>
+<p>De Blue Wave is een <strong>Node.js</strong> applicatie. Hij heeft het volgende nodig:</p>
+<ol>
+  <li><strong>Node.js versie 20 of hoger</strong> op de server – of <strong>Docker</strong> om de applicatie in een container te draaien</li>
+  <li><strong>Een poort</strong> waar de applicatie op kan luisteren (bijv. poort 4000)</li>
+  <li><strong>DNS / domein</strong> zodat zebra-onlinedesign.com naar deze applicatie wijst</li>
+</ol>
+
+<hr>
+<h2>Wat ik aanlever</h2>
+<p>Ik heb een <strong>deploy-pakket</strong> klaar met:</p>
+<ul>
+  <li>De gebouwde frontend (HTML, CSS, JavaScript)</li>
+  <li>De backend (Node.js API)</li>
+  <li>De e-mailbanner</li>
+  <li>Een Dockerfile en docker-compose.yml (als Docker beschikbaar is)</li>
+  <li>Instructies voor de omgevingsvariabelen</li>
+</ul>
+<p>Ik kan dit pakket via FTP uploaden of op een andere manier aanleveren als jullie dat prefereren.</p>
+
+<hr>
+<h2>Wat ik van Hosting2Go vraag</h2>
+<ol>
+  <li><strong>Bevestiging:</strong> Ondersteunt mijn huidige hosting (server75.hosting2go.nl) Node.js of Docker? Zo niet: kunnen jullie mij helpen om over te stappen naar een pakket dat dat wel ondersteunt (bijv. VPS)?</li>
+  <li><strong>Als Node.js of Docker wél mogelijk is:</strong> Waar kan ik de applicatie het beste plaatsen? Welke stappen moet ik uitvoeren om de applicatie te starten en draaiende te houden? Moet er nginx, Apache of een andere webserver worden geconfigureerd om zebra-onlinedesign.com naar deze app te laten wijzen?</li>
+  <li><strong>SSL/HTTPS:</strong> Kunnen jullie HTTPS (SSL-certificaat) voor zebra-onlinedesign.com instellen of uitleggen hoe ik dat doe?</li>
+</ol>
+
+<hr>
+<h2>Technische details (voor jullie support)</h2>
+<ul>
+  <li><strong>Runtime:</strong> Node.js 20+ of Docker</li>
+  <li><strong>Poort:</strong> 4000</li>
+  <li><strong>Domein:</strong> zebra-onlinedesign.com (eventueel met www)</li>
+  <li><strong>E-mail:</strong> Ik heb twee opties:<br>
+  1. <strong>Voorkeur:</strong> Gebruik van jullie mailserver (SMTP) – kan ik SMTP-gegevens krijgen voor een adres zoals hello@zebra-onlinedesign.com? Dan sturen we de bedankmails via jullie server.<br>
+  2. <strong>Alternatief:</strong> Via de externe Resend API (resend.com) over HTTPS. Is uitgaand HTTPS-verkeer naar resend.com dan toegestaan?</li>
+</ul>
+
+<hr>
+<h2>Omgevingsvariabelen</h2>
+<p>De applicatie heeft een bestand backend/.env nodig met o.a.: bij jullie SMTP: SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS – of bij Resend: RESEND_API_KEY. Verder: SITE_URL, ADMIN_EMAIL. Ik vul deze waarden zelf in. Alleen de technische installatie op de server heb ik hulp bij nodig.</p>
+
+<hr>
+<p>Graag hoor ik van jullie wat de mogelijkheden zijn en welke stappen ik moet nemen.</p>
+<p>Met vriendelijke groet,</p>
+<p class="signature">
+  <span class="placeholder">[Uw naam]</span><br>
+  <span class="placeholder">[Uw klantnummer / e-mail]</span>
+</p>
+
+</body>
+</html>

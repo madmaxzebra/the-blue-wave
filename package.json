@@ -1,0 +1,19 @@
+{
+  "name": "bluewave",
+  "version": "1.0.0",
+  "private": true,
+  "description": "The Blue Wave – Promo landing page",
+  "scripts": {
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev:backend": "cd backend && npm run dev",
+    "build": "cd frontend && npm run build && cd ../backend && npm run build",
+    "share": "node share-server.js",
+    "tunnel": "npm run build && concurrently --names \"share,tunnel\" \"npm run share\" \"npx wait-on http://localhost:3081 -t 30000 && node run-tunnel.js\""
+  },
+  "devDependencies": {
+    "cloudflared": "^0.7.1",
+    "concurrently": "^9.1.0",
+    "wait-on": "^8.0.1"
+  }
+}

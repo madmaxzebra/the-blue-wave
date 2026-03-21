@@ -1,0 +1,33 @@
+:root {
+  --blue: #0066CC;
+  --blue-dark: #004C99;
+  --blue-soft: #E8F4FD;
+  --blue-subtle: #B8DAF4;
+  --coral: #FF6B35;
+  --coral-soft: #FF8F66;
+  --white: #FFFFFF;
+  --off-white: #F8FAFC;
+  --paper: #FFFEF9;
+  --ink: #1A1915;
+  --ink-muted: #5C5A54;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+  color: var(--ink);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+h1, h2, h3 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+}

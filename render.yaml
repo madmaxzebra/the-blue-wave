@@ -1,0 +1,22 @@
+# Render.com Blueprint – Blue Wave 24/7
+# Na GitHub-push: koppel deze repo aan Render, kies "Apply" of maak handmatig een Web Service.
+# Vul RESEND_API_KEY, SITE_URL, ADMIN_EMAIL in bij Environment Variables.
+
+services:
+  - type: web
+    runtime: docker
+    name: bluewave
+    plan: free
+    healthCheckPath: /
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: SITE_URL
+        sync: false
+        # Vul in: https://bluewave-xxxx.onrender.com (Render geeft de URL na deploy)
+      - key: ADMIN_EMAIL
+        sync: false
+        # Vul in: madmax.zebra@gmail.com
+      - key: RESEND_API_KEY
+        sync: false
+        # Vul in: je API key van resend.com

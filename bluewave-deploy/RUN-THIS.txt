@@ -1,0 +1,7 @@
+1. Maak backend\.env (kopieer van .env.production.example, vul RESEND_API_KEY en SITE_URL in) 
+2. Na upload naar server: 
+   cd bluewave-deploy 
+   docker compose up -d --build 
+ 
+De Blue Wave draait op poort 4000. 
+Zie deploy\LIVE-PRODUCTIE.md voor Resend domein verificatie. 

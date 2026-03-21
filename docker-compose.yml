@@ -1,0 +1,12 @@
+# Blue Wave – Docker Compose (voor Hosting2Go of eigen server)
+# Gebruik: docker compose up -d
+# De app draait op poort 4000. Stel .env in met RESEND_API_KEY, SITE_URL, ADMIN_EMAIL.
+
+services:
+  bluewave:
+    build: .
+    ports:
+      - "4000:4000"
+    env_file:
+      - backend/.env
+    restart: unless-stopped

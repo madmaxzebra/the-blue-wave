@@ -1,0 +1,11 @@
+⚠️  SECURITY  ⚠️
+
+You shared server credentials in chat. Please:
+
+1. CHANGE YOUR PASSWORDS NOW
+   - Control panel password
+   - FTP password
+
+2. Never paste passwords into chat, code, or docs
+
+3. Use environment variables or a secret manager for deploy credentials
