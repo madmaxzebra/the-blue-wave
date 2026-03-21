@@ -5,18 +5,27 @@ Deze werkt altijd, ook als je PC uit staat. Manus host de app op hun servers.
 
 ---
 
-## Wat je wilt
+## Voor Cursor-beginners: wat Cursor al deed
 
-De nieuwste versie (geen testlinks, Gmail mail) live op Manus.
+- Git is geïnstalleerd en geconfigureerd
+- Code is gecommit (lokaal opgeslagen)
+- Nu nog: naar GitHub pushen (jij doet dit met één dubbelklik)
 
 ---
 
 ## Stap 1: Code naar GitHub pushen
 
-1. Open de map `g:\projects-2026\wk-magazine\bluewave` in Verkenner
-2. Dubbelklik **`GITHUB-PUSH.bat`**
-3. Volg de stappen (maak eventueel eerst repo `bluewave` op github.com)
-4. Wacht tot de push klaar is
+1. **Maak eerst op GitHub een repo aan** (eenmalig):
+   - Ga naar https://github.com/new
+   - Repository name: **bluewave**
+   - Kies **Private**
+   - Klik **Create repository**
+
+2. **Dubbelklik** op **`DOE-DIT-VOOR-24-7.bat`** (in de bluewave-map)
+   - Of in wk-2026-app: **`BLUE-WAVE-PUSH-NAAR-GITHUB.bat`**
+3. Druk op een toets als het script daarom vraagt
+4. Als een venster opent om in te loggen: log in met je **GitHub-account**
+5. Wacht tot "GELUKT!" verschijnt
 
 ---
 
