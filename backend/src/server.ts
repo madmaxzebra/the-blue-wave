@@ -94,21 +94,34 @@ app.get('/api/stats', (_req, res) => {
 });
 
 app.get('/api/mail-status', (_req, res) => {
-  res.json({ resendConfigured: !!process.env.RESEND_API_KEY });
+  const hasSmtp = !!(process.env.SMTP_USER && process.env.SMTP_PASS);
+  const hasResend = !!process.env.RESEND_API_KEY;
+  const hasManus = !!process.env.MANUS_API_URL;
+  const mailConfigured = hasSmtp || hasResend || hasManus;
+  const method = hasManus ? 'manus' : hasSmtp ? 'smtp' : hasResend ? 'resend' : 'none';
+  res.json({ mailConfigured, method, hasSmtp, hasResend, hasManus });
 });
 
 app.get('/api/mail-check', (_req, res) => {
-  const hasKey = !!process.env.RESEND_API_KEY;
+  const hasSmtp = !!(process.env.SMTP_USER && process.env.SMTP_PASS);
+  const hasResend = !!process.env.RESEND_API_KEY;
+  const mailOk = hasSmtp || hasResend;
+  const hint = !mailOk
+    ? 'Add SMTP_USER/SMTP_PASS or RESEND_API_KEY in Render → Environment Variables, then redeploy.'
+    : hasSmtp
+      ? 'SMTP configured. Use Gmail App Password (not normal password): myaccount.google.com/apppasswords'
+      : 'Resend configured. Verify domain at resend.com/domains if emails fail.';
   const html = `
     <!DOCTYPE html>
     <html><head><meta charset="utf-8"><title>Mail Check</title></head>
-    <body style="font-family: Arial; padding: 2rem; max-width: 500px; margin: 0 auto;">
+    <body style="font-family: Arial; padding: 2rem; max-width: 560px; margin: 0 auto;">
       <h1 style="color: #0066CC;">Blue Wave – Mail Check</h1>
       <p style="font-size: 1.2em;">
-        <strong>Resend configured:</strong>
-        <span style="color: ${hasKey ? 'green' : 'red'}; font-weight: bold;">${hasKey ? 'YES ✓' : 'NO ✗'}</span>
+        <strong>Mail configured:</strong>
+        <span style="color: ${mailOk ? 'green' : 'red'}; font-weight: bold;">${mailOk ? 'YES ✓' : 'NO ✗'}</span>
+        ${hasSmtp ? '(SMTP/Gmail)' : hasResend ? '(Resend)' : ''}
       </p>
-      <p style="color: #666;">${hasKey ? 'Email sending should work. If you still do not get emails, check the Resend dashboard or backend terminal for errors.' : 'Add RESEND_API_KEY to backend/.env and restart the tunnel.'}</p>
+      <p style="color: #666;">${hint}</p>
     </body></html>
   `;
   res.type('html').send(html);
