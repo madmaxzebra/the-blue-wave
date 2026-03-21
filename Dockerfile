@@ -34,5 +34,5 @@ ENV NODE_ENV=production
 ENV PORT=4000
 EXPOSE 4000
 
-# Run backend on 4001, share-server on PORT (Render uses 10000)
-CMD ["sh", "-c", "PORT=4001 node backend/dist/server.js & sleep 2 && node share-server.js"]
+# Share-server spawns backend on 4001, listens on Render's PORT (10000)
+CMD ["node", "share-server.js"]
