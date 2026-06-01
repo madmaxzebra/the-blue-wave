@@ -46,6 +46,17 @@ function getFromAddress(): string {
   return `"The Blue Wave" <${process.env.SMTP_USER}>`;
 }
 
+function getReplyToAddress(): string {
+  return process.env.REPLY_TO || process.env.ADMIN_EMAIL || process.env.SMTP_USER || '';
+}
+
+const DEFAULT_SITE_URL = 'https://thebluewavefans.com';
+
+function resolveSiteOrigin(siteOrigin?: string): string {
+  const raw = siteOrigin || process.env.SITE_URL || DEFAULT_SITE_URL;
+  return raw.replace(/\/$/, '');
+}
+
 const BANNER_CID = 'banner-image';
 
 function getBannerAttachment(): { content: string; filename: string; contentId: string; contentType: string } | null {
@@ -67,33 +78,49 @@ function getBannerAttachment(): { content: string; filename: string; contentId: 
 }
 
 export async function sendWelcomeEmail(to: string, siteOrigin?: string): Promise<{ ok: boolean; error?: string }> {
+  const site = resolveSiteOrigin(siteOrigin);
   const banner = getBannerAttachment();
-  const imgSrc = siteOrigin ? `${siteOrigin.replace(/\/$/, '')}/email-banner.png` : null;
-  const imgTag = imgSrc
-    ? `<div style="text-align: center; margin-bottom: 1.5rem;"><img src="${imgSrc}" alt="The Blue Wave" style="max-width: 100%; height: auto;" /></div>`
-    : banner ? `<div style="text-align: center; margin-bottom: 1.5rem;"><img src="cid:${BANNER_CID}" alt="The Blue Wave" style="max-width: 100%; height: auto;" /></div>` : '';
+  const logoUrl = `${site}/bluewavelogo.png`;
+  const bannerUrl = `${site}/email-banner.png`;
+  const imgSrc = bannerUrl;
+  const imgTag = `<div style="text-align: center; margin-bottom: 1.5rem;"><img src="${logoUrl}" alt="The Blue Wave" width="160" style="max-width: 160px; height: auto;" /></div>`;
+  const subject = 'You\'re on the list — The Blue Wave (World Cup 2026)';
+  const text = [
+    'Thank you for signing up at thebluewavefans.com',
+    '',
+    'You\'re now part of The Blue Wave. We\'ll keep you updated on our FIFA World Cup 2026 initiative and exclusive content from Curaçao.',
+    '',
+    'Something special is on the horizon — stay tuned!',
+    '',
+    `Visit us: ${site}`,
+    '',
+    '© Zebra Productions — The Blue Wave · FIFA World Cup 2026',
+  ].join('\n');
   const html = `
-    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #0f172a;">
       ${imgTag}
-      <h1 style="color: #0066CC;">Thank you for subscribing! 🌊</h1>
-      <p>You're now part of The Blue Wave. We'll keep you updated on our FIFA World Cup 2026 initiative and exclusive content from Curaçao.</p>
-      <p>Something special is on the horizon – stay tuned!</p>
+      <h1 style="color: #0066CC; font-size: 22px;">Thank you for signing up</h1>
+      <p>You signed up at <a href="${site}">thebluewavefans.com</a>. You're now part of The Blue Wave.</p>
+      <p>We'll keep you updated on our FIFA World Cup 2026 initiative and exclusive content from Curaçao.</p>
+      <p>Something special is on the horizon — stay tuned!</p>
+      <p style="margin-top: 24px;"><a href="${site}" style="color: #0066CC;">Visit The Blue Wave</a></p>
       <p style="color: #666; font-size: 0.9em; margin-top: 2em;">
-        © Zebra Productions – The Blue Wave · FIFA World Cup 2026
+        © Zebra Productions — The Blue Wave · FIFA World Cup 2026
       </p>
     </div>
   `;
+  const replyTo = getReplyToAddress();
 
   if (useResend && resend) {
     const fromAddr = getFromAddress();
     const attachments = !imgSrc && banner ? [{ content: banner.content, filename: banner.filename, contentId: BANNER_CID }] : undefined;
-    const adminBcc = process.env.ADMIN_EMAIL || process.env.SMTP_USER;
     try {
       const { data, error } = await resend.emails.send({
         from: fromAddr,
         to,
-        bcc: adminBcc ? [adminBcc] : undefined,
-        subject: 'Thank you for subscribing – The Blue Wave',
+        replyTo: replyTo || undefined,
+        subject,
+        text,
         html,
         attachments,
       });
@@ -116,18 +143,18 @@ export async function sendWelcomeEmail(to: string, siteOrigin?: string): Promise
   const attachments = !imgSrc && banner
     ? [{ filename: banner.filename, content: Buffer.from(banner.content, 'base64'), cid: BANNER_CID }]
     : [];
-  const adminEmail = process.env.ADMIN_EMAIL || process.env.SMTP_USER;
   try {
     const info = await transporter.sendMail({
       from: getFromAddress(),
       to,
-      bcc: adminEmail,
-      subject: 'Thank you for subscribing – The Blue Wave',
+      replyTo: replyTo || undefined,
+      subject,
+      text,
       html,
       attachments,
     });
     const msgId = (info as { messageId?: string }).messageId || 'unknown';
-    console.log(`[Mail] Welcome email sent to ${to} | messageId: ${msgId} (bcc: ${adminEmail || 'none'})`);
+    console.log(`[Mail] Welcome email sent to ${to} | messageId: ${msgId}`);
     return { ok: true };
   } catch (err) {
     const msg = err instanceof Error ? (err as Error & { code?: string }).message : String(err);

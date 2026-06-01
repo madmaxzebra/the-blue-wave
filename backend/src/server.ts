@@ -47,7 +47,12 @@ const app = express();
 app.use(cors());
 app.use(express.json({ limit: '5mb' }));
 
-const MAGAZINE_URL = process.env.MAGAZINE_URL || 'http://localhost:5173';
+/** Full URL to WK Magazine web app (optionally include a path, e.g. …/documents/1). */
+const MAGAZINE_URL = (
+  process.env.MAGAZINE_URL ||
+  process.env.MAGAZINE_SITE_URL ||
+  'http://localhost:5173'
+).replace(/\/$/, '');
 const MANUS_API_URL = (process.env.MANUS_API_URL || '').replace(/\/$/, '');
 
 app.get('/api/health', (req, res) => {
@@ -125,6 +130,27 @@ app.get('/api/mail-check', (_req, res) => {
     </body></html>
   `;
   res.type('html').send(html);
+});
+
+/** Welcome-only endpoint for thebluewavefans.com static form (Web3Forms handles admin alerts). */
+app.post('/api/welcome', async (req, res) => {
+  const email = req.body?.email?.trim();
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    return res.status(400).json({ error: 'Invalid email address' });
+  }
+  try {
+    const siteOrigin = req.body?.origin || process.env.SITE_URL || 'https://thebluewavefans.com';
+    const result = await sendWelcomeEmail(email, siteOrigin);
+    if (!result.ok) {
+      console.warn('[Welcome] Failed for', email, result.error || '');
+      return res.status(500).json({ ok: false, error: result.error || 'Welcome email failed' });
+    }
+    console.log('[Welcome] Sent to', email);
+    res.json({ ok: true });
+  } catch (err) {
+    console.error('[Welcome] Error:', err);
+    res.status(500).json({ error: 'Something went wrong. Please try again later.' });
+  }
 });
 
 app.post('/api/subscribe', async (req, res) => {
