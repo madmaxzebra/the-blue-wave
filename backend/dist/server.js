@@ -178,9 +178,10 @@ app.post('/api/subscribe', async (req, res) => {
         }
         (0, db_1.addSubscriber)(email, req.body?.referralCode);
         const siteOrigin = req.body?.origin || process.env.SITE_URL;
+        const welcomeOnly = req.body?.welcomeOnly === true;
         const [welcomeResult, adminSent] = await Promise.all([
             (0, mail_1.sendWelcomeEmail)(email, siteOrigin),
-            (0, mail_1.sendAdminNotificationEmail)(email, siteOrigin),
+            welcomeOnly ? Promise.resolve(true) : (0, mail_1.sendAdminNotificationEmail)(email, siteOrigin),
         ]);
         const welcomeSent = welcomeResult.ok;
         if (welcomeSent) {
