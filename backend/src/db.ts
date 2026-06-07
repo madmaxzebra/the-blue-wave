@@ -56,16 +56,16 @@ db.exec(`
   )
 `);
 
-export function addSubscriber(email: string, referralCode?: string): { ok: boolean } {
+export function addSubscriber(email: string, referralCode?: string): { ok: boolean; added: boolean } {
   try {
     const code = referralCode || generateCode();
     const stmt = db.prepare(
       'INSERT OR IGNORE INTO Subscriber (email, referralCode) VALUES (?, ?)'
     );
-    stmt.run(email.toLowerCase().trim(), code);
-    return { ok: true };
+    const result = stmt.run(email.toLowerCase().trim(), code);
+    return { ok: true, added: result.changes > 0 };
   } catch {
-    return { ok: true };
+    return { ok: true, added: false };
   }
 }
 

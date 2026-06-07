@@ -1,198 +1,218 @@
 import { useState, useEffect } from 'react';
-import { Countdown } from './Countdown';
 import { getApiBase } from './api';
-
 import { Logo } from './Logo';
-import { CommunityFeed } from './CommunityFeed';
-import { ShareRaffle } from './ShareRaffle';
-import { getApiBase } from './api';
+import { Countdown } from './Countdown';
+import { FacebookLink } from './FacebookLink';
+import { submitStayUpdatedSignup } from './subscribeForm';
+import {
+  SubscriberCounter,
+  fetchSubscriberCount,
+  SUBSCRIBER_COUNT_FALLBACK,
+} from './SubscriberCounter';
+import {
+  applySeo,
+  DEFAULT_FLIPSNACK_URL,
+  SITE_DESCRIPTION,
+  SITE_TITLE,
+} from './seo';
 import './App.css';
 
-const SITE_TITLE = 'The Blue Wave | FIFA World Cup 2026';
-const SITE_DESCRIPTION = 'Something special is on the horizon. A transformative initiative bringing excitement and innovation to Curaçao.';
+/** Tournament opener — Mexico City opening ceremony, 11 June 2026, 11:30 local (FIFA). */
+const OPENING_CEREMONY_AT = '2026-06-11T11:30:00-06:00';
 
-function setShareMeta() {
-  if (typeof document === 'undefined' || typeof window === 'undefined') return;
-  const origin = window.location.origin;
-  const url = window.location.href;
-  const imageUrl = `${origin}/logo.png`;
-  const meta: Array<[string, string, string]> = [
-    ['og:image', imageUrl, 'property'],
-    ['og:url', url, 'property'],
-    ['og:title', SITE_TITLE, 'property'],
-    ['og:description', SITE_DESCRIPTION, 'property'],
-    ['og:type', 'website', 'property'],
-    ['twitter:card', 'summary_large_image', 'name'],
-    ['twitter:image', imageUrl, 'name'],
-    ['twitter:title', SITE_TITLE, 'name'],
-    ['twitter:description', SITE_DESCRIPTION, 'name'],
-  ];
-  meta.forEach(([key, content, attr]) => {
-    let el = document.querySelector(`meta[${attr}="${key}"]`);
-    if (!el) {
-      el = document.createElement('meta');
-      el.setAttribute(attr, key);
-      document.head.appendChild(el);
-    }
-    el.setAttribute('content', content);
-  });
+function normalizeUrl(raw: string): string {
+  return raw.trim().replace(/\/$/, '');
 }
 
 export default function App() {
-  useEffect(() => { setShareMeta(); }, []);
+  useEffect(() => {
+    applySeo({ flipsnackUrl: DEFAULT_FLIPSNACK_URL });
+  }, []);
+
+  const [flipsnackUrl, setFlipsnackUrl] = useState(DEFAULT_FLIPSNACK_URL);
+
+  useEffect(() => {
+    let cancelled = false;
+    const apiBase = getApiBase();
+    const headers: Record<string, string> = {};
+    if (apiBase.includes('loca.lt')) {
+      headers['bypass-tunnel-reminder'] = '1';
+    }
+    fetch(`${apiBase}/api/flipsnack-url`, { headers })
+      .then((res) => res.json())
+      .then((data: { url?: string }) => {
+        if (cancelled || !data.url || typeof data.url !== 'string') return;
+        const url = normalizeUrl(data.url);
+        setFlipsnackUrl(url);
+        applySeo({ flipsnackUrl: url });
+      })
+      .catch(() => {
+        /* keep default */
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [message, setMessage] = useState('');
+  const [subscriberCount, setSubscriberCount] = useState(SUBSCRIBER_COUNT_FALLBACK);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  useEffect(() => {
+    let cancelled = false;
+
+    const refresh = () => {
+      fetchSubscriberCount().then((count) => {
+        if (!cancelled && count !== null) {
+          setSubscriberCount(count);
+        }
+      });
+    };
+
+    refresh();
+    const interval = window.setInterval(refresh, 45000);
+
+    const onVisible = () => {
+      if (document.visibilityState === 'visible') refresh();
+    };
+    document.addEventListener('visibilitychange', onVisible);
+
+    return () => {
+      cancelled = true;
+      window.clearInterval(interval);
+      document.removeEventListener('visibilitychange', onVisible);
+    };
+  }, []);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setStatus('loading');
     setMessage('');
     try {
-      const apiBase = getApiBase();
-      const headers: Record<string, string> = { 'Content-Type': 'application/json' };
-      if (apiBase.includes('loca.lt')) {
-        headers['bypass-tunnel-reminder'] = '1'; // LocalTunnel: skip password page for API calls
-      }
-      const res = await fetch(`${apiBase}/api/subscribe`, {
-        method: 'POST',
-        headers,
-        body: JSON.stringify({
-          email: email.trim(),
-          origin: typeof window !== 'undefined' ? window.location.origin : undefined,
-        }),
-      });
-      const text = await res.text();
-      let data;
-      try {
-        data = text ? JSON.parse(text) : {};
-      } catch {
-        throw new Error(text || 'Request failed');
-      }
-      if (res.ok) {
+      const form = e.currentTarget;
+      const botcheck = form.botcheck instanceof HTMLInputElement ? form.botcheck.checked : false;
+      const result = await submitStayUpdatedSignup(email, { botcheck });
+      if (result.ok) {
         setStatus('success');
-        setMessage('Thanks! Check your inbox for the confirmation.');
+        setMessage(result.message);
         setEmail('');
+        const latest = await fetchSubscriberCount();
+        setSubscriberCount((prev) => latest ?? result.subscriberCount ?? prev + 1);
         return;
       }
-      if (res.status === 409 || (data.error && /already|ingeschreven|subscribed/i.test(data.error))) {
-        setStatus('success');
-        setMessage('Thanks! We’ll send the confirmation email shortly.');
-        setEmail('');
-        return;
-      }
-      throw new Error(data.error || 'Something went wrong');
+      setStatus('error');
+      setMessage(result.message);
     } catch (err) {
       setStatus('error');
       const msg = err instanceof Error ? err.message : 'Please try again later.';
-      setMessage(msg === 'Failed to fetch' ? 'Connection error. Check the tunnel is running and try again.' : msg);
+      setMessage(msg === 'Failed to fetch' ? 'Network error — please try again.' : msg);
     }
   };
 
   return (
     <>
-      <header className="nav">
+      <header className="nav nav--launch">
         <div className="nav-inner">
-          <a href="#" className="logo">
+          <a href="/" className="logo" aria-label="The Blue Wave home">
             <Logo size="nav" />
           </a>
-          <nav>
-            <a href="#about">About</a>
-            <a href="#why">Why</a>
-            <a href="#community">Community</a>
-            <a href="#share-raffle">Share & Win</a>
+          <nav aria-label="Main navigation">
+            <a
+              href={flipsnackUrl}
+              className="cta-nav cta-nav--launch"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Read the magazine
+            </a>
             <a href="#stay-tuned">Stay Updated</a>
+            <FacebookLink variant="nav" showLabel={false} />
           </nav>
         </div>
       </header>
 
-      <section className="hero">
-        <div className="hero-bg" />
+      <main id="main-content">
+      <section className="hero hero--launch" aria-labelledby="hero-heading">
+        <div className="hero-bg" aria-hidden="true" />
         <div className="hero-overlay">
           <div className="logo-hero">
             <Logo size="hero" />
           </div>
-          <p className="hero-tagline">
-            Something special is on the horizon.<br />
-            A transformative initiative bringing excitement and innovation to Curaçao.
+          <Countdown
+            targetDateTime={OPENING_CEREMONY_AT}
+            label="Countdown to the FIFA World Cup 2026 opening ceremony · Mexico City"
+          />
+          <p className="hero-eyebrow">World Cup Soccer Magazine</p>
+          <h1 id="hero-heading" className="hero-heading">
+            {SITE_TITLE}
+          </h1>
+          <span className="hero-live-badge" aria-label="Live now">
+            LIVE NOW
+          </span>
+          <p className="hero-tagline hero-tagline--launch">
+            {SITE_DESCRIPTION}
           </p>
-          <Countdown targetDate="2026-05-15" />
-          <div className="hero-ctas">
-            <a href="#stay-tuned" className="btn btn-primary">
-              Get Notified →
+          <div className="hero-ctas hero-ctas--launch">
+            <a
+              href={flipsnackUrl}
+              className="btn btn-primary btn-flipsnack"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Open the magazine — flip &amp; read →
             </a>
-            <a href="#about" className="btn btn-outline">
-              Learn More
+            <a href="#stay-tuned" className="btn btn-outline">
+              Stay updated
             </a>
+          </div>
+          <p className="hero-flipsnack-hint">
+            Free to read online · tap to flip through every page
+          </p>
+          <div className="hero-social">
+            <FacebookLink variant="hero" />
           </div>
         </div>
       </section>
 
       <svg className="wave-divider" viewBox="0 0 1440 120" preserveAspectRatio="none">
-        <path d="M0,64 C360,120 720,0 1080,64 C1260,96 1380,96 1440,64 L1440,120 L0,120 Z" fill="var(--off-white)" />
+        <path
+          d="M0,64 C360,120 720,0 1080,64 C1260,96 1380,96 1440,64 L1440,120 L0,120 Z"
+          fill="var(--off-white)"
+        />
       </svg>
 
-      <div className="main-layout">
-        <div className="main-content">
-      <section id="about" className="section about">
+      <section className="section seo-about" aria-labelledby="about-heading">
         <div className="container">
-          <h2>Our Vision</h2>
-          <p className="lead">
-            The Blue Wave brings innovation, culture and energy together. Discover our perspective on the FIFA World Cup 2026 story.
+          <h2 id="about-heading" className="seo-about__title">
+            FIFA World Cup 2026 magazine from Curaçao
+          </h2>
+          <p className="seo-about__text">
+            <strong>The Blue Wave</strong> is a free online flip magazine for FIFA World Cup 2026
+            fans in Curaçao, the Caribbean, and beyond. Explore match previews, local fan culture,
+            sports bars, and editorial stories — then subscribe for new issues and World Cup updates.
           </p>
-          <div className="cards">
-            <div className="card">
-              <span className="card-icon">🚀</span>
-              <h3>Innovation</h3>
-              <p>Modern approach, sharp content, ready for the future.</p>
-            </div>
-            <div className="card">
-              <span className="card-icon">🏝️</span>
-              <h3>Culture</h3>
-              <p>Curaçao's identity and passion for football.</p>
-            </div>
-            <div className="card">
-              <span className="card-icon">⚡</span>
-              <h3>Energy</h3>
-              <p>The dynamism of The Blue Wave in action.</p>
-            </div>
-          </div>
         </div>
       </section>
 
-      <svg className="wave-divider wave-invert" viewBox="0 0 1440 120" preserveAspectRatio="none">
-        <path d="M0,64 C360,0 720,120 1080,64 C1260,32 1380,32 1440,64 L1440,0 L0,0 Z" fill="var(--blue)" opacity="0.05" />
-      </svg>
-
-      <section id="why" className="section why">
-        <div className="container">
-          <h2>Why The Blue Wave?</h2>
-          <div className="reasons">
-            <div className="reason">
-              <span className="reason-icon">🌊</span>
-              <h3>Unique Content</h3>
-              <p>Exclusive stories, interviews and behind-the-scenes from the World Cup journey.</p>
-            </div>
-            <div className="reason">
-              <span className="reason-icon">🎯</span>
-              <h3>Direct Access</h3>
-              <p>One place for all updates on the magazine and FIFA World Cup 2026.</p>
-            </div>
-            <div className="reason">
-              <span className="reason-icon">🤝</span>
-              <h3>Community</h3>
-              <p>Join supporters and fans of The Blue Wave.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="stay-tuned" className="section stay-tuned">
+      <section id="stay-tuned" className="section stay-tuned stay-tuned--solo" aria-labelledby="stay-tuned-heading">
         <div className="container">
           <div className="subscribe-box">
-            <h2 className="stay-tuned-title">Stay Updated</h2>
-            <p className="stay-tuned-lead">Subscribe and be the first to receive updates and exclusive content.</p>
+            <h2 id="stay-tuned-heading" className="stay-tuned-title">Stay Updated</h2>
+            <p className="stay-tuned-lead">
+              Subscribe and be the first to receive updates and exclusive content.
+            </p>
+            <SubscriberCounter count={subscriberCount} />
             <form onSubmit={handleSubmit} className="subscribe-form">
+              <input
+                type="checkbox"
+                name="botcheck"
+                id="botcheck"
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+                style={{ display: 'none' }}
+              />
               <input
                 type="email"
                 value={email}
@@ -211,37 +231,15 @@ export default function App() {
           </div>
         </div>
       </section>
-        </div>
+      </main>
 
-        <aside className="right-sidebar">
-          <section id="community" className="section section-sidebar community">
-            <h2>Community</h2>
-            <p className="lead">Share your thoughts, photos, and connect with fellow supporters.</p>
-            <div className="community-feed-scroll">
-              <CommunityFeed />
-            </div>
-          </section>
-          <section id="share-raffle" className="section section-sidebar share-raffle-section">
-            <h2>Share & Win</h2>
-            <p className="lead">Share The Blue Wave and enter our raffle for exclusive prizes.</p>
-            <ShareRaffle />
-          </section>
-        </aside>
-      </div>
-
-      <footer className="footer">
+      <footer className="footer footer--minimal">
         <div className="container">
           <div className="footer-brand">
             <Logo size="footer" />
             <p>© Zebra Productions · FIFA World Cup 2026</p>
+            <FacebookLink variant="footer" />
           </div>
-          <nav className="footer-nav">
-            <a href="#about">About</a>
-            <a href="#why">Why</a>
-            <a href="#community">Community</a>
-            <a href="#share-raffle">Share & Win</a>
-            <a href="#stay-tuned">Stay Updated</a>
-          </nav>
         </div>
       </footer>
     </>

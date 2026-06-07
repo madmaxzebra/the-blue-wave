@@ -43,7 +43,14 @@ app.use(express_1.default.json({ limit: '5mb' }));
 const MAGAZINE_URL = (process.env.MAGAZINE_URL ||
     process.env.MAGAZINE_SITE_URL ||
     'http://localhost:5173').replace(/\/$/, '');
+const FLIPSNACK_URL = (process.env.FLIPSNACK_URL ||
+    'https://www.flipsnack.com/AD66C5D9E8C/wk-magazine-alfa-1-4-annimated').replace(/\/$/, '');
 const MANUS_API_URL = (process.env.MANUS_API_URL || '').replace(/\/$/, '');
+const SUBSCRIBER_COUNT_BASE = Number.parseInt(process.env.SUBSCRIBER_COUNT_BASE ?? '4732', 10);
+function getDisplaySubscriberCount() {
+    const base = Number.isFinite(SUBSCRIBER_COUNT_BASE) ? SUBSCRIBER_COUNT_BASE : 4732;
+    return base + (0, db_1.getSubscriberCount)();
+}
 app.get('/api/health', (req, res) => {
     const hasResend = !!process.env.RESEND_API_KEY;
     const hasSmtp = !!(process.env.SMTP_USER && process.env.SMTP_PASS);
@@ -78,12 +85,35 @@ app.post('/api/test-email', async (req, res) => {
 });
 app.get('/api/stats', (_req, res) => {
     try {
-        const count = (0, db_1.getSubscriberCount)();
+        const count = getDisplaySubscriberCount();
         res.json({ subscribers: count });
     }
     catch (err) {
         console.error(err);
         res.status(500).json({ error: 'Failed to get stats' });
+    }
+});
+app.get('/api/subscriber-count', (_req, res) => {
+    try {
+        res.json({ count: getDisplaySubscriberCount() });
+    }
+    catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Failed to get subscriber count' });
+    }
+});
+app.post('/api/register-subscriber', (req, res) => {
+    const email = req.body?.email?.trim();
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        return res.status(400).json({ error: 'Invalid email address' });
+    }
+    try {
+        const { added } = (0, db_1.addSubscriber)(email, req.body?.referralCode);
+        res.json({ ok: true, count: getDisplaySubscriberCount(), added });
+    }
+    catch (err) {
+        console.error('[Register-subscriber]', err);
+        res.status(500).json({ error: 'Failed to register subscriber' });
     }
 });
 app.get('/api/mail-status', (_req, res) => {
@@ -196,7 +226,7 @@ app.post('/api/subscribe', async (req, res) => {
         const msg = welcomeSent
             ? 'Thanks! Check your inbox for the confirmation. If you don’t see it, check your spam folder.'
             : 'Thanks for subscribing! Email failed – use Gmail App Password in backend/.env (see MAIL-SETUP.md)';
-        res.json({ ok: true, message: msg });
+        res.json({ ok: true, message: msg, subscriberCount: getDisplaySubscriberCount() });
     }
     catch (err) {
         console.error('[Subscribe] Error:', err);
@@ -204,6 +234,7 @@ app.post('/api/subscribe', async (req, res) => {
     }
 });
 app.get('/api/magazine-url', (_req, res) => res.json({ url: MAGAZINE_URL }));
+app.get('/api/flipsnack-url', (_req, res) => res.json({ url: FLIPSNACK_URL }));
 // Community feed
 app.get('/api/community/posts', (_req, res) => {
     try {
