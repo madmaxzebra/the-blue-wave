@@ -76,19 +76,17 @@ async function sendViaRenderWelcome(
 }
 
 /**
- * Welcome email: EmailJS first (works without Render mail), then Render API as backup.
- * Retries EmailJS once — helps on mobile networks.
+ * Welcome email: Render/Gmail first (reliable, less spam), EmailJS as fallback on phones.
  */
 async function sendWelcomeEmail(toEmail: string, apiBase: string, origin: string): Promise<boolean> {
-  if (await sendViaEmailJs(toEmail, origin)) return true;
+  if (await sendViaRenderWelcome(toEmail, apiBase, origin)) return true;
 
-  const renderOk = await sendViaRenderWelcome(toEmail, apiBase, origin);
-  if (renderOk) return true;
+  if (await sendViaEmailJs(toEmail, origin)) return true;
 
   await sleep(900);
-  if (await sendViaEmailJs(toEmail, origin)) return true;
+  if (await sendViaRenderWelcome(toEmail, apiBase, origin)) return true;
 
-  return sendViaRenderWelcome(toEmail, apiBase, origin);
+  return sendViaEmailJs(toEmail, origin);
 }
 
 export type StayUpdatedResult =

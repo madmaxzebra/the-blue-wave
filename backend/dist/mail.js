@@ -10,10 +10,11 @@ const fs_1 = __importDefault(require("fs"));
 const path_1 = __importDefault(require("path"));
 const nodemailer_1 = __importDefault(require("nodemailer"));
 const resend_1 = require("resend");
-// Prefer Gmail SMTP when configured – Resend with unverified domain only sends to account email
-const useSmtpForSending = !!(process.env.SMTP_USER && process.env.SMTP_PASS);
-const useResend = !!process.env.RESEND_API_KEY && !useSmtpForSending;
-const resend = useResend ? new resend_1.Resend(process.env.RESEND_API_KEY) : null;
+// Prefer Gmail SMTP when configured; fall back to Resend if SMTP fails.
+// Note: Resend onboarding@resend.dev only delivers to your Resend account email until domain is verified.
+const hasSmtp = !!(process.env.SMTP_USER && process.env.SMTP_PASS);
+const hasResend = !!process.env.RESEND_API_KEY;
+const resend = hasResend ? new resend_1.Resend(process.env.RESEND_API_KEY) : null;
 const isGmail = process.env.SMTP_HOST === 'smtp.gmail.com';
 const transporter = nodemailer_1.default.createTransport(isGmail
     ? { service: 'gmail', auth: { user: process.env.SMTP_USER, pass: process.env.SMTP_PASS } }
@@ -25,10 +26,10 @@ const transporter = nodemailer_1.default.createTransport(isGmail
         tls: { rejectUnauthorized: false },
     });
 async function testSmtpConnection() {
-    if (useResend && resend) {
-        return { ok: true }; // Resend uses HTTP - no verify needed
+    if (hasResend) {
+        return { ok: true };
     }
-    if (!process.env.SMTP_USER || !process.env.SMTP_PASS) {
+    if (!hasSmtp) {
         return { ok: false, error: 'Mail not configured. Set RESEND_API_KEY or SMTP_USER/SMTP_PASS in .env' };
     }
     try {
@@ -41,11 +42,11 @@ async function testSmtpConnection() {
         return { ok: false, error: msg };
     }
 }
-function getFromAddress() {
-    if (useResend && process.env.RESEND_FROM) {
+function getFromAddress(viaResend) {
+    if (viaResend && process.env.RESEND_FROM) {
         return process.env.RESEND_FROM;
     }
-    if (useResend) {
+    if (viaResend) {
         return '"The Blue Wave" <onboarding@resend.dev>';
     }
     return `"The Blue Wave" <${process.env.SMTP_USER}>`;
@@ -53,7 +54,7 @@ function getFromAddress() {
 function getReplyToAddress() {
     return process.env.REPLY_TO || process.env.ADMIN_EMAIL || process.env.SMTP_USER || '';
 }
-const DEFAULT_SITE_URL = 'https://thebluewavefans.com';
+const DEFAULT_SITE_URL = 'https://www.thebluewavefans.com';
 function resolveSiteOrigin(siteOrigin) {
     const raw = siteOrigin || process.env.SITE_URL || DEFAULT_SITE_URL;
     return raw.replace(/\/$/, '');
@@ -110,8 +111,37 @@ async function sendWelcomeEmail(to, siteOrigin) {
     </div>
   `;
     const replyTo = getReplyToAddress();
-    if (useResend && resend) {
-        const fromAddr = getFromAddress();
+    if (hasSmtp) {
+        const smtpAttachments = !imgSrc && banner
+            ? [{ filename: banner.filename, content: Buffer.from(banner.content, 'base64'), cid: BANNER_CID }]
+            : [];
+        try {
+            const info = await transporter.sendMail({
+                from: getFromAddress(false),
+                to,
+                replyTo: replyTo || undefined,
+                subject,
+                text,
+                html,
+                attachments: smtpAttachments,
+            });
+            const msgId = info.messageId || 'unknown';
+            console.log(`[Mail] Welcome email sent to ${to} (SMTP) | messageId: ${msgId}`);
+            return { ok: true };
+        }
+        catch (err) {
+            const msg = err instanceof Error ? err.message : String(err);
+            console.warn('[Mail] SMTP welcome failed, trying Resend fallback:', msg);
+            if (!hasResend || !resend) {
+                const hint = /invalid.*credentials|username.*password|authentication/i.test(msg)
+                    ? ' Create a new Gmail App Password: myaccount.google.com/apppasswords'
+                    : '';
+                return { ok: false, error: msg + hint };
+            }
+        }
+    }
+    if (hasResend && resend) {
+        const fromAddr = getFromAddress(true);
         const attachments = !imgSrc && banner ? [{ content: banner.content, filename: banner.filename, contentId: BANNER_CID }] : undefined;
         try {
             const { data, error } = await resend.emails.send({
@@ -136,34 +166,8 @@ async function sendWelcomeEmail(to, siteOrigin) {
             return { ok: false, error: msg };
         }
     }
-    if (!process.env.SMTP_USER || !process.env.SMTP_PASS) {
-        console.warn('[Mail] Mail not configured (no RESEND_API_KEY or SMTP), skipping welcome email');
-        return { ok: false, error: 'Mail not configured' };
-    }
-    const attachments = !imgSrc && banner
-        ? [{ filename: banner.filename, content: Buffer.from(banner.content, 'base64'), cid: BANNER_CID }]
-        : [];
-    try {
-        const info = await transporter.sendMail({
-            from: getFromAddress(),
-            to,
-            replyTo: replyTo || undefined,
-            subject,
-            text,
-            html,
-            attachments,
-        });
-        const msgId = info.messageId || 'unknown';
-        console.log(`[Mail] Welcome email sent to ${to} | messageId: ${msgId}`);
-        return { ok: true };
-    }
-    catch (err) {
-        const msg = err instanceof Error ? err.message : String(err);
-        const code = err instanceof Error ? err.code : '';
-        console.error('[Mail] Error sending welcome email:', msg, code ? `(code: ${code})` : '');
-        const hint = /invalid.*credentials|username.*password|authentication/i.test(msg) ? ' Use Gmail App Password from myaccount.google.com/apppasswords' : '';
-        return { ok: false, error: msg + hint };
-    }
+    console.warn('[Mail] Mail not configured (no RESEND_API_KEY or SMTP), skipping welcome email');
+    return { ok: false, error: 'Mail not configured' };
 }
 async function sendAdminNotificationEmail(newSubscriberEmail, _siteOrigin) {
     const adminEmail = process.env.ADMIN_EMAIL || process.env.SMTP_USER;
@@ -181,8 +185,29 @@ async function sendAdminNotificationEmail(newSubscriberEmail, _siteOrigin) {
       <p style="color: #666; font-size: 0.9em;">© Zebra Productions – The Blue Wave</p>
     </div>
   `;
-    if (useResend && resend) {
-        const fromAddr = getFromAddress();
+    if (hasSmtp) {
+        const smtpAttachments = banner
+            ? [{ filename: banner.filename, content: Buffer.from(banner.content, 'base64'), cid: BANNER_CID }]
+            : [];
+        try {
+            await transporter.sendMail({
+                from: getFromAddress(false),
+                to: adminEmail,
+                subject: `[The Blue Wave] New subscriber: ${newSubscriberEmail}`,
+                html,
+                attachments: smtpAttachments,
+            });
+            console.log(`[Mail] Admin notification sent to ${adminEmail} (SMTP)`);
+            return true;
+        }
+        catch (err) {
+            console.warn('[Mail] SMTP admin notification failed, trying Resend:', err);
+            if (!hasResend || !resend)
+                return false;
+        }
+    }
+    if (hasResend && resend) {
+        const fromAddr = getFromAddress(true);
         const attachments = banner ? [{ content: banner.content, filename: banner.filename, contentId: BANNER_CID }] : undefined;
         try {
             const { data, error } = await resend.emails.send({
@@ -204,26 +229,6 @@ async function sendAdminNotificationEmail(newSubscriberEmail, _siteOrigin) {
             return false;
         }
     }
-    if (!process.env.SMTP_USER || !process.env.SMTP_PASS) {
-        console.warn('[Mail] Mail not configured (no RESEND_API_KEY or SMTP), skipping admin notification');
-        return false;
-    }
-    const attachments = banner
-        ? [{ filename: banner.filename, content: Buffer.from(banner.content, 'base64'), cid: BANNER_CID }]
-        : [];
-    try {
-        await transporter.sendMail({
-            from: getFromAddress(),
-            to: adminEmail,
-            subject: `[The Blue Wave] New subscriber: ${newSubscriberEmail}`,
-            html,
-            attachments,
-        });
-        console.log(`[Mail] Admin notification sent to ${adminEmail}`);
-        return true;
-    }
-    catch (err) {
-        console.error('[Mail] Error sending admin notification:', err);
-        return false;
-    }
+    console.warn('[Mail] Mail not configured, skipping admin notification');
+    return false;
 }

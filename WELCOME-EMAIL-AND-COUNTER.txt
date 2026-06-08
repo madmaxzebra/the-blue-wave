@@ -29,21 +29,28 @@ Then upload thebluewavefans-upload.zip to Bluehost (extract in public_html)
 
 BEST FIX FOR WELCOME EMAIL (Render dashboard — 5 minutes)
 -----------------------------------------------------------
-1. Go to https://dashboard.render.com
-2. Open service: the-blue-wave
-3. Environment → Add Variable:
+Double-click: bluewave\SETUP-RENDER-MAIL-NOW.bat
+
+IMPORTANT: Your Gmail App Password may have EXPIRED.
+Create a NEW one: https://myaccount.google.com/apppasswords
+(Paste without spaces into SMTP_PASS on Render.)
+
+Add on Render (service: the-blue-wave):
 
    SMTP_HOST = smtp.gmail.com
-   SMTP_USER = your Gmail address
-   SMTP_PASS = Gmail App Password (NOT your normal password)
-   ADMIN_EMAIL = email where you want signup alerts
+   SMTP_PORT = 587
+   SMTP_USER = madmax.zebra@gmail.com
+   SMTP_PASS = (NEW 16-char app password)
+   ADMIN_EMAIL = madmax.zebra@gmail.com
    SITE_URL = https://www.thebluewavefans.com
+   RESEND_API_KEY = (optional backup — copy from backend\.env)
 
-   Gmail App Password: https://myaccount.google.com/apppasswords
+Save → Render redeploys (~5 min)
 
-4. Save → Render redeploys (~5 min)
+Check: double-click CHECK-MAIL-WORKS.bat
+Should show MAIL: WORKING
 
-After this, /api/welcome sends proper welcome emails even when EmailJS fails.
+After this, welcome emails go via Gmail first; EmailJS is backup only.
 
 OPTIONAL: Web3Forms Pro autoresponder
 -------------------------------------
