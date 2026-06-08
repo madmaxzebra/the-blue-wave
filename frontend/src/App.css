@@ -65,6 +65,8 @@
   display: flex;
   gap: 1.5rem;
   align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-end;
 }
 
 .nav a {
@@ -443,9 +445,29 @@
 
 .subscribe-box .stay-tuned-lead {
   color: rgba(255, 255, 255, 0.92);
-  margin: 0 0 1.5rem;
+  margin: 0 0 1rem;
   font-size: 1rem;
   font-weight: 600;
+}
+
+.subscriber-counter {
+  margin: 0 0 1.5rem;
+  padding: 0.85rem 1rem;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  text-align: center;
+  font-size: 0.98rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.subscriber-counter__number {
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: white;
+  font-variant-numeric: tabular-nums;
 }
 
 .subscribe-form {
@@ -846,10 +868,242 @@
   }
 }
 
+/* Flipsnack launch landing (simplified page) */
+.hero--launch .hero-overlay {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.countdown-block {
+  margin: 0.75rem auto 1.25rem;
+}
+
+.countdown-label-top {
+  margin: 0 0 0.85rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0.92;
+  line-height: 1.45;
+  max-width: 420px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero--launch .countdown {
+  margin: 0;
+}
+
+.hero-eyebrow {
+  margin: 0.5rem 0 0.35rem;
+  font-size: 0.95rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.9;
+}
+
+.hero-heading {
+  margin: 0 0 1rem;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.35rem, 3vw, 1.85rem);
+  font-weight: 600;
+  line-height: 1.25;
+  max-width: 28ch;
+  margin-left: auto;
+  margin-right: auto;
+  text-wrap: balance;
+  color: white;
+}
+
+.hero-live-badge {
+  display: inline-block;
+  margin-bottom: 1.25rem;
+  padding: 0.45rem 1.1rem;
+  border-radius: 999px;
+  background: #e63946;
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  box-shadow: 0 4px 20px rgba(230, 57, 70, 0.45);
+}
+
+.hero-tagline--launch {
+  font-size: 1.2rem;
+  max-width: 640px;
+}
+
+.hero-tagline--launch strong {
+  font-weight: 700;
+}
+
+.hero-ctas--launch {
+  margin-top: 0.5rem;
+}
+
+.btn-primary.btn-flipsnack {
+  font-size: 1.1rem;
+  padding: 1rem 1.75rem;
+  background: linear-gradient(180deg, #0077ee 0%, var(--blue) 50%, var(--blue-dark) 100%);
+  color: #fff;
+  border: none;
+  box-shadow: 0 8px 28px rgba(0, 102, 204, 0.45);
+}
+
+.btn-primary.btn-flipsnack:hover {
+  background: linear-gradient(180deg, var(--blue) 0%, var(--blue-dark) 100%);
+  box-shadow: 0 10px 32px rgba(0, 102, 204, 0.55);
+}
+
+.cta-nav--launch {
+  font-weight: 600;
+}
+
+.seo-about {
+  padding: 3rem 1.5rem;
+  background: var(--off-white);
+  text-align: center;
+}
+
+.seo-about__title {
+  margin: 0 0 1rem;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  color: var(--blue-dark);
+}
+
+.seo-about__text {
+  margin: 0 auto;
+  max-width: 42rem;
+  color: var(--ink-muted);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.hero-flipsnack-hint {
+  margin: 1.25rem 0 0;
+  font-size: 0.95rem;
+  opacity: 0.85;
+}
+
+.hero-social {
+  margin-top: 1.75rem;
+}
+
+.facebook-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  text-decoration: none;
+  transition: transform 0.2s ease, opacity 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+.facebook-link:hover {
+  transform: translateY(-1px);
+}
+
+.facebook-link__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: 999px;
+}
+
+.facebook-link__icon {
+  width: 1.15rem;
+  height: 1.15rem;
+  display: block;
+}
+
+.facebook-link__label {
+  font-weight: 600;
+  font-size: 0.95rem;
+  line-height: 1.2;
+}
+
+.facebook-link--nav .facebook-link__badge {
+  width: 2.25rem;
+  height: 2.25rem;
+  background: #1877f2;
+  color: white;
+  box-shadow: 0 2px 8px rgba(24, 119, 242, 0.35);
+}
+
+.facebook-link--nav:hover .facebook-link__badge {
+  background: #166fe5;
+  box-shadow: 0 4px 12px rgba(24, 119, 242, 0.45);
+}
+
+.facebook-link--hero {
+  color: white;
+  padding: 0.55rem 1rem 0.55rem 0.55rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(6px);
+}
+
+.facebook-link--hero:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.55);
+}
+
+.facebook-link--hero .facebook-link__badge {
+  width: 2rem;
+  height: 2rem;
+  background: #1877f2;
+  color: white;
+}
+
+.facebook-link--hero .facebook-link__label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  opacity: 0.95;
+}
+
+.facebook-link--footer {
+  margin-top: 1.25rem;
+  color: var(--ink-muted);
+}
+
+.facebook-link--footer:hover {
+  color: #1877f2;
+}
+
+.facebook-link--footer .facebook-link__badge {
+  width: 2.5rem;
+  height: 2.5rem;
+  background: #1877f2;
+  color: white;
+  box-shadow: 0 2px 10px rgba(24, 119, 242, 0.25);
+}
+
+.facebook-link--footer:hover .facebook-link__badge {
+  background: #166fe5;
+}
+
+.stay-tuned--solo {
+  padding: 4rem 1.5rem 5rem;
+}
+
+.footer--minimal .container {
+  justify-content: center;
+  text-align: center;
+}
+
+.footer--minimal .footer-nav {
+  display: none;
+}
+
 @media (max-width: 640px) {
-  .nav nav { display: none; }
+  .nav:not(.nav--launch) nav { display: none; }
   .hero-tagline { font-size: 1.1rem; }
   .countdown { gap: 0.75rem; }
   .countdown-item { min-width: 60px; padding: 0.75rem 1rem; }
   .countdown-value { font-size: 1.5rem; }
+  .btn-flipsnack {
+    width: 100%;
+    text-align: center;
+  }
 }
