@@ -228,7 +228,7 @@ app.post('/api/subscribe', async (req, res) => {
             console.log('[Subscribe] Welcome email sent to', email);
         }
         else {
-            console.warn('[Subscribe] Welcome email FAILED for', email, welcomeResult.error || '');
+            console.warn('[Subscribe] Welcome email FAILED for', email, 'error' in welcomeResult ? welcomeResult.error || '' : '');
         }
         if (!adminSent) {
             console.warn('[Subscribe] Admin notification not sent - check ADMIN_EMAIL in .env');

@@ -7,6 +7,7 @@ import { submitStayUpdatedSignup } from './subscribeForm';
 import {
   SubscriberCounter,
   fetchSubscriberCount,
+  getCachedSubscriberCount,
   SUBSCRIBER_COUNT_FALLBACK,
 } from './SubscriberCounter';
 import {
@@ -57,7 +58,9 @@ export default function App() {
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [message, setMessage] = useState('');
-  const [subscriberCount, setSubscriberCount] = useState(SUBSCRIBER_COUNT_FALLBACK);
+  const [subscriberCount, setSubscriberCount] = useState(
+    () => getCachedSubscriberCount() ?? SUBSCRIBER_COUNT_FALLBACK
+  );
 
   useEffect(() => {
     let cancelled = false;

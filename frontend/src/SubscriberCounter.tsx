@@ -1,9 +1,12 @@
-import { getApiBase } from './api';
+import { fetchWithTimeout, getApiBase } from './api';
+
+const API_TIMEOUT_MS = 10000;
+const LOCAL_CACHE_KEY = 'bluewave-subscriber-count';
 
 /** Historical signups before the live counter. */
 export const SUBSCRIBER_COUNT_FALLBACK = 4732;
 
-/** Global counter — same number for every visitor (Render DB alone is not reliable). */
+/** Global counter backup — Render API is primary. */
 const GLOBAL_COUNTER_KEY = 'thebluewavefans-subscribers';
 const GLOBAL_COUNTER_BASE = 'https://countapi.mileshilliard.com/api/v1';
 
@@ -14,6 +17,28 @@ export type RegisterSubscriberResult = {
 
 export function formatSubscriberCount(count: number): string {
   return count.toLocaleString('de-DE');
+}
+
+export function getCachedSubscriberCount(): number | null {
+  if (typeof window === 'undefined') return null;
+  try {
+    const raw = window.localStorage.getItem(LOCAL_CACHE_KEY);
+    if (!raw) return null;
+    const n = Number.parseInt(raw, 10);
+    if (!Number.isFinite(n) || n < SUBSCRIBER_COUNT_FALLBACK) return null;
+    return n;
+  } catch {
+    return null;
+  }
+}
+
+function cacheSubscriberCount(count: number): void {
+  if (typeof window === 'undefined') return;
+  try {
+    window.localStorage.setItem(LOCAL_CACHE_KEY, String(count));
+  } catch {
+    /* ignore */
+  }
 }
 
 function apiHeaders(apiBase: string): Record<string, string> {
@@ -44,7 +69,7 @@ function parseCountValue(data: unknown): number | null {
 
 async function fetchJson(url: string, init?: RequestInit): Promise<unknown | null> {
   try {
-    const res = await fetch(url, init);
+    const res = await fetchWithTimeout(url, init, API_TIMEOUT_MS);
     if (!res.ok) return null;
     const text = await res.text();
     if (!text || text.trimStart().startsWith('<!')) return null;
@@ -52,10 +77,6 @@ async function fetchJson(url: string, init?: RequestInit): Promise<unknown | nul
   } catch {
     return null;
   }
-}
-
-function sleep(ms: number): Promise<void> {
-  return new Promise((resolve) => window.setTimeout(resolve, ms));
 }
 
 async function fetchGlobalCounterValue(): Promise<number | null> {
@@ -75,15 +96,6 @@ async function incrementGlobalCounter(): Promise<number | null> {
   return parseCountValue(data);
 }
 
-async function ensureGlobalCounterInitialized(): Promise<void> {
-  const current = await fetchGlobalCounterValue();
-  if (current === null || current < SUBSCRIBER_COUNT_FALLBACK) {
-    await setGlobalCounterValue(
-      current === null ? SUBSCRIBER_COUNT_FALLBACK : Math.max(SUBSCRIBER_COUNT_FALLBACK, current)
-    );
-  }
-}
-
 async function fetchRenderSubscriberCount(): Promise<number | null> {
   const apiBase = getApiBase();
   if (!apiBase) return null;
@@ -97,16 +109,38 @@ async function fetchRenderSubscriberCount(): Promise<number | null> {
   return parseCountValue(stats);
 }
 
-/** Load the public total — global counter first. */
+/** Pick the highest trusted count and remember it — never reset to 4732 on network blips. */
+async function resolveSubscriberCount(): Promise<number> {
+  const [render, global, cached] = await Promise.all([
+    fetchRenderSubscriberCount(),
+    fetchGlobalCounterValue(),
+    Promise.resolve(getCachedSubscriberCount()),
+  ]);
+
+  let best = SUBSCRIBER_COUNT_FALLBACK;
+  for (const candidate of [render, global, cached]) {
+    if (typeof candidate === 'number' && candidate > best) {
+      best = candidate;
+    }
+  }
+
+  // Keep global counter in sync when Render is ahead (e.g. after DB signups).
+  if (render !== null && global !== null && render > global) {
+    const synced = await setGlobalCounterValue(render);
+    if (synced !== null && synced > best) best = synced;
+  }
+
+  cacheSubscriberCount(best);
+  return best;
+}
+
+/** Load the public total — Render first, then global counter, then browser cache. */
 export async function fetchSubscriberCount(): Promise<number | null> {
-  await ensureGlobalCounterInitialized();
-  const global = await fetchGlobalCounterValue();
-  if (global !== null) return global;
-
-  const render = await fetchRenderSubscriberCount();
-  if (render !== null) return render;
-
-  return SUBSCRIBER_COUNT_FALLBACK;
+  try {
+    return await resolveSubscriberCount();
+  } catch {
+    return getCachedSubscriberCount() ?? SUBSCRIBER_COUNT_FALLBACK;
+  }
 }
 
 async function registerOnRender(email: string): Promise<boolean> {
@@ -120,7 +154,6 @@ async function registerOnRender(email: string): Promise<boolean> {
   const attempts: Array<{ path: string; body: Record<string, unknown> }> = [
     { path: '/api/register-subscriber', body: { email: trimmed } },
     { path: '/api/subscribe', body: { email: trimmed, countOnly: true, origin } },
-    { path: '/api/subscribe', body: { email: trimmed, welcomeOnly: true, origin } },
   ];
 
   for (const attempt of attempts) {
@@ -136,26 +169,21 @@ async function registerOnRender(email: string): Promise<boolean> {
   return false;
 }
 
-/** After signup: save on Render if possible, bump global counter for new subscribers. */
+/** After signup: save on Render, bump global counter for new subscribers. */
 export async function registerSubscriberCount(email: string): Promise<RegisterSubscriberResult | null> {
-  await ensureGlobalCounterInitialized();
-  const before = await fetchGlobalCounterValue();
-
+  const before = await resolveSubscriberCount();
   const addedOnRender = await registerOnRender(email);
 
-  if (addedOnRender || before === null) {
+  if (addedOnRender) {
     const afterHit = await incrementGlobalCounter();
-    if (afterHit !== null) {
-      return { count: afterHit, added: true };
-    }
+    const afterRender = await fetchRenderSubscriberCount();
+    const best = Math.max(before + 1, afterHit ?? 0, afterRender ?? 0);
+    cacheSubscriberCount(best);
+    return { count: best, added: true };
   }
 
-  const latest = await fetchSubscriberCount();
-  if (latest !== null) {
-    return { count: latest, added: false };
-  }
-
-  return before !== null ? { count: before, added: false } : null;
+  const latest = await resolveSubscriberCount();
+  return { count: latest, added: false };
 }
 
 type SubscriberCounterProps = {
