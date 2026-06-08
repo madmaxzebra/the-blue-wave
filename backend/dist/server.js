@@ -216,10 +216,11 @@ app.post('/api/subscribe', async (req, res) => {
                 added,
             });
         }
-        const siteOrigin = req.body?.origin || process.env.SITE_URL;
+        const siteOrigin = req.body?.origin || (0, env_1.getSiteUrl)();
         const welcomeOnly = req.body?.welcomeOnly === true;
+        const adminOnly = req.body?.adminOnly === true;
         const [welcomeResult, adminSent] = await Promise.all([
-            (0, mail_1.sendWelcomeEmail)(email, siteOrigin),
+            adminOnly ? Promise.resolve({ ok: false }) : (0, mail_1.sendWelcomeEmail)(email, siteOrigin),
             welcomeOnly ? Promise.resolve(true) : (0, mail_1.sendAdminNotificationEmail)(email, siteOrigin),
         ]);
         const welcomeSent = welcomeResult.ok;
