@@ -36,6 +36,7 @@ const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
 const db_1 = require("./db");
 const mail_1 = require("./mail");
+const env_1 = require("./env");
 const app = (0, express_1.default)();
 app.use((0, cors_1.default)());
 app.use(express_1.default.json({ limit: '5mb' }));
@@ -117,16 +118,16 @@ app.post('/api/register-subscriber', (req, res) => {
     }
 });
 app.get('/api/mail-status', (_req, res) => {
-    const hasSmtp = !!(process.env.SMTP_USER && process.env.SMTP_PASS);
-    const hasResend = !!process.env.RESEND_API_KEY;
+    const hasSmtp = (0, env_1.hasSmtpConfig)();
+    const hasResend = (0, env_1.hasResendConfig)();
     const hasManus = !!process.env.MANUS_API_URL;
     const mailConfigured = hasSmtp || hasResend || hasManus;
     const method = hasManus ? 'manus' : hasSmtp ? 'smtp' : hasResend ? 'resend' : 'none';
     res.json({ mailConfigured, method, hasSmtp, hasResend, hasManus });
 });
 app.get('/api/mail-check', (_req, res) => {
-    const hasSmtp = !!(process.env.SMTP_USER && process.env.SMTP_PASS);
-    const hasResend = !!process.env.RESEND_API_KEY;
+    const hasSmtp = (0, env_1.hasSmtpConfig)();
+    const hasResend = (0, env_1.hasResendConfig)();
     const mailOk = hasSmtp || hasResend;
     const hint = !mailOk
         ? 'Add SMTP_USER/SMTP_PASS or RESEND_API_KEY in Render → Environment Variables, then redeploy.'

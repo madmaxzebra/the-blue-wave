@@ -42,6 +42,7 @@ import {
   getPostCounts,
 } from './db';
 import { sendWelcomeEmail, sendAdminNotificationEmail, testSmtpConnection } from './mail';
+import { getSiteUrl, hasResendConfig, hasSmtpConfig } from './env';
 
 const app = express();
 app.use(cors());
@@ -133,8 +134,8 @@ app.post('/api/register-subscriber', (req, res) => {
 });
 
 app.get('/api/mail-status', (_req, res) => {
-  const hasSmtp = !!(process.env.SMTP_USER && process.env.SMTP_PASS);
-  const hasResend = !!process.env.RESEND_API_KEY;
+  const hasSmtp = hasSmtpConfig();
+  const hasResend = hasResendConfig();
   const hasManus = !!process.env.MANUS_API_URL;
   const mailConfigured = hasSmtp || hasResend || hasManus;
   const method = hasManus ? 'manus' : hasSmtp ? 'smtp' : hasResend ? 'resend' : 'none';
@@ -142,8 +143,8 @@ app.get('/api/mail-status', (_req, res) => {
 });
 
 app.get('/api/mail-check', (_req, res) => {
-  const hasSmtp = !!(process.env.SMTP_USER && process.env.SMTP_PASS);
-  const hasResend = !!process.env.RESEND_API_KEY;
+  const hasSmtp = hasSmtpConfig();
+  const hasResend = hasResendConfig();
   const mailOk = hasSmtp || hasResend;
   const hint = !mailOk
     ? 'Add SMTP_USER/SMTP_PASS or RESEND_API_KEY in Render → Environment Variables, then redeploy.'

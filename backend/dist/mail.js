@@ -10,19 +10,23 @@ const fs_1 = __importDefault(require("fs"));
 const path_1 = __importDefault(require("path"));
 const nodemailer_1 = __importDefault(require("nodemailer"));
 const resend_1 = require("resend");
+const env_1 = require("./env");
 // Prefer Gmail SMTP when configured; fall back to Resend if SMTP fails.
-// Note: Resend onboarding@resend.dev only delivers to your Resend account email until domain is verified.
-const hasSmtp = !!(process.env.SMTP_USER && process.env.SMTP_PASS);
-const hasResend = !!process.env.RESEND_API_KEY;
-const resend = hasResend ? new resend_1.Resend(process.env.RESEND_API_KEY) : null;
-const isGmail = process.env.SMTP_HOST === 'smtp.gmail.com';
+const smtpUser = (0, env_1.getSmtpUser)();
+const smtpPass = (0, env_1.getSmtpPass)();
+const hasSmtp = (0, env_1.hasSmtpConfig)();
+const hasResend = (0, env_1.hasResendConfig)();
+const resend = hasResend ? new resend_1.Resend((0, env_1.getResendApiKey)()) : null;
+const smtpHost = (0, env_1.getSmtpHost)();
+const smtpPort = (0, env_1.getSmtpPort)();
+const isGmail = smtpHost === 'smtp.gmail.com';
 const transporter = nodemailer_1.default.createTransport(isGmail
-    ? { service: 'gmail', auth: { user: process.env.SMTP_USER, pass: process.env.SMTP_PASS } }
+    ? { service: 'gmail', auth: { user: smtpUser, pass: smtpPass } }
     : {
-        host: process.env.SMTP_HOST,
-        port: Number(process.env.SMTP_PORT) || 587,
-        secure: Number(process.env.SMTP_PORT) === 465,
-        auth: { user: process.env.SMTP_USER, pass: process.env.SMTP_PASS },
+        host: smtpHost,
+        port: smtpPort,
+        secure: smtpPort === 465,
+        auth: { user: smtpUser, pass: smtpPass },
         tls: { rejectUnauthorized: false },
     });
 async function testSmtpConnection() {
@@ -49,14 +53,13 @@ function getFromAddress(viaResend) {
     if (viaResend) {
         return '"The Blue Wave" <onboarding@resend.dev>';
     }
-    return `"The Blue Wave" <${process.env.SMTP_USER}>`;
+    return `"The Blue Wave" <${smtpUser}>`;
 }
 function getReplyToAddress() {
-    return process.env.REPLY_TO || process.env.ADMIN_EMAIL || process.env.SMTP_USER || '';
+    return process.env.REPLY_TO || (0, env_1.getAdminEmail)() || smtpUser || '';
 }
-const DEFAULT_SITE_URL = 'https://www.thebluewavefans.com';
 function resolveSiteOrigin(siteOrigin) {
-    const raw = siteOrigin || process.env.SITE_URL || DEFAULT_SITE_URL;
+    const raw = siteOrigin || (0, env_1.getSiteUrl)();
     return raw.replace(/\/$/, '');
 }
 const BANNER_CID = 'banner-image';
@@ -170,7 +173,7 @@ async function sendWelcomeEmail(to, siteOrigin) {
     return { ok: false, error: 'Mail not configured' };
 }
 async function sendAdminNotificationEmail(newSubscriberEmail, _siteOrigin) {
-    const adminEmail = process.env.ADMIN_EMAIL || process.env.SMTP_USER;
+    const adminEmail = (0, env_1.getAdminEmail)() || smtpUser;
     if (!adminEmail) {
         console.warn('[Mail] ADMIN_EMAIL not configured, skipping admin notification');
         return false;
