@@ -206,7 +206,15 @@ app.post('/api/subscribe', async (req, res) => {
             }
             return res.status(manRes.status).json(data);
         }
-        (0, db_1.addSubscriber)(email, req.body?.referralCode);
+        const { added } = (0, db_1.addSubscriber)(email, req.body?.referralCode);
+        if (req.body?.countOnly === true) {
+            return res.json({
+                ok: true,
+                count: getDisplaySubscriberCount(),
+                subscriberCount: getDisplaySubscriberCount(),
+                added,
+            });
+        }
         const siteOrigin = req.body?.origin || process.env.SITE_URL;
         const welcomeOnly = req.body?.welcomeOnly === true;
         const [welcomeResult, adminSent] = await Promise.all([
@@ -226,7 +234,12 @@ app.post('/api/subscribe', async (req, res) => {
         const msg = welcomeSent
             ? 'Thanks! Check your inbox for the confirmation. If you don’t see it, check your spam folder.'
             : 'Thanks for subscribing! Email failed – use Gmail App Password in backend/.env (see MAIL-SETUP.md)';
-        res.json({ ok: true, message: msg, subscriberCount: getDisplaySubscriberCount() });
+        res.json({
+            ok: true,
+            message: msg,
+            subscriberCount: getDisplaySubscriberCount(),
+            added,
+        });
     }
     catch (err) {
         console.error('[Subscribe] Error:', err);

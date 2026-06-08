@@ -28,22 +28,16 @@ async function sendWelcomeEmail(toEmail: string, apiBase: string, origin: string
   }
 
   try {
-    const res = await fetch(`${apiBase}/api/subscribe`, {
+    const res = await fetch(`${apiBase}/api/welcome`, {
       method: 'POST',
       headers,
       body: JSON.stringify({
         email: toEmail,
         origin,
-        welcomeOnly: true,
       }),
     });
     const data = await res.json().catch(() => ({}));
-    if (
-      res.ok &&
-      data.ok &&
-      typeof data.message === 'string' &&
-      data.message.includes('Check your inbox')
-    ) {
+    if (res.ok && data.ok) {
       return true;
     }
   } catch {
@@ -68,7 +62,13 @@ async function sendWelcomeEmail(toEmail: string, apiBase: string, origin: string
 }
 
 export type StayUpdatedResult =
-  | { ok: true; welcomeSent: boolean; message: string; subscriberCount?: number }
+  | {
+      ok: true;
+      welcomeSent: boolean;
+      message: string;
+      subscriberCount?: number;
+      subscriberAdded?: boolean;
+    }
   | { ok: false; message: string };
 
 /** Matches the old thebluewavefans.com static form: Web3Forms alert + welcome via API/EmailJS. */
@@ -111,12 +111,14 @@ export async function submitStayUpdatedSignup(
     };
   }
 
+  const registration = await registerSubscriberCount(trimmed);
   const welcomeSent = await sendWelcomeEmail(trimmed, apiBase, origin);
-  const subscriberCount = (await registerSubscriberCount(trimmed)) ?? undefined;
+
   return {
     ok: true,
     welcomeSent,
-    subscriberCount,
+    subscriberCount: registration?.count,
+    subscriberAdded: registration?.added ?? false,
     message: welcomeSent
       ? "Thanks! You're on the list — check your inbox (and spam folder just in case). 🌊"
       : "Thanks! You're on the list — we'll email you soon. 🌊",

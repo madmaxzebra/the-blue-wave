@@ -97,8 +97,15 @@ export default function App() {
         setStatus('success');
         setMessage(result.message);
         setEmail('');
-        const latest = await fetchSubscriberCount();
-        setSubscriberCount((prev) => latest ?? result.subscriberCount ?? prev + 1);
+        setSubscriberCount((prev) => {
+          if (typeof result.subscriberCount === 'number') {
+            if (result.subscriberAdded) {
+              return Math.max(result.subscriberCount, prev + 1);
+            }
+            return result.subscriberCount;
+          }
+          return result.subscriberAdded ? prev + 1 : prev;
+        });
         return;
       }
       setStatus('error');
