@@ -1,0 +1,63 @@
+WELCOME EMAIL + SUBSCRIBER COUNTER — quick fix guide
+====================================================
+
+PROBLEM
+-------
+Some visitors do not get a welcome email.
+The subscriber counter does not always update for everyone.
+
+WHY
+---
+1. Render (the-blue-wave.onrender.com) has NO mail configured yet.
+   Check: https://the-blue-wave.onrender.com/api/mail-status
+   Should show mailConfigured: true
+
+2. Welcome emails rely on EmailJS from the browser.
+   Some phones block this (privacy settings, ad blockers, strict networks).
+
+WHAT WE FIXED IN CODE (upload new zip to Bluehost)
+--------------------------------------------------
+- EmailJS is tried FIRST (with one retry) — not Render first
+- Global subscriber counter uses countapi.mileshilliard.com
+  (same number for all visitors worldwide)
+- Counter refreshes every 15 seconds
+
+UPLOAD
+------
+Double-click: bluewave\UPLOAD-THEBLUEWAVEFANS.bat
+Then upload thebluewavefans-upload.zip to Bluehost (extract in public_html)
+
+BEST FIX FOR WELCOME EMAIL (Render dashboard — 5 minutes)
+-----------------------------------------------------------
+1. Go to https://dashboard.render.com
+2. Open service: the-blue-wave
+3. Environment → Add Variable:
+
+   SMTP_HOST = smtp.gmail.com
+   SMTP_USER = your Gmail address
+   SMTP_PASS = Gmail App Password (NOT your normal password)
+   ADMIN_EMAIL = email where you want signup alerts
+   SITE_URL = https://www.thebluewavefans.com
+
+   Gmail App Password: https://myaccount.google.com/apppasswords
+
+4. Save → Render redeploys (~5 min)
+
+After this, /api/welcome sends proper welcome emails even when EmailJS fails.
+
+OPTIONAL: Web3Forms Pro autoresponder
+-------------------------------------
+If you have Web3Forms Pro, enable Autoresponder in:
+https://app.web3forms.com
+→ Form settings → Autoresponder ON
+→ Subject: "You're on the list — The Blue Wave"
+→ Logo: https://www.thebluewavefans.com/logo.png
+
+This sends a second welcome path automatically.
+
+TEST
+----
+1. Use a NEW email you never tested before
+2. Submit on phone AND computer
+3. Check inbox + spam folder
+4. Counter should match on both devices within ~15 seconds
