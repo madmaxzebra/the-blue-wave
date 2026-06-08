@@ -71,7 +71,7 @@ export default function App() {
     };
 
     refresh();
-    const interval = window.setInterval(refresh, 45000);
+    const interval = window.setInterval(refresh, 15000);
 
     const onVisible = () => {
       if (document.visibilityState === 'visible') refresh();

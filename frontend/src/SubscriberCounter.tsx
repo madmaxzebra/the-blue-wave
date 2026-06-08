@@ -1,7 +1,10 @@
 import { getApiBase } from './api';
 
-/** Matches backend SUBSCRIBER_COUNT_BASE default (historical signups before the live counter). */
+/** Historical signups before the live counter (CountAPI + Render). */
 export const SUBSCRIBER_COUNT_FALLBACK = 4732;
+
+const COUNTAPI_NAMESPACE = 'thebluewavefans';
+const COUNTAPI_KEY = 'subscribers';
 
 export type RegisterSubscriberResult = {
   count: number;
@@ -24,22 +27,18 @@ function normalizeStatsCount(raw: number): number {
   return raw >= SUBSCRIBER_COUNT_FALLBACK ? raw : SUBSCRIBER_COUNT_FALLBACK + raw;
 }
 
-function parseRegisterPayload(data: unknown): RegisterSubscriberResult | null {
+function parseCountPayload(data: unknown): number | null {
   if (!data || typeof data !== 'object') return null;
   const row = data as Record<string, unknown>;
-  const count =
-    typeof row.count === 'number'
-      ? row.count
-      : typeof row.subscriberCount === 'number'
-        ? row.subscriberCount
-        : typeof row.subscribers === 'number'
-          ? normalizeStatsCount(row.subscribers)
-          : null;
-  if (count === null || !Number.isFinite(count)) return null;
-  return {
-    count,
-    added: row.added === true,
-  };
+  if (typeof row.value === 'number' && Number.isFinite(row.value)) return row.value;
+  if (typeof row.count === 'number' && Number.isFinite(row.count)) return row.count;
+  if (typeof row.subscriberCount === 'number' && Number.isFinite(row.subscriberCount)) {
+    return row.subscriberCount;
+  }
+  if (typeof row.subscribers === 'number' && Number.isFinite(row.subscribers)) {
+    return normalizeStatsCount(row.subscribers);
+  }
+  return null;
 }
 
 async function fetchJson(url: string, init?: RequestInit): Promise<unknown | null> {
@@ -58,67 +57,105 @@ function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => window.setTimeout(resolve, ms));
 }
 
-/** Load public subscriber total (works with old and new Render API). */
-export async function fetchSubscriberCount(): Promise<number | null> {
+/** Global persistent counter (same number for every visitor worldwide). */
+async function fetchCountApiValue(): Promise<number | null> {
+  const data = await fetchJson(
+    `https://api.countapi.xyz/get/${COUNTAPI_NAMESPACE}/${COUNTAPI_KEY}`
+  );
+  return parseCountPayload(data);
+}
+
+async function incrementCountApi(): Promise<number | null> {
+  const data = await fetchJson(
+    `https://api.countapi.xyz/hit/${COUNTAPI_NAMESPACE}/${COUNTAPI_KEY}`
+  );
+  return parseCountPayload(data);
+}
+
+async function ensureCountApiInitialized(): Promise<void> {
+  const current = await fetchCountApiValue();
+  if (current !== null) return;
+  await fetch(
+    `https://api.countapi.xyz/create?namespace=${COUNTAPI_NAMESPACE}&key=${COUNTAPI_KEY}&value=${SUBSCRIBER_COUNT_FALLBACK}`
+  );
+}
+
+async function fetchRenderSubscriberCount(): Promise<number | null> {
   const apiBase = getApiBase();
   if (!apiBase) return null;
-
   const headers = apiHeaders(apiBase);
 
   const fresh = await fetchJson(`${apiBase}/api/subscriber-count`, { headers });
-  const fromFresh = parseRegisterPayload(fresh);
-  if (fromFresh) return fromFresh.count;
+  const fromFresh = parseCountPayload(fresh);
+  if (fromFresh !== null) return fromFresh;
 
   const stats = await fetchJson(`${apiBase}/api/stats`, { headers });
-  const fromStats = parseRegisterPayload(stats);
-  if (fromStats) return fromStats.count;
-
-  return null;
+  return parseCountPayload(stats);
 }
 
-async function postRegister(
-  apiBase: string,
-  email: string,
-  path: string,
-  body: Record<string, unknown>
-): Promise<RegisterSubscriberResult | null> {
-  const headers = { ...apiHeaders(apiBase), 'Content-Type': 'application/json' };
-  const data = await fetchJson(`${apiBase}${path}`, {
-    method: 'POST',
-    headers,
-    body: JSON.stringify(body),
-  });
-  return parseRegisterPayload(data);
+/** Load the public total — CountAPI first so everyone sees the same live number. */
+export async function fetchSubscriberCount(): Promise<number | null> {
+  await ensureCountApiInitialized();
+  const global = await fetchCountApiValue();
+  if (global !== null) return global;
+
+  const render = await fetchRenderSubscriberCount();
+  if (render !== null) return render;
+
+  return SUBSCRIBER_COUNT_FALLBACK;
 }
 
-/** Save signup on the server and return the updated public total. */
-export async function registerSubscriberCount(email: string): Promise<RegisterSubscriberResult | null> {
+async function registerOnRender(email: string): Promise<boolean> {
   const apiBase = getApiBase();
-  if (!apiBase) return null;
-
+  if (!apiBase) return false;
+  const headers = { ...apiHeaders(apiBase), 'Content-Type': 'application/json' };
   const trimmed = email.trim();
   const origin =
     typeof window !== 'undefined' ? window.location.origin : 'https://www.thebluewavefans.com';
 
-  let result =
-    (await postRegister(apiBase, trimmed, '/api/register-subscriber', { email: trimmed })) ??
-    (await postRegister(apiBase, trimmed, '/api/subscribe', {
-      email: trimmed,
-      countOnly: true,
-      origin,
-    }));
+  const attempts: Array<{ path: string; body: Record<string, unknown> }> = [
+    { path: '/api/register-subscriber', body: { email: trimmed } },
+    { path: '/api/subscribe', body: { email: trimmed, countOnly: true, origin } },
+  ];
 
-  if (result?.added) return result;
+  for (const attempt of attempts) {
+    const data = await fetchJson(`${apiBase}${attempt.path}`, {
+      method: 'POST',
+      headers,
+      body: JSON.stringify(attempt.body),
+    });
+    if (data && typeof data === 'object' && (data as { added?: boolean }).added === true) {
+      return true;
+    }
+    if (data && typeof data === 'object' && (data as { ok?: boolean }).ok === true) {
+      return true;
+    }
+  }
+  return false;
+}
 
-  for (const delayMs of [200, 600, 1200]) {
+/** After a successful signup, bump the global counter once. */
+export async function registerSubscriberCount(email: string): Promise<RegisterSubscriberResult | null> {
+  await ensureCountApiInitialized();
+  const before = await fetchCountApiValue();
+
+  await registerOnRender(email);
+
+  const afterHit = await incrementCountApi();
+  if (afterHit !== null) {
+    const added = before === null || afterHit > before;
+    return { count: afterHit, added };
+  }
+
+  for (const delayMs of [300, 800]) {
     await sleep(delayMs);
-    const count = await fetchSubscriberCount();
-    if (count !== null) {
-      return { count, added: result?.added ?? false };
+    const latest = await fetchSubscriberCount();
+    if (latest !== null) {
+      return { count: latest, added: before === null || latest > (before ?? SUBSCRIBER_COUNT_FALLBACK) };
     }
   }
 
-  return result;
+  return null;
 }
 
 type SubscriberCounterProps = {
