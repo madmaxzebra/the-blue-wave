@@ -37,6 +37,8 @@ const cors_1 = __importDefault(require("cors"));
 const db_1 = require("./db");
 const mail_1 = require("./mail");
 const env_1 = require("./env");
+const subscriberCounter_1 = require("./subscriberCounter");
+const testEmails_1 = require("./testEmails");
 const app = (0, express_1.default)();
 app.use((0, cors_1.default)());
 app.use(express_1.default.json({ limit: '5mb' }));
@@ -47,10 +49,14 @@ const MAGAZINE_URL = (process.env.MAGAZINE_URL ||
 const FLIPSNACK_URL = (process.env.FLIPSNACK_URL ||
     'https://www.flipsnack.com/AD66C5D9E8C/wk-magazine-alfa-1-4-annimated').replace(/\/$/, '');
 const MANUS_API_URL = (process.env.MANUS_API_URL || '').replace(/\/$/, '');
-const SUBSCRIBER_COUNT_BASE = Number.parseInt(process.env.SUBSCRIBER_COUNT_BASE ?? '4732', 10);
-function getDisplaySubscriberCount() {
-    const base = Number.isFinite(SUBSCRIBER_COUNT_BASE) ? SUBSCRIBER_COUNT_BASE : 4732;
-    return base + (0, db_1.getSubscriberCount)();
+async function resolveSubscriberCountAfterSignup(email, added) {
+    const isTest = (0, testEmails_1.isTestSubscriberEmail)(email);
+    if (added && !isTest) {
+        const count = await (0, subscriberCounter_1.incrementPublicSubscriberCount)();
+        return { count, added: true };
+    }
+    const count = await (0, subscriberCounter_1.getPublicSubscriberCount)();
+    return { count, added: added && !isTest };
 }
 app.get('/api/health', (req, res) => {
     const hasResend = !!process.env.RESEND_API_KEY;
@@ -84,9 +90,9 @@ app.post('/api/test-email', async (req, res) => {
         res.status(500).json({ ok: false, message: msg });
     }
 });
-app.get('/api/stats', (_req, res) => {
+app.get('/api/stats', async (_req, res) => {
     try {
-        const count = getDisplaySubscriberCount();
+        const count = await (0, subscriberCounter_1.getPublicSubscriberCount)();
         res.json({ subscribers: count });
     }
     catch (err) {
@@ -94,23 +100,25 @@ app.get('/api/stats', (_req, res) => {
         res.status(500).json({ error: 'Failed to get stats' });
     }
 });
-app.get('/api/subscriber-count', (_req, res) => {
+app.get('/api/subscriber-count', async (_req, res) => {
     try {
-        res.json({ count: getDisplaySubscriberCount() });
+        const count = await (0, subscriberCounter_1.getPublicSubscriberCount)();
+        res.json({ count });
     }
     catch (err) {
         console.error(err);
         res.status(500).json({ error: 'Failed to get subscriber count' });
     }
 });
-app.post('/api/register-subscriber', (req, res) => {
+app.post('/api/register-subscriber', async (req, res) => {
     const email = req.body?.email?.trim();
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
         return res.status(400).json({ error: 'Invalid email address' });
     }
     try {
         const { added } = (0, db_1.addSubscriber)(email, req.body?.referralCode);
-        res.json({ ok: true, count: getDisplaySubscriberCount(), added });
+        const result = await resolveSubscriberCountAfterSignup(email, added);
+        res.json({ ok: true, count: result.count, added: result.added });
     }
     catch (err) {
         console.error('[Register-subscriber]', err);
@@ -209,11 +217,12 @@ app.post('/api/subscribe', async (req, res) => {
         }
         const { added } = (0, db_1.addSubscriber)(email, req.body?.referralCode);
         if (req.body?.countOnly === true) {
+            const result = await resolveSubscriberCountAfterSignup(email, added);
             return res.json({
                 ok: true,
-                count: getDisplaySubscriberCount(),
-                subscriberCount: getDisplaySubscriberCount(),
-                added,
+                count: result.count,
+                subscriberCount: result.count,
+                added: result.added,
             });
         }
         const siteOrigin = req.body?.origin || (0, env_1.getSiteUrl)();
@@ -236,11 +245,12 @@ app.post('/api/subscribe', async (req, res) => {
         const msg = welcomeSent
             ? 'Thanks! Check your inbox for the confirmation. If you don’t see it, check your spam folder.'
             : 'Thanks for subscribing! Email failed – use Gmail App Password in backend/.env (see MAIL-SETUP.md)';
+        const result = await resolveSubscriberCountAfterSignup(email, added);
         res.json({
             ok: true,
             message: msg,
-            subscriberCount: getDisplaySubscriberCount(),
-            added,
+            subscriberCount: result.count,
+            added: result.added,
         });
     }
     catch (err) {

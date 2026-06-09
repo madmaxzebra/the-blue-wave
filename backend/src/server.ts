@@ -31,7 +31,6 @@ import express from 'express';
 import cors from 'cors';
 import {
   addSubscriber,
-  getSubscriberCount,
   addPost,
   getPosts,
   addComment,
@@ -43,6 +42,8 @@ import {
 } from './db';
 import { sendWelcomeEmail, sendAdminNotificationEmail, testSmtpConnection } from './mail';
 import { getSiteUrl, hasResendConfig, hasSmtpConfig } from './env';
+import { getPublicSubscriberCount, incrementPublicSubscriberCount } from './subscriberCounter';
+import { isTestSubscriberEmail } from './testEmails';
 
 const app = express();
 app.use(cors());
@@ -60,11 +61,14 @@ const FLIPSNACK_URL = (
 ).replace(/\/$/, '');
 const MANUS_API_URL = (process.env.MANUS_API_URL || '').replace(/\/$/, '');
 
-const SUBSCRIBER_COUNT_BASE = Number.parseInt(process.env.SUBSCRIBER_COUNT_BASE ?? '4732', 10);
-
-function getDisplaySubscriberCount(): number {
-  const base = Number.isFinite(SUBSCRIBER_COUNT_BASE) ? SUBSCRIBER_COUNT_BASE : 4732;
-  return base + getSubscriberCount();
+async function resolveSubscriberCountAfterSignup(email: string, added: boolean): Promise<{ count: number; added: boolean }> {
+  const isTest = isTestSubscriberEmail(email);
+  if (added && !isTest) {
+    const count = await incrementPublicSubscriberCount();
+    return { count, added: true };
+  }
+  const count = await getPublicSubscriberCount();
+  return { count, added: added && !isTest };
 }
 
 app.get('/api/health', (req, res) => {
@@ -100,9 +104,9 @@ app.post('/api/test-email', async (req, res) => {
   }
 });
 
-app.get('/api/stats', (_req, res) => {
+app.get('/api/stats', async (_req, res) => {
   try {
-    const count = getDisplaySubscriberCount();
+    const count = await getPublicSubscriberCount();
     res.json({ subscribers: count });
   } catch (err) {
     console.error(err);
@@ -110,23 +114,25 @@ app.get('/api/stats', (_req, res) => {
   }
 });
 
-app.get('/api/subscriber-count', (_req, res) => {
+app.get('/api/subscriber-count', async (_req, res) => {
   try {
-    res.json({ count: getDisplaySubscriberCount() });
+    const count = await getPublicSubscriberCount();
+    res.json({ count });
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: 'Failed to get subscriber count' });
   }
 });
 
-app.post('/api/register-subscriber', (req, res) => {
+app.post('/api/register-subscriber', async (req, res) => {
   const email = req.body?.email?.trim();
   if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return res.status(400).json({ error: 'Invalid email address' });
   }
   try {
     const { added } = addSubscriber(email, req.body?.referralCode);
-    res.json({ ok: true, count: getDisplaySubscriberCount(), added });
+    const result = await resolveSubscriberCountAfterSignup(email, added);
+    res.json({ ok: true, count: result.count, added: result.added });
   } catch (err) {
     console.error('[Register-subscriber]', err);
     res.status(500).json({ error: 'Failed to register subscriber' });
@@ -226,11 +232,12 @@ app.post('/api/subscribe', async (req, res) => {
     }
     const { added } = addSubscriber(email, req.body?.referralCode);
     if (req.body?.countOnly === true) {
+      const result = await resolveSubscriberCountAfterSignup(email, added);
       return res.json({
         ok: true,
-        count: getDisplaySubscriberCount(),
-        subscriberCount: getDisplaySubscriberCount(),
-        added,
+        count: result.count,
+        subscriberCount: result.count,
+        added: result.added,
       });
     }
     const siteOrigin = req.body?.origin || getSiteUrl();
@@ -252,11 +259,12 @@ app.post('/api/subscribe', async (req, res) => {
     const msg = welcomeSent
       ? 'Thanks! Check your inbox for the confirmation. If you don’t see it, check your spam folder.'
       : 'Thanks for subscribing! Email failed – use Gmail App Password in backend/.env (see MAIL-SETUP.md)';
+    const result = await resolveSubscriberCountAfterSignup(email, added);
     res.json({
       ok: true,
       message: msg,
-      subscriberCount: getDisplaySubscriberCount(),
-      added,
+      subscriberCount: result.count,
+      added: result.added,
     });
   } catch (err) {
     console.error('[Subscribe] Error:', err);

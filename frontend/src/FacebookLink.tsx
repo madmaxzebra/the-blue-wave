@@ -18,7 +18,7 @@ function FacebookIcon() {
 
 export function FacebookLink({ variant = 'footer', showLabel = true }: FacebookLinkProps) {
   const label =
-    variant === 'hero' ? 'Follow The Blue Wave on Facebook' : 'Facebook';
+    variant === 'nav' ? 'Follow us' : variant === 'hero' ? 'Follow The Blue Wave on Facebook' : 'Facebook';
 
   return (
     <a

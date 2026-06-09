@@ -7,15 +7,9 @@ import { submitStayUpdatedSignup } from './subscribeForm';
 import {
   SubscriberCounter,
   fetchSubscriberCount,
-  getCachedSubscriberCount,
   SUBSCRIBER_COUNT_FALLBACK,
 } from './SubscriberCounter';
-import {
-  applySeo,
-  DEFAULT_FLIPSNACK_URL,
-  SITE_DESCRIPTION,
-  SITE_TITLE,
-} from './seo';
+import { applySeo, DEFAULT_FLIPSNACK_URL } from './seo';
 import './App.css';
 
 /** Tournament opener — Mexico City opening ceremony, 11 June 2026, 11:30 local (FIFA). */
@@ -65,16 +59,14 @@ export default function App() {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [message, setMessage] = useState('');
   const [loadingHint, setLoadingHint] = useState(LOADING_MESSAGES[0]);
-  const [subscriberCount, setSubscriberCount] = useState(
-    () => getCachedSubscriberCount() ?? SUBSCRIBER_COUNT_FALLBACK
-  );
+  const [subscriberCount, setSubscriberCount] = useState(SUBSCRIBER_COUNT_FALLBACK);
 
   useEffect(() => {
     let cancelled = false;
 
     const refresh = () => {
       fetchSubscriberCount().then((count) => {
-        if (!cancelled && count !== null) {
+        if (!cancelled) {
           setSubscriberCount(count);
         }
       });
@@ -151,6 +143,7 @@ export default function App() {
             <Logo size="nav" />
           </a>
           <nav aria-label="Main navigation">
+            <FacebookLink variant="nav" />
             <a
               href={flipsnackUrl}
               className="cta-nav cta-nav--launch"
@@ -160,115 +153,87 @@ export default function App() {
               Read the magazine
             </a>
             <a href="#stay-tuned">Stay Updated</a>
-            <FacebookLink variant="nav" showLabel={false} />
           </nav>
         </div>
       </header>
 
       <main id="main-content">
-      <section className="hero hero--launch" aria-labelledby="hero-heading">
-        <div className="hero-bg" aria-hidden="true" />
-        <div className="hero-overlay">
-          <div className="logo-hero">
-            <Logo size="hero" />
+        <section className="hero hero--launch" aria-labelledby="hero-heading">
+          <div className="hero-bg" aria-hidden="true" />
+          <div className="hero-overlay">
+            <div className="logo-hero">
+              <Logo size="hero" />
+            </div>
+
+            <Countdown
+              targetDateTime={OPENING_CEREMONY_AT}
+              label="Countdown to the FIFA World Cup 2026 opening ceremony · Mexico City"
+            />
+
+            <h1 id="hero-heading" className="hero-heading hero-heading--launch">
+              <span className="hero-heading__title">The World Cup Soccer Magazine</span>
+              <span className="hero-live-badge" aria-label="Live now">
+                LIVE NOW
+              </span>
+              <span className="hero-heading__suffix">— Curaçao 2026</span>
+            </h1>
+
+            <div className="hero-ctas hero-ctas--launch">
+              <a
+                href={flipsnackUrl}
+                className="btn btn-primary btn-flipsnack"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Open the magazine — flip &amp; read →
+              </a>
+            </div>
+
+            <div id="stay-tuned" className="subscribe-box subscribe-box--hero" aria-labelledby="stay-tuned-heading">
+              <h2 id="stay-tuned-heading" className="stay-tuned-title">
+                Stay Updated
+              </h2>
+              <SubscriberCounter count={subscriberCount} />
+              <form onSubmit={handleSubmit} className="subscribe-form">
+                <input
+                  type="checkbox"
+                  name="botcheck"
+                  id="botcheck"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  aria-hidden="true"
+                  style={{ display: 'none' }}
+                />
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="you@email.com"
+                  disabled={status === 'loading'}
+                  required
+                />
+                <button type="submit" disabled={status === 'loading'}>
+                  {status === 'loading' ? 'Please wait…' : 'Notify Me'}
+                </button>
+              </form>
+              {status === 'loading' && (
+                <p className="form-loading-hint" aria-live="polite" role="status">
+                  {loadingHint}
+                </p>
+              )}
+              {message && (
+                <p className={status === 'success' ? 'form-success' : 'form-error'}>{message}</p>
+              )}
+            </div>
           </div>
-          <Countdown
-            targetDateTime={OPENING_CEREMONY_AT}
-            label="Countdown to the FIFA World Cup 2026 opening ceremony · Mexico City"
+        </section>
+
+        <svg className="wave-divider" viewBox="0 0 1440 120" preserveAspectRatio="none">
+          <path
+            d="M0,64 C360,120 720,0 1080,64 C1260,96 1380,96 1440,64 L1440,120 L0,120 Z"
+            fill="var(--off-white)"
           />
-          <p className="hero-eyebrow">World Cup Soccer Magazine</p>
-          <h1 id="hero-heading" className="hero-heading">
-            {SITE_TITLE}
-          </h1>
-          <span className="hero-live-badge" aria-label="Live now">
-            LIVE NOW
-          </span>
-          <p className="hero-tagline hero-tagline--launch">
-            {SITE_DESCRIPTION}
-          </p>
-          <div className="hero-ctas hero-ctas--launch">
-            <a
-              href={flipsnackUrl}
-              className="btn btn-primary btn-flipsnack"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Open the magazine — flip &amp; read →
-            </a>
-            <a href="#stay-tuned" className="btn btn-outline">
-              Stay updated
-            </a>
-          </div>
-          <p className="hero-flipsnack-hint">
-            Free to read online · tap to flip through every page
-          </p>
-          <div className="hero-social">
-            <FacebookLink variant="hero" />
-          </div>
-        </div>
-      </section>
-
-      <svg className="wave-divider" viewBox="0 0 1440 120" preserveAspectRatio="none">
-        <path
-          d="M0,64 C360,120 720,0 1080,64 C1260,96 1380,96 1440,64 L1440,120 L0,120 Z"
-          fill="var(--off-white)"
-        />
-      </svg>
-
-      <section className="section seo-about" aria-labelledby="about-heading">
-        <div className="container">
-          <h2 id="about-heading" className="seo-about__title">
-            FIFA World Cup 2026 magazine from Curaçao
-          </h2>
-          <p className="seo-about__text">
-            <strong>The Blue Wave</strong> is a free online flip magazine for FIFA World Cup 2026
-            fans in Curaçao, the Caribbean, and beyond. Explore match previews, local fan culture,
-            sports bars, and editorial stories — then subscribe for new issues and World Cup updates.
-          </p>
-        </div>
-      </section>
-
-      <section id="stay-tuned" className="section stay-tuned stay-tuned--solo" aria-labelledby="stay-tuned-heading">
-        <div className="container">
-          <div className="subscribe-box">
-            <h2 id="stay-tuned-heading" className="stay-tuned-title">Stay Updated</h2>
-            <p className="stay-tuned-lead">
-              Subscribe and be the first to receive updates and exclusive content.
-            </p>
-            <SubscriberCounter count={subscriberCount} />
-            <form onSubmit={handleSubmit} className="subscribe-form">
-              <input
-                type="checkbox"
-                name="botcheck"
-                id="botcheck"
-                tabIndex={-1}
-                autoComplete="off"
-                aria-hidden="true"
-                style={{ display: 'none' }}
-              />
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="you@email.com"
-                disabled={status === 'loading'}
-                required
-              />
-              <button type="submit" disabled={status === 'loading'}>
-                {status === 'loading' ? 'Please wait…' : 'Notify Me'}
-              </button>
-            </form>
-            {status === 'loading' && (
-              <p className="form-loading-hint" aria-live="polite" role="status">
-                {loadingHint}
-              </p>
-            )}
-            {message && (
-              <p className={status === 'success' ? 'form-success' : 'form-error'}>{message}</p>
-            )}
-          </div>
-        </div>
-      </section>
+        </svg>
       </main>
 
       <footer className="footer footer--minimal">

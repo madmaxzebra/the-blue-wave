@@ -12,23 +12,34 @@ STEPS
 1. Log in at https://www.emailjs.com
 2. Go to Email Templates
 3. Open template: template_ax3qxyy
-4. Replace ALL body content with this single line:
-
-   {{{html_message}}}
-
-   (three curly braces = insert HTML from our code)
-
-   Or open emailjs-welcome-template.html in this folder and paste that in.
-
-5. Set Subject to:
+4. At the TOP of the template screen, find the field labeled "Subject".
+   Click in it, delete the old subject text, and type exactly:
 
    {{subject}}
 
-6. Save the template
+   (two curly braces each side — our code fills in the real subject line)
 
-7. Upload thebluewavefans-upload.zip to Bluehost (if not done yet)
+5. In the BODY area you will see {{{html_message}}} — that is NOT enough by itself.
+   You must also clear the hidden editor:
 
-8. Push backend to Render (for Gmail welcome emails from server)
+   a) Click the "Edit Content" button (pencil icon, right side of Content area)
+   b) In the popup toolbar, click the "</>" icon (View HTML / source code)
+   c) Select ALL the HTML (Ctrl+A) and delete it
+   d) Type only this one line:
+
+      {{{html_message}}}
+
+   e) Click OK / Save in that popup
+
+   If you skip step 5, EmailJS keeps sending the OLD designed email
+   (pink logo box, "officially on the list", "The Blue Wave Team").
+
+6. Open the "Auto-Reply" tab — make sure it is empty / turned off.
+   (Old text there can override your welcome.)
+
+7. Save the template (top right)
+
+8. Upload thebluewavefans-upload.zip to Bluehost (after we rebuild — new JS bundle)
 
 TEST
 ----

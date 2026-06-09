@@ -1,9 +1,6 @@
 import emailjs from '@emailjs/browser';
 import { fetchWithTimeout, getApiBase } from './api';
-import {
-  bumpSubscriberCountOptimistic,
-  registerSubscriberCount,
-} from './SubscriberCounter';
+import { fetchSubscriberCount, registerSubscriberCount } from './SubscriberCounter';
 import {
   buildEmailJsMessage,
   buildSignupSuccessMessage,
@@ -157,8 +154,9 @@ async function tryWeb3FormsAdminAlert(
 }
 
 async function sendWelcomeEmail(toEmail: string, apiBase: string, origin: string): Promise<boolean> {
-  if (await sendViaRenderWelcome(toEmail, apiBase, origin)) return true;
+  // EmailJS first — instant. Render often cold-starts 60s+ and would delay the welcome.
   if (await sendViaEmailJs(toEmail, origin)) return true;
+  if (await sendViaRenderWelcome(toEmail, apiBase, origin)) return true;
   return false;
 }
 
@@ -217,9 +215,8 @@ export async function submitStayUpdatedSignup(
   let subscriberCount = registerResult?.count;
   let subscriberAdded = registerResult?.added ?? false;
   if (subscriberCount === undefined) {
-    const optimistic = bumpSubscriberCountOptimistic();
-    subscriberCount = optimistic.count;
-    subscriberAdded = optimistic.added;
+    subscriberCount = await fetchSubscriberCount();
+    subscriberAdded = false;
   }
 
   return {
