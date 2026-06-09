@@ -11,6 +11,7 @@ const path_1 = __importDefault(require("path"));
 const nodemailer_1 = __importDefault(require("nodemailer"));
 const resend_1 = require("resend");
 const env_1 = require("./env");
+const welcomeContent_1 = require("./welcomeContent");
 // Prefer Gmail SMTP when configured; fall back to Resend if SMTP fails.
 const smtpUser = (0, env_1.getSmtpUser)();
 const smtpPass = (0, env_1.getSmtpPass)();
@@ -87,32 +88,9 @@ async function sendWelcomeEmail(to, siteOrigin) {
     const logoUrl = `${site}/bluewavelogo.png`;
     const bannerUrl = `${site}/email-banner.png`;
     const imgSrc = bannerUrl;
-    const imgTag = `<div style="text-align: center; margin-bottom: 1.5rem;"><img src="${logoUrl}" alt="The Blue Wave" width="160" style="max-width: 160px; height: auto;" /></div>`;
-    const subject = 'You\'re on the list — The Blue Wave (World Cup 2026)';
-    const text = [
-        'Thank you for signing up at thebluewavefans.com',
-        '',
-        'You\'re now part of The Blue Wave. We\'ll keep you updated on our FIFA World Cup 2026 initiative and exclusive content from Curaçao.',
-        '',
-        'Something special is on the horizon — stay tuned!',
-        '',
-        `Visit us: ${site}`,
-        '',
-        '© Zebra Productions — The Blue Wave · FIFA World Cup 2026',
-    ].join('\n');
-    const html = `
-    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #0f172a;">
-      ${imgTag}
-      <h1 style="color: #0066CC; font-size: 22px;">Thank you for signing up</h1>
-      <p>You signed up at <a href="${site}">thebluewavefans.com</a>. You're now part of The Blue Wave.</p>
-      <p>We'll keep you updated on our FIFA World Cup 2026 initiative and exclusive content from Curaçao.</p>
-      <p>Something special is on the horizon — stay tuned!</p>
-      <p style="margin-top: 24px;"><a href="${site}" style="color: #0066CC;">Visit The Blue Wave</a></p>
-      <p style="color: #666; font-size: 0.9em; margin-top: 2em;">
-        © Zebra Productions — The Blue Wave · FIFA World Cup 2026
-      </p>
-    </div>
-  `;
+    const subject = (0, welcomeContent_1.buildWelcomeEmailSubject)();
+    const text = (0, welcomeContent_1.buildWelcomeEmailPlainText)(to, site);
+    const html = (0, welcomeContent_1.buildWelcomeEmailHtml)(to, site);
     const replyTo = getReplyToAddress();
     if (hasSmtp) {
         const smtpAttachments = !imgSrc && banner
@@ -185,7 +163,7 @@ async function sendAdminNotificationEmail(newSubscriberEmail, _siteOrigin) {
       <h2 style="color: #0066CC;">New subscription 🌊</h2>
       <p>A new person has subscribed to The Blue Wave:</p>
       <p style="font-size: 1.2em; font-weight: bold;">${newSubscriberEmail}</p>
-      <p style="color: #666; font-size: 0.9em;">© Zebra Productions – The Blue Wave</p>
+      <p style="color: #666; font-size: 0.9em;">© 2026 The Blue Wave Fans · Curaçao</p>
     </div>
   `;
     if (hasSmtp) {

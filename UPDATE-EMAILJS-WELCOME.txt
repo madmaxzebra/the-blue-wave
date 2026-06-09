@@ -1,0 +1,39 @@
+UPDATE EMAILJS WELCOME TEMPLATE (one-time, 5 minutes)
+=====================================================
+
+WHY
+---
+The old welcome email text lives in your EmailJS template online.
+Our code now sends the NEW text, but EmailJS will ignore it until
+you update the template to use {{html_message}}.
+
+STEPS
+-----
+1. Log in at https://www.emailjs.com
+2. Go to Email Templates
+3. Open template: template_ax3qxyy
+4. Replace ALL body content with this single line:
+
+   {{{html_message}}}
+
+   (three curly braces = insert HTML from our code)
+
+   Or open emailjs-welcome-template.html in this folder and paste that in.
+
+5. Set Subject to:
+
+   {{subject}}
+
+6. Save the template
+
+7. Upload thebluewavefans-upload.zip to Bluehost (if not done yet)
+
+8. Push backend to Render (for Gmail welcome emails from server)
+
+TEST
+----
+Sign up with a new email. You should see the updated welcome with:
+- "we have registered you with: your@email.com"
+- Magazine live + app on 13 June
+- "The Blue Wave Fans Team" signature
+- Footer: © 2026 The Blue Wave Fans · Curaçao

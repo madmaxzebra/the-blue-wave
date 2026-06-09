@@ -21,6 +21,12 @@ import './App.css';
 /** Tournament opener — Mexico City opening ceremony, 11 June 2026, 11:30 local (FIFA). */
 const OPENING_CEREMONY_AT = '2026-06-11T11:30:00-06:00';
 
+const LOADING_MESSAGES = [
+  'Verifying your email…',
+  'Adding you to the list…',
+  'Sending your welcome email…',
+] as const;
+
 function normalizeUrl(raw: string): string {
   return raw.trim().replace(/\/$/, '');
 }
@@ -58,6 +64,7 @@ export default function App() {
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [message, setMessage] = useState('');
+  const [loadingHint, setLoadingHint] = useState(LOADING_MESSAGES[0]);
   const [subscriberCount, setSubscriberCount] = useState(
     () => getCachedSubscriberCount() ?? SUBSCRIBER_COUNT_FALLBACK
   );
@@ -88,6 +95,22 @@ export default function App() {
     };
   }, []);
 
+  useEffect(() => {
+    if (status !== 'loading') {
+      setLoadingHint(LOADING_MESSAGES[0]);
+      return;
+    }
+
+    let index = 0;
+    setLoadingHint(LOADING_MESSAGES[0]);
+    const interval = window.setInterval(() => {
+      index = (index + 1) % LOADING_MESSAGES.length;
+      setLoadingHint(LOADING_MESSAGES[index]);
+    }, 1800);
+
+    return () => window.clearInterval(interval);
+  }, [status]);
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setStatus('loading');
@@ -105,7 +128,7 @@ export default function App() {
             if (result.subscriberAdded) {
               return Math.max(result.subscriberCount, prev + 1);
             }
-            return result.subscriberCount;
+            return Math.max(result.subscriberCount, prev);
           }
           return result.subscriberAdded ? prev + 1 : prev;
         });
@@ -232,9 +255,14 @@ export default function App() {
                 required
               />
               <button type="submit" disabled={status === 'loading'}>
-                {status === 'loading' ? 'Subscribing…' : 'Notify Me'}
+                {status === 'loading' ? 'Please wait…' : 'Notify Me'}
               </button>
             </form>
+            {status === 'loading' && (
+              <p className="form-loading-hint" aria-live="polite" role="status">
+                {loadingHint}
+              </p>
+            )}
             {message && (
               <p className={status === 'success' ? 'form-success' : 'form-error'}>{message}</p>
             )}
@@ -247,7 +275,7 @@ export default function App() {
         <div className="container">
           <div className="footer-brand">
             <Logo size="footer" />
-            <p>© Zebra Productions · FIFA World Cup 2026</p>
+            <p>© 2026 The Blue Wave Fans · Curaçao</p>
             <FacebookLink variant="footer" />
           </div>
         </div>

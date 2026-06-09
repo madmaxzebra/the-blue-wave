@@ -1,10 +1,26 @@
 import emailjs from '@emailjs/browser';
 import { fetchWithTimeout, getApiBase } from './api';
-import { registerSubscriberCount } from './SubscriberCounter';
+import {
+  bumpSubscriberCountOptimistic,
+  registerSubscriberCount,
+} from './SubscriberCounter';
+import {
+  buildEmailJsMessage,
+  buildSignupSuccessMessage,
+  buildWelcomeEmailHtml,
+  buildWelcomeEmailSubject,
+  TEAM_NAME,
+} from './welcomeContent';
 
-const WEB3FORMS_TIMEOUT_MS = 10000;
-const WELCOME_TIMEOUT_MS = 12000;
-const POST_SIGNUP_MAX_WAIT_MS = 15000;
+const WEB3FORMS_TIMEOUT_MS = 8000;
+const WELCOME_TIMEOUT_MS = 45000;
+const SIGNUP_MAX_WAIT_MS = 8000;
+const REGISTER_EXTRA_WAIT_MS = 20000;
+const MIN_LOADING_MS = 1500;
+
+function sleep(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
 
 /** Same keys as thebluewavefans static landing (Web3Forms + EmailJS fallback). */
 const WEB3FORMS_ACCESS_KEY = '3b985545-14fc-41ad-8c00-aa913d628170';
@@ -20,10 +36,6 @@ function initEmailJs(): boolean {
   emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
   emailjsReady = true;
   return true;
-}
-
-function sleep(ms: number): Promise<void> {
-  return new Promise((resolve) => window.setTimeout(resolve, ms));
 }
 
 function apiHeaders(apiBase: string): Record<string, string> {
@@ -49,10 +61,12 @@ async function sendViaEmailJs(toEmail: string, origin: string): Promise<boolean>
       to_email: toEmail,
       user_email: toEmail,
       reply_to: 'madmax.zebra@gmail.com',
-      from_name: 'The Blue Wave',
+      from_name: TEAM_NAME,
+      team_name: TEAM_NAME,
       site_url: origin,
-      message:
-        'Thank you for joining The Blue Wave! We will keep you updated on FIFA World Cup 2026 and our magazine from Curaçao.',
+      subject: buildWelcomeEmailSubject(),
+      message: buildEmailJsMessage(toEmail),
+      html_message: buildWelcomeEmailHtml(toEmail, origin),
     });
     return true;
   } catch {
@@ -112,9 +126,6 @@ async function sendAdminViaRender(
   }
 }
 
-/**
- * Optional Web3Forms admin alert — never blocks signup (spam filter often rejects legit signups).
- */
 async function tryWeb3FormsAdminAlert(
   email: string,
   when: string,
@@ -129,11 +140,10 @@ async function tryWeb3FormsAdminAlert(
         body: JSON.stringify({
           access_key: WEB3FORMS_ACCESS_KEY,
           subject: `The Blue Wave signup — ${email} (${when})`,
-          from_name: 'The Blue Wave',
+          from_name: TEAM_NAME,
           email,
           replyto: email,
-          message:
-            `New subscriber: ${email}\nSigned up: ${when}\nSource: thebluewavefans.com`,
+          message: `New subscriber: ${email}\nSigned up: ${when}\nSource: thebluewavefans.com`,
           botcheck: botcheck ?? false,
         }),
       },
@@ -162,49 +172,61 @@ export type StayUpdatedResult =
     }
   | { ok: false; message: string };
 
-/** Render welcome + counter; Web3Forms admin alert is optional backup only. */
+/** Wait for signup work (with a cap) so the form can show progress messages. */
 export async function submitStayUpdatedSignup(
   email: string,
   options?: { botcheck?: boolean }
 ): Promise<StayUpdatedResult> {
   const trimmed = email.trim();
+  if (!trimmed || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed)) {
+    return { ok: false, message: 'Please enter a valid email address.' };
+  }
+
   const origin = typeof window !== 'undefined' ? window.location.origin : 'https://www.thebluewavefans.com';
   const apiBase = getApiBase();
   const when = new Date().toLocaleString('en-US', { timeZone: 'America/Curacao' });
+  const started = Date.now();
 
-  const web3Ok = await tryWeb3FormsAdminAlert(trimmed, when, options?.botcheck);
+  void (async () => {
+    const web3Ok = await tryWeb3FormsAdminAlert(trimmed, when, options?.botcheck);
+    if (!web3Ok) await sendAdminViaRender(trimmed, apiBase, origin);
+  })();
 
-  type PostSignup = [Awaited<ReturnType<typeof registerSubscriberCount>>, boolean, boolean];
-  const postSignup = Promise.all([
-    registerSubscriberCount(trimmed),
-    sendWelcomeEmail(trimmed, apiBase, origin),
-    web3Ok ? Promise.resolve(true) : sendAdminViaRender(trimmed, apiBase, origin),
-  ]) as Promise<PostSignup>;
+  let registerResult: Awaited<ReturnType<typeof registerSubscriberCount>> = null;
+  let welcomeSent = false;
 
-  const finished = await Promise.race<PostSignup | null>([
-    postSignup,
-    sleep(POST_SIGNUP_MAX_WAIT_MS).then(() => null),
-  ]);
+  const registerPromise = registerSubscriberCount(trimmed);
+  const welcomePromise = sendWelcomeEmail(trimmed, apiBase, origin);
 
-  if (!finished) {
-    void postSignup;
-    return {
-      ok: true,
-      welcomeSent: false,
-      message:
-        "Thanks! You're on the list — your welcome email is on the way (check inbox and spam). 🌊",
-    };
+  const work = Promise.all([registerPromise, welcomePromise]).then(([registered, welcome]) => {
+    registerResult = registered;
+    welcomeSent = welcome;
+  });
+
+  await Promise.race([work, sleep(SIGNUP_MAX_WAIT_MS)]);
+
+  if (registerResult === null) {
+    registerResult = await Promise.race([registerPromise, sleep(REGISTER_EXTRA_WAIT_MS)]);
   }
 
-  const [registration, welcomeSent] = finished;
+  const elapsed = Date.now() - started;
+  if (elapsed < MIN_LOADING_MS) {
+    await sleep(MIN_LOADING_MS - elapsed);
+  }
+
+  let subscriberCount = registerResult?.count;
+  let subscriberAdded = registerResult?.added ?? false;
+  if (subscriberCount === undefined) {
+    const optimistic = bumpSubscriberCountOptimistic();
+    subscriberCount = optimistic.count;
+    subscriberAdded = optimistic.added;
+  }
 
   return {
     ok: true,
     welcomeSent,
-    subscriberCount: registration?.count,
-    subscriberAdded: registration?.added ?? false,
-    message: welcomeSent
-      ? "Thanks! You're on the list — check your inbox (and spam folder just in case). 🌊"
-      : "Thanks! You're on the list. If no email arrives in a few minutes, check spam or try again. 🌊",
+    subscriberCount,
+    subscriberAdded,
+    message: buildSignupSuccessMessage(trimmed, welcomeSent),
   };
 }

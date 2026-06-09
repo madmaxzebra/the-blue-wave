@@ -522,7 +522,8 @@
   color: white !important;
 }
 
-.form-success { color: #86EFAC; margin-top: 0.75rem; text-align: center; font-size: 0.95rem; }
+.form-loading-hint { color: #93C5FD; margin-top: 0.75rem; text-align: center; font-size: 0.95rem; }
+.form-success { color: #86EFAC; margin-top: 0.75rem; text-align: center; font-size: 0.95rem; white-space: pre-line; line-height: 1.5; max-width: 36rem; margin-left: auto; margin-right: auto; }
 .form-error { color: #FCA5A5; margin-top: 0.75rem; text-align: center; font-size: 0.95rem; }
 
 .social-links {

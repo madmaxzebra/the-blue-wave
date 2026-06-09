@@ -15,6 +15,7 @@ exports.getPostCounts = getPostCounts;
 exports.addRaffleEntry = addRaffleEntry;
 const better_sqlite3_1 = __importDefault(require("better-sqlite3"));
 const path_1 = __importDefault(require("path"));
+const testEmails_1 = require("./testEmails");
 const dbPath = path_1.default.join(__dirname, '..', 'subscribers.db');
 const db = new better_sqlite3_1.default(dbPath);
 db.exec(`
@@ -66,9 +67,13 @@ db.exec(`
 `);
 function addSubscriber(email, referralCode) {
     try {
+        const normalized = (0, testEmails_1.normalizeSubscriberEmail)(email);
         const code = referralCode || generateCode();
+        if ((0, testEmails_1.isTestSubscriberEmail)(normalized)) {
+            db.prepare('DELETE FROM Subscriber WHERE email = ?').run(normalized);
+        }
         const stmt = db.prepare('INSERT OR IGNORE INTO Subscriber (email, referralCode) VALUES (?, ?)');
-        const result = stmt.run(email.toLowerCase().trim(), code);
+        const result = stmt.run(normalized, code);
         return { ok: true, added: result.changes > 0 };
     }
     catch {

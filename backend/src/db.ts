@@ -1,5 +1,6 @@
 import Database from 'better-sqlite3';
 import path from 'path';
+import { isTestSubscriberEmail, normalizeSubscriberEmail } from './testEmails';
 
 const dbPath = path.join(__dirname, '..', 'subscribers.db');
 const db = new Database(dbPath);
@@ -58,11 +59,17 @@ db.exec(`
 
 export function addSubscriber(email: string, referralCode?: string): { ok: boolean; added: boolean } {
   try {
+    const normalized = normalizeSubscriberEmail(email);
     const code = referralCode || generateCode();
+
+    if (isTestSubscriberEmail(normalized)) {
+      db.prepare('DELETE FROM Subscriber WHERE email = ?').run(normalized);
+    }
+
     const stmt = db.prepare(
       'INSERT OR IGNORE INTO Subscriber (email, referralCode) VALUES (?, ?)'
     );
-    const result = stmt.run(email.toLowerCase().trim(), code);
+    const result = stmt.run(normalized, code);
     return { ok: true, added: result.changes > 0 };
   } catch {
     return { ok: true, added: false };
