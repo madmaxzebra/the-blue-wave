@@ -50,13 +50,14 @@ const FLIPSNACK_URL = (process.env.FLIPSNACK_URL ||
     'https://www.flipsnack.com/AD66C5D9E8C/wk-magazine-alfa-1-4-annimated').replace(/\/$/, '');
 const MANUS_API_URL = (process.env.MANUS_API_URL || '').replace(/\/$/, '');
 async function resolveSubscriberCountAfterSignup(email, added) {
+    // QA admin emails may re-register anytime and always bump the counter for testing.
     const isTest = (0, testEmails_1.isTestSubscriberEmail)(email);
-    if (added && !isTest) {
+    if (isTest || added) {
         const count = await (0, subscriberCounter_1.incrementPublicSubscriberCount)();
         return { count, added: true };
     }
     const count = await (0, subscriberCounter_1.getPublicSubscriberCount)();
-    return { count, added: added && !isTest };
+    return { count, added: false };
 }
 app.get('/api/health', (req, res) => {
     const hasResend = !!process.env.RESEND_API_KEY;

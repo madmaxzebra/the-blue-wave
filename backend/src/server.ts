@@ -62,13 +62,14 @@ const FLIPSNACK_URL = (
 const MANUS_API_URL = (process.env.MANUS_API_URL || '').replace(/\/$/, '');
 
 async function resolveSubscriberCountAfterSignup(email: string, added: boolean): Promise<{ count: number; added: boolean }> {
+  // QA admin emails may re-register anytime and always bump the counter for testing.
   const isTest = isTestSubscriberEmail(email);
-  if (added && !isTest) {
+  if (isTest || added) {
     const count = await incrementPublicSubscriberCount();
     return { count, added: true };
   }
   const count = await getPublicSubscriberCount();
-  return { count, added: added && !isTest };
+  return { count, added: false };
 }
 
 app.get('/api/health', (req, res) => {
