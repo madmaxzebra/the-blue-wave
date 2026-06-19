@@ -18,6 +18,10 @@ import {
   buildWelcomeEmailPlainText,
   buildWelcomeEmailSubject,
 } from './welcomeContent';
+import {
+  buildBroadcastEmailHtml,
+  buildBroadcastEmailPlainText,
+} from './broadcastContent';
 
 // Prefer Gmail SMTP when configured; fall back to Resend if SMTP fails.
 const smtpUser = getSmtpUser();
@@ -227,4 +231,54 @@ export async function sendAdminNotificationEmail(newSubscriberEmail: string, _si
 
   console.warn('[Mail] Mail not configured, skipping admin notification');
   return false;
+}
+
+export async function sendBroadcastEmail(
+  to: string,
+  subject: string,
+  messageHtml: string,
+  messageText: string,
+  siteOrigin?: string
+): Promise<{ ok: boolean; error?: string }> {
+  const site = resolveSiteOrigin(siteOrigin);
+  const html = buildBroadcastEmailHtml(subject, messageHtml, site);
+  const text = buildBroadcastEmailPlainText(subject, messageText, site);
+  const replyTo = getReplyToAddress();
+
+  if (hasSmtp) {
+    try {
+      await transporter.sendMail({
+        from: getFromAddress(false),
+        to,
+        replyTo: replyTo || undefined,
+        subject,
+        text,
+        html,
+      });
+      return { ok: true };
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : String(err);
+      if (!hasResend || !resend) return { ok: false, error: msg };
+    }
+  }
+
+  if (hasResend && resend) {
+    try {
+      const { error } = await resend.emails.send({
+        from: getFromAddress(true),
+        to,
+        replyTo: replyTo || undefined,
+        subject,
+        text,
+        html,
+      });
+      if (error) return { ok: false, error: JSON.stringify(error) };
+      return { ok: true };
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : String(err);
+      return { ok: false, error: msg };
+    }
+  }
+
+  return { ok: false, error: 'Mail not configured' };
 }

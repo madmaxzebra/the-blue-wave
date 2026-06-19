@@ -5,6 +5,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.addSubscriber = addSubscriber;
 exports.getSubscriberCount = getSubscriberCount;
+exports.listSubscribers = listSubscribers;
+exports.getRealSubscriberStats = getRealSubscriberStats;
 exports.addPost = addPost;
 exports.getPosts = getPosts;
 exports.addComment = addComment;
@@ -86,6 +88,21 @@ function generateCode() {
 function getSubscriberCount() {
     const row = db.prepare('SELECT COUNT(*) as c FROM Subscriber').get();
     return row?.c ?? 0;
+}
+function listSubscribers() {
+    return db
+        .prepare('SELECT email, createdAt FROM Subscriber ORDER BY datetime(createdAt) DESC')
+        .all();
+}
+function getRealSubscriberStats() {
+    const all = listSubscribers();
+    const subscribers = all.filter((row) => !(0, testEmails_1.isTestSubscriberEmail)(row.email));
+    return {
+        totalInDatabase: all.length,
+        realCount: subscribers.length,
+        excludedTestCount: all.length - subscribers.length,
+        subscribers,
+    };
 }
 // Community feed
 function addPost(author, content, photoData) {

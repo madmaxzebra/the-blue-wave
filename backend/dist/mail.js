@@ -6,12 +6,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.testSmtpConnection = testSmtpConnection;
 exports.sendWelcomeEmail = sendWelcomeEmail;
 exports.sendAdminNotificationEmail = sendAdminNotificationEmail;
+exports.sendBroadcastEmail = sendBroadcastEmail;
 const fs_1 = __importDefault(require("fs"));
 const path_1 = __importDefault(require("path"));
 const nodemailer_1 = __importDefault(require("nodemailer"));
 const resend_1 = require("resend");
 const env_1 = require("./env");
 const welcomeContent_1 = require("./welcomeContent");
+const broadcastContent_1 = require("./broadcastContent");
 // Prefer Gmail SMTP when configured; fall back to Resend if SMTP fails.
 const smtpUser = (0, env_1.getSmtpUser)();
 const smtpPass = (0, env_1.getSmtpPass)();
@@ -212,4 +214,48 @@ async function sendAdminNotificationEmail(newSubscriberEmail, _siteOrigin) {
     }
     console.warn('[Mail] Mail not configured, skipping admin notification');
     return false;
+}
+async function sendBroadcastEmail(to, subject, messageHtml, messageText, siteOrigin) {
+    const site = resolveSiteOrigin(siteOrigin);
+    const html = (0, broadcastContent_1.buildBroadcastEmailHtml)(subject, messageHtml, site);
+    const text = (0, broadcastContent_1.buildBroadcastEmailPlainText)(subject, messageText, site);
+    const replyTo = getReplyToAddress();
+    if (hasSmtp) {
+        try {
+            await transporter.sendMail({
+                from: getFromAddress(false),
+                to,
+                replyTo: replyTo || undefined,
+                subject,
+                text,
+                html,
+            });
+            return { ok: true };
+        }
+        catch (err) {
+            const msg = err instanceof Error ? err.message : String(err);
+            if (!hasResend || !resend)
+                return { ok: false, error: msg };
+        }
+    }
+    if (hasResend && resend) {
+        try {
+            const { error } = await resend.emails.send({
+                from: getFromAddress(true),
+                to,
+                replyTo: replyTo || undefined,
+                subject,
+                text,
+                html,
+            });
+            if (error)
+                return { ok: false, error: JSON.stringify(error) };
+            return { ok: true };
+        }
+        catch (err) {
+            const msg = err instanceof Error ? err.message : String(err);
+            return { ok: false, error: msg };
+        }
+    }
+    return { ok: false, error: 'Mail not configured' };
 }

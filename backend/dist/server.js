@@ -39,9 +39,12 @@ const mail_1 = require("./mail");
 const env_1 = require("./env");
 const subscriberCounter_1 = require("./subscriberCounter");
 const testEmails_1 = require("./testEmails");
+const adminSubscribers_1 = require("./adminSubscribers");
+const adminBroadcast_1 = require("./adminBroadcast");
 const app = (0, express_1.default)();
 app.use((0, cors_1.default)());
 app.use(express_1.default.json({ limit: '5mb' }));
+app.use(express_1.default.urlencoded({ extended: true }));
 /** Full URL to WK Magazine web app (optionally include a path, e.g. …/documents/1). */
 const MAGAZINE_URL = (process.env.MAGAZINE_URL ||
     process.env.MAGAZINE_SITE_URL ||
@@ -110,6 +113,19 @@ app.get('/api/subscriber-count', async (_req, res) => {
         console.error(err);
         res.status(500).json({ error: 'Failed to get subscriber count' });
     }
+});
+/** Private admin — real Stay Updated emails (excludes your test addresses). */
+app.get('/api/admin/subscribers', (req, res) => {
+    void (0, adminSubscribers_1.handleAdminSubscribers)(req, res);
+});
+app.get('/admin/subscribers', (req, res) => {
+    void (0, adminSubscribers_1.handleAdminSubscribers)(req, res);
+});
+app.get('/admin/email-broadcast', (req, res) => {
+    void (0, adminBroadcast_1.handleAdminBroadcastGet)(req, res);
+});
+app.post('/api/admin/broadcast', (req, res) => {
+    void (0, adminBroadcast_1.handleAdminBroadcastPost)(req, res);
 });
 app.post('/api/register-subscriber', async (req, res) => {
     const email = req.body?.email?.trim();

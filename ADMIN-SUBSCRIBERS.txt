@@ -1,0 +1,38 @@
+The Blue Wave — subscriber admin + email broadcast
+==================================================
+
+ONE-TIME SETUP ON RENDER
+------------------------
+Dashboard → the-blue-wave → Environment → add:
+
+  SUBSCRIBER_ADMIN_KEY = 99142
+
+Save and wait for redeploy (~5 min).
+
+Then push latest code (GITHUB-PUSH.bat or git push origin main).
+
+
+BOOKMARK THESE (keep PIN secret)
+--------------------------------
+Subscriber list:
+  https://the-blue-wave.onrender.com/admin/subscribers?key=99142&view=page
+
+Email all subscribers (one message → everyone):
+  https://the-blue-wave.onrender.com/admin/email-broadcast?key=99142
+
+
+HOW TO SEND ONE EMAIL TO ALL SUBSCRIBERS
+----------------------------------------
+1. Open the email-broadcast link above
+2. Write Subject + Message
+3. Click "Preview count only" to check how many will receive it
+4. Type SEND in the confirm box
+5. Click "Send to all subscribers"
+
+Each person gets their own email (private — no visible recipient list).
+Your test emails are excluded automatically.
+
+
+LIMITS
+------
+Gmail SMTP: about 500 emails per day. If you grow past that, send in batches on different days.

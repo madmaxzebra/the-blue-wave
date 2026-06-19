@@ -105,6 +105,16 @@ const server = http.createServer(async (req, res) => {
     proxyReq.end();
     return;
   }
+  if (pathOnly === '/admin/subscribers' && req.method === 'GET') {
+    const qs = (req.url || '').includes('?') ? req.url.slice(req.url.indexOf('?')) : '?view=page';
+    proxy(req, res, BACKEND_PORT, '/admin/subscribers' + qs);
+    return;
+  }
+  if (pathOnly === '/admin/email-broadcast' && req.method === 'GET') {
+    const qs = (req.url || '').includes('?') ? req.url.slice(req.url.indexOf('?')) : '';
+    proxy(req, res, BACKEND_PORT, '/admin/email-broadcast' + qs);
+    return;
+  }
   if (pathOnly === '/api/health' && req.method === 'GET') {
     const mailConfigured = !!(backendEnv.RESEND_API_KEY || (backendEnv.SMTP_USER && backendEnv.SMTP_PASS) || backendEnv.MANUS_API_URL);
     res.setHeader('Content-Type', 'application/json');

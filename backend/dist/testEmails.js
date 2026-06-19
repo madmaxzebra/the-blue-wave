@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.normalizeSubscriberEmail = normalizeSubscriberEmail;
 exports.isTestSubscriberEmail = isTestSubscriberEmail;
-const DEFAULT_TEST_EMAILS = 'madmax.zebra@gmail.com,madmax@zebra-onlinedesign.com';
+const DEFAULT_TEST_EMAILS = 'madmax.zebra@gmail.com,madmax@zebra-onlinedesign.com,bluenation@thebluewavefans.com';
 function parseTestEmails(raw) {
     return new Set((raw || DEFAULT_TEST_EMAILS)
         .split(',')

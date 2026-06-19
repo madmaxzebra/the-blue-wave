@@ -85,6 +85,33 @@ export function getSubscriberCount(): number {
   return row?.c ?? 0;
 }
 
+export type SubscriberRow = {
+  email: string;
+  createdAt: string;
+};
+
+export function listSubscribers(): SubscriberRow[] {
+  return db
+    .prepare('SELECT email, createdAt FROM Subscriber ORDER BY datetime(createdAt) DESC')
+    .all() as SubscriberRow[];
+}
+
+export function getRealSubscriberStats(): {
+  totalInDatabase: number;
+  realCount: number;
+  excludedTestCount: number;
+  subscribers: SubscriberRow[];
+} {
+  const all = listSubscribers();
+  const subscribers = all.filter((row) => !isTestSubscriberEmail(row.email));
+  return {
+    totalInDatabase: all.length,
+    realCount: subscribers.length,
+    excludedTestCount: all.length - subscribers.length,
+    subscribers,
+  };
+}
+
 // Community feed
 export function addPost(author: string, content: string, photoData?: string): { id: number } {
   const stmt = db.prepare(

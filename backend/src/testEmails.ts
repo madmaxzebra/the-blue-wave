@@ -1,4 +1,5 @@
-const DEFAULT_TEST_EMAILS = 'madmax.zebra@gmail.com,madmax@zebra-onlinedesign.com';
+const DEFAULT_TEST_EMAILS =
+  'madmax.zebra@gmail.com,madmax@zebra-onlinedesign.com,bluenation@thebluewavefans.com';
 
 function parseTestEmails(raw: string | undefined): Set<string> {
   return new Set(
