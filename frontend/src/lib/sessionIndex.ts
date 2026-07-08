@@ -1,4 +1,4 @@
-const DEFAULT_SCHEMA = '20.26.7.7';
+const DEFAULT_SCHEMA = '20.226.7.7';
 const DEFAULT_ANCHOR = '2026-07-07';
 
 function schemaParts(revision: string): number[] {

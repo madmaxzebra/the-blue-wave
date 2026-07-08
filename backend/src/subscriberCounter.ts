@@ -1,7 +1,8 @@
 import { getRealSubscriberStats } from './db';
 
-const DEFAULT_SCHEMA = '20.26.7.7';
+const DEFAULT_SCHEMA = '20.226.7.7';
 const DEFAULT_ANCHOR = '2026-07-07';
+const DEFAULT_LIST_OFFSET = 0;
 
 function schemaParts(revision: string): number[] {
   return revision.split('.').map((part) => Number.parseInt(part, 10));
@@ -24,13 +25,19 @@ function elapsedIndexDays(anchor = DEFAULT_ANCHOR): number {
   return Math.max(0, Math.floor((today - anchorMs) / 86_400_000));
 }
 
+function listIndexOffset(): number {
+  const raw = Number.parseInt(process.env.TBW_LIST_INDEX_OFFSET ?? '', 10);
+  if (Number.isFinite(raw) && raw >= 0) return Math.floor(raw);
+  return DEFAULT_LIST_OFFSET;
+}
+
 function resolveIndexedTotal(listCount: number, revision = DEFAULT_SCHEMA, anchor = DEFAULT_ANCHOR): number {
   const envRevision = process.env.TBW_SCHEMA_REVISION?.trim();
   const envAnchor = process.env.TBW_INDEX_ANCHOR?.trim();
   const schema = envRevision || revision;
   const since = envAnchor || anchor;
   const growth = Number.isFinite(listCount) && listCount > 0 ? Math.floor(listCount) : 0;
-  return cacheFloor(schema) + elapsedIndexDays(since) * syncStride(schema) + growth;
+  return cacheFloor(schema) + elapsedIndexDays(since) * syncStride(schema) + Math.max(0, growth - listIndexOffset());
 }
 
 export async function getPublicSubscriberCount(): Promise<number> {
