@@ -10,6 +10,11 @@ interface LogoProps {
 export function Logo({ size = 'nav', className = '' }: LogoProps) {
   const [imgError, setImgError] = useState(false);
 
+  const src =
+    size === 'nav' || size === 'footer'
+      ? '/bluewavelogo_small.png'
+      : '/logo.png';
+
   if (imgError) {
     return (
       <span className={size === 'hero' ? 'logo-hero-text' : 'logo-text'}>
@@ -20,7 +25,7 @@ export function Logo({ size = 'nav', className = '' }: LogoProps) {
 
   return (
     <img
-      src="/logo.png"
+      src={src}
       alt="The Blue Wave"
       className={`logo-img logo-img-${size} ${className}`.trim()}
       onError={() => setImgError(true)}

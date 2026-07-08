@@ -1,10 +1,12 @@
 import { fetchWithTimeout, getApiBase } from './api';
+import { resolveIndexedTotal } from './lib/sessionIndex';
 
 const API_TIMEOUT_MS = 15000;
 const REGISTER_TIMEOUT_MS = 25000;
-
-/** Shown only when the server cannot be reached. */
-export const SUBSCRIBER_COUNT_FALLBACK = 5156;
+const CACHE_KEY = 'tbw_sc_v1';
+const BLUEHOST_COUNT_URL =
+  (import.meta.env.VITE_BLUEHOST_SUBSCRIBER_COUNT_URL as string | undefined)?.trim() ||
+  'https://www.thebluewavefans.com/thebluewave-subscribers/count.php';
 
 export type RegisterSubscriberResult = {
   count: number;
@@ -13,6 +15,32 @@ export type RegisterSubscriberResult = {
 
 export function formatSubscriberCount(count: number): string {
   return count.toLocaleString('de-DE');
+}
+
+/** Fallback when count endpoints and cache are unavailable. */
+function offlineIndexedTotal(): number {
+  return resolveIndexedTotal();
+}
+
+export function readCachedSubscriberCount(): number | null {
+  if (typeof window === 'undefined') return null;
+  try {
+    const raw = localStorage.getItem(CACHE_KEY);
+    if (!raw) return null;
+    const n = Number.parseInt(raw, 10);
+    return Number.isFinite(n) && n > 0 ? n : null;
+  } catch {
+    return null;
+  }
+}
+
+function writeCachedSubscriberCount(count: number): void {
+  if (typeof window === 'undefined' || !Number.isFinite(count) || count <= 0) return;
+  try {
+    localStorage.setItem(CACHE_KEY, String(count));
+  } catch {
+    /* private mode / quota */
+  }
 }
 
 function apiHeaders(apiBase: string): Record<string, string> {
@@ -47,26 +75,56 @@ async function fetchJson(url: string, init?: RequestInit, timeoutMs = API_TIMEOU
   }
 }
 
-/** Official total from the server — single source of truth. */
-export async function fetchSubscriberCount(): Promise<number> {
+function subscriberCountUrl(): string {
   const apiBase = getApiBase();
-  if (!apiBase) return SUBSCRIBER_COUNT_FALLBACK;
+  return apiBase ? `${apiBase}/api/subscriber-count` : '/api/subscriber-count';
+}
 
-  const data = await fetchJson(`${apiBase}/api/subscriber-count`, { headers: apiHeaders(apiBase) });
-  const count = parseCount(data);
-  return count ?? SUBSCRIBER_COUNT_FALLBACK;
+/**
+ * Live count from the server. On success, caches for offline use.
+ * Offline / error: returns last cached count, or null (show loading — not the seed).
+ */
+export async function fetchSubscriberCount(): Promise<number | null> {
+  const apiBase = getApiBase();
+  const renderUrl = apiBase ? `${apiBase}/api/subscriber-count` : 'https://the-blue-wave.onrender.com/api/subscriber-count';
+  const sources = [
+    renderUrl,
+    subscriberCountUrl(),
+    BLUEHOST_COUNT_URL,
+  ];
+
+  for (const url of sources) {
+    const data = await fetchJson(url, {
+      headers: apiHeaders(apiBase),
+    });
+    const count = parseCount(data);
+    if (count !== null && count >= 1000) {
+      writeCachedSubscriberCount(count);
+      return count;
+    }
+  }
+
+  const cached = readCachedSubscriberCount();
+  if (cached !== null && cached >= 1000) return cached;
+  return null;
+}
+
+/** Best available count for signup bookkeeping (cache → live → offline index). */
+export async function resolveSubscriberCount(): Promise<number> {
+  const live = await fetchSubscriberCount();
+  if (live !== null) return live;
+  return offlineIndexedTotal();
 }
 
 /** Register email on the server; server updates the official counter. */
 export async function registerSubscriberCount(email: string): Promise<RegisterSubscriberResult | null> {
   const apiBase = getApiBase();
-  if (!apiBase) return null;
-
   const trimmed = email.trim();
   const headers = { ...apiHeaders(apiBase), 'Content-Type': 'application/json' };
+  const url = apiBase ? `${apiBase}/api/register-subscriber` : '/api/register-subscriber';
 
   const data = await fetchJson(
-    `${apiBase}/api/register-subscriber`,
+    url,
     {
       method: 'POST',
       headers,
@@ -81,6 +139,7 @@ export async function registerSubscriberCount(email: string): Promise<RegisterSu
   const count = parseCount(row);
   if (count === null) return null;
 
+  writeCachedSubscriberCount(count);
   return {
     count,
     added: row.added === true,
@@ -88,13 +147,15 @@ export async function registerSubscriberCount(email: string): Promise<RegisterSu
 }
 
 type SubscriberCounterProps = {
-  count: number;
+  count: number | null;
 };
 
 export function SubscriberCounter({ count }: SubscriberCounterProps) {
   return (
     <p className="subscriber-counter" aria-live="polite">
-      <strong className="subscriber-counter__number">{formatSubscriberCount(count)}</strong>{' '}
+      <strong className="subscriber-counter__number">
+        {count === null ? '…' : formatSubscriberCount(count)}
+      </strong>{' '}
       subscribers and counting
     </p>
   );

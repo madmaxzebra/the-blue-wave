@@ -98,7 +98,7 @@ export function listSubscribers(): SubscriberRow[] {
 
 export function getRealSubscriberStats(): {
   totalInDatabase: number;
-  realCount: number;
+  listCount: number;
   excludedTestCount: number;
   subscribers: SubscriberRow[];
 } {
@@ -106,7 +106,7 @@ export function getRealSubscriberStats(): {
   const subscribers = all.filter((row) => !isTestSubscriberEmail(row.email));
   return {
     totalInDatabase: all.length,
-    realCount: subscribers.length,
+    listCount: subscribers.length,
     excludedTestCount: all.length - subscribers.length,
     subscribers,
   };

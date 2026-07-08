@@ -1,0 +1,245 @@
+.match-recap {
+  width: 100%;
+  margin-top: 0.45rem;
+}
+
+.match-recap--compact {
+  margin-top: 0.35rem;
+}
+
+.match-recap__phases {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.35rem;
+  margin-bottom: 0.45rem;
+}
+
+.match-recap__phase {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.18rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.5625rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.match-recap__phase--extra-time {
+  background: rgba(249, 232, 20, 0.14);
+  border-color: rgba(249, 232, 20, 0.35);
+  color: #f9e814;
+}
+
+.match-recap__phase--penalties {
+  background: rgba(125, 255, 184, 0.12);
+  border-color: rgba(125, 255, 184, 0.35);
+  color: #7dffb8;
+}
+
+.match-recap-stats {
+  margin-bottom: 0.45rem;
+  padding: 0.45rem 0.5rem 0.5rem;
+  border-radius: 10px;
+  background: rgba(0, 20, 60, 0.42);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.match-recap-stats__heading {
+  margin: 0 0 0.35rem;
+  font-size: 0.5625rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-align: center;
+  color: #fde047;
+}
+
+.match-recap-stats__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.6875rem;
+  color: #fff;
+}
+
+.match-recap-stats__table th,
+.match-recap-stats__table td {
+  padding: 0.22rem 0.25rem;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.match-recap-stats__table thead th {
+  font-size: 0.625rem;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.match-recap-stats__mid {
+  font-size: 0.5625rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  color: rgba(255, 255, 255, 0.72) !important;
+}
+
+.match-recap-stats__table tbody td {
+  font-weight: 800;
+}
+
+.match-recap__empty {
+  margin: 0.2rem 0 0.35rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+/* Light surfaces (Games played list, pool results) */
+.live-games__row--finished .match-recap__phase,
+.pool-status__goals-popover .match-recap__phase {
+  background: rgba(0, 40, 100, 0.08);
+  border-color: rgba(0, 40, 100, 0.14);
+  color: var(--ink);
+}
+
+.live-games__row--finished .match-recap__phase--extra-time,
+.pool-status__goals-popover .match-recap__phase--extra-time {
+  background: rgba(249, 232, 20, 0.18);
+  color: #7a6200;
+}
+
+.live-games__row--finished .match-recap__phase--penalties,
+.pool-status__goals-popover .match-recap__phase--penalties {
+  background: rgba(10, 107, 45, 0.12);
+  color: #0a6b2d;
+}
+
+.live-games__row--finished .match-recap-stats,
+.pool-status__goals-popover .match-recap-stats {
+  background: rgba(0, 40, 100, 0.06);
+  border-color: var(--app-line, var(--border));
+}
+
+.live-games__row--finished .match-recap-stats__heading,
+.pool-status__goals-popover .match-recap-stats__heading {
+  color: #0a6b2d;
+}
+
+.live-games__row--finished .match-recap-stats__table,
+.pool-status__goals-popover .match-recap-stats__table {
+  color: var(--ink);
+}
+
+.live-games__row--finished .match-recap__empty,
+.pool-status__goals-popover .match-recap__empty {
+  color: var(--ink-muted);
+}
+
+.landing-match-recap {
+  text-align: left;
+}
+
+.landing-recap-events {
+  margin-bottom: 0.45rem;
+}
+
+.landing-recap-events__heading {
+  margin: 0 0 0.35rem;
+  font-size: 0.5625rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #fde047;
+  text-align: center;
+}
+
+.landing-recap-events__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.32rem;
+}
+
+.landing-recap-events__item {
+  display: grid;
+  grid-template-columns: auto auto 1fr auto;
+  align-items: baseline;
+  gap: 0.2rem 0.35rem;
+  font-size: 0.6875rem;
+  color: #fff;
+  line-height: 1.35;
+  padding: 0.28rem 0.35rem;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.landing-recap-events__item--card {
+  grid-template-columns: auto auto 1fr;
+}
+
+.landing-recap-events__minute {
+  font-weight: 800;
+  color: #fde047;
+  font-variant-numeric: tabular-nums;
+}
+
+.landing-recap-events__scorer {
+  font-weight: 600;
+}
+
+.landing-recap-events__team {
+  font-weight: 500;
+  opacity: 0.85;
+}
+
+.landing-recap-events__score {
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  opacity: 0.9;
+}
+
+.landing-recap-events__goal-icon {
+  font-size: 0.75rem;
+  line-height: 1;
+}
+
+.landing-recap-events__card-icon {
+  width: 0.55rem;
+  height: 0.75rem;
+  border-radius: 2px;
+  border: 1px solid rgba(0, 0, 0, 0.35);
+}
+
+.landing-recap-events__card-icon--yellow {
+  background: #f9e814;
+}
+
+.landing-recap-events__card-icon--red {
+  background: #ff3b30;
+}
+
+.landing-recap-events__tags {
+  display: inline-flex;
+  gap: 0.2rem;
+  margin-left: 0.25rem;
+}
+
+.landing-recap-events__tag {
+  display: inline-block;
+  padding: 0.02rem 0.28rem;
+  border-radius: 3px;
+  font-size: 0.5625rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  background: rgba(249, 232, 20, 0.22);
+  color: #f9e814;
+}

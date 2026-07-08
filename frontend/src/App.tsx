@@ -2,18 +2,26 @@ import { useState, useEffect } from 'react';
 import { getApiBase } from './api';
 import { Logo } from './Logo';
 import { Countdown } from './Countdown';
+import { LandingTeamCountdowns } from './LandingTeamCountdowns';
+import { LandingLiveNow } from './LandingLiveNow';
+import { LandingTodaysGames } from './LandingTodaysGames';
+import { LandingNewStories } from './LandingNewStories';
+import { LandingAppPromo } from './LandingAppPromo';
 import { FacebookLink } from './FacebookLink';
+import { MagazineIcon } from './NavIcons';
+import { THE_BLUE_WAVE_APP_URL } from './appLinks';
 import { submitStayUpdatedSignup } from './subscribeForm';
 import {
   SubscriberCounter,
   fetchSubscriberCount,
-  SUBSCRIBER_COUNT_FALLBACK,
+  readCachedSubscriberCount,
 } from './SubscriberCounter';
 import { applySeo, DEFAULT_FLIPSNACK_URL } from './seo';
 import './App.css';
 
 /** Tournament opener — Mexico City opening ceremony, 11 June 2026, 11:30 local (FIFA). */
 const OPENING_CEREMONY_AT = '2026-06-11T11:30:00-06:00';
+const SHOW_OPENING_COUNTDOWN = false;
 
 const LOADING_MESSAGES = [
   'Verifying your email…',
@@ -59,7 +67,7 @@ export default function App() {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [message, setMessage] = useState('');
   const [loadingHint, setLoadingHint] = useState(LOADING_MESSAGES[0]);
-  const [subscriberCount, setSubscriberCount] = useState(SUBSCRIBER_COUNT_FALLBACK);
+  const [subscriberCount, setSubscriberCount] = useState<number | null>(() => readCachedSubscriberCount());
 
   useEffect(() => {
     let cancelled = false;
@@ -116,13 +124,14 @@ export default function App() {
         setMessage(result.message);
         setEmail('');
         setSubscriberCount((prev) => {
+          const base = prev ?? 0;
           if (typeof result.subscriberCount === 'number') {
             if (result.subscriberAdded) {
-              return Math.max(result.subscriberCount, prev + 1);
+              return Math.max(result.subscriberCount, base + 1);
             }
-            return Math.max(result.subscriberCount, prev);
+            return Math.max(result.subscriberCount, base);
           }
-          return result.subscriberAdded ? prev + 1 : prev;
+          return result.subscriberAdded ? base + 1 : prev;
         });
         return;
       }
@@ -143,14 +152,19 @@ export default function App() {
             <Logo size="nav" />
           </a>
           <nav aria-label="Main navigation">
+            <a href={THE_BLUE_WAVE_APP_URL} className="nav-link-app">
+              <img src="/bluewavelogo_small.png" alt="" className="nav-link-app__icon" width={22} height={22} decoding="async" />
+              <span>The Blue Wave App</span>
+            </a>
             <FacebookLink variant="nav" />
             <a
               href={flipsnackUrl}
-              className="cta-nav cta-nav--launch"
+              className="cta-nav cta-nav--launch cta-nav--magazine"
               target="_blank"
               rel="noopener noreferrer"
             >
-              Read the magazine
+              <MagazineIcon />
+              <span>Read Magazine</span>
             </a>
             <a href="#stay-tuned">Stay Updated</a>
           </nav>
@@ -165,11 +179,6 @@ export default function App() {
               <Logo size="hero" />
             </div>
 
-            <Countdown
-              targetDateTime={OPENING_CEREMONY_AT}
-              label="Countdown to the FIFA World Cup 2026 opening ceremony · Mexico City"
-            />
-
             <h1 id="hero-heading" className="hero-heading hero-heading--launch">
               <span className="hero-heading__title">The World Cup Soccer Magazine</span>
               <span className="hero-live-badge" aria-label="Live now">
@@ -178,15 +187,9 @@ export default function App() {
               <span className="hero-heading__suffix">— Curaçao 2026</span>
             </h1>
 
-            <div className="hero-ctas hero-ctas--launch">
-              <a
-                href={flipsnackUrl}
-                className="btn btn-primary btn-flipsnack"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Open the magazine — flip &amp; read →
-              </a>
+            <div className="hero-live-block">
+              <LandingLiveNow />
+              <LandingTodaysGames />
             </div>
 
             <div id="stay-tuned" className="subscribe-box subscribe-box--hero" aria-labelledby="stay-tuned-heading">
@@ -194,6 +197,7 @@ export default function App() {
                 Stay Updated
               </h2>
               <SubscriberCounter count={subscriberCount} />
+
               <form onSubmit={handleSubmit} className="subscribe-form">
                 <input
                   type="checkbox"
@@ -225,6 +229,19 @@ export default function App() {
                 <p className={status === 'success' ? 'form-success' : 'form-error'}>{message}</p>
               )}
             </div>
+
+            <LandingTeamCountdowns />
+
+            {SHOW_OPENING_COUNTDOWN ? (
+              <Countdown
+                targetDateTime={OPENING_CEREMONY_AT}
+                label="Countdown to the FIFA World Cup 2026 opening ceremony · Mexico City"
+              />
+            ) : null}
+
+            <LandingNewStories flipsnackUrl={flipsnackUrl} />
+
+            <LandingAppPromo />
           </div>
         </section>
 

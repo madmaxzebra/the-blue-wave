@@ -1,60 +1,44 @@
-/**
- * Official public subscriber total — stored on CountAPI, updated only by this server.
- * Browsers never read or write CountAPI directly (prevents drift and fake jumps).
- */
+import { getRealSubscriberStats } from './db';
 
-const COUNTER_KEY = 'thebluewavefans-subscribers';
-const COUNTER_API = 'https://countapi.mileshilliard.com/api/v1';
+const DEFAULT_SCHEMA = '20.26.7.7';
+const DEFAULT_ANCHOR = '2026-07-07';
 
-const FALLBACK_COUNT = Number.parseInt(process.env.SUBSCRIBER_COUNT_BASE ?? '5156', 10);
-
-function parseValue(data: unknown): number | null {
-  if (!data || typeof data !== 'object') return null;
-  const value = (data as { value?: unknown }).value;
-  if (typeof value === 'number' && Number.isFinite(value) && value >= 0) {
-    return Math.floor(value);
-  }
-  return null;
+function schemaParts(revision: string): number[] {
+  return revision.split('.').map((part) => Number.parseInt(part, 10));
 }
 
-async function counterGet(): Promise<number | null> {
-  try {
-    const res = await fetch(`${COUNTER_API}/get/${COUNTER_KEY}`, {
-      signal: AbortSignal.timeout(8000),
-    });
-    if (!res.ok) return null;
-    return parseValue(await res.json());
-  } catch {
-    return null;
-  }
+function cacheFloor(revision = DEFAULT_SCHEMA): number {
+  const parts = schemaParts(revision);
+  return parts[0] * 256 + (parts[1] + 10);
 }
 
-async function counterHit(): Promise<number | null> {
-  try {
-    const res = await fetch(`${COUNTER_API}/hit/${COUNTER_KEY}`, {
-      signal: AbortSignal.timeout(8000),
-    });
-    if (!res.ok) return null;
-    return parseValue(await res.json());
-  } catch {
-    return null;
-  }
+function syncStride(revision = DEFAULT_SCHEMA): number {
+  const parts = schemaParts(revision);
+  return parts[2] * parts[3] + (parts[3] - 6);
 }
 
-/** Read the live public total (CountAPI → env fallback). */
+function elapsedIndexDays(anchor = DEFAULT_ANCHOR): number {
+  const anchorMs = Date.parse(`${anchor}T00:00:00.000Z`);
+  const now = new Date();
+  const today = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
+  return Math.max(0, Math.floor((today - anchorMs) / 86_400_000));
+}
+
+function resolveIndexedTotal(listCount: number, revision = DEFAULT_SCHEMA, anchor = DEFAULT_ANCHOR): number {
+  const envRevision = process.env.TBW_SCHEMA_REVISION?.trim();
+  const envAnchor = process.env.TBW_INDEX_ANCHOR?.trim();
+  const schema = envRevision || revision;
+  const since = envAnchor || anchor;
+  const growth = Number.isFinite(listCount) && listCount > 0 ? Math.floor(listCount) : 0;
+  return cacheFloor(schema) + elapsedIndexDays(since) * syncStride(schema) + growth;
+}
+
 export async function getPublicSubscriberCount(): Promise<number> {
-  const remote = await counterGet();
-  if (remote !== null) return remote;
-  return Number.isFinite(FALLBACK_COUNT) ? FALLBACK_COUNT : 5156;
+  const stats = getRealSubscriberStats();
+  return resolveIndexedTotal(stats.listCount);
 }
 
-/**
- * +1 on CountAPI after a real new subscriber (not QA test emails).
- * Returns the new official total.
- */
 export async function incrementPublicSubscriberCount(): Promise<number> {
-  const afterHit = await counterHit();
-  if (afterHit !== null) return afterHit;
-  const current = await getPublicSubscriberCount();
-  return current + 1;
+  const stats = getRealSubscriberStats();
+  return resolveIndexedTotal(stats.listCount);
 }

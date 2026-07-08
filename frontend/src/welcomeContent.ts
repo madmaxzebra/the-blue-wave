@@ -1,7 +1,7 @@
 import { FACEBOOK_URL } from './FacebookLink';
+import { THE_BLUE_WAVE_APP_URL } from './appLinks';
 import { DEFAULT_FLIPSNACK_URL, SITE_URL } from './seo';
 
-export const APP_STORE_LAUNCH_LABEL = '13 June 2026';
 export const MAGAZINE_URL = DEFAULT_FLIPSNACK_URL;
 export const TEAM_NAME = 'The Blue Wave Fans Team';
 
@@ -36,7 +36,10 @@ export function buildWelcomeEmailPlainText(email: string, siteUrl = SITE_URL): s
     MAGAZINE_URL,
     '',
     'THE BLUE WAVE APP',
-    `From ${APP_STORE_LAUNCH_LABEL}, The Blue Wave app will be available to download for free in the Apple App Store and Google Play.`,
+    'The Blue Wave app will soon be available as a free download on the Apple App Store and Google Play.',
+    'It is currently going through Apple and Google’s approval process.',
+    'Meanwhile, you can already browse The Blue Wave app in your web browser:',
+    THE_BLUE_WAVE_APP_URL,
     'The mobile app keeps The Blue Wave Magazine in your pocket: thumb-friendly reading, plus real-time news updates and live score messages and alerts delivered through push technology.',
     '',
     'Keep an eye on your inbox as the tournament unfolds — there is more to come.',
@@ -71,8 +74,12 @@ export function buildWelcomeEmailHtml(email: string, siteUrl = SITE_URL): string
         <p style="text-align: center; margin: 20px 0;">
           <a href="${MAGAZINE_URL}" style="display: inline-block; background: #0066CC; color: #ffffff; text-decoration: none; padding: 12px 22px; border-radius: 8px; font-weight: bold;">Open the magazine →</a>
         </p>
-        <h2 style="color: #0066CC; font-size: 18px; margin-top: 24px;">The Blue Wave app — ${APP_STORE_LAUNCH_LABEL}</h2>
-        <p>From <strong>${APP_STORE_LAUNCH_LABEL}</strong>, The Blue Wave app will be available to download for <strong>free</strong> in the <strong>Apple App Store</strong> and <strong>Google Play</strong>.</p>
+        <h2 style="color: #0066CC; font-size: 18px; margin-top: 24px;">The Blue Wave app</h2>
+        <p>The Blue Wave app will soon be available as a <strong>free</strong> download on the <strong>Apple App Store</strong> and <strong>Google Play</strong>. It is currently going through Apple and Google’s approval process.</p>
+        <p>Meanwhile, you can already browse The Blue Wave app in your web browser:</p>
+        <p style="text-align: center; margin: 20px 0;">
+          <a href="${THE_BLUE_WAVE_APP_URL}" style="display: inline-block; background: linear-gradient(180deg, #f9e814 0%, #e6c200 100%); color: #003366; text-decoration: none; padding: 12px 22px; border-radius: 8px; font-weight: bold; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);">📱 Browse The Blue Wave App →</a>
+        </p>
         <p>The mobile app keeps The Blue Wave Magazine in your pocket: thumb-friendly reading, plus real-time news updates and live score messages and alerts delivered through push technology.</p>
         <h2 style="color: #0066CC; font-size: 18px; margin-top: 24px;">Stay connected</h2>
         <p>Like and share our Facebook page to stay in touch with other Blue Wave Fans.</p>

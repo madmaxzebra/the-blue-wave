@@ -67,7 +67,7 @@ export async function handleAdminBroadcastGet(req: Request, res: Response): Prom
   if (!requireSubscriberAdmin(req, res)) return;
   const stats = getRealSubscriberStats();
   const key = readSubscriberAdminKey(req);
-  res.type('html').send(renderPage(key, stats.realCount));
+  res.type('html').send(renderPage(key, stats.listCount));
 }
 
 export async function handleAdminBroadcastPost(req: Request, res: Response): Promise<void> {
@@ -86,7 +86,7 @@ export async function handleAdminBroadcastPost(req: Request, res: Response): Pro
       .send(
         renderPage(
           key,
-          stats.realCount,
+          stats.listCount,
           'Type <strong>SEND</strong> in the confirm box to deliver this email.',
           true
         )
@@ -108,7 +108,7 @@ export async function handleAdminBroadcastPost(req: Request, res: Response): Pro
         result.failures[0]?.error ? escapeHtml(result.failures[0].error) : ''
       }`;
     }
-    res.type('html').send(renderPage(key, stats.realCount, text, !result.ok && !dryRun));
+    res.type('html').send(renderPage(key, stats.listCount, text, !result.ok && !dryRun));
     return;
   }
 

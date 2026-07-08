@@ -1,5 +1,7 @@
 # The Blue Wave – Promo landing page
 
+**Homepage for thebluewavefans.com:** see **[HOMEPAGE-THEBLUEWAVEFANS.md](./HOMEPAGE-THEBLUEWAVEFANS.md)** — build with `BUILD-THEBLUEWAVEFANS-UPLOAD.bat`, upload `thebluewavefans-upload.zip`.
+
 Promotionele landingspagina die doorlinkt naar het WK Magazine.
 
 ## Features

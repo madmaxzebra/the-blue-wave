@@ -1,7 +1,8 @@
-/** QA emails — may re-register and always count as a new signup for testing. */
+/** QA emails — excluded from public counter; may re-signup and always get welcome for testing. */
 const TEST_SUBSCRIBER_EMAILS = new Set([
   'madmax.zebra@gmail.com',
   'madmax@zebra-onlinedesign.com',
+  'bluenation@thebluewavefans.com',
 ]);
 
 export function isTestSubscriberEmail(email: string): boolean {

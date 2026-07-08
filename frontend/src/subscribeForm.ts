@@ -1,6 +1,6 @@
 import emailjs from '@emailjs/browser';
 import { fetchWithTimeout, getApiBase } from './api';
-import { fetchSubscriberCount, registerSubscriberCount } from './SubscriberCounter';
+import { resolveSubscriberCount, registerSubscriberCount } from './SubscriberCounter';
 import {
   buildEmailJsMessage,
   buildSignupSuccessMessage,
@@ -10,9 +10,10 @@ import {
 } from './welcomeContent';
 
 const WEB3FORMS_TIMEOUT_MS = 8000;
-const WELCOME_TIMEOUT_MS = 45000;
+const WELCOME_TIMEOUT_MS = 20000;
 const SIGNUP_MAX_WAIT_MS = 8000;
 const REGISTER_EXTRA_WAIT_MS = 20000;
+const REGISTER_TIMEOUT_MS = 25000;
 const MIN_LOADING_MS = 1500;
 
 function sleep(ms: number): Promise<void> {
@@ -21,6 +22,12 @@ function sleep(ms: number): Promise<void> {
 
 /** Same keys as thebluewavefans static landing (Web3Forms + EmailJS fallback). */
 const WEB3FORMS_ACCESS_KEY = '3b985545-14fc-41ad-8c00-aa913d628170';
+const BLUEHOST_SUBSCRIBERS_URL =
+  (import.meta.env.VITE_BLUEHOST_SUBSCRIBERS_URL as string | undefined)?.trim() ||
+  'https://www.thebluewavefans.com/thebluewave-subscribers/register.php';
+const BLUEHOST_WELCOME_URL =
+  (import.meta.env.VITE_BLUEHOST_WELCOME_URL as string | undefined)?.trim() ||
+  'https://www.thebluewavefans.com/thebluewave-subscribers/send-welcome.php';
 const EMAILJS_PUBLIC_KEY = '_C-hi1wJ-CaXzjmNh';
 const EMAILJS_SERVICE_ID = 'service_hz836sp';
 const EMAILJS_TEMPLATE_ID = 'template_ax3qxyy';
@@ -153,8 +160,28 @@ async function tryWeb3FormsAdminAlert(
   }
 }
 
+async function sendViaBluehostWelcome(toEmail: string): Promise<boolean> {
+  try {
+    const res = await fetchWithTimeout(
+      BLUEHOST_WELCOME_URL,
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({ email: toEmail }),
+      },
+      REGISTER_TIMEOUT_MS
+    );
+    if (!res.ok) return false;
+    const data = (await res.json()) as { welcomeSent?: boolean };
+    return data.welcomeSent === true;
+  } catch {
+    return false;
+  }
+}
+
 async function sendWelcomeEmail(toEmail: string, apiBase: string, origin: string): Promise<boolean> {
-  // EmailJS first — instant. Render often cold-starts 60s+ and would delay the welcome.
+  // Bluehost uses Resend HTTP API (reliable). EmailJS quota is often exceeded.
+  if (await sendViaBluehostWelcome(toEmail)) return true;
   if (await sendViaEmailJs(toEmail, origin)) return true;
   if (await sendViaRenderWelcome(toEmail, apiBase, origin)) return true;
   return false;
@@ -169,6 +196,34 @@ export type StayUpdatedResult =
       subscriberAdded?: boolean;
     }
   | { ok: false; message: string };
+
+async function registerOnBluehost(
+  email: string
+): Promise<{ count?: number; added?: boolean; welcomeSent?: boolean } | null> {
+  try {
+    const res = await fetchWithTimeout(
+      BLUEHOST_SUBSCRIBERS_URL,
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({ email }),
+      },
+      REGISTER_TIMEOUT_MS
+    );
+    if (!res.ok) return null;
+    const data = (await res.json()) as {
+      count?: number;
+      subscriberCount?: number;
+      added?: boolean;
+      welcomeSent?: boolean;
+    };
+    const count = data.count ?? data.subscriberCount;
+    if (typeof count !== 'number') return null;
+    return { count, added: data.added === true, welcomeSent: data.welcomeSent === true };
+  } catch {
+    return null;
+  }
+}
 
 /** Wait for signup work (with a cap) so the form can show progress messages. */
 export async function submitStayUpdatedSignup(
@@ -190,21 +245,29 @@ export async function submitStayUpdatedSignup(
     if (!web3Ok) await sendAdminViaRender(trimmed, apiBase, origin);
   })();
 
-  let registerResult: Awaited<ReturnType<typeof registerSubscriberCount>> = null;
+  let registerResult: { count?: number; added?: boolean; welcomeSent?: boolean } | null = null;
   let welcomeSent = false;
 
-  const registerPromise = registerSubscriberCount(trimmed);
-  const welcomePromise = sendWelcomeEmail(trimmed, apiBase, origin);
-
-  const work = Promise.all([registerPromise, welcomePromise]).then(([registered, welcome]) => {
-    registerResult = registered;
-    welcomeSent = welcome;
+  const registerPromise = Promise.all([
+    registerOnBluehost(trimmed),
+    registerSubscriberCount(trimmed),
+  ]).then(([bluehost, render]) => {
+    const merged = render ?? bluehost;
+    return {
+      count: merged?.count,
+      added: merged?.added ?? bluehost?.added ?? false,
+      welcomeSent: bluehost?.welcomeSent === true,
+    };
   });
 
-  await Promise.race([work, sleep(SIGNUP_MAX_WAIT_MS)]);
+  await Promise.race([registerPromise, sleep(SIGNUP_MAX_WAIT_MS)]);
 
-  if (registerResult === null) {
-    registerResult = await Promise.race([registerPromise, sleep(REGISTER_EXTRA_WAIT_MS)]);
+  registerResult = await Promise.race([registerPromise, sleep(REGISTER_EXTRA_WAIT_MS)]);
+
+  if (registerResult?.welcomeSent) {
+    welcomeSent = true;
+  } else {
+    welcomeSent = await sendWelcomeEmail(trimmed, apiBase, origin);
   }
 
   const elapsed = Date.now() - started;
@@ -215,7 +278,8 @@ export async function submitStayUpdatedSignup(
   let subscriberCount = registerResult?.count;
   let subscriberAdded = registerResult?.added ?? false;
   if (subscriberCount === undefined) {
-    subscriberCount = await fetchSubscriberCount();
+    const resolved = await resolveSubscriberCount();
+    subscriberCount = resolved > 0 ? resolved : undefined;
     subscriberAdded = false;
   }
 

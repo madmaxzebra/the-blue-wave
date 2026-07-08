@@ -1,38 +1,42 @@
 The Blue Wave — subscriber admin + email broadcast
 ==================================================
 
-ONE-TIME SETUP ON RENDER
-------------------------
-Dashboard → the-blue-wave → Environment → add:
+SOURCE OF TRUTH: BLUEHOST (permanent)
+-------------------------------------
+Subscriber list is stored on your hosting — NOT on Render.
 
-  SUBSCRIBER_ADMIN_KEY = 99142
+Admin dashboard:
+  https://thebluewavefans.com/thebluewave-subscribers/admin.php?key=99142
 
-Save and wait for redeploy (~5 min).
+Import historical emails (Web3Forms / Gmail paste):
+  same page → "Import emails" box at the bottom
 
-Then push latest code (GITHUB-PUSH.bat or git push origin main).
+JSON API (for newsletter-app):
+  https://thebluewavefans.com/thebluewave-subscribers/read.php?key=99142
 
 
-BOOKMARK THESE (keep PIN secret)
---------------------------------
-Subscriber list:
-  https://the-blue-wave.onrender.com/admin/subscribers?key=99142&view=page
+HOW TO SEND ONE EMAIL TO ALL SUBSCRIBERS (match day)
+----------------------------------------------------
+Option A — newsletter-app on your PC (recommended):
+  1. cd wk-2026-app/AI-INBOX/newsletter-app
+  2. npm start → http://localhost:3000
+  3. Click "Pull from Bluehost"
+  4. Write subject + message → Send to All
 
-Email all subscribers (one message → everyone):
+Option B — Render broadcast (backup; list may be empty after redeploy):
   https://the-blue-wave.onrender.com/admin/email-broadcast?key=99142
 
 
-HOW TO SEND ONE EMAIL TO ALL SUBSCRIBERS
-----------------------------------------
-1. Open the email-broadcast link above
-2. Write Subject + Message
-3. Click "Preview count only" to check how many will receive it
-4. Type SEND in the confirm box
-5. Click "Send to all subscribers"
+RENDER SETUP (optional backup)
+------------------------------
+Dashboard → the-blue-wave → Environment:
 
-Each person gets their own email (private — no visible recipient list).
-Your test emails are excluded automatically.
+  SUBSCRIBER_ADMIN_KEY = 99142
+
+Subscriber list on Render:
+  https://the-blue-wave.onrender.com/admin/subscribers?key=99142&view=page
 
 
-LIMITS
-------
-Gmail SMTP: about 500 emails per day. If you grow past that, send in batches on different days.
+NOTES
+-----
+• Gmail SMTP: ~500 emails/day. Split large sends across days.
