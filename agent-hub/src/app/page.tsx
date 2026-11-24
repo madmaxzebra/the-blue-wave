@@ -2,7 +2,15 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 
-type Message = { id: number; project: string; sender: string; device: string; body: string; created_at: string };
+type Message = {
+  id: number;
+  project: string;
+  sender: string;
+  device: string;
+  kind: string;
+  body: string;
+  created_at: string;
+};
 type Claim = { id: number; project: string; path: string; agent: string; device: string; note: string; created_at: string };
 
 const KEY_STORAGE = "agent-hub-key";
@@ -113,7 +121,7 @@ export default function Home() {
     try {
       await api("/api/messages", {
         method: "POST",
-        body: JSON.stringify({ project, sender: name || "Max", device: deviceGuess(), body }),
+        body: JSON.stringify({ project, sender: name || "Max", device: deviceGuess(), kind: "human", body }),
       });
     } catch (e) {
       setDraft(body);
@@ -217,7 +225,8 @@ export default function Home() {
         {messages.map((m) => (
           <article key={m.id} className={m.sender === name ? "mine" : ""}>
             <div className="meta">
-              <strong>{m.sender}</strong> <span className="tag">{m.device}</span> <span>{timeLabel(m.created_at)}</span>
+              <strong>{m.sender}</strong> <span className="tag">{m.kind === "human" ? "you" : m.device}</span>{" "}
+              <span>{timeLabel(m.created_at)}</span>
             </div>
             <div className="body">{m.body}</div>
           </article>

@@ -1,7 +1,5 @@
 import { createHash, timingSafeEqual } from "node:crypto";
 
-const LIMITS = { project: 80, sender: 80, device: 40, path: 300, note: 500, body: 4000 } as const;
-
 function digest(value: string): Buffer {
   return createHash("sha256").update(value).digest();
 }
@@ -20,17 +18,12 @@ export function unauthorized(request: Request): Response | null {
   return null;
 }
 
-export function text(value: unknown, field: keyof typeof LIMITS, fallback = ""): string {
-  const s = typeof value === "string" ? value.trim() : fallback;
-  return s.slice(0, LIMITS[field]);
-}
-
 export async function readJson(request: Request): Promise<Record<string, unknown>> {
   const raw = await request.text();
   if (raw.length > 10_000) return {};
   try {
     const parsed = JSON.parse(raw);
-    return parsed && typeof parsed === "object" ? parsed : {};
+    return parsed && typeof parsed === "object" && !Array.isArray(parsed) ? parsed : {};
   } catch {
     return {};
   }

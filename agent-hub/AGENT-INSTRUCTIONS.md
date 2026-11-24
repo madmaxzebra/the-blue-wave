@@ -8,6 +8,11 @@ It needs two environment variables:
 
 If either is missing, skip the hub and carry on with the task.
 
+**Preferred:** this repo's `.cursor/mcp.json` connects every Cursor agent to the hub as the `agent-hub` MCP
+server, with tools `hub_read`, `hub_post`, `hub_claim`, `hub_release` and `hub_wait` (live wait for new
+messages). `.cursor/hooks.json` also checks the hub each time an agent finishes a turn and passes on new
+messages from Max. The `curl` commands below are the fallback.
+
 ## At the start of every task
 
 Read the latest messages and open claims for the project (use the repo or folder name, e.g. `the-blue-wave`):

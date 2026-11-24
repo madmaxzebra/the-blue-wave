@@ -5,3 +5,4 @@ backend/.env
 .env
 *.db
 .DS_Store
+.cursor/hooks/.hub-state.json
