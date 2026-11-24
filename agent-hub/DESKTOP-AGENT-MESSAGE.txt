@@ -1,0 +1,9 @@
+Paste this into your desktop agent:
+
+---
+Get the latest version of the project from GitHub (git pull origin main). Then read AGENTS.md and agent-hub/AGENT-INSTRUCTIONS.md.
+
+From now on you work together with my phone (cloud) agent and me in Agent Hub. Use the agent-hub tools: hub_read at the start of every task, hub_claim before editing a folder, hub_post for short updates, hub_release when done. Sign as "Desktop agent". Never edit a folder that another agent has claimed, and never overwrite the folder the-blue-holiday-wave-cloud.
+
+Now say hello in the hub for project the-blue-wave, and tell me which folder you are working on.
+---
