@@ -107,38 +107,40 @@ export function PartnerDetailPage({
             </div>
           )}
 
-          {partner.whatsapp && (
-            <a
-              className="partner-contact__whatsapp"
-              href={`https://wa.me/${partner.whatsapp}`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span>💬</span> WhatsApp
-            </a>
-          )}
+          <div className="partner-contact__actions">
+            {partner.whatsapp && (
+              <a
+                className="partner-contact__btn partner-contact__btn--whatsapp"
+                href={`https://wa.me/${partner.whatsapp}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                💬 WhatsApp
+              </a>
+            )}
 
-          {partner.websiteUrl && (
-            <a
-              className="partner-contact__website"
-              href={partner.websiteUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              🌐 {partner.websiteLabel ?? 'Visit website'} ↗
-            </a>
-          )}
+            {partner.websiteUrl && (
+              <a
+                className="partner-contact__btn partner-contact__btn--website"
+                href={partner.websiteUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                🌐 {partner.websiteLabel ?? 'Visit website'} ↗
+              </a>
+            )}
 
-          {partner.mapsUrl && (
-            <a
-              className="partner-contact__maps-btn"
-              href={partner.mapsUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              🗺️ Open in Google Maps ↗
-            </a>
-          )}
+            {partner.mapsUrl && (
+              <a
+                className="partner-contact__btn partner-contact__btn--maps"
+                href={partner.mapsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                🗺️ Open in Google Maps ↗
+              </a>
+            )}
+          </div>
 
           {partner.mapsEmbed && (
             <div className="partner-contact__map">
@@ -146,7 +148,7 @@ export function PartnerDetailPage({
                 title={`Map – ${partner.name}`}
                 src={partner.mapsEmbed}
                 width="100%"
-                height="220"
+                height="200"
                 style={{ border: 0 }}
                 allowFullScreen={false}
                 loading="lazy"

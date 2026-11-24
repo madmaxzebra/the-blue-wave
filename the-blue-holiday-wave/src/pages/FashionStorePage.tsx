@@ -134,38 +134,40 @@ export function FashionStorePage() {
             </div>
           )}
 
-          {store.whatsapp && (
-            <a
-              className="partner-contact__whatsapp"
-              href={`https://wa.me/${store.whatsapp}`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span>💬</span> WhatsApp
-            </a>
-          )}
+          <div className="partner-contact__actions">
+            {store.whatsapp && (
+              <a
+                className="partner-contact__btn partner-contact__btn--whatsapp"
+                href={`https://wa.me/${store.whatsapp}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                💬 WhatsApp
+              </a>
+            )}
 
-          {store.websiteUrl && (
-            <a
-              className="partner-contact__website"
-              href={store.websiteUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              🌐 {store.websiteLabel ?? 'Visit website'} ↗
-            </a>
-          )}
+            {store.websiteUrl && (
+              <a
+                className="partner-contact__btn partner-contact__btn--website"
+                href={store.websiteUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                🌐 {store.websiteLabel ?? 'Visit website'} ↗
+              </a>
+            )}
 
-          {store.mapsUrl && (
-            <a
-              className="partner-contact__maps-btn"
-              href={store.mapsUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              🗺️ Open in Google Maps ↗
-            </a>
-          )}
+            {store.mapsUrl && (
+              <a
+                className="partner-contact__btn partner-contact__btn--maps"
+                href={store.mapsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                🗺️ Open in Google Maps ↗
+              </a>
+            )}
+          </div>
 
           {store.mapsEmbed && (
             <div className="partner-contact__map">
@@ -173,7 +175,7 @@ export function FashionStorePage() {
                 title={`Map – ${store.name}`}
                 src={store.mapsEmbed}
                 width="100%"
-                height="220"
+                height="200"
                 style={{ border: 0 }}
                 allowFullScreen={false}
                 loading="lazy"
