@@ -1,0 +1,206 @@
+.shell {
+  position: relative;
+  width: 100%;
+  min-height: 100dvh;
+  margin: 0;
+  padding: 0.85rem var(--pad) calc(var(--tab-h) + 1.1rem);
+  z-index: 1;
+}
+
+/* Landing — Christmas photo fills the app column only (same 520px shell) */
+.shell--landing {
+  background-color: var(--navy-deep);
+  background-image: url("/holidayseason/holiday-media/blue-christmas-bg.png");
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+
+.shell__top {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 1rem;
+}
+.shell__top--fashion {
+  text-align: center;
+}
+.shell__fashion-mark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 148px;
+  height: 148px;
+  margin: 0.85rem auto 0.1rem;
+  border-radius: 50%;
+  border: 3px solid var(--gold);
+  background: radial-gradient(
+    circle,
+    rgba(212, 168, 75, 0.28) 0%,
+    rgba(6, 24, 51, 0.2) 68%
+  );
+  box-shadow:
+    0 0 0 1px rgba(212, 168, 75, 0.45),
+    0 0 22px rgba(212, 168, 75, 0.62),
+    0 0 48px rgba(212, 168, 75, 0.32);
+}
+.shell__fashion-mark img {
+  width: 128px;
+  height: 128px;
+  object-fit: contain;
+  display: block;
+  filter:
+    drop-shadow(0 0 14px rgba(212, 168, 75, 0.75))
+    drop-shadow(0 4px 12px rgba(4, 14, 28, 0.55));
+}
+.shell__eyebrow {
+  margin: 0 0 0.35rem;
+  color: var(--gold);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.shell__brand {
+  margin: 0;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(1.55rem, 6vw, 1.95rem);
+  font-weight: 600;
+  line-height: 1.15;
+}
+.shell__brand span {
+  color: var(--gold);
+}
+
+/* Clear garland under title — gold line + berry/gold dots */
+.shell__garland {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.65rem;
+  margin-top: 0.75rem;
+  max-width: 13rem;
+  height: 14px;
+  position: relative;
+}
+.shell__garland::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(
+    90deg,
+    rgba(212, 168, 75, 0.95),
+    rgba(139, 35, 68, 0.75),
+    rgba(212, 168, 75, 0.35)
+  );
+}
+.shell__garland i {
+  position: relative;
+  z-index: 1;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--berry);
+  box-shadow:
+    0 0 0 2px rgba(10, 42, 92, 0.65),
+    0 0 10px rgba(139, 35, 68, 0.7);
+  font-style: normal;
+}
+.shell__garland i:nth-child(even) {
+  background: var(--gold);
+  box-shadow:
+    0 0 0 2px rgba(10, 42, 92, 0.65),
+    0 0 10px rgba(212, 168, 75, 0.75);
+  width: 6px;
+  height: 6px;
+}
+
+/* Landing only — icy garland & tiny header sparkles */
+.shell--landing .shell__garland {
+  max-width: 15rem;
+}
+.shell--landing .shell__garland::before {
+  background: linear-gradient(
+    90deg,
+    rgba(168, 212, 240, 0.85),
+    rgba(212, 168, 75, 0.9),
+    rgba(200, 220, 240, 0.55),
+    rgba(212, 168, 75, 0.35)
+  );
+}
+.shell--landing .shell__garland i {
+  background: rgba(126, 184, 232, 0.95);
+  box-shadow:
+    0 0 0 2px rgba(10, 42, 92, 0.65),
+    0 0 8px rgba(168, 212, 240, 0.65);
+}
+.shell--landing .shell__garland i:nth-child(3n) {
+  background: rgba(232, 244, 255, 0.9);
+  width: 5px;
+  height: 5px;
+  box-shadow:
+    0 0 0 2px rgba(10, 42, 92, 0.65),
+    0 0 6px rgba(200, 220, 240, 0.55);
+}
+.shell--landing .shell__garland i:nth-child(even) {
+  background: var(--gold);
+  box-shadow:
+    0 0 0 2px rgba(10, 42, 92, 0.65),
+    0 0 10px rgba(212, 168, 75, 0.75);
+}
+
+.shell__main {
+  position: relative;
+  z-index: 1;
+  min-height: 50vh;
+}
+
+.shell__tabs {
+  position: fixed;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: min(520px, 100%);
+  height: var(--tab-h);
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0;
+  background: #040e1c;
+  border-top: 1px solid var(--line);
+  box-shadow: 0 -10px 28px rgba(139, 35, 68, 0.12);
+  backdrop-filter: none;
+  z-index: 30;
+  padding: 0.25rem 0.2rem calc(0.25rem + env(safe-area-inset-bottom));
+}
+.shell__tab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: rgba(247, 243, 236, 0.55);
+  border-radius: 10px;
+  padding: 0.35rem 0.15rem;
+  transition:
+    color 0.15s ease,
+    background 0.15s ease,
+    box-shadow 0.15s ease;
+}
+.shell__tab:hover {
+  color: rgba(247, 243, 236, 0.95);
+  background: rgba(212, 168, 75, 0.1);
+}
+.shell__tab--active {
+  color: var(--gold);
+  background: rgba(212, 168, 75, 0.14);
+  box-shadow: inset 0 0 0 1px rgba(212, 168, 75, 0.22);
+}
+.shell__tab--active:hover {
+  color: var(--gold);
+  background: rgba(212, 168, 75, 0.2);
+}

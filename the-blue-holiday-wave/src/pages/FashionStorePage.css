@@ -1,0 +1,352 @@
+.fashion-store--cutouts .fashion-store__hero img,
+.fashion-store--cutouts .fashion-store__look img,
+.fashion-store--cutouts .fashion-store__visit-banner,
+.fashion-store--cutouts .fashion-store__story img {
+  object-fit: contain;
+  background: transparent;
+}
+.fashion-store__back {
+  margin: 0 0 0.85rem;
+}
+.fashion-store__back a {
+  color: var(--gold);
+  font-size: 0.88rem;
+  font-weight: 600;
+  transition: color 0.15s ease, opacity 0.15s ease;
+}
+.fashion-store__back a:hover,
+.fashion-store__back a:focus-visible {
+  color: #f0d78a;
+  text-decoration: underline;
+  outline: none;
+}
+
+.fashion-store__head {
+  display: grid;
+  justify-items: center;
+  text-align: center;
+  gap: 0.55rem;
+  margin-bottom: 1.15rem;
+}
+.fashion-store__logo {
+  width: min(72vw, 240px);
+  height: auto;
+  border-radius: 0;
+  display: grid;
+  place-items: center;
+  background: transparent;
+  border: none;
+  overflow: visible;
+}
+.fashion-store__logo--img {
+  padding: 0;
+  background: transparent;
+  border: none;
+  width: min(72vw, 240px);
+  height: auto;
+  min-height: 0;
+}
+.fashion-store__logo--img img {
+  width: 100%;
+  height: auto;
+  max-height: 220px;
+  object-fit: contain;
+  display: block;
+  background: transparent;
+}
+.fashion-store__logo--large {
+  width: min(92vw, 420px);
+}
+.fashion-store__logo--large img {
+  max-height: 340px;
+}
+.fashion-store__logo-caption {
+  display: block;
+  margin: 0.2rem 0 0;
+  color: #c1913d;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.34em;
+  text-align: center;
+  text-indent: 0.34em;
+  line-height: 1.2;
+  background: none;
+  text-shadow: none;
+}
+.fashion-logo--on-dark {
+  filter: brightness(0) invert(1);
+  opacity: 0.94;
+}
+.fashion-store__kicker {
+  margin: 0.15rem 0 0;
+}
+.fashion-store__tagline {
+  margin: 0 0 0.25rem;
+  max-width: 22rem;
+}
+
+.fashion-store__hero {
+  margin: 0 0 1.4rem;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+}
+.fashion-store__hero img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  max-height: 420px;
+}
+.fashion-store__hero figcaption {
+  padding: 1rem 1.05rem 1.15rem;
+}
+.fashion-store__hero span,
+.fashion-store__label {
+  display: block;
+  margin: 0 0 0.35rem;
+  color: var(--gold);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.fashion-store__hero strong {
+  display: block;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(1.25rem, 4.5vw, 1.55rem);
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: 0.45rem;
+}
+.fashion-store__hero p,
+.fashion-store__feature p,
+.fashion-store__story p,
+.fashion-store__look p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.fashion-store__quote {
+  margin: 0 0 1.35rem;
+  padding: 1rem 1.1rem;
+  border-left: 3px solid var(--gold);
+  border-radius: 0 14px 14px 0;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(1.05rem, 3.5vw, 1.2rem);
+  font-style: italic;
+  line-height: 1.35;
+  color: var(--foam);
+}
+
+.fashion-store__tag {
+  display: inline-block;
+  margin: 0 0 0.25rem;
+  color: var(--gold);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.fashion-store__section {
+  margin: 0 0 0.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.fashion-store__looks {
+  display: grid;
+  gap: 0.85rem;
+  margin-bottom: 1.35rem;
+}
+.fashion-store__look {
+  display: grid;
+  grid-template-columns: 112px 1fr;
+  gap: 0.85rem;
+  align-items: center;
+  padding: 0.55rem;
+  border-radius: 16px;
+  border: 1px solid var(--line);
+}
+.fashion-store__look img {
+  width: 112px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+.fashion-store__look h4 {
+  margin: 0 0 0.3rem;
+  font-size: 1rem;
+}
+
+.fashion-store__feature,
+.fashion-store__story {
+  display: grid;
+  gap: 0.85rem;
+  margin-bottom: 1.1rem;
+  padding: 0.55rem;
+  border-radius: 16px;
+  border: 1px solid var(--line);
+}
+.fashion-store__feature--stacked {
+  display: block;
+  padding: 0;
+  overflow: hidden;
+}
+.fashion-store__feature--stacked > div {
+  padding: 1rem 1.05rem 1.15rem;
+}
+.fashion-store__visit-banner {
+  width: 100%;
+  height: auto;
+  max-height: none;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 0;
+  display: block;
+}
+.fashion-store__mark {
+  display: flex;
+  justify-content: center;
+  margin: 0.2rem 0 0.45rem;
+  grid-column: 1 / -1;
+  order: 3;
+}
+.fashion-store__story .fashion-store__mark img {
+  width: auto;
+  height: auto;
+  max-width: 112px;
+  max-height: 112px;
+  object-fit: contain;
+  border-radius: 0;
+}
+.fashion-store__feature:not(.fashion-store__feature--stacked) img,
+.fashion-store__story img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+.fashion-store__feature h3,
+.fashion-store__story h3 {
+  margin: 0 0 0.4rem;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+.fashion-store__feature > div,
+.fashion-store__story > div {
+  padding: 0.15rem 0.35rem 0.45rem;
+}
+.fashion-store__note {
+  margin-top: 0.65rem !important;
+  padding-top: 0.65rem;
+  border-top: 1px solid var(--line);
+  font-style: italic;
+}
+/* ONLY — one person per box, original photo background, portrait cover */
+.fashion-store--only-curacao .fashion-store__hero img,
+.fashion-store--only-curacao .fashion-store__look img,
+.fashion-store--only-curacao .fashion-store__visit-banner,
+.fashion-store--only-curacao .fashion-store__story img {
+  object-fit: cover;
+  object-position: center center;
+  width: 100%;
+  height: auto;
+  max-height: none;
+  aspect-ratio: auto;
+  background: #d7c4a8;
+}
+.fashion-store--only-curacao .fashion-store__look img {
+  width: 132px;
+  height: auto;
+}
+
+.fashion-store__feature p.fashion-store__location {
+  margin: 1.45em 0 0;
+  display: grid;
+  gap: 0.35rem;
+  font-size: 0.9rem;
+  color: var(--foam);
+}
+.fashion-store__location strong {
+  font-weight: 600;
+  color: var(--gold);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.fashion-store__location span {
+  color: var(--muted);
+  line-height: 1.45;
+}
+.fashion-store__hours {
+  font-size: 0.85rem !important;
+}
+.fashion-store__feature p.fashion-store__link-wrap {
+  margin: 1.45em 0 0;
+}
+.fashion-store__link {
+  display: inline-block;
+  padding: 0.55rem 0.95rem;
+  border-radius: 999px;
+  border: 1px solid rgba(212, 168, 75, 0.55);
+  background: rgba(212, 168, 75, 0.12);
+  color: var(--gold);
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease;
+}
+.fashion-store__link:hover,
+.fashion-store__link:focus-visible {
+  background: rgba(212, 168, 75, 0.22);
+  border-color: var(--gold);
+  outline: none;
+}
+
+@media (min-width: 520px) {
+  .fashion-store__logo,
+  .fashion-store__logo--img {
+    width: min(52vw, 280px);
+  }
+  .fashion-store__logo--large {
+    width: min(68vw, 480px);
+  }
+  .fashion-store__logo--img img {
+    max-height: 260px;
+  }
+  .fashion-store__logo--large img {
+    max-height: 380px;
+  }
+  .fashion-store__hero img {
+    aspect-ratio: 16 / 9;
+    max-height: 360px;
+  }
+  .fashion-store__looks {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .fashion-store__look {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+  .fashion-store__look img {
+    width: 100%;
+    height: 200px;
+  }
+  .fashion-store__feature:not(.fashion-store__feature--stacked),
+  .fashion-store__story {
+    grid-template-columns: 1.1fr 1fr;
+    align-items: center;
+  }
+  .fashion-store__story {
+    grid-template-columns: 1fr 1.1fr;
+  }
+  .fashion-store__story img {
+    order: 2;
+  }
+}

@@ -1,20 +1,15 @@
-﻿# The Blue Holiday Wave
+﻿# The Blue Holiday Wave (assets)
 
-Holiday-season app inspired by The Blue Wave (clean mobile layout).
-Launch target: **1 December 2026**
+This folder holds logos and images for the holiday project.
 
-## Topics
-- Fashion & Lifestyle
-- Real Estate
-- Culinaire (Taste)
+## Web app source
 
-## Planned tabs
-1. Home
-2. Fashion
-3. Homes
-4. Taste
-5. Magazine
-6. More
+The full React/Vite app lives in the **`the-blue-holiday-wave`** folder at the repo root (sibling to this folder).
 
-## Status
-Empty project folder — ready to scaffold.
+```bash
+cd the-blue-holiday-wave
+npm install
+npm run dev
+```
+
+Live path: https://www.thebluewavefans.com/holidayseason/

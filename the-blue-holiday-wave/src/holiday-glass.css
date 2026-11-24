@@ -1,0 +1,116 @@
+/* See-through holiday boxes — pine photo on .shell--landing shows through at ~30% */
+
+.shell--landing .page__kicker,
+.shell--landing .page__title,
+.shell--landing .page__lead,
+.shell--landing .fashion-dir__foot {
+  text-shadow:
+    0 1px 12px rgba(4, 14, 28, 0.92),
+    0 0 28px rgba(4, 14, 28, 0.65);
+}
+
+.shell--landing .topic,
+.shell--landing .get-app,
+.shell--landing .card,
+.shell--landing .has-box-art,
+.shell--landing .fashion-dir__row,
+.shell--landing .fashion-store__hero,
+.shell--landing .fashion-store__look,
+.shell--landing .fashion-store__feature,
+.shell--landing .fashion-store__story,
+.shell--landing .fashion-store__quote {
+  isolation: isolate;
+  overflow: hidden;
+  background: none;
+  background-color: transparent;
+  background-image: none;
+  background-attachment: scroll;
+  border-color: rgba(212, 168, 75, 0.55);
+  box-shadow: inset 0 0 0 1px rgba(212, 168, 75, 0.38);
+}
+
+.shell--landing .topic::before,
+.shell--landing .get-app::before,
+.shell--landing .card::before,
+.shell--landing .has-box-art::before,
+.shell--landing .fashion-dir__row::before,
+.shell--landing .fashion-store__hero::before,
+.shell--landing .fashion-store__look::before,
+.shell--landing .fashion-store__feature::before,
+.shell--landing .fashion-store__story::before,
+.shell--landing .fashion-store__quote::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background-color: #0a1e3a;
+  background-image:
+    url("/holidayseason/holiday-media/topic-snow.png"),
+    var(--box-art-wash),
+    var(--box-art);
+  background-size: cover, cover, cover;
+  background-position: center, center, center;
+  background-repeat: no-repeat, no-repeat, no-repeat;
+  opacity: 0.3;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.shell--landing .get-app::before {
+  background-image:
+    url("/holidayseason/holiday-media/get-app-snow.png"),
+    var(--box-art-wash),
+    var(--box-art);
+}
+
+.shell--landing .topic > *,
+.shell--landing .get-app > *,
+.shell--landing .card > *,
+.shell--landing .has-box-art > *,
+.shell--landing .fashion-dir__row > *,
+.shell--landing .fashion-store__hero > *,
+.shell--landing .fashion-store__look > *,
+.shell--landing .fashion-store__feature > *,
+.shell--landing .fashion-store__story > *,
+.shell--landing .fashion-store__quote > * {
+  position: relative;
+  z-index: 1;
+}
+
+.shell--landing .topic strong,
+.shell--landing .topic span,
+.shell--landing .get-app .page__kicker,
+.shell--landing .get-app h3,
+.shell--landing .get-app p,
+.shell--landing .get-app a,
+.shell--landing .card h3,
+.shell--landing .card p,
+.shell--landing .fashion-dir__meta,
+.shell--landing .fashion-dir__copy strong,
+.shell--landing .fashion-dir__intro,
+.shell--landing .fashion-store__hero span,
+.shell--landing .fashion-store__hero strong,
+.shell--landing .fashion-store__hero p,
+.shell--landing .fashion-store__quote,
+.shell--landing .fashion-store__look h4,
+.shell--landing .fashion-store__look p,
+.shell--landing .fashion-store__tag,
+.shell--landing .fashion-store__feature h3,
+.shell--landing .fashion-store__feature p,
+.shell--landing .fashion-store__story h3,
+.shell--landing .fashion-store__story p,
+.shell--landing .fashion-store__label,
+.shell--landing .fashion-store__note {
+  text-shadow:
+    0 1px 12px rgba(4, 14, 28, 0.95),
+    0 0 24px rgba(4, 14, 28, 0.75),
+    0 2px 4px rgba(4, 14, 28, 0.85);
+}
+
+.shell--landing .fashion-dir__row,
+.shell--landing .fashion-store__hero,
+.shell--landing .fashion-store__look,
+.shell--landing .fashion-store__feature,
+.shell--landing .fashion-store__story {
+  position: relative;
+}

@@ -1,0 +1,30 @@
+{
+  "name": "the-blue-holiday-wave",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "build:app": "node scripts/build-app.mjs",
+    "preview": "vite preview",
+    "build:upload": "npm run build && node scripts/make-upload.mjs"
+  },
+  "dependencies": {
+    "@capacitor/android": "^7.6.9",
+    "@capacitor/core": "^7.6.9",
+    "@capacitor/ios": "^7.6.9",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "react-router-dom": "^7.13.1",
+    "semver": "^7.8.5"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^7.6.9",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^5.1.1",
+    "typescript": "~5.9.3",
+    "vite": "^7.1.0"
+  }
+}

@@ -1,0 +1,10 @@
+import fs from 'fs'
+const h = fs.readFileSync('tmp-zara-store.html', 'utf8')
+const logos = [...h.matchAll(/https?:[^"'\s>]+\.(?:svg|png|jpg)/gi)].map((m) => m[0])
+console.log('logos', logos.filter((u) => /logo|zara/i.test(u)).slice(0, 20))
+const hours = h.match(/Monday|Tuesday|10:00|opening|schedule/gi)
+console.log('hours hits', hours?.slice(0, 10))
+const json = h.match(/"address"[^]{0,200}/gi)
+console.log('address', json?.slice(0, 3))
+const ld = h.match(/application\/ld\+json[^>]+>([\s\S]*?)<\/script>/gi)
+if (ld) console.log(ld.slice(0, 2))
