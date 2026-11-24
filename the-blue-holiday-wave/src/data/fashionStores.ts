@@ -384,6 +384,65 @@ export const fashionStores: FashionStore[] = [
       'Noir is for the second dinner, the late drink, and the walk home through lit streets.',
     lifestyleImg: `${base}fashion-media/look-3.jpg`,
   },
+  {
+    id: 'victorias-secret-sambil',
+    name: "Victoria's Secret",
+    area: 'Sambil Mall',
+    partnerKicker: 'Blue Holiday Wave – Fashion Partner',
+    listBlurb: 'Lingerie, beauty, fragrance & accessories — just opened at Sambil.',
+    intro:
+      "Victoria's Secret is now open at Sambil Shopping Mall — the iconic global brand bringing its full range of lingerie, sleepwear, beauty, perfume, and accessories to Curaçao. Located at unit L-35 near the Cas Abou Entrance / Punda Square. Grand opening: 19 November 2026.",
+    hideVisitHeading: true,
+    tagline: 'Lingerie · beauty · fragrance · accessories',
+    logoLabel: 'VS',
+    logoColor: '#1a1a2e',
+    logoImg: 'https://logo.clearbit.com/victoriassecret.com',
+    logoLarge: true,
+    venue: 'Sambil Shopping Mall',
+    address: "Veeris #27, Willemstad, Curaçao — Unit L-35, Cas Abou Entrance / Punda Square",
+    openingHours:
+      'Mon–Thu 10:00–20:00 · Fri–Sat 10:00–21:00 · Sun 12:00–20:00',
+    phone: '+599 9 735 0002',
+    whatsapp: '59997353131',
+    websiteUrl: 'https://www.sambil.cw/store/victoria%E2%80%99s-secret',
+    websiteLabel: "Victoria's Secret at Sambil",
+    mapsEmbed: 'https://maps.google.com/maps?q=12.0808,-68.9018&z=16&output=embed&iwloc=',
+    mapsUrl: "https://maps.google.com/?q=Sambil+Shopping+Mall+Veeris+27+Willemstad+Curaçao",
+    highlightImg: `${base}fashion-media/look-1.jpg`,
+    highlightCaption: 'Holiday collections now in store',
+    heroImg: `${base}fashion-media/hero.jpg`,
+    heroTitle: 'The iconic brand is finally here',
+    heroText:
+      "Victoria's Secret brings its legendary holiday collections to Curaçao — lingerie, sleepwear, fragrances, and the must-have gift sets that sell out every December. Find them now at Sambil.",
+    quote: 'Everything to emphasise your outstanding look.',
+    looks: [
+      {
+        img: `${base}fashion-media/look-1.jpg`,
+        tag: 'Lingerie',
+        title: 'Holiday lingerie',
+        text: 'Signature styles and seasonal collections — in store at unit L-35.',
+      },
+      {
+        img: `${base}fashion-media/look-2.jpg`,
+        tag: 'Beauty',
+        title: 'Fragrance & beauty',
+        text: 'The bestselling perfumes and gift sets — perfect for the holiday season.',
+      },
+      {
+        img: `${base}fashion-media/look-3.jpg`,
+        tag: 'Accessories',
+        title: 'Accessories & gifts',
+        text: 'From tote bags to cosy sets — the most giftable items in the mall.',
+      },
+    ],
+    visitBannerImg: `${base}fashion-media/boutique.jpg`,
+    shopNote:
+      "Brand new at Sambil — grand opening was 19 November 2026. WhatsApp +5999 735 3131 for stock questions.",
+    lifestyleTitle: 'The gift everyone wants',
+    lifestyleText:
+      "December at Victoria's Secret means limited-edition gift sets, holiday scents, and the pieces that always sell out. Get there early.",
+    lifestyleImg: `${base}fashion-media/night.jpg`,
+  },
 ]
 
 export function getFashionStore(id: string | undefined) {
