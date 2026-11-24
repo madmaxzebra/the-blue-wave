@@ -1,8 +1,6 @@
 import { Link, Navigate, useParams } from 'react-router-dom'
 import { getFashionStore } from '../data/fashionStores'
-import { LogoWithFallback } from '../components/LogoWithFallback'
 import './FashionStorePage.css'
-import '../components/PartnerContact.css'
 
 export function FashionStorePage() {
   const { storeId } = useParams()
@@ -24,12 +22,10 @@ export function FashionStorePage() {
         <span
           className={`fashion-store__logo fashion-store__logo--img${store.logoLarge ? ' fashion-store__logo--large' : ''}`}
         >
-          <LogoWithFallback
+          <img
+            className={store.logoOnDark ? 'fashion-logo--on-dark' : undefined}
             src={store.logoImg}
             alt={store.name}
-            label={store.logoLabel}
-            color={store.logoColor}
-            onDark={store.logoOnDark}
           />
           {store.logoCaption ? (
             <span className="fashion-store__logo-caption">{store.logoCaption}</span>
@@ -107,87 +103,6 @@ export function FashionStorePage() {
           ) : null}
         </div>
       </article>
-
-      {/* Contact block */}
-      {(store.phone || store.whatsapp || store.websiteUrl || store.mapsEmbed) && (
-        <div className="partner-contact">
-          <h3 className="partner-contact__heading">Contact & location</h3>
-
-          {store.venue && (
-            <div className="partner-contact__row">
-              <span className="partner-contact__icon">📍</span>
-              <div>
-                <p className="partner-contact__label">Address</p>
-                <p className="partner-contact__value">{store.venue}</p>
-                {store.address && <p className="partner-contact__value" style={{ fontSize: '0.78rem', color: '#6B7280' }}>{store.address}</p>}
-                {store.openingHours && <p className="partner-contact__hours">{store.openingHours}</p>}
-              </div>
-            </div>
-          )}
-
-          {store.phone && (
-            <div className="partner-contact__row">
-              <span className="partner-contact__icon">📞</span>
-              <div>
-                <p className="partner-contact__label">Phone</p>
-                <a className="partner-contact__link" href={`tel:${store.phone.replace(/\s/g, '')}`}>
-                  {store.phone}
-                </a>
-              </div>
-            </div>
-          )}
-
-          <div className="partner-contact__actions">
-            {store.whatsapp && (
-              <a
-                className="partner-contact__btn partner-contact__btn--whatsapp"
-                href={`https://wa.me/${store.whatsapp}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                💬 WhatsApp
-              </a>
-            )}
-
-            {store.websiteUrl && (
-              <a
-                className="partner-contact__btn partner-contact__btn--website"
-                href={store.websiteUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                🌐 {store.websiteLabel ?? 'Visit website'} ↗
-              </a>
-            )}
-
-            {store.mapsUrl && (
-              <a
-                className="partner-contact__btn partner-contact__btn--maps"
-                href={store.mapsUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                🗺️ Open in Google Maps ↗
-              </a>
-            )}
-          </div>
-
-          {store.mapsEmbed && (
-            <div className="partner-contact__map">
-              <iframe
-                title={`Map – ${store.name}`}
-                src={store.mapsEmbed}
-                width="100%"
-                height="200"
-                style={{ border: 0 }}
-                allowFullScreen={false}
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              />
-            </div>
-          )}
-        </div>
-      )}
 
       {!store.hideLifestyleStory ? (
         <article className="fashion-store__story">

@@ -1,0 +1,219 @@
+:root {
+  --navy: #0a2a5c;
+  --navy-deep: #061833;
+  --gold: #d4a84b;
+  --berry: #8b2344;
+  --foam: #f7f3ec;
+  --muted: rgba(247, 243, 236, 0.72);
+  --card: #0c2448;
+  --panel: #0e284f;
+  --line: rgba(212, 168, 75, 0.28);
+  --pad: clamp(1rem, 4vw, 1.5rem);
+  --tab-h: 64px;
+  /* Swap this one file later for section-specific art if needed */
+  --box-art: url("../holiday-media/ornaments.jpg");
+  --box-art-wash: linear-gradient(
+    145deg,
+    rgba(6, 24, 51, 0.62) 0%,
+    rgba(8, 28, 55, 0.68) 100%
+  );
+  font-family: Outfit, system-ui, sans-serif;
+  color: var(--foam);
+  background: var(--navy-deep);
+  line-height: 1.45;
+}
+
+* { box-sizing: border-box; }
+html {
+  width: 100%;
+  margin: 0;
+  min-height: 100%;
+}
+html, #root { min-height: 100%; }
+#root {
+  position: relative;
+  z-index: 1;
+  grid-column: 2;
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+}
+body {
+  width: 100%;
+  margin: 0;
+  min-height: 100dvh;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) min(520px, 100%) minmax(0, 1fr);
+  background:
+    radial-gradient(ellipse at 12% 0%, rgba(139, 35, 68, 0.34), transparent 42%),
+    radial-gradient(ellipse at 88% 8%, rgba(212, 168, 75, 0.2), transparent 38%),
+    radial-gradient(ellipse at 50% 100%, rgba(139, 35, 68, 0.12), transparent 45%),
+    linear-gradient(180deg, #0a2a5c 0%, #061833 55%, #040e1c 100%);
+}
+a { color: inherit; text-decoration: none; }
+button, input { font: inherit; }
+
+.page { padding: 0.4rem 0 1.2rem; }
+.page__kicker {
+  margin: 0 0 0.35rem;
+  color: var(--gold);
+  font-size: 0.75rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.page__title {
+  margin: 0 0 0.6rem;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(1.7rem, 6vw, 2.2rem);
+  font-weight: 600;
+  line-height: 1.15;
+}
+.page__lead {
+  margin: 0 0 1.25rem;
+  color: var(--muted);
+  max-width: 34rem;
+}
+
+.grid {
+  display: grid;
+  gap: 0.85rem;
+}
+.card {
+  position: relative;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 1rem 1.05rem;
+}
+.card h3 {
+  margin: 0 0 0.35rem;
+  font-size: 1.05rem;
+}
+.card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.topics {
+  display: grid;
+  gap: 0.75rem;
+  position: relative;
+}
+.topic {
+  position: relative;
+  z-index: 1;
+  display: block;
+  padding: 1.05rem 1.1rem;
+  border-radius: 16px;
+  border: 1px solid var(--line);
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+.topic:hover,
+.topic:focus-visible {
+  border-color: rgba(212, 168, 75, 0.9);
+  box-shadow:
+    inset 0 0 0 1px rgba(212, 168, 75, 0.22),
+    0 0 0 1px rgba(212, 168, 75, 0.28),
+    0 10px 28px rgba(0, 0, 0, 0.28);
+  transform: translateY(-2px);
+  outline: none;
+}
+.topic__head {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-bottom: 0.25rem;
+}
+.topic--with-icon {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.65rem;
+  padding: 0.85rem 0.55rem 0.85rem 1.1rem;
+}
+.topic__copy {
+  flex: 1;
+  min-width: 0;
+  padding-right: 0.35rem;
+}
+.topic__icon-ring {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 85px;
+  height: 85px;
+  margin: -0.2rem -0.1rem -0.2rem 0;
+  border-radius: 50%;
+  border: 2.5px solid var(--gold);
+  box-shadow:
+    0 0 0 1px rgba(212, 168, 75, 0.35),
+    0 4px 14px rgba(4, 14, 28, 0.35);
+  background: transparent;
+  pointer-events: none;
+}
+.topic__icon {
+  width: 77px;
+  height: 77px;
+  flex-shrink: 0;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 10px rgba(4, 14, 28, 0.55));
+}
+.topic strong {
+  display: block;
+  font-size: 1.05rem;
+  margin-bottom: 0.25rem;
+  text-shadow: 0 1px 10px rgba(4, 14, 28, 0.9);
+}
+.topic__head strong,
+.topic__copy strong {
+  margin-bottom: 0.25rem;
+}
+.topic span {
+  color: rgba(247, 243, 236, 0.88);
+  font-size: 0.9rem;
+  text-shadow: 0 1px 8px rgba(4, 14, 28, 0.85);
+}
+.topic__copy span {
+  display: block;
+}
+
+.get-app {
+  margin: 0 0 1.15rem;
+}
+.get-app h3 {
+  font-family: "Playfair Display", Georgia, serif;
+  font-weight: 600;
+}
+.get-app__row {
+  margin: 0.75rem 0 0;
+}
+.get-app__row strong {
+  display: block;
+  margin-bottom: 0.15rem;
+  color: var(--gold);
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.get-app__row a {
+  color: var(--gold);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.pill {
+  display: inline-block;
+  margin-top: 0.9rem;
+  padding: 0.55rem 0.95rem;
+  border-radius: 999px;
+  background: var(--gold);
+  color: var(--navy-deep);
+  font-weight: 700;
+  font-size: 0.88rem;
+}

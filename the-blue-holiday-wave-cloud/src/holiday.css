@@ -1,0 +1,151 @@
+/* Holiday atmosphere — behind every UI panel */
+.holiday-fx {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.holiday-fx__glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(40px);
+}
+.holiday-fx__glow--berry {
+  width: min(70vw, 360px);
+  height: min(70vw, 360px);
+  top: -10%;
+  left: -16%;
+  background: radial-gradient(
+    circle,
+    rgba(139, 35, 68, 0.7) 0%,
+    transparent 68%
+  );
+  opacity: 0.85;
+}
+.holiday-fx__glow--gold {
+  width: min(60vw, 320px);
+  height: min(60vw, 320px);
+  top: 0%;
+  right: -18%;
+  background: radial-gradient(
+    circle,
+    rgba(212, 168, 75, 0.5) 0%,
+    transparent 70%
+  );
+  opacity: 0.75;
+  animation: holiday-breathe 8s ease-in-out infinite;
+}
+.holiday-fx__glow--warm {
+  width: min(90vw, 420px);
+  height: min(50vw, 240px);
+  bottom: 8%;
+  left: 10%;
+  background: radial-gradient(
+    circle,
+    rgba(212, 168, 75, 0.18) 0%,
+    rgba(139, 35, 68, 0.16) 40%,
+    transparent 72%
+  );
+  opacity: 0.9;
+}
+
+.holiday-fx__lights {
+  position: absolute;
+  inset: 0;
+  opacity: 0.85;
+  background-image:
+    radial-gradient(circle, rgba(255, 220, 140, 0.95) 0 1.6px, transparent 2.2px),
+    radial-gradient(circle, rgba(247, 243, 236, 0.9) 0 1.3px, transparent 2px),
+    radial-gradient(circle, rgba(224, 107, 138, 0.85) 0 1.4px, transparent 2.1px),
+    radial-gradient(circle, rgba(212, 168, 75, 0.9) 0 1.2px, transparent 1.9px),
+    radial-gradient(circle, rgba(255, 236, 180, 0.8) 0 1.1px, transparent 1.8px);
+  background-size:
+    140px 170px,
+    110px 150px,
+    160px 200px,
+    130px 180px,
+    100px 140px;
+  background-position:
+    6% 5%,
+    72% 9%,
+    18% 38%,
+    86% 48%,
+    42% 22%;
+  animation: holiday-twinkle 4s ease-in-out infinite;
+}
+
+.holiday-fx__snow {
+  position: absolute;
+  inset: -30% 0 0;
+  opacity: 0.7;
+  background-image:
+    radial-gradient(circle, #fff 0 1.8px, transparent 2.4px),
+    radial-gradient(circle, rgba(247, 243, 236, 0.9) 0 1.3px, transparent 2px),
+    radial-gradient(circle, rgba(212, 168, 75, 0.75) 0 1.1px, transparent 1.8px),
+    radial-gradient(circle, #fff 0 1px, transparent 1.6px);
+  background-size:
+    90px 140px,
+    70px 110px,
+    120px 170px,
+    55px 95px;
+}
+.holiday-fx__snow--a {
+  animation: holiday-snow 18s linear infinite;
+}
+.holiday-fx__snow--b {
+  opacity: 0.45;
+  background-size:
+    130px 190px,
+    85px 130px,
+    150px 210px,
+    70px 120px;
+  animation: holiday-snow 28s linear infinite reverse;
+}
+
+@keyframes holiday-snow {
+  from {
+    transform: translate3d(0, -10%, 0);
+  }
+  to {
+    transform: translate3d(0, 45%, 0);
+  }
+}
+@keyframes holiday-twinkle {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 0.95;
+  }
+}
+@keyframes holiday-breathe {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.08);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .holiday-fx__snow--a,
+  .holiday-fx__snow--b,
+  .holiday-fx__lights,
+  .holiday-fx__glow--gold {
+    animation: none;
+  }
+  .holiday-fx__snow {
+    opacity: 0.35;
+  }
+}
+
+/* Landing home — plain page color outside the app shell (photo is on .shell--landing) */
+html.is-landing-home body {
+  background: var(--navy-deep);
+}

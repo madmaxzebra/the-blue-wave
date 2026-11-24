@@ -24,16 +24,6 @@ export function PrivacyPage() {
           </p>
         </article>
         <article className="card">
-          <h3>Third-party content</h3>
-          <p>
-            Some pages embed Google Maps to show store and restaurant locations.
-            When a map loads, Google may receive your IP address under their own
-            privacy policy (policies.google.com). Store logos may be loaded from
-            the stores' own domains or a logo CDN. No tracking pixels or
-            advertising scripts are used.
-          </p>
-        </article>
-        <article className="card">
           <h3>Contact</h3>
           <p>
             Questions about this policy: use the contact on

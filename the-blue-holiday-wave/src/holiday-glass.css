@@ -45,7 +45,7 @@
   border-radius: inherit;
   background-color: #0a1e3a;
   background-image:
-    var(--media-snow),
+    url("/holidayseason/holiday-media/topic-snow.png"),
     var(--box-art-wash),
     var(--box-art);
   background-size: cover, cover, cover;
@@ -58,7 +58,7 @@
 
 .shell--landing .get-app::before {
   background-image:
-    var(--media-get-app-snow),
+    url("/holidayseason/holiday-media/get-app-snow.png"),
     var(--box-art-wash),
     var(--box-art);
 }

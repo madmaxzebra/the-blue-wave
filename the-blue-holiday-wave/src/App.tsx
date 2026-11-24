@@ -19,15 +19,6 @@ import './holiday-glass.css'
 export default function App() {
   useEffect(() => {
     document.documentElement.classList.add('is-landing-home')
-
-    // Inject media base path as CSS custom properties so CSS url() values
-    // work at both /holidayseason/ (Bluehost) and / (Cursor hosting)
-    const base = import.meta.env.BASE_URL.replace(/\/$/, '')
-    const root = document.documentElement
-    root.style.setProperty('--media-snow', `url("${base}/holiday-media/topic-snow.png")`)
-    root.style.setProperty('--media-get-app-snow', `url("${base}/holiday-media/get-app-snow.png")`)
-    root.style.setProperty('--media-xmas-bg', `url("${base}/holiday-media/blue-christmas-bg.png")`)
-
     return () => document.documentElement.classList.remove('is-landing-home')
   }, [])
 

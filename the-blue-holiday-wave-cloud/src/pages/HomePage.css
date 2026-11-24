@@ -1,0 +1,230 @@
+.page--home {
+  position: relative;
+}
+
+.page--home__content {
+  position: relative;
+  z-index: 1;
+}
+
+/* Flip-style countdown (WeStreamF1-inspired), blue holiday tint */
+.page--home .count {
+  display: flex;
+  justify-content: center;
+  flex-wrap: nowrap;
+  gap: clamp(0.4rem, 2.2vw, 1.35rem);
+  margin: 1.35rem 0 1.55rem;
+  max-width: 100%;
+}
+
+.page--home .count__unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.page--home .count__digits {
+  display: flex;
+  gap: 0.3rem;
+}
+
+.page--home .count__digit {
+  --count-digit-face: linear-gradient(
+    180deg,
+    #1c3152 0%,
+    #142640 46%,
+    #0b1528 50%,
+    #162845 100%
+  );
+  --count-digit-fold-ms: 650ms;
+  position: relative;
+  width: clamp(2rem, 9.5vw, 3.1rem);
+  height: clamp(2.85rem, 13vw, 4.35rem);
+  border-radius: 5px;
+  background: #0b1528;
+  border: 1px solid rgba(148, 196, 232, 0.28);
+  box-shadow:
+    0 6px 18px rgba(2, 8, 20, 0.55),
+    0 0 22px rgba(90, 160, 220, 0.14),
+    inset 0 -2px 6px rgba(0, 0, 0, 0.35);
+  /* overflow:hidden flattens 3D transforms — clip via rounded halves instead */
+  overflow: visible;
+}
+
+.page--home .count__digit-scene {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  perspective: 520px;
+  perspective-origin: 50% 50%;
+  transform-style: preserve-3d;
+}
+
+.page--home .count__digit-half {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 50%;
+  overflow: hidden;
+  transform-style: preserve-3d;
+}
+
+.page--home .count__digit-half--top,
+.page--home .count__digit-flap {
+  background: var(--count-digit-face);
+  background-size: 100% 200%;
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+
+.page--home .count__digit-half--bottom {
+  background: var(--count-digit-face);
+  background-size: 100% 200%;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+}
+
+.page--home .count__digit-half--top {
+  top: 0;
+  transform-origin: 50% 100%;
+  z-index: 2;
+  border-radius: 4px 4px 0 0;
+}
+
+.page--home .count__digit-half--bottom {
+  bottom: 0;
+  z-index: 1;
+  border-radius: 0 0 4px 4px;
+}
+
+.page--home .count__digit-half--static {
+  z-index: 1;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.page--home .count__digit-flap {
+  z-index: 4;
+  transform-origin: 50% 100%;
+  transform: rotateX(0deg);
+  backface-visibility: visible;
+  -webkit-backface-visibility: visible;
+  animation: count-digit-fold var(--count-digit-fold-ms) ease-in forwards;
+  will-change: transform;
+}
+
+.page--home .count__digit-flap::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(0, 0, 0, 0.35) 100%
+  );
+  opacity: 0;
+  animation: count-digit-flap-shadow var(--count-digit-fold-ms) ease-in forwards;
+  pointer-events: none;
+}
+
+@keyframes count-digit-fold {
+  from {
+    transform: rotate3d(1, 0, 0, 0deg);
+  }
+  to {
+    transform: rotate3d(1, 0, 0, -180deg);
+  }
+}
+
+@keyframes count-digit-flap-shadow {
+  0%,
+  35% {
+    opacity: 0;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.85;
+  }
+}
+
+.page--home .count__digit::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 1px;
+  margin-top: -0.5px;
+  background: rgba(4, 10, 22, 0.75);
+  box-shadow: 0 1px 0 rgba(168, 212, 240, 0.1);
+  z-index: 5;
+  pointer-events: none;
+}
+
+.page--home .count__digit-half--top::before,
+.page--home .count__digit-flap::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: inset 0 1px 0 rgba(210, 235, 255, 0.18);
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.22) 0%,
+    transparent 72%
+  );
+  pointer-events: none;
+  z-index: 2;
+}
+
+.page--home .count__digit-half--bottom::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.04) 100%
+  );
+  pointer-events: none;
+  z-index: 2;
+}
+
+.page--home .count__digit-num {
+  position: absolute;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 200%;
+  font-size: clamp(1.75rem, 7.5vw, 2.55rem);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  color: #eef6fc;
+  text-shadow:
+    0 0 16px rgba(126, 184, 232, 0.45),
+    0 1px 2px rgba(4, 14, 28, 0.9);
+  z-index: 1;
+}
+
+.page--home .count__digit-half--top .count__digit-num {
+  top: 0;
+}
+
+.page--home .count__digit-half--bottom .count__digit-num {
+  bottom: 0;
+}
+
+.page--home .count__label {
+  font-size: clamp(0.68rem, 2.8vw, 0.78rem);
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  color: rgba(220, 236, 252, 0.82);
+  text-shadow: 0 1px 8px rgba(4, 14, 28, 0.85);
+}
+
