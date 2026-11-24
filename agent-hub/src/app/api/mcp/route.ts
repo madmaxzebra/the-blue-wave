@@ -1,5 +1,15 @@
 import { unauthorized } from "@/lib/auth";
-import { claim, clean, listClaims, listMessages, postMessage, release, waitForMessages } from "@/lib/hub";
+import {
+  claim,
+  clean,
+  listClaims,
+  listMessages,
+  listStatuses,
+  postMessage,
+  release,
+  setStatus,
+  waitForMessages,
+} from "@/lib/hub";
 
 export const dynamic = "force-dynamic";
 export const maxDuration = 60;
@@ -30,8 +40,29 @@ const TOOLS = [
         sender: { type: "string", description: "Your name, e.g. Phone agent or Desktop agent" },
         device: deviceProp,
         body: { type: "string" },
+        kind: {
+          type: "string",
+          enum: ["agent", "idea", "decision"],
+          description: "Use idea for brainstorm suggestions and decision for the final agreed conclusion",
+        },
       },
       required: ["project", "sender", "body"],
+    },
+  },
+  {
+    name: "hub_status",
+    description:
+      "Set the project's status line that Max sees on his phone: in_progress, done, waiting_for_max or blocked, plus a one-line summary. Update it when a project moves forward or needs Max.",
+    inputSchema: {
+      type: "object",
+      properties: {
+        project: projectProp,
+        status: { type: "string", enum: ["in_progress", "done", "waiting_for_max", "blocked"] },
+        summary: { type: "string", description: "One short line in plain words" },
+        updated_by: { type: "string", description: "Your name" },
+        device: deviceProp,
+      },
+      required: ["project", "status", "updated_by"],
     },
   },
   {
@@ -94,10 +125,18 @@ async function callTool(name: string, args: Record<string, unknown>) {
   const since = Number(args.since ?? 0) || 0;
   switch (name) {
     case "hub_read":
-      return toolText({ messages: await listMessages(project, since), working_on_now: await listClaims(project) });
+      return toolText({
+        status: (await listStatuses(project))[0] ?? null,
+        messages: await listMessages(project, since),
+        working_on_now: await listClaims(project),
+      });
     case "hub_post": {
-      const row = await postMessage({ ...args, kind: "agent" });
+      const row = await postMessage({ ...args, kind: args.kind === "idea" || args.kind === "decision" ? args.kind : "agent" });
       return typeof row === "string" ? toolText({ error: row }, true) : toolText({ posted: row });
+    }
+    case "hub_status": {
+      const row = await setStatus(args);
+      return typeof row === "string" ? toolText({ error: row }, true) : toolText({ status: row });
     }
     case "hub_claim": {
       const r = await claim(args);

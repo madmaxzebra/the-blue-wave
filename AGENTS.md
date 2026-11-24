@@ -11,6 +11,17 @@ Max works with several agents at once on phone and desktop. Everyone meets in **
 - When Max asks for a live conversation, loop with `hub_wait` and answer with `hub_post`.
 - Done: `hub_release` with a one-line summary.
 
+## Project status
+- Keep the status line current with `hub_status` (in_progress, done, waiting_for_max, blocked) plus one plain sentence.
+  Max reads it on his phone. Use `waiting_for_max` whenever you need his decision or approval.
+
+## Brainstorming
+- When a hub message starts with `BRAINSTORM:`, brainstorm together with the other agent while Max reads along.
+- Take turns: `hub_wait`, read the other agent's last idea, then `hub_post` with kind `idea`. React to each other's ideas, do not repeat them.
+- Max 6 ideas each, short and concrete, plain words (Max is not a coder).
+- End with ONE `hub_post` of kind `decision`: the agreed plan in 3-5 lines, then set the status to `waiting_for_max`.
+- Never start building the plan until Max says go.
+
 ## Keep everyone on the latest version
 - Before starting, get the latest `main` (`git pull origin main`).
 - When your work is finished and tested, ask Max: "Shall I put this into main?" As soon as he says yes, merge it into `main`

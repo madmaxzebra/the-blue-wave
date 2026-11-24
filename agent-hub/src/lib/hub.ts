@@ -44,7 +44,7 @@ export async function postMessage(input: Record<string, unknown>): Promise<Messa
   const sender = clean(input.sender, "sender");
   const body = clean(input.body, "body");
   const device = clean(input.device, "device", "unknown") || "unknown";
-  const kind = input.kind === "human" ? "human" : "agent";
+  const kind = ["human", "idea", "decision"].includes(String(input.kind)) ? String(input.kind) : "agent";
   if (!sender || !body) return "sender and body are required.";
   const [row] = await sql<Message>(
     `insert into messages (project, sender, device, kind, body) values ($1, $2, $3, $4, $5) returning *`,
@@ -98,6 +98,47 @@ export async function release(id: number, summary: string): Promise<Claim | null
     row.agent,
     row.device,
     `Finished ${row.path}${summary ? ` — ${summary}` : ""}`,
+  ]);
+  return row;
+}
+
+export type ProjectStatus = {
+  project: string;
+  status: string;
+  summary: string;
+  updated_by: string;
+  updated_at: string;
+};
+
+const STATUSES = ["in_progress", "done", "waiting_for_max", "blocked"];
+
+export async function listStatuses(project = ""): Promise<ProjectStatus[]> {
+  return project
+    ? sql<ProjectStatus>(`select * from project_status where project = $1`, [project])
+    : sql<ProjectStatus>(`select * from project_status order by project limit 100`);
+}
+
+export async function setStatus(input: Record<string, unknown>): Promise<ProjectStatus | string> {
+  const project = clean(input.project, "project");
+  const status = String(input.status ?? "");
+  const summary = clean(input.summary, "note");
+  const updatedBy = clean(input.updated_by, "sender");
+  if (!project || !updatedBy) return "project and updated_by are required.";
+  if (!STATUSES.includes(status)) return `status must be one of: ${STATUSES.join(", ")}.`;
+  const [row] = await sql<ProjectStatus>(
+    `insert into project_status (project, status, summary, updated_by, updated_at)
+     values ($1, $2, $3, $4, now())
+     on conflict (project) do update
+       set status = excluded.status, summary = excluded.summary,
+           updated_by = excluded.updated_by, updated_at = now()
+     returning *`,
+    [project, status, summary, updatedBy],
+  );
+  await sql(`insert into messages (project, sender, device, kind, body) values ($1, $2, $3, 'agent', $4)`, [
+    project,
+    updatedBy,
+    clean(input.device, "device", "unknown") || "unknown",
+    `Status is now "${status.replace(/_/g, " ")}"${summary ? ` — ${summary}` : ""}`,
   ]);
   return row;
 }
