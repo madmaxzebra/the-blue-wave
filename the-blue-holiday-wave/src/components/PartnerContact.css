@@ -1,0 +1,119 @@
+.partner-contact {
+  margin: 1.5rem 1.25rem;
+  background: #fff;
+  border-radius: 20px;
+  padding: 1.4rem 1.25rem 1.6rem;
+  box-shadow: 0 2px 14px rgba(10, 22, 40, 0.09);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.partner-contact__heading {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #0A1628;
+  margin-bottom: 0.25rem;
+}
+
+.partner-contact__row {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+}
+
+.partner-contact__icon {
+  font-size: 1.1rem;
+  line-height: 1.4;
+  flex-shrink: 0;
+}
+
+.partner-contact__label {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #C9A227;
+  margin-bottom: 0.15rem;
+}
+
+.partner-contact__value {
+  font-size: 0.85rem;
+  color: #0A1628;
+  line-height: 1.5;
+}
+
+.partner-contact__hours {
+  font-size: 0.78rem;
+  color: #6B7280;
+  margin-top: 0.2rem;
+  line-height: 1.5;
+}
+
+.partner-contact__link {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #1A56DB;
+  text-decoration: none;
+}
+
+.partner-contact__whatsapp {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: #25D366;
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: 100px;
+  padding: 0.7rem 1.4rem;
+  text-decoration: none;
+  transition: opacity 0.15s;
+}
+.partner-contact__whatsapp:active { opacity: 0.75; }
+
+.partner-contact__website {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: #1A56DB;
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-radius: 100px;
+  padding: 0.7rem 1.4rem;
+  text-decoration: none;
+  transition: opacity 0.15s;
+}
+.partner-contact__website:active { opacity: 0.75; }
+
+.partner-contact__maps-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: #0A1628;
+  color: #C9A227;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-radius: 100px;
+  padding: 0.7rem 1.4rem;
+  text-decoration: none;
+  transition: opacity 0.15s;
+  border: 1.5px solid #C9A227;
+}
+.partner-contact__maps-btn:active { opacity: 0.75; }
+
+.partner-contact__map {
+  border-radius: 14px;
+  overflow: hidden;
+  margin-top: 0.25rem;
+}
+
+.partner-contact__map iframe {
+  display: block;
+  width: 100%;
+}

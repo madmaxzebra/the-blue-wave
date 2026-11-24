@@ -47,6 +47,12 @@ export type FashionStore = {
   /** Official store or brand URL */
   websiteUrl?: string
   websiteLabel?: string
+  /** WhatsApp number in international format without +, e.g. 59997881949 */
+  whatsapp?: string
+  /** Google Maps embed src URL */
+  mapsEmbed?: string
+  /** Google Maps directions URL */
+  mapsUrl?: string
   /** Overrides “{area} · Fashion partner” on the store page */
   partnerKicker?: string
   /** Short blurb for the fashion list only. Detail page keeps `intro`. */
@@ -86,6 +92,9 @@ export const fashionStores: FashionStore[] = [
       'Mon–Thu 11:00–20:00 · Fri–Sat 11:00–21:00 · Sun 11:00–20:00 (per ZARA store locator)',
     websiteUrl: 'https://www.zara.com/cw/',
     websiteLabel: 'Shop at zara.com/cw',
+    whatsapp: '59997000000',
+    mapsEmbed: 'https://maps.google.com/maps?q=12.0808,-68.9018&z=16&output=embed&iwloc=',
+    mapsUrl: 'https://maps.google.com/?q=Sambil+Shopping+Mall+Veeris+27+Willemstad+Curaçao',
     highlightImg: `${base}fashion-media/zara-look-white-dress.png`,
     highlightCaption: 'Summer white edit',
     heroImg: `${base}fashion-media/zara-hero-denim.png`,
@@ -143,6 +152,9 @@ export const fashionStores: FashionStore[] = [
     openingHours: 'Every day 10:00–19:00 (from their Facebook page)',
     websiteUrl: 'https://www.facebook.com/outofthebluecuracao',
     websiteLabel: 'See Out of the Blue on Facebook',
+    whatsapp: '59994613212',
+    mapsEmbed: 'https://maps.google.com/maps?q=12.0776,-68.8912&z=16&output=embed&iwloc=',
+    mapsUrl: 'https://maps.google.com/?q=Mambo+Beach+Boulevard+Willemstad+Curaçao',
     highlightImg: `${base}fashion-media/ootb-store.jpg`,
     highlightCaption: 'Jewelry and local art inside the shop',
     heroImg: `${base}fashion-media/ootb-earrings.jpg`,
@@ -198,6 +210,9 @@ export const fashionStores: FashionStore[] = [
     phone: '+599 9 465 9771',
     websiteUrl: 'https://www.facebook.com/onlycuracao1',
     websiteLabel: 'See ONLY on Facebook',
+    whatsapp: '59994659771',
+    mapsEmbed: 'https://maps.google.com/maps?q=12.0808,-68.9018&z=16&output=embed&iwloc=',
+    mapsUrl: 'https://maps.google.com/?q=Sambil+Shopping+Mall+Veeris+27+Willemstad+Curaçao',
     highlightImg: `${base}fashion-media/only-person-pool.jpg?v=20261014j`,
     highlightCaption: 'Floral set',
     heroImg: `${base}fashion-media/only-person-pool.jpg?v=20261014j`,

@@ -1,6 +1,7 @@
 import { Link, Navigate, useParams } from 'react-router-dom'
 import type { PartnerProfile } from '../data/homesPartners'
 import '../pages/FashionStorePage.css'
+import './PartnerContact.css'
 
 type Props = {
   listPath: string
@@ -47,7 +48,7 @@ export function PartnerDetailPage({
         </figcaption>
       </figure>
 
-      <blockquote className="fashion-store__quote">“{partner.quote}”</blockquote>
+      <blockquote className="fashion-store__quote">"{partner.quote}"</blockquote>
 
       <h3 className="fashion-store__section">{partner.itemsHeading}</h3>
       <div className="fashion-store__looks">
@@ -72,6 +73,89 @@ export function PartnerDetailPage({
           <p className="fashion-store__note">{partner.shopNote}</p>
         </div>
       </article>
+
+      {/* Contact block */}
+      {(partner.address || partner.phone || partner.whatsapp || partner.websiteUrl) && (
+        <div className="partner-contact">
+          <h3 className="partner-contact__heading">Contact & location</h3>
+
+          {partner.address && (
+            <div className="partner-contact__row">
+              <span className="partner-contact__icon">📍</span>
+              <div>
+                <p className="partner-contact__label">Address</p>
+                <p className="partner-contact__value">{partner.address}</p>
+                {partner.hours && (
+                  <p className="partner-contact__hours">{partner.hours}</p>
+                )}
+              </div>
+            </div>
+          )}
+
+          {partner.phone && (
+            <div className="partner-contact__row">
+              <span className="partner-contact__icon">📞</span>
+              <div>
+                <p className="partner-contact__label">Phone</p>
+                <a
+                  className="partner-contact__link"
+                  href={`tel:${partner.phone.replace(/\s/g, '')}`}
+                >
+                  {partner.phone}
+                </a>
+              </div>
+            </div>
+          )}
+
+          {partner.whatsapp && (
+            <a
+              className="partner-contact__whatsapp"
+              href={`https://wa.me/${partner.whatsapp}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span>💬</span> WhatsApp
+            </a>
+          )}
+
+          {partner.websiteUrl && (
+            <a
+              className="partner-contact__website"
+              href={partner.websiteUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              🌐 {partner.websiteLabel ?? 'Visit website'} ↗
+            </a>
+          )}
+
+          {partner.mapsUrl && (
+            <a
+              className="partner-contact__maps-btn"
+              href={partner.mapsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              🗺️ Open in Google Maps ↗
+            </a>
+          )}
+
+          {partner.mapsEmbed && (
+            <div className="partner-contact__map">
+              <iframe
+                title={`Map – ${partner.name}`}
+                src={partner.mapsEmbed}
+                width="100%"
+                height="220"
+                style={{ border: 0 }}
+                allowFullScreen={false}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+            </div>
+          )}
+        </div>
+      )}
 
       <article className="fashion-store__story">
         <img src={partner.lifestyleImg} alt="" />
