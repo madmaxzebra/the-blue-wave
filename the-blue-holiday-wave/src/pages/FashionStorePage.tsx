@@ -1,5 +1,6 @@
 import { Link, Navigate, useParams } from 'react-router-dom'
 import { getFashionStore } from '../data/fashionStores'
+import { LogoWithFallback } from '../components/LogoWithFallback'
 import './FashionStorePage.css'
 import '../components/PartnerContact.css'
 
@@ -23,10 +24,12 @@ export function FashionStorePage() {
         <span
           className={`fashion-store__logo fashion-store__logo--img${store.logoLarge ? ' fashion-store__logo--large' : ''}`}
         >
-          <img
-            className={store.logoOnDark ? 'fashion-logo--on-dark' : undefined}
+          <LogoWithFallback
             src={store.logoImg}
             alt={store.name}
+            label={store.logoLabel}
+            color={store.logoColor}
+            onDark={store.logoOnDark}
           />
           {store.logoCaption ? (
             <span className="fashion-store__logo-caption">{store.logoCaption}</span>

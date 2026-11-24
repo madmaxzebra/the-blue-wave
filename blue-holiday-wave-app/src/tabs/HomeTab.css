@@ -1,0 +1,75 @@
+.home-hero {
+  background: linear-gradient(160deg, var(--navy) 0%, var(--blue-mid) 60%, #1A3A6E 100%);
+  padding: 2.5rem 1.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.home-hero::before {
+  content: '';
+  position: absolute;
+  bottom: -30px;
+  left: -20px;
+  right: -20px;
+  height: 80px;
+  background: rgba(201, 162, 39, 0.08);
+  border-radius: 50%;
+  filter: blur(20px);
+}
+
+.home-hero-logo {
+  height: 80px;
+  width: auto;
+  margin-bottom: 1rem;
+  filter: drop-shadow(0 4px 16px rgba(0,0,0,0.3));
+}
+
+.home-hero-tagline {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  margin-bottom: 0.3rem;
+}
+
+.home-hero-season {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: 0.04em;
+}
+
+.card-img-placeholder {
+  width: 100%;
+  height: 200px;
+  background: linear-gradient(135deg, #1A2E50 0%, var(--blue-mid) 100%);
+}
+
+.home-newsletter {
+  background: var(--white);
+  border-radius: 20px;
+  padding: 1.5rem 1.25rem;
+  box-shadow: 0 2px 12px rgba(10, 22, 40, 0.08);
+}
+
+.newsletter-input {
+  width: 100%;
+  border: 1.5px solid rgba(10, 22, 40, 0.15);
+  border-radius: 100px;
+  padding: 0.7rem 1.1rem;
+  font-size: 0.85rem;
+  font-family: inherit;
+  outline: none;
+  color: var(--navy);
+  transition: border-color 0.2s;
+}
+
+.newsletter-input:focus {
+  border-color: var(--blue);
+}

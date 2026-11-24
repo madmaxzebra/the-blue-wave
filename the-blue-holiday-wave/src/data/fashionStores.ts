@@ -264,7 +264,7 @@ export const fashionStores: FashionStore[] = [
     tagline: "Women's fashion · Punda · island style",
     logoLabel: 'MC',
     logoColor: '#c9a227',
-    logoImg: `${base}fashion-media/logos/atelier-salina.png`,
+    logoImg: 'https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?w=120&q=80',
     venue: 'Punda, Willemstad',
     address: 'Prinsenstraat 80, Punda, Willemstad, Curaçao',
     openingHours: 'Mon–Thu 09:00–18:00 · Fri–Sat 09:00–18:30 · Closed Sunday',
@@ -272,28 +272,28 @@ export const fashionStores: FashionStore[] = [
     whatsapp: '59994657781',
     mapsEmbed: 'https://maps.google.com/maps?q=12.10482,-68.93221&z=16&output=embed&iwloc=',
     mapsUrl: 'https://maps.google.com/?q=Mayas+Clothing+Prinsenstraat+80+Punda+Willemstad+Curaçao',
-    highlightImg: `${base}fashion-media/look-1.jpg`,
-    highlightCaption: 'Holiday fashion in Punda',
-    heroImg: `${base}fashion-media/hero.jpg`,
+    highlightImg: 'https://images.unsplash.com/photo-1483985988355-763728e1935b?w=600&q=80',
+    highlightCaption: "Women's fashion in Punda",
+    heroImg: 'https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?w=800&q=80',
     heroTitle: "Punda's favourite women's boutique",
     heroText:
       "Mayas Clothing brings the latest trends to historic Punda — easy island pieces alongside bold holiday looks. Steps from the Handelskade and the floating bridge.",
     quote: 'Fashion that fits the island life.',
     looks: [
       {
-        img: `${base}fashion-media/look-1.jpg`,
+        img: 'https://images.unsplash.com/photo-1483985988355-763728e1935b?w=600&q=80',
         tag: 'Holiday',
         title: 'Holiday collection',
         text: 'Bright colours, easy fits, and statement pieces for the December season.',
       },
       {
-        img: `${base}fashion-media/look-2.jpg`,
+        img: 'https://images.unsplash.com/photo-1529720317453-c8da503f2051?w=600&q=80',
         tag: 'Day',
         title: 'Daytime island style',
         text: 'Casual and smart — the kind of look that works from shopping to lunch.',
       },
       {
-        img: `${base}fashion-media/look-3.jpg`,
+        img: 'https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?w=600&q=80',
         tag: 'Evening',
         title: 'Evening edit',
         text: 'Dressed-up pieces for dinners and holiday gatherings in Punda.',
@@ -303,7 +303,7 @@ export const fashionStores: FashionStore[] = [
     lifestyleTitle: 'Shop Punda, dress the island',
     lifestyleText:
       "Prinsenstraat has the best boutique shopping in Willemstad — Mayas Clothing is one of its highlights. Pop in between exploring the colourful Handelskade and the historic downtown.",
-    lifestyleImg: `${base}fashion-media/boutique.jpg`,
+    lifestyleImg: 'https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?w=800&q=80',
   },
   {
     id: 'emilia-boutique',
@@ -327,28 +327,28 @@ export const fashionStores: FashionStore[] = [
     websiteLabel: 'emiliacuracao.com',
     mapsEmbed: 'https://maps.google.com/maps?q=12.10420,-68.93360&z=16&output=embed&iwloc=',
     mapsUrl: 'https://maps.google.com/?q=Emilia+Boutique+Hanchi+Snoa+11+Punda+Willemstad+Curaçao',
-    highlightImg: `${base}fashion-media/look-2.jpg`,
-    highlightCaption: 'Island resort wear',
-    heroImg: `${base}fashion-media/look-2.jpg`,
+    highlightImg: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&q=80',
+    highlightCaption: 'Island swimwear & resort wear',
+    heroImg: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=80',
     heroTitle: 'The island swimwear destination',
     heroText:
       "Whether you need a bikini for Mambo Beach, a cover-up for Pietermaai, or the perfect resort look — Emilia Boutique has the island's best selection. Two locations for your convenience.",
     quote: 'Dressed for the island, from the island.',
     looks: [
       {
-        img: `${base}fashion-media/look-2.jpg`,
+        img: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&q=80',
         tag: 'Swim',
         title: 'Holiday bikinis',
         text: 'The best selection of bikinis on the island — in store at Punda and Zuikertuin.',
       },
       {
-        img: `${base}fashion-media/look-1.jpg`,
+        img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&q=80',
         tag: 'Resort',
         title: 'Resort wear',
         text: 'Cover-ups, breezy dresses, and accessories for every beach day.',
       },
       {
-        img: `${base}fashion-media/look-3.jpg`,
+        img: 'https://images.unsplash.com/photo-1559311745-d3aa09e35e95?w=600&q=80',
         tag: 'Accessories',
         title: 'Holiday accessories',
         text: 'Bags, jewellery, and the finishing touches that complete the look.',
@@ -358,7 +358,7 @@ export const fashionStores: FashionStore[] = [
     lifestyleTitle: 'From the beach to the boulevard',
     lifestyleText:
       "Pick up your holiday look at Emilia and head straight to the beach — the best swimwear boutique in Willemstad, loved by locals and visitors alike.",
-    lifestyleImg: `${base}fashion-media/boutique.jpg`,
+    lifestyleImg: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80',
   },
   {
     id: 'soho-boutique',
@@ -382,28 +382,28 @@ export const fashionStores: FashionStore[] = [
     websiteLabel: 'shoprenaissancecuracao.com',
     mapsEmbed: 'https://maps.google.com/maps?q=12.1079,-68.9354&z=16&output=embed&iwloc=',
     mapsUrl: 'https://maps.google.com/?q=Rif+Fort+Renaissance+Mall+Baden+Powellweg+1+Otrobanda+Willemstad+Curaçao',
-    highlightImg: `${base}fashion-media/look-3.jpg`,
+    highlightImg: 'https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?w=600&q=80',
     highlightCaption: 'Designer fashion at Rif Fort',
-    heroImg: `${base}fashion-media/night.jpg`,
+    heroImg: 'https://images.unsplash.com/photo-1529720317453-c8da503f2051?w=800&q=80',
     heroTitle: "Otrobanda's fashion destination",
     heroText:
       "SOHO Boutique sits inside the historic Rif Fort — one of the most striking shopping settings in the Caribbean. Find designer dresses, business looks, and casual holiday outfits all under one roof.",
     quote: "It's not about the clothes, it's about the image.",
     looks: [
       {
-        img: `${base}fashion-media/look-3.jpg`,
+        img: 'https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?w=600&q=80',
         tag: 'Designer',
         title: 'Holiday dresses',
         text: 'Dressy looks for dinners, openings, and December events in Willemstad.',
       },
       {
-        img: `${base}fashion-media/look-1.jpg`,
+        img: 'https://images.unsplash.com/photo-1529720317453-c8da503f2051?w=600&q=80',
         tag: 'Casual',
         title: 'Smart casual',
         text: 'From daytime shopping to waterfront dinners — versatile pieces that do both.',
       },
       {
-        img: `${base}fashion-media/boutique.jpg`,
+        img: 'https://images.unsplash.com/photo-1483985988355-763728e1935b?w=600&q=80',
         tag: 'Accessories',
         title: 'Complete the look',
         text: 'Jewellery, bags, and accessories to finish your holiday wardrobe.',
@@ -413,7 +413,7 @@ export const fashionStores: FashionStore[] = [
     lifestyleTitle: 'Shop inside a historic fort',
     lifestyleText:
       "The Rif Fort is one of the most beautiful shopping destinations in the Caribbean — and SOHO is its fashion highlight. After shopping, the waterfront bars and restaurants are right outside.",
-    lifestyleImg: `${base}fashion-media/look-3.jpg`,
+    lifestyleImg: 'https://images.unsplash.com/photo-1529720317453-c8da503f2051?w=800&q=80',
   },
   {
     id: 'victorias-secret-sambil',
@@ -427,7 +427,8 @@ export const fashionStores: FashionStore[] = [
     tagline: 'Lingerie · beauty · fragrance · accessories',
     logoLabel: 'VS',
     logoColor: '#1a1a2e',
-    logoImg: 'https://logo.clearbit.com/victoriassecret.com',
+    logoImg: 'https://www.victoriassecret.com/images/vsweb/8f9bb269-388b-4037-9391-e4e079576c6e/VS_logoSmall_black.svg',
+    logoOnDark: true,
     logoLarge: true,
     venue: 'Sambil Shopping Mall',
     address: "Veeris #27, Willemstad, Curaçao — Unit L-35, Cas Abou Entrance / Punda Square",
@@ -439,40 +440,40 @@ export const fashionStores: FashionStore[] = [
     websiteLabel: "Victoria's Secret at Sambil",
     mapsEmbed: 'https://maps.google.com/maps?q=12.0808,-68.9018&z=16&output=embed&iwloc=',
     mapsUrl: "https://maps.google.com/?q=Sambil+Shopping+Mall+Veeris+27+Willemstad+Curaçao",
-    highlightImg: `${base}fashion-media/look-1.jpg`,
-    highlightCaption: 'Holiday collections now in store',
-    heroImg: `${base}fashion-media/hero.jpg`,
+    highlightImg: 'https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?w=600&q=80',
+    highlightCaption: 'Fragrances & beauty at Sambil',
+    heroImg: 'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=800&q=80',
     heroTitle: 'The iconic brand is finally here',
     heroText:
       "Victoria's Secret brings its legendary holiday collections to Curaçao — lingerie, sleepwear, fragrances, and the must-have gift sets that sell out every December. Find them now at Sambil.",
     quote: 'Everything to emphasise your outstanding look.',
     looks: [
       {
-        img: `${base}fashion-media/look-1.jpg`,
+        img: 'https://images.unsplash.com/photo-1596462502278-27bfdc403a46?w=600&q=80',
         tag: 'Lingerie',
         title: 'Holiday lingerie',
         text: 'Signature styles and seasonal collections — in store at unit L-35.',
       },
       {
-        img: `${base}fashion-media/look-2.jpg`,
+        img: 'https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?w=600&q=80',
         tag: 'Beauty',
         title: 'Fragrance & beauty',
         text: 'The bestselling perfumes and gift sets — perfect for the holiday season.',
       },
       {
-        img: `${base}fashion-media/look-3.jpg`,
+        img: 'https://images.unsplash.com/photo-1483985988355-763728e1935b?w=600&q=80',
         tag: 'Accessories',
         title: 'Accessories & gifts',
         text: 'From tote bags to cosy sets — the most giftable items in the mall.',
       },
     ],
-    visitBannerImg: `${base}fashion-media/boutique.jpg`,
+    visitBannerImg: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80',
     shopNote:
       "Brand new at Sambil — grand opening was 19 November 2026. WhatsApp +5999 735 3131 for stock questions.",
     lifestyleTitle: 'The gift everyone wants',
     lifestyleText:
       "December at Victoria's Secret means limited-edition gift sets, holiday scents, and the pieces that always sell out. Get there early.",
-    lifestyleImg: `${base}fashion-media/night.jpg`,
+    lifestyleImg: 'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=800&q=80',
   },
 ]
 

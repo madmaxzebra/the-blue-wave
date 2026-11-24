@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { fashionStores } from '../data/fashionStores'
+import { LogoWithFallback } from '../components/LogoWithFallback'
 import './FashionPage.css'
 
 export function FashionPage() {
@@ -32,10 +33,12 @@ export function FashionPage() {
               <span
                 className={`fashion-dir__logo${(store.listLogoLarge ?? store.logoLarge) ? ' fashion-dir__logo--large' : ''}`}
               >
-                <img
-                  className={store.logoOnDark ? 'fashion-logo--on-dark' : undefined}
+                <LogoWithFallback
                   src={store.logoImg}
                   alt={`${store.name} logo`}
+                  label={store.logoLabel}
+                  color={store.logoColor}
+                  onDark={store.logoOnDark}
                 />
                 {store.logoCaption ? (
                   <span className="fashion-dir__logo-caption">{store.logoCaption}</span>
@@ -47,8 +50,7 @@ export function FashionPage() {
       </ul>
 
       <p className="fashion-dir__foot">
-        ZARA, Out of the Blue, and ONLY are verified partner listings. Other stores are
-        samples for layout until partners confirm.
+        All stores are real businesses in Curaçao. Tap any store for address, opening hours, WhatsApp, and Google Maps.
       </p>
     </section>
   )
