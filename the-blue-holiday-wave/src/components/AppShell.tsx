@@ -69,6 +69,10 @@ export function AppShell() {
           </NavLink>
         ))}
       </nav>
+
+      <footer className="shell__disclaimer">
+        The Blue Holiday Wave is an independent lifestyle guide for Curaçao. All brand names, logos, and trademarks belong to their respective owners. This app is not affiliated with or endorsed by any of the listed businesses.
+      </footer>
     </div>
   )
 }
