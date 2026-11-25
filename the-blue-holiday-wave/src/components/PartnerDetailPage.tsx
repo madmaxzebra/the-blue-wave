@@ -75,9 +75,55 @@ export function PartnerDetailPage({
           <p className="fashion-store__label">{partner.visitLabel}</p>
           <h3>{partner.visitTitle}</h3>
           <p>{partner.intro}</p>
+          {partner.address ? (
+            <p className="fashion-store__location">
+              <strong>{partner.area}</strong>
+              <span>{partner.address}</span>
+              {partner.openingHours ? (
+                <span className="fashion-store__hours">{partner.openingHours}</span>
+              ) : null}
+              {partner.phone ? <span>{partner.phone}</span> : null}
+            </p>
+          ) : null}
           <p className="fashion-store__note">{partner.shopNote}</p>
+          {partner.whatsapp ? (
+            <p className="fashion-store__link-wrap">
+              <a className="fashion-store__link fashion-store__link--wa" href={`https://wa.me/${partner.whatsapp}`} target="_blank" rel="noopener noreferrer">
+                WhatsApp ↗
+              </a>
+            </p>
+          ) : null}
+          {partner.websiteUrl ? (
+            <p className="fashion-store__link-wrap">
+              <a className="fashion-store__link" href={partner.websiteUrl} target="_blank" rel="noopener noreferrer">
+                {partner.websiteLabel ?? 'Visit website'} ↗
+              </a>
+            </p>
+          ) : null}
+          {partner.mapsUrl ? (
+            <p className="fashion-store__link-wrap">
+              <a className="fashion-store__link" href={partner.mapsUrl} target="_blank" rel="noopener noreferrer">
+                Open in Google Maps ↗
+              </a>
+            </p>
+          ) : null}
         </div>
       </article>
+
+      {partner.mapsEmbed ? (
+        <div className="fashion-store__map">
+          <iframe
+            src={partner.mapsEmbed}
+            width="100%"
+            height="300"
+            style={{ border: 0, borderRadius: '12px' }}
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            title={`${partner.name} location`}
+          />
+        </div>
+      ) : null}
 
       <article className="fashion-store__story">
         <img src={partner.lifestyleImg} alt="" />
