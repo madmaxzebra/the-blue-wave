@@ -16,10 +16,16 @@ import { PrivacyPage } from './pages/PrivacyPage'
 import './holiday.css'
 import './holiday-glass.css'
 
+const base = import.meta.env.BASE_URL
+
 export default function App() {
   useEffect(() => {
-    document.documentElement.classList.add('is-landing-home')
-    return () => document.documentElement.classList.remove('is-landing-home')
+    const root = document.documentElement
+    root.classList.add('is-landing-home')
+    root.style.setProperty('--media-snow', `url("${base}holiday-media/topic-snow.png")`)
+    root.style.setProperty('--media-get-app-snow', `url("${base}holiday-media/get-app-snow.png")`)
+    root.style.setProperty('--media-xmas-bg', `url("${base}holiday-media/blue-christmas-bg.png")`)
+    return () => root.classList.remove('is-landing-home')
   }, [])
 
   return (

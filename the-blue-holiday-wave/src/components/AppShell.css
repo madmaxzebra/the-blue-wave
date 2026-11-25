@@ -10,7 +10,7 @@
 /* Landing — Christmas photo fills the app column only (same 520px shell) */
 .shell--landing {
   background-color: var(--navy-deep);
-  background-image: url("/holidayseason/holiday-media/blue-christmas-bg.png");
+  background-image: var(--media-xmas-bg);
   background-size: cover;
   background-position: center top;
   background-repeat: no-repeat;

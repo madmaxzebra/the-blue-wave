@@ -1,12 +1,14 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-// Website lives at /holidayseason/. The store app is built with CAP_BUILD=1 and base /.
+// /holidayseason/ only when deploying to Bluehost (BLUEHOST_BUILD=1).
+// Cursor hosting and mobile builds both use /.
 const mobile = process.env.CAP_BUILD === '1'
+const bluehost = process.env.BLUEHOST_BUILD === '1'
 
 export default defineConfig({
   plugins: [react()],
-  base: mobile ? '/' : '/holidayseason/',
+  base: bluehost && !mobile ? '/holidayseason/' : '/',
   server: {
     port: 5195,
     strictPort: true,

@@ -6,7 +6,7 @@ import './index.css'
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '')
 
-if ('serviceWorker' in navigator && import.meta.env.BASE_URL === '/holidayseason/') {
+if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register(`${import.meta.env.BASE_URL}sw.js`).catch(() => {})
   })
