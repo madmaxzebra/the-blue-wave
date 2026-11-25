@@ -430,40 +430,40 @@ export const fashionStores: FashionStore[] = [
     websiteLabel: "Victoria's Secret at Sambil",
     mapsEmbed: 'https://maps.google.com/maps?q=12.0808,-68.9018&z=16&output=embed&iwloc=',
     mapsUrl: "https://maps.google.com/?q=Sambil+Shopping+Mall+Veeris+27+Willemstad+Curaçao",
-    highlightImg: 'https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?w=600&q=80',
-    highlightCaption: 'Fragrances & beauty at Sambil',
-    heroImg: 'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=800&q=80',
+    highlightImg: `${base}fashion-media/vs/vs-lingerie-3.jpg`,
+    highlightCaption: 'Lingerie & sleepwear at Sambil',
+    heroImg: `${base}fashion-media/vs/vs-lingerie-1.jpg`,
     heroTitle: 'The iconic brand is finally here',
     heroText:
-      "Victoria's Secret brings its legendary holiday collections to Curaçao — lingerie, sleepwear, fragrances, and the must-have gift sets that sell out every December. Find them now at Sambil.",
+      "Victoria's Secret is now open at Sambil — the full collection of lingerie, sleepwear, fragrances, and holiday gift sets. Find them at unit L-35 near the Cas Abou Entrance.",
     quote: 'Everything to emphasise your outstanding look.',
     looks: [
       {
-        img: 'https://images.unsplash.com/photo-1596462502278-27bfdc403a46?w=600&q=80',
+        img: `${base}fashion-media/vs/vs-lingerie-4.jpg`,
         tag: 'Lingerie',
         title: 'Holiday lingerie',
-        text: 'Signature styles and seasonal collections — in store at unit L-35.',
+        text: 'Signature lace styles and seasonal collections — in store at unit L-35.',
       },
       {
-        img: 'https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?w=600&q=80',
-        tag: 'Beauty',
-        title: 'Fragrance & beauty',
+        img: `${base}fashion-media/vs/vs-lingerie-2.jpg`,
+        tag: 'Sleepwear',
+        title: 'Sleepwear & sets',
+        text: 'Babydolls, teddies and matching sets — perfect holiday gifts.',
+      },
+      {
+        img: `${base}fashion-media/vs/vs-lingerie-5.jpg`,
+        tag: 'Accessories',
+        title: 'Gift sets & beauty',
         text: 'The bestselling perfumes and gift sets — perfect for the holiday season.',
       },
-      {
-        img: 'https://images.unsplash.com/photo-1483985988355-763728e1935b?w=600&q=80',
-        tag: 'Accessories',
-        title: 'Accessories & gifts',
-        text: 'From tote bags to cosy sets — the most giftable items in the mall.',
-      },
     ],
-    visitBannerImg: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80',
+    visitBannerImg: `${base}fashion-media/vs/vs-lingerie-6.jpg`,
     shopNote:
       "Brand new at Sambil — grand opening was 19 November 2026. WhatsApp +5999 735 3131 for stock questions.",
     lifestyleTitle: 'The gift everyone wants',
     lifestyleText:
       "December at Victoria's Secret means limited-edition gift sets, holiday scents, and the pieces that always sell out. Get there early.",
-    lifestyleImg: 'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=800&q=80',
+    lifestyleImg: `${base}fashion-media/vs/vs-lingerie-3.jpg`,
   },
 ]
 
