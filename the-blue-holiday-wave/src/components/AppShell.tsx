@@ -1,7 +1,15 @@
 import { NavLink, Outlet, useLocation } from 'react-router-dom'
 import './AppShell.css'
 
-const FASHION_ICON = `${import.meta.env.BASE_URL}holiday-media/icons/fashion-gold.png`
+const base = import.meta.env.BASE_URL
+
+const SECTION_ICONS: Record<string, { src: string; alt: string }> = {
+  fashion:  { src: `${base}holiday-media/icons/fashion-gold.png`,     alt: 'Fashion' },
+  homes:    { src: `${base}holiday-media/icons/realestate-gold.png`,  alt: 'Real Estate' },
+  taste:    { src: `${base}holiday-media/icons/culinary-gold.png`,    alt: 'Taste' },
+  magazine: { src: `${base}holiday-media/icons/magazine-gold.png`,    alt: 'Magazine' },
+  more:     { src: `${base}holiday-media/icons/sponsors-gold.png`,    alt: 'More' },
+}
 
 const tabs = [
   { to: '/', label: 'Home', end: true },
@@ -14,18 +22,19 @@ const tabs = [
 
 export function AppShell() {
   const { pathname } = useLocation()
-  const onFashion = pathname === '/fashion' || pathname.startsWith('/fashion/')
+  const section = pathname === '/' ? null : pathname.split('/').filter(Boolean)[0]
+  const sectionIcon = section ? SECTION_ICONS[section] : null
 
   return (
     <div className="shell shell--landing">
-      <header className={`shell__top${onFashion ? ' shell__top--fashion' : ''}`}>
+      <header className={`shell__top${sectionIcon ? ' shell__top--fashion' : ''}`}>
         <p className="shell__eyebrow">Curaçao · Holiday Season 2026</p>
         <h1 className="shell__brand">
           The Blue <span>Holiday</span> Wave
         </h1>
-        {onFashion ? (
+        {sectionIcon ? (
           <div className="shell__fashion-mark">
-            <img src={FASHION_ICON} alt="Fashion" width={128} height={128} />
+            <img src={sectionIcon.src} alt={sectionIcon.alt} width={128} height={128} />
           </div>
         ) : (
           <div className="shell__garland" aria-hidden="true">
