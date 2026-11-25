@@ -16,6 +16,19 @@ export function PrivacyPage() {
           </p>
         </article>
         <article className="card">
+          <h3>Third-party content</h3>
+          <p>
+            Store detail pages may load a Google Maps iframe to show a
+            location. When that map loads, Google may receive your IP address
+            and browser information according to{' '}
+            <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">
+              Google's privacy policy
+            </a>
+            . Store photos are served by Unsplash; Unsplash may log your
+            request according to their own policy.
+          </p>
+        </article>
+        <article className="card">
           <h3>The website host</h3>
           <p>
             When the app or site loads, the web host may keep normal technical

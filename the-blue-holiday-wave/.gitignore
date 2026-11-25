@@ -4,3 +4,6 @@ holidayseason-upload
 holidayseason-upload.zip
 .DS_Store
 *.local
+scripts/__pycache__/
+**/__pycache__/
+*.pyc
