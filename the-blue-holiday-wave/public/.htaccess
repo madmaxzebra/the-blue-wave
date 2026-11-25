@@ -7,7 +7,7 @@ Options -Indexes
 
 <IfModule mod_rewrite.c>
   RewriteEngine On
-  RewriteBase /holidaythink/
+  RewriteBase /holidayseason/
 
   RewriteRule ^index\.html$ - [L]
   RewriteRule ^sw\.js$ - [L]

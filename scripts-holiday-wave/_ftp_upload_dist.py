@@ -9,9 +9,9 @@ from pathlib import Path
 HOST = "thebluewavefans.com"
 PORT = 21
 USER = "BlueHoliday@thebluewavefans.com"
-REMOTE_ROOT = "website_cba6a5f5/holidaythink"
+REMOTE_ROOT = "website_cba6a5f5/holidayseason"
 
-DIST = Path(__file__).resolve().parent.parent / "dist"
+DIST = Path(__file__).resolve().parent.parent / "the-blue-holiday-wave" / "dist"
 
 
 def ensure_remote_dir(ftp: FTP, remote_dir: str) -> None:
