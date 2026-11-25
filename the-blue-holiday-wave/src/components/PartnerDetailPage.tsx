@@ -1,5 +1,6 @@
 import { Link, Navigate, useParams } from 'react-router-dom'
 import type { PartnerProfile } from '../data/homesPartners'
+import { LogoImg } from './LogoImg'
 import '../pages/FashionStorePage.css'
 
 type Props = {
@@ -30,7 +31,12 @@ export function PartnerDetailPage({
 
       <header className="fashion-store__head">
         <span className="fashion-store__logo fashion-store__logo--img">
-          <img src={partner.logoImg} alt={partner.name} />
+          <LogoImg
+            src={partner.logoImg}
+            alt={partner.name}
+            label={partner.logoLabel}
+            color={partner.logoColor}
+          />
         </span>
         <p className="page__kicker fashion-store__kicker">
           {partner.area} · {partnerKind}

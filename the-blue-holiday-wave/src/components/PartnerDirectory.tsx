@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import type { PartnerProfile } from '../data/homesPartners'
+import { LogoImg } from './LogoImg'
 import '../pages/FashionPage.css'
 
 type Props = {
@@ -41,7 +42,12 @@ export function PartnerDirectory({
                 <span className="fashion-dir__intro">{partner.intro}</span>
               </span>
               <span className="fashion-dir__logo">
-                <img src={partner.logoImg} alt={`${partner.name} logo`} />
+                <LogoImg
+                  src={partner.logoImg}
+                  alt={`${partner.name} logo`}
+                  label={partner.logoLabel}
+                  color={partner.logoColor}
+                />
               </span>
             </Link>
           </li>

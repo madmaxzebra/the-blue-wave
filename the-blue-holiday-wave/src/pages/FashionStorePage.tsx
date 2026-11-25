@@ -1,5 +1,6 @@
 import { Link, Navigate, useParams } from 'react-router-dom'
 import { getFashionStore } from '../data/fashionStores'
+import { LogoImg } from '../components/LogoImg'
 import './FashionStorePage.css'
 
 export function FashionStorePage() {
@@ -22,10 +23,12 @@ export function FashionStorePage() {
         <span
           className={`fashion-store__logo fashion-store__logo--img${store.logoLarge ? ' fashion-store__logo--large' : ''}`}
         >
-          <img
-            className={store.logoOnDark ? 'fashion-logo--on-dark' : undefined}
+          <LogoImg
             src={store.logoImg}
             alt={store.name}
+            label={store.logoLabel}
+            color={store.logoColor}
+            className={store.logoOnDark ? 'fashion-logo--on-dark' : undefined}
           />
           {store.logoCaption ? (
             <span className="fashion-store__logo-caption">{store.logoCaption}</span>
@@ -89,6 +92,18 @@ export function FashionStorePage() {
             </p>
           ) : null}
           <p className="fashion-store__note">{store.shopNote}</p>
+          {store.whatsapp ? (
+            <p className="fashion-store__link-wrap">
+              <a
+                className="fashion-store__link fashion-store__link--wa"
+                href={`https://wa.me/${store.whatsapp}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                WhatsApp ↗
+              </a>
+            </p>
+          ) : null}
           {store.websiteUrl ? (
             <p className="fashion-store__link-wrap">
               <a
@@ -101,8 +116,35 @@ export function FashionStorePage() {
               </a>
             </p>
           ) : null}
+          {store.mapsUrl ? (
+            <p className="fashion-store__link-wrap">
+              <a
+                className="fashion-store__link"
+                href={store.mapsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Open in Google Maps ↗
+              </a>
+            </p>
+          ) : null}
         </div>
       </article>
+
+      {store.mapsEmbed ? (
+        <div className="fashion-store__map">
+          <iframe
+            src={store.mapsEmbed}
+            width="100%"
+            height="300"
+            style={{ border: 0, borderRadius: '12px' }}
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            title={`${store.name} location`}
+          />
+        </div>
+      ) : null}
 
       {!store.hideLifestyleStory ? (
         <article className="fashion-store__story">
