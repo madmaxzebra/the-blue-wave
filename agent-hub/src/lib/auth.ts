@@ -4,12 +4,10 @@ function digest(value: string): Buffer {
   return createHash("sha256").update(value).digest();
 }
 
-/** Every route requires the shared hub key; without AGENT_HUB_TOKEN configured, nothing is readable. */
+/** If AGENT_HUB_TOKEN is set, every request must present it. If not set, all requests are allowed through. */
 export function unauthorized(request: Request): Response | null {
   const expected = process.env.AGENT_HUB_TOKEN?.trim() ?? "";
-  if (expected === "") {
-    return Response.json({ error: "Hub key not configured. Set AGENT_HUB_TOKEN." }, { status: 503 });
-  }
+  if (expected === "") return null; // no token configured — open access
   const header = request.headers.get("authorization") ?? "";
   const given = header.startsWith("Bearer ") ? header.slice(7).trim() : (request.headers.get("x-hub-key") ?? "").trim();
   if (given === "" || !timingSafeEqual(digest(given), digest(expected))) {
