@@ -9,7 +9,7 @@ from pathlib import Path
 HOST = "thebluewavefans.com"
 PORT = 21
 USER = "BlueHoliday@thebluewavefans.com"
-REMOTE_ROOT = "website_cba6a5f5/holidayseason"
+REMOTE_ROOT = "website_cba6a5f5/holidaythink"
 
 DIST = Path(__file__).resolve().parent.parent / "dist"
 

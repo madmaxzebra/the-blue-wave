@@ -122,7 +122,7 @@ export function HomePage() {
 
           <strong>Android</strong>
 
-          <a href="https://www.thebluewavefans.com/holidayseason/get-the-app.html">
+          <a href="https://www.thebluewavefans.com/holidaythink/get-the-app.html">
 
             Download the Android app
 
