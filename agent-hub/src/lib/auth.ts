@@ -4,10 +4,12 @@ function digest(value: string): Buffer {
   return createHash("sha256").update(value).digest();
 }
 
-/** If AGENT_HUB_TOKEN is set, every request must present it. If not set, all requests are allowed through. */
+/** Every request must present AGENT_HUB_TOKEN. Returns 401 if missing or wrong, 503 if not configured. */
 export function unauthorized(request: Request): Response | null {
   const expected = process.env.AGENT_HUB_TOKEN?.trim() ?? "";
-  if (expected === "") return null; // no token configured — open access
+  if (expected === "") {
+    return Response.json({ error: "Hub not configured. Add AGENT_HUB_TOKEN in Cursor secrets." }, { status: 503 });
+  }
   const header = request.headers.get("authorization") ?? "";
   const given = header.startsWith("Bearer ") ? header.slice(7).trim() : (request.headers.get("x-hub-key") ?? "").trim();
   if (given === "" || !timingSafeEqual(digest(given), digest(expected))) {
