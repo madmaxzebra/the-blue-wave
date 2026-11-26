@@ -60,7 +60,7 @@ LOGOS = [
     (ORIGINALS / "korswill.png", PUBLIC / "fashion-media/logos/korswill-gold.png", "colour"),
     (ORIGINALS / "lc-waikiki.svg", PUBLIC / "fashion-media/logos/lc-waikiki-gold.png"),
     (ORIGINALS / "brandys.png", PUBLIC / "fashion-media/logos/brandys-gold.png", "colour"),
-    (ORIGINALS / "affaire-de-femmes.jpg", PUBLIC / "fashion-media/logos/affaire-de-femmes-gold.png"),
+    (ORIGINALS / "affaire-de-femmes-cropped.png", PUBLIC / "fashion-media/logos/affaire-de-femmes-gold.png", "colour"),
 ]
 
 WORK_WIDTH = 1400
