@@ -1,5 +1,6 @@
 import { useId, useState } from 'react'
-import { CommunityError, postClaim } from '../../lib/community'
+import { Link } from 'react-router-dom'
+import { CommunityError, postClaim, prepareForm } from '../../lib/community'
 import './community.css'
 
 type Props = {
@@ -14,7 +15,7 @@ export function ClaimPage({ partnerId, partnerName, noun }: Props) {
   const [open, setOpen] = useState(false)
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState('')
-  const [done, setDone] = useState<'live' | 'local' | null>(null)
+  const [done, setDone] = useState<'emailed' | 'received' | 'local' | null>(null)
   const [form, setForm] = useState({ ownerName: '', email: '', phone: '', message: '', website: '' })
 
   const set = (key: keyof typeof form) => (e: { target: { value: string } }) =>
@@ -41,7 +42,10 @@ export function ClaimPage({ partnerId, partnerName, noun }: Props) {
         className="claim__btn"
         aria-expanded={open}
         aria-controls={`${formId}-form`}
-        onClick={() => setOpen((v) => !v)}
+        onClick={() => {
+          prepareForm()
+          setOpen((v) => !v)
+        }}
       >
         <span className="claim__btn-shine" aria-hidden="true" />
         <span className="claim__btn-icon" aria-hidden="true">
@@ -55,13 +59,19 @@ export function ClaimPage({ partnerId, partnerName, noun }: Props) {
         photos.
       </p>
 
+      <p className="claim__login">
+        Already claimed? <Link to="/owner">Log in to edit your page</Link>
+      </p>
+
       {open ? (
         <div id={`${formId}-form`} className="claim__panel">
           {done ? (
             <p className="claim__done" role="status">
-              {done === 'live'
-                ? 'Thank you! We received your request. We will contact you by email to confirm that you are the owner.'
-                : 'Preview mode: this request was only kept on this device. On the live website it is sent to us.'}
+              {done === 'emailed'
+                ? 'Thank you! We just emailed you a confirmation. Your request is being processed and will be confirmed within 4 hours.'
+                : done === 'received'
+                  ? 'Thank you! We received your request. It is being processed and will be confirmed within 4 hours.'
+                  : 'Preview mode: this request was only kept on this device. On the live website it is sent to us.'}
             </p>
           ) : (
             <form onSubmit={submit} noValidate>

@@ -7,151 +7,8 @@ declare(strict_types=1);
 //   POST community.php?action=review                 -> leave a review (1-5 stars)
 //   POST community.php?action=claim                  -> owner asks to claim a page
 
-header('Content-Type: application/json; charset=utf-8');
-header('X-Content-Type-Options: nosniff');
-header('Cache-Control: no-store');
-header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Headers: content-type');
-header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
-
-if (($_SERVER['REQUEST_METHOD'] ?? '') === 'OPTIONS') {
-    http_response_code(204);
-    exit;
-}
-
-const MAX_BODY_BYTES = 8000;
-const REVIEWS_KEPT = 2000;
-
-function text_length(string $value): int
-{
-    return function_exists('mb_strlen') ? mb_strlen($value) : (int) preg_match_all('/./su', $value);
-}
-
-function text_cut(string $value, int $max): string
-{
-    if (function_exists('mb_substr')) {
-        return mb_substr($value, 0, $max);
-    }
-    preg_match_all('/./su', $value, $m);
-    return implode('', array_slice($m[0], 0, $max));
-}
-
-function fail(int $status, string $message): never
-{
-    http_response_code($status);
-    echo json_encode(['error' => $message], JSON_UNESCAPED_UNICODE);
-    exit;
-}
-
-function data_dir(): string
-{
-    $dir = __DIR__ . '/data';
-    if (!is_dir($dir) && !@mkdir($dir, 0750, true) && !is_dir($dir)) {
-        fail(500, 'Storage is not available.');
-    }
-    $guard = $dir . '/.htaccess';
-    if (!is_file($guard)) {
-        @file_put_contents($guard, "Require all denied\nDeny from all\n");
-    }
-    return $dir;
-}
-
-/** Read-modify-write a JSON list under an exclusive lock. */
-function mutate(string $name, callable $change): mixed
-{
-    $path = data_dir() . '/' . $name . '.json';
-    $handle = @fopen($path, 'c+');
-    if ($handle === false || !flock($handle, LOCK_EX)) {
-        fail(500, 'Storage is busy, please try again.');
-    }
-    $raw = stream_get_contents($handle);
-    $list = $raw ? json_decode($raw, true) : [];
-    if (!is_array($list)) {
-        $list = [];
-    }
-    $result = $change($list);
-    ftruncate($handle, 0);
-    rewind($handle);
-    fwrite($handle, json_encode($list, JSON_UNESCAPED_UNICODE));
-    fflush($handle);
-    flock($handle, LOCK_UN);
-    fclose($handle);
-    return $result;
-}
-
-function read_list(string $name): array
-{
-    $path = data_dir() . '/' . $name . '.json';
-    if (!is_file($path)) {
-        return [];
-    }
-    $list = json_decode((string) @file_get_contents($path), true);
-    return is_array($list) ? $list : [];
-}
-
-function body(): array
-{
-    $raw = file_get_contents('php://input', false, null, 0, MAX_BODY_BYTES + 1);
-    if ($raw === false || strlen($raw) > MAX_BODY_BYTES) {
-        fail(413, 'That message is too long.');
-    }
-    $data = json_decode($raw, true);
-    return is_array($data) ? $data : [];
-}
-
-function clean(mixed $value, int $max): string
-{
-    if (!is_string($value)) {
-        return '';
-    }
-    $value = preg_replace('/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/u', '', $value) ?? '';
-    $value = trim(preg_replace('/[ \t]+/u', ' ', $value) ?? '');
-    return text_cut($value, $max);
-}
-
-function one_line(string $value): string
-{
-    return trim(preg_replace('/\s+/u', ' ', $value) ?? '');
-}
-
-function partner_id(mixed $value): string
-{
-    $id = is_string($value) ? strtolower(trim($value)) : '';
-    if (!preg_match('/^[a-z0-9][a-z0-9-]{0,59}$/', $id)) {
-        fail(400, 'Unknown page.');
-    }
-    return $id;
-}
-
-function visitor_hash(): string
-{
-    $saltFile = data_dir() . '/.salt';
-    if (!is_file($saltFile)) {
-        @file_put_contents($saltFile, bin2hex(random_bytes(16)));
-    }
-    $salt = (string) @file_get_contents($saltFile);
-    return hash('sha256', ($_SERVER['REMOTE_ADDR'] ?? 'unknown') . $salt);
-}
-
-function too_many(string $bucket, int $limit, int $windowSeconds, string $who): bool
-{
-    return (bool) mutate('ratelimit', function (array &$list) use ($bucket, $limit, $windowSeconds, $who) {
-        $now = time();
-        foreach ($list as $key => $times) {
-            $list[$key] = array_values(array_filter($times, fn ($t) => $t > $now - 86400));
-            if (!$list[$key]) {
-                unset($list[$key]);
-            }
-        }
-        $key = $bucket . ':' . $who;
-        $recent = array_filter($list[$key] ?? [], fn ($t) => $t > $now - $windowSeconds);
-        if (count($recent) >= $limit) {
-            return true;
-        }
-        $list[$key][] = $now;
-        return false;
-    });
-}
+require __DIR__ . '/common.php';
+$config = api_boot();
 
 function summary(string $partner): array
 {
@@ -176,6 +33,11 @@ function summary(string $partner): array
 $method = $_SERVER['REQUEST_METHOD'] ?? 'GET';
 $action = (string) ($_GET['action'] ?? '');
 
+if ($method === 'GET' && $action === 'token') {
+    echo json_encode(['token' => form_token()]);
+    exit;
+}
+
 if ($method === 'GET' && $action === 'reviews') {
     echo json_encode(summary(partner_id($_GET['partner'] ?? '')), JSON_UNESCAPED_UNICODE);
     exit;
@@ -190,6 +52,10 @@ $input = body();
 if (clean($input['website'] ?? '', 200) !== '') {
     echo json_encode(['ok' => true]);
     exit;
+}
+
+if (!form_token_ok($input['token'] ?? null)) {
+    fail(400, 'Please reload the page and try again.');
 }
 
 if ($action === 'review') {
@@ -250,6 +116,7 @@ if ($action === 'claim') {
 
     $entry = [
         'id' => bin2hex(random_bytes(6)),
+        'number' => new_claim_number(),
         'partner' => $partner,
         'partnerName' => $partnerName,
         'ownerName' => $ownerName,
@@ -262,8 +129,17 @@ if ($action === 'claim') {
         $list[] = $entry;
     });
 
-    $config = is_file(__DIR__ . '/config.php') ? (include __DIR__ . '/config.php') : [];
-    $to = is_array($config) ? (string) ($config['ADMIN_EMAIL'] ?? '') : '';
+    require_once __DIR__ . '/claim-mail.php';
+    $sent = send_claim_confirmation($entry, $config);
+    mutate('claims', function (array &$list) use ($entry, $sent) {
+        foreach ($list as $i => $row) {
+            if (($row['id'] ?? '') === $entry['id']) {
+                $list[$i]['confirmationSent'] = $sent;
+            }
+        }
+    });
+
+    $to = (string) ($config['ADMIN_EMAIL'] ?? '');
     if ($to !== '' && filter_var($to, FILTER_VALIDATE_EMAIL)) {
         $subject = 'Claim request: ' . ($partnerName ?: $partner);
         $text = "Someone wants to claim a page on The Blue Holiday Wave.\n\n"
@@ -272,7 +148,7 @@ if ($action === 'claim') {
     }
 
     http_response_code(201);
-    echo json_encode(['ok' => true]);
+    echo json_encode(['ok' => true, 'confirmationSent' => $sent]);
     exit;
 }
 

@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import type { PartnerProfile } from '../data/homesPartners'
 import { LogoImg } from './LogoImg'
+import { applyOverrides, useOwnerContent } from '../lib/ownerContent'
 import '../pages/FashionPage.css'
 
 type Props = {
@@ -20,6 +21,7 @@ export function PartnerDirectory({
   partners,
   foot,
 }: Props) {
+  const content = useOwnerContent()
   return (
     <section className="page fashion-dir">
       <p className="page__kicker">{kicker}</p>
@@ -27,7 +29,9 @@ export function PartnerDirectory({
       <p className="page__lead">{lead}</p>
 
       <ul className="fashion-dir__list">
-        {partners.map((partner) => (
+        {partners.map((basePartner) => {
+          const partner = applyOverrides(basePartner, content[basePartner.id])
+          return (
           <li key={partner.id}>
             <Link className="fashion-dir__row" to={`${basePath}/${partner.id}`}>
               <span className="fashion-dir__shot">
@@ -51,7 +55,8 @@ export function PartnerDirectory({
               </span>
             </Link>
           </li>
-        ))}
+          )
+        })}
       </ul>
 
       <p className="fashion-dir__foot">{foot}</p>

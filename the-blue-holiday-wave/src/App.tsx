@@ -13,6 +13,9 @@ import { MagazinePartnerPage } from './pages/MagazinePartnerPage'
 import { MorePage } from './pages/MorePage'
 import { MorePartnerPage } from './pages/MorePartnerPage'
 import { PrivacyPage } from './pages/PrivacyPage'
+import { ActivatePage } from './pages/ActivatePage'
+import { OwnerLoginPage } from './pages/OwnerLoginPage'
+import { EditPage } from './pages/EditPage'
 import './holiday.css'
 import './holiday-glass.css'
 
@@ -44,6 +47,9 @@ export default function App() {
         <Route path="more" element={<MorePage />} />
         <Route path="more/:partnerId" element={<MorePartnerPage />} />
         <Route path="privacy" element={<PrivacyPage />} />
+        <Route path="activate/:token" element={<ActivatePage />} />
+        <Route path="owner" element={<OwnerLoginPage />} />
+        <Route path="edit" element={<EditPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
         </Route>
       </Routes>
