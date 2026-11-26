@@ -52,7 +52,7 @@ export const homesPartners: PartnerProfile[] = [
     tagline: 'Villas · apartments · island-wide',
     logoLabel: 'RE',
     logoColor: '#cc0000',
-    logoImg: `${base}homes-media/logos/remax-logo.png`,
+    logoImg: `${base}homes-media/logos/remax-gold.png?v=20261126`,
     highlightImg: `${base}homes-media/remax-villa-1.jpg`,
     highlightCaption: 'Villa for sale — RE/MAX BonBini Curaçao',
     heroImg: `${base}homes-media/remax-curacao-bridge.jpg`,
