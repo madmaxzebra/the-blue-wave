@@ -10,4 +10,9 @@ backend/.env
 # Holiday Wave PHP backend (not shipped to Cursor; bundled only in Bluehost zip)
 the-blue-holiday-wave/server/api/config.php
 the-blue-holiday-wave/server/api/uploads/
-the-blue-holiday-wave/storage/
+the-blue-holiday-wave/storage/*
+!the-blue-holiday-wave/storage/.htaccess
+!the-blue-holiday-wave/storage/community/
+the-blue-holiday-wave/storage/community/*
+!the-blue-holiday-wave/storage/community/.gitignore
+!the-blue-holiday-wave/storage/community/.htaccess
