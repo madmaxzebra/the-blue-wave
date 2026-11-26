@@ -1,0 +1,16 @@
+Blue Holiday Wave website upload (cloud version, real Curacao partners)
+
+File: holidayseason-upload-cloud.zip  (built from the-blue-holiday-wave-cloud with BLUEHOST_BUILD=1)
+Goes to: thebluewavefans.com/holidayseason/
+
+Option A - Bluehost file manager (works from a phone or PC)
+1. Open Bluehost File Manager.
+2. Go to the folder website_cba6a5f5/holidayseason  (public_html/holidayseason).
+3. Upload holidayseason-upload-cloud.zip, then choose Extract and replace existing files.
+4. Open thebluewavefans.com/holidayseason/ and hard refresh (Ctrl+F5 on PC).
+
+Option B - Desktop agent (has the FTP password on the PC)
+Ask it to upload the extracted zip contents to website_cba6a5f5/holidayseason using
+deploy-scripts/_ftp_upload_dist.py. It must never put the FTP password in the repo.
+
+Note: this replaces the live /holidayseason/ site with the cloud version.
