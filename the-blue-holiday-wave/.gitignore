@@ -1,5 +1,7 @@
 node_modules
 dist
+publish-bundle/*
+!publish-bundle/.gitkeep
 storage/community/*
 !storage/community/.gitignore
 server/api/config.php
