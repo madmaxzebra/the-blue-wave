@@ -116,6 +116,7 @@ if ($action === 'claim') {
 
     $entry = [
         'id' => bin2hex(random_bytes(6)),
+        'number' => new_claim_number(),
         'partner' => $partner,
         'partnerName' => $partnerName,
         'ownerName' => $ownerName,

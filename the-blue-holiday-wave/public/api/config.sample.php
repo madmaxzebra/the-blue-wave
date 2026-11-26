@@ -13,7 +13,8 @@ return [
     // Public address of the website folder, used in the activation link in the approved email.
     // Leave empty to work it out automatically.
     'SITE_URL' => 'https://www.thebluewavefans.com/holidayseason',
-    // How owners pay the subscription. Shown in the approved email (bank name, account number, reference).
+    // How owners pay the subscription. Shown in the approved email (bank name, account number).
+    // Use {claim} where the claim number should appear, for example: "Reference: {claim}".
     // If empty, the email asks them to reply for the payment details.
     'PAYMENT_DETAILS' => '',
     // Other websites or apps allowed to send reviews and claims (normally none; this site always works).

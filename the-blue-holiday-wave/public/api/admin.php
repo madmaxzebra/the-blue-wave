@@ -295,6 +295,7 @@ page_start('Blue Holiday Wave - owner dashboard');
     <input type="hidden" name="csrf" value="<?= h($csrf) ?>">
     <input type="hidden" name="id" value="<?= h($c['id']) ?>">
     <strong><?= h($c['partnerName'] ?: $c['partner']) ?></strong>
+    <span class="muted">&middot; <?= h(claim_number($c)) ?></span>
     <span class="badge b-<?= h($status) ?>"><?= h(strtoupper($status)) ?></span>
     <?php if ($activated): ?><span class="badge b-approved">PAGE ACTIVATED</span><?php endif; ?>
     <div class="muted"><?= h($c['partner']) ?> &middot; asked on <?= h(ago((string) $c['created'])) ?></div>

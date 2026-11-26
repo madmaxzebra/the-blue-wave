@@ -128,6 +128,16 @@ function read_list(string $name): array
     return is_array($list) ? $list : [];
 }
 
+/** A unique, easy-to-read claim number such as BHW-26-7F3A9C. Checked against every claim so far. */
+function new_claim_number(): string
+{
+    $taken = array_column(read_list('claims'), 'number');
+    do {
+        $number = 'BHW-' . gmdate('y') . '-' . strtoupper(bin2hex(random_bytes(3)));
+    } while (in_array($number, $taken, true));
+    return $number;
+}
+
 function body(int $max = MAX_BODY_BYTES): array
 {
     $raw = file_get_contents('php://input', false, null, 0, $max + 1);

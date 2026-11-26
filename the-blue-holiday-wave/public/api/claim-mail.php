@@ -38,6 +38,12 @@ function mail_money(float $amount): string
     return 'XCG ' . number_format($amount, 2, ',', '.');
 }
 
+/** The claim number shown to the owner, e.g. BHW-26-7F3A9C. Older claims get one from their id. */
+function claim_number(array $claim): string
+{
+    return (string) ($claim['number'] ?? ('BHW-' . strtoupper(substr((string) ($claim['id'] ?? '000000'), 0, 6))));
+}
+
 function can_reply(array $config): bool
 {
     return filter_var((string) ($config['ADMIN_EMAIL'] ?? ''), FILTER_VALIDATE_EMAIL) !== false;
@@ -183,7 +189,7 @@ function claim_mail_subject(string $pageName): string
     return "Thank you! Your claim for {$pageName} is in \u{2726}";
 }
 
-function claim_mail_text(string $firstName, string $pageName, string $email, bool $canReply): string
+function claim_mail_text(string $firstName, string $pageName, string $email, bool $canReply, string $number): string
 {
     $hours = CONFIRM_WITHIN_HOURS;
     $price1 = PRICE_FIRST_PERIOD;
@@ -195,6 +201,7 @@ function claim_mail_text(string $firstName, string $pageName, string $email, boo
 Thank you, {$firstName}!
 
 We received your request to claim "{$pageName}" on The Blue Holiday Wave.
+Your claim number: {$number}
 
 WHAT HAPPENS NOW
 Your request is being processed. We will confirm it within a maximum of {$hours} hours, and we will email you at {$email} as soon as it is done.
@@ -220,7 +227,7 @@ The Blue Holiday Wave is an independent guide and is not affiliated with the bra
 TXT;
 }
 
-function claim_mail_html(string $firstName, string $pageName, string $email, bool $canReply): string
+function claim_mail_html(string $firstName, string $pageName, string $email, bool $canReply, string $number): string
 {
     $first = mail_e($firstName);
     $page = mail_e($pageName);
@@ -243,7 +250,8 @@ function claim_mail_html(string $firstName, string $pageName, string $email, boo
 
     $inner = mail_row(
         '<h1 style="margin:0 0 10px;font-family:Georgia,\'Times New Roman\',serif;font-size:28px;line-height:1.25;color:#ffffff;">Thank you, ' . $first . '! &#10022;</h1>'
-        . '<p style="margin:0 0 18px;font-size:16px;line-height:1.6;color:#f7f3ec;">We received your request to claim <strong style="color:#d4a84b;">' . $page . '</strong> on The Blue Holiday Wave. Great to have you on board.</p>',
+        . '<p style="margin:0 0 18px;font-size:16px;line-height:1.6;color:#f7f3ec;">We received your request to claim <strong style="color:#d4a84b;">' . $page . '</strong> on The Blue Holiday Wave. Great to have you on board.</p>'
+        . '<p style="margin:10px 0 0;font-size:14px;color:#cdd6e6;">Your claim number: <strong style="color:#d4a84b;letter-spacing:1px;">' . mail_e($number) . '</strong></p>',
         '18px 28px 0'
     )
     . mail_row(mail_box('WHAT HAPPENS NOW', "Your request is being processed. We will confirm it within a <strong>maximum of {$hours} hours</strong>, and we will email you at <span style=\"color:#d4a84b;\">{$addr}</span> as soon as it is done."), '0 28px 6px')
@@ -278,8 +286,8 @@ function send_claim_confirmation(array $claim, array $config): bool
     return deliver_mail(
         $email,
         claim_mail_subject($page),
-        claim_mail_text($first, $page, $email, $reply),
-        claim_mail_html($first, $page, $email, $reply),
+        claim_mail_text($first, $page, $email, $reply, claim_number($claim)),
+        claim_mail_html($first, $page, $email, $reply, claim_number($claim)),
         $config
     );
 }
@@ -292,7 +300,7 @@ function approved_fee(): array
     return ['base' => FEE_BASE, 'tax' => $tax, 'total' => FEE_BASE + $tax];
 }
 
-function approved_mail_text(string $first, string $page, string $url, string $paymentDetails, bool $canReply): string
+function approved_mail_text(string $first, string $page, string $url, string $paymentDetails, bool $canReply, string $number): string
 {
     $fee = approved_fee();
     $base = PRICE_FIRST_PERIOD;
@@ -320,6 +328,7 @@ Choose your own username and password. Then you can change your text, change you
 YOUR SUBSCRIPTION
 The Blue Wave Holiday Season subscription: {$base} + 6% tax ({$tax}) = {$total}.
 Please pay this amount within {$days} working days.
+Claim number (use it as your payment reference): {$number}
 This subscription can be canceled anytime.
 
 {$pay}
@@ -336,7 +345,7 @@ You are receiving this because you asked to claim "{$page}" and we approved it. 
 TXT;
 }
 
-function approved_mail_html(string $first, string $page, string $url, string $paymentDetails, bool $canReply): string
+function approved_mail_html(string $first, string $page, string $url, string $paymentDetails, bool $canReply, string $number): string
 {
     $f = mail_e($first);
     $p = mail_e($page);
@@ -381,6 +390,7 @@ function approved_mail_html(string $first, string $page, string $url, string $pa
         . '<div style="font-family:Georgia,\'Times New Roman\',serif;font-size:26px;font-weight:bold;margin:4px 0 2px;">' . $base . ' + 6% tax</div>'
         . '<div style="font-size:15px;line-height:1.5;">' . $base . ' + ' . $tax . ' tax = <strong>' . $total . '</strong></div>'
         . '<div style="font-size:15px;line-height:1.5;margin-top:8px;"><strong>Please pay this amount within ' . $days . ' working days.</strong></div>'
+        . '<div style="font-size:15px;line-height:1.5;margin-top:6px;">Claim number (use it as your payment reference): <strong style="letter-spacing:1px;white-space:nowrap;">' . mail_e($number) . '</strong></div>'
         . '<div style="font-size:14px;line-height:1.5;margin-top:10px;">This subscription can be canceled anytime.</div>'
         . $payHtml
         . '</td></tr></table>',
@@ -402,19 +412,19 @@ function send_approved_email(array $claim, array $config, string $activationUrl)
     $page = page_name($claim);
     $first = first_name($claim);
     $reply = can_reply($config);
-    $pay = (string) ($config['PAYMENT_DETAILS'] ?? '');
+    $pay = str_replace(['\\r\\n', '\\n'], "\n", (string) ($config['PAYMENT_DETAILS'] ?? ''));
     return deliver_mail(
         (string) $claim['email'],
         "Congratulations! Your claim for {$page} is approved \u{2726}",
-        approved_mail_text($first, $page, $activationUrl, $pay, $reply),
-        approved_mail_html($first, $page, $activationUrl, $pay, $reply),
+        approved_mail_text($first, $page, $activationUrl, str_replace('{claim}', claim_number($claim), $pay), $reply, claim_number($claim)),
+        approved_mail_html($first, $page, $activationUrl, str_replace('{claim}', claim_number($claim), $pay), $reply, claim_number($claim)),
         $config
     );
 }
 
 /* ---------------------------------------------------------------- 3. claim denied */
 
-function denied_mail_text(string $first, string $page, bool $canReply): string
+function denied_mail_text(string $first, string $page, bool $canReply, string $number): string
 {
     $ask = $canReply
         ? 'Simply reply to this email with something that helps us confirm it (for example your business email or phone number, your chamber of commerce number, or a photo of your shop front or sign) and we will look again right away.'
@@ -424,6 +434,7 @@ function denied_mail_text(string $first, string $page, bool $canReply): string
 Hello {$first},
 
 Thank you for your interest in claiming "{$page}" on The Blue Holiday Wave.
+Your claim number: {$number}
 
 We checked your request carefully, and we were not able to approve it at this time, because we could not confirm that you are connected to this business.
 
@@ -444,7 +455,7 @@ You are receiving this because you asked to claim "{$page}". The Blue Holiday Wa
 TXT;
 }
 
-function denied_mail_html(string $first, string $page, bool $canReply): string
+function denied_mail_html(string $first, string $page, bool $canReply, string $number): string
 {
     $f = mail_e($first);
     $p = mail_e($page);
@@ -455,6 +466,7 @@ function denied_mail_html(string $first, string $page, bool $canReply): string
     $inner = mail_row(
         '<h1 style="margin:0 0 10px;font-family:Georgia,\'Times New Roman\',serif;font-size:26px;line-height:1.25;color:#ffffff;">Hello ' . $f . ',</h1>'
         . '<p style="margin:0 0 14px;font-size:16px;line-height:1.6;color:#f7f3ec;">Thank you for your interest in claiming <strong style="color:#d4a84b;">' . $p . '</strong> on The Blue Holiday Wave.</p>'
+        . '<p style="margin:0 0 14px;font-size:14px;color:#cdd6e6;">Your claim number: <strong style="color:#d4a84b;letter-spacing:1px;">' . mail_e($number) . '</strong></p>'
         . '<p style="margin:0 0 6px;font-size:16px;line-height:1.6;color:#f7f3ec;">We checked your request carefully, and we were not able to approve it at this time, because we could not confirm that you are connected to this business.</p>',
         '18px 28px 0'
     )
@@ -485,8 +497,8 @@ function send_denied_email(array $claim, array $config): bool
     return deliver_mail(
         (string) $claim['email'],
         "About your claim for {$page}",
-        denied_mail_text($first, $page, $reply),
-        denied_mail_html($first, $page, $reply),
+        denied_mail_text($first, $page, $reply, claim_number($claim)),
+        denied_mail_html($first, $page, $reply, claim_number($claim)),
         $config
     );
 }
