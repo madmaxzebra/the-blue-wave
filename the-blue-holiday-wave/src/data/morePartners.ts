@@ -51,7 +51,7 @@ export const morePartners: PartnerProfile[] = [
     lifestyleText:
       'Candle-lit tables at Harbor Restaurant look across Sint Anna Bay to the lights of Willemstad.',
     lifestyleImg: `${base}more-media/harbor-hotel-curacao-dinner-bay.jpg`,
-    collectionLabel: 'Sponsor · Holiday season',
+    collectionLabel: 'Sponsor · Holidays season',
     phone: '+599 9 841 0099',
     websiteUrl: 'https://www.harborhotelcuracao.com/',
     websiteLabel: 'harborhotelcuracao.com',
@@ -107,7 +107,7 @@ export const morePartners: PartnerProfile[] = [
     lifestyleText:
       "Maduro's Bank opened its doors on 2 January 1917 and later joined with Curiel's Bank, founded in 1927.",
     lifestyleImg: `${base}more-media/maduro-curiels-bank-history.jpg`,
-    collectionLabel: 'Sponsor · Holiday season',
+    collectionLabel: 'Sponsor · Holidays season',
     phone: '+599 9 466 1111',
     whatsapp: '59994661111',
     websiteUrl: 'https://www.mcb-bank.com/personal',
@@ -164,7 +164,7 @@ export const morePartners: PartnerProfile[] = [
     lifestyleText:
       'The festival has its own app for visitors, with the programme and festival info on your phone.',
     lifestyleImg: `${base}more-media/curacao-north-sea-jazz-willemstad.jpg`,
-    collectionLabel: 'Sponsor · Holiday season',
+    collectionLabel: 'Sponsor · Holidays season',
     phone: '+599 9 522 5299',
     websiteUrl: 'https://www.curacaonorthseajazz.com/en/',
     websiteLabel: 'curacaonorthseajazz.com',

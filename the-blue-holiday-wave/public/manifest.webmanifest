@@ -1,8 +1,8 @@
 {
   "id": "/holidayseason/",
-  "name": "Blue Holiday Wave",
-  "short_name": "Holiday Wave",
-  "description": "Fashion, homes, culinary, and the magazine for the holiday season in Curaçao.",
+  "name": "Holidays Blue Wave",
+  "short_name": "Holidays Wave",
+  "description": "Fashion, homes, culinary, and the magazine for the holidays in Curaçao.",
   "start_url": "/holidayseason/",
   "scope": "/holidayseason/",
   "display": "standalone",

@@ -95,7 +95,7 @@ function page_end(string $nonce): void
 function login_form(string $self, string $error = ''): void
 {
     page_start('Owner page - log in');
-    echo '<h1>Owner page</h1><p class="muted">The Blue Holiday Wave</p>';
+    echo '<h1>Owner page</h1><p class="muted">The Holidays Blue Wave</p>';
     if ($error !== '') {
         echo '<p class="err">' . h($error) . '</p>';
     }
@@ -267,7 +267,7 @@ function ago(string $iso): string
     return $t ? gmdate('j M Y H:i', $t) . ' UTC' : '';
 }
 
-page_start('Blue Holiday Wave - owner dashboard');
+page_start('Holidays Blue Wave - owner dashboard');
 ?>
 <div class="top">
   <h1>Owner dashboard</h1>
@@ -277,7 +277,7 @@ page_start('Blue Holiday Wave - owner dashboard');
     <button type="submit" class="plain">Log out</button>
   </form>
 </div>
-<p class="muted">The Blue Holiday Wave &middot;
+<p class="muted">The Holidays Blue Wave &middot;
   <?= $counts['pending'] ?> waiting &middot; <?= $counts['approved'] ?> approved &middot; <?= $counts['denied'] ?> denied</p>
 
 <?php if ($flash): ?>

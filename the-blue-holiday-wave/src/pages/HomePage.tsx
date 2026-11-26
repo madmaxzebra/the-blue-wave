@@ -86,7 +86,7 @@ export function HomePage() {
 
       <div className="page--home__content">
 
-      <p className="page__kicker home__kicker">Curaçao • Holiday Season 2026</p>
+      <p className="page__kicker home__kicker">Curaçao • Holidays Season 2026</p>
 
       <div className="home__hero">
         <img
@@ -100,7 +100,7 @@ export function HomePage() {
         />
       </div>
 
-      <p className="home__tagline">Holiday season, Blue Wave style</p>
+      <p className="home__tagline">Holidays season, Blue Wave style</p>
 
       <p className="page__lead home__focus">
         Now focused on Fashion &amp; Lifestyle, Real Estate, and Culinary for the
@@ -127,7 +127,7 @@ export function HomePage() {
 
         <p className="page__kicker">Get the app</p>
 
-        <h3>Blue Holiday Wave on your phone</h3>
+        <h3>Holidays Blue Wave on your phone</h3>
 
         <p className="get-app__row">
 

@@ -85,7 +85,7 @@ function deliver_mail(string $to, string $subject, string $text, string $html, a
     $boundary = 'bhw_' . bin2hex(random_bytes(8));
     $headers = [
         'MIME-Version: 1.0',
-        'From: ' . mail_header_text('The Blue Holiday Wave') . " <{$from}>",
+        'From: ' . mail_header_text('The Holidays Blue Wave') . " <{$from}>",
         'Content-Type: multipart/alternative; boundary="' . $boundary . '"',
         'X-Auto-Response-Suppress: OOF, AutoReply',
     ];
@@ -135,12 +135,12 @@ function mail_shell(string $title, string $preheader, string $inner, string $foo
 <tr><td align="center" style="padding:24px 12px;">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;background:#0a2a5c;border:1px solid #6b5a2e;border-radius:18px;font-family:Helvetica,Arial,sans-serif;">
 <tr><td align="center" style="padding:30px 24px 6px;">
-<div style="font-size:12px;letter-spacing:3px;color:#d4a84b;">CURA&Ccedil;AO &middot; HOLIDAY SEASON 2026</div>
-<div style="font-family:Georgia,'Times New Roman',serif;font-size:26px;color:#ffffff;margin-top:8px;">The Blue <span style="color:#d4a84b;">Holiday</span> Wave</div>
+<div style="font-size:12px;letter-spacing:3px;color:#d4a84b;">CURA&Ccedil;AO &middot; HOLIDAYS SEASON 2026</div>
+<div style="font-family:Georgia,'Times New Roman',serif;font-size:26px;color:#ffffff;margin-top:8px;">The <span style="color:#d4a84b;">Holidays</span> Blue Wave</div>
 </td></tr>
 {$inner}
 <tr><td style="padding:22px 28px 26px;">
-<p style="margin:0;font-size:12px;line-height:1.5;color:#8fa0bd;border-top:1px solid #1d3f73;padding-top:14px;">{$footer}<br>The Blue Holiday Wave is an independent guide and is not affiliated with the brands it lists.</p>
+<p style="margin:0;font-size:12px;line-height:1.5;color:#8fa0bd;border-top:1px solid #1d3f73;padding-top:14px;">{$footer}<br>The Holidays Blue Wave is an independent guide and is not affiliated with the brands it lists.</p>
 </td></tr>
 </table>
 </td></tr></table>
@@ -200,7 +200,7 @@ function claim_mail_text(string $firstName, string $pageName, string $email, boo
     return <<<TXT
 Thank you, {$firstName}!
 
-We received your request to claim "{$pageName}" on The Blue Holiday Wave.
+We received your request to claim "{$pageName}" on The Holidays Blue Wave.
 Your claim number: {$number}
 
 WHAT HAPPENS NOW
@@ -219,11 +219,11 @@ SIMPLE, HONEST PRICING
  * This subscription can be canceled anytime.
 {$reply}
 Warm regards,
-The Blue Holiday Wave team
+The Holidays Blue Wave team
 
 --
 You are receiving this because someone asked to claim "{$pageName}" with this email address. If that was not you, you can ignore this email.
-The Blue Holiday Wave is an independent guide and is not affiliated with the brands it lists.
+The Holidays Blue Wave is an independent guide and is not affiliated with the brands it lists.
 TXT;
 }
 
@@ -250,12 +250,12 @@ function claim_mail_html(string $firstName, string $pageName, string $email, boo
 
     $inner = mail_row(
         '<h1 style="margin:0 0 10px;font-family:Georgia,\'Times New Roman\',serif;font-size:28px;line-height:1.25;color:#ffffff;">Thank you, ' . $first . '! &#10022;</h1>'
-        . '<p style="margin:0 0 18px;font-size:16px;line-height:1.6;color:#f7f3ec;">We received your request to claim <strong style="color:#d4a84b;">' . $page . '</strong> on The Blue Holiday Wave. Great to have you on board.</p>'
+        . '<p style="margin:0 0 18px;font-size:16px;line-height:1.6;color:#f7f3ec;">We received your request to claim <strong style="color:#d4a84b;">' . $page . '</strong> on The Holidays Blue Wave. Great to have you on board.</p>'
         . '<p style="margin:10px 0 0;font-size:14px;color:#cdd6e6;">Your claim number: <strong style="color:#d4a84b;letter-spacing:1px;">' . mail_e($number) . '</strong></p>',
         '18px 28px 0'
     )
     . mail_row(mail_box('WHAT HAPPENS NOW', "Your request is being processed. We will confirm it within a <strong>maximum of {$hours} hours</strong>, and we will email you at <span style=\"color:#d4a84b;\">{$addr}</span> as soon as it is done."), '0 28px 6px')
-    . mail_row('<h2 style="margin:0 0 6px;font-family:Georgia,\'Times New Roman\',serif;font-size:21px;color:#ffffff;">Make your page shine this holiday season</h2>' . $benefits, '22px 28px 0')
+    . mail_row('<h2 style="margin:0 0 6px;font-family:Georgia,\'Times New Roman\',serif;font-size:21px;color:#ffffff;">Make your page shine for the holidays</h2>' . $benefits, '22px 28px 0')
     . mail_row(
         '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:linear-gradient(135deg,#f6d878,#d4a84b 55%,#a77b22);background-color:#d4a84b;border-radius:14px;"><tr><td style="padding:18px 20px;color:#2a1c00;">'
         . '<div style="font-size:12px;letter-spacing:2px;font-weight:bold;">SIMPLE, HONEST PRICING</div>'
@@ -266,7 +266,7 @@ function claim_mail_html(string $firstName, string $pageName, string $email, boo
         . '</td></tr></table>',
         '20px 28px 0'
     )
-    . mail_row($reply . '<p style="margin:0 0 6px;font-size:15px;color:#f7f3ec;">Warm regards,<br><strong>The Blue Holiday Wave team</strong></p>', '22px 28px 0');
+    . mail_row($reply . '<p style="margin:0 0 6px;font-size:15px;color:#f7f3ec;">Warm regards,<br><strong>The Holidays Blue Wave team</strong></p>', '22px 28px 0');
 
     return mail_shell(
         "Your claim for {$pageName} is in",
@@ -315,7 +315,7 @@ function approved_mail_text(string $first, string $page, string $url, string $pa
 Congratulations, {$first}! Your claim is approved.
 Welcome to the Blue Wave Family.
 
-"{$page}" is now yours to shape on The Blue Holiday Wave.
+"{$page}" is now yours to shape on The Holidays Blue Wave.
 
 The holiday season is the island's brightest time. Visitors are planning dinners, gifts, stays and outfits right now, and your page is where they meet you. Make it sparkle: fresh photos, a warm welcome, and the details that make you, you.
 
@@ -326,7 +326,7 @@ CHECK OUT YOUR EDITING ADMIN PAGE
 Choose your own username and password. Then you can change your text, change your logo and photos, and add new photos.
 
 YOUR SUBSCRIPTION
-The Blue Wave Holiday Season subscription: {$base} + 6% tax ({$tax}) = {$total}.
+The Blue Wave Holidays Season subscription: {$base} + 6% tax ({$tax}) = {$total}.
 Please pay this amount within {$days} working days.
 Claim number (use it as your payment reference): {$number}
 This subscription can be canceled anytime.
@@ -338,10 +338,10 @@ YOU STAY IN CONTROL
  * Your password stays yours: we never see it.
 
 Welcome to the family,
-The Blue Holiday Wave team
+The Holidays Blue Wave team
 
 --
-You are receiving this because you asked to claim "{$page}" and we approved it. The Blue Holiday Wave is an independent guide and is not affiliated with the brands it lists.
+You are receiving this because you asked to claim "{$page}" and we approved it. The Holidays Blue Wave is an independent guide and is not affiliated with the brands it lists.
 TXT;
 }
 
@@ -373,7 +373,7 @@ function approved_mail_html(string $first, string $page, string $url, string $pa
         '<div style="font-size:12px;letter-spacing:2px;color:#d4a84b;margin-bottom:6px;">CLAIM APPROVED &#10022;</div>'
         . '<h1 style="margin:0 0 10px;font-family:Georgia,\'Times New Roman\',serif;font-size:28px;line-height:1.25;color:#ffffff;">Congratulations, ' . $f . '!<br>Your claim is approved.</h1>'
         . '<p style="margin:0 0 6px;font-size:18px;line-height:1.5;color:#d4a84b;font-family:Georgia,\'Times New Roman\',serif;">Welcome to the Blue Wave Family.</p>'
-        . '<p style="margin:12px 0 0;font-size:16px;line-height:1.6;color:#f7f3ec;"><strong style="color:#ffffff;">' . $p . '</strong> is now yours to shape on The Blue Holiday Wave.</p>'
+        . '<p style="margin:12px 0 0;font-size:16px;line-height:1.6;color:#f7f3ec;"><strong style="color:#ffffff;">' . $p . '</strong> is now yours to shape on The Holidays Blue Wave.</p>'
         . '<p style="margin:12px 0 0;font-size:15px;line-height:1.6;color:#cdd6e6;">The holiday season is the island&rsquo;s brightest time. Visitors are planning dinners, gifts, stays and outfits right now, and your page is where they meet you. Make it sparkle: fresh photos, a warm welcome, and the details that make you, you.</p>',
         '18px 28px 0'
     )
@@ -386,7 +386,7 @@ function approved_mail_html(string $first, string $page, string $url, string $pa
     . mail_row(
         '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:linear-gradient(135deg,#f6d878,#d4a84b 55%,#a77b22);background-color:#d4a84b;border-radius:14px;"><tr><td style="padding:18px 20px;color:#2a1c00;">'
         . '<div style="font-size:12px;letter-spacing:2px;font-weight:bold;">YOUR SUBSCRIPTION</div>'
-        . '<div style="font-size:15px;line-height:1.5;margin-top:6px;">The Blue Wave Holiday Season subscription</div>'
+        . '<div style="font-size:15px;line-height:1.5;margin-top:6px;">The Blue Wave Holidays Season subscription</div>'
         . '<div style="font-family:Georgia,\'Times New Roman\',serif;font-size:26px;font-weight:bold;margin:4px 0 2px;">' . $base . ' + 6% tax</div>'
         . '<div style="font-size:15px;line-height:1.5;">' . $base . ' + ' . $tax . ' tax = <strong>' . $total . '</strong></div>'
         . '<div style="font-size:15px;line-height:1.5;margin-top:8px;"><strong>Please pay this amount within ' . $days . ' working days.</strong></div>'
@@ -397,7 +397,7 @@ function approved_mail_html(string $first, string $page, string $url, string $pa
         '22px 28px 0'
     )
     . mail_row('<h2 style="margin:0 0 6px;font-family:Georgia,\'Times New Roman\',serif;font-size:21px;color:#ffffff;">You stay in control</h2>' . $trust, '22px 28px 0')
-    . mail_row('<p style="margin:0 0 6px;font-size:15px;color:#f7f3ec;">Welcome to the family,<br><strong>The Blue Holiday Wave team</strong></p>', '20px 28px 0');
+    . mail_row('<p style="margin:0 0 6px;font-size:15px;color:#f7f3ec;">Welcome to the family,<br><strong>The Holidays Blue Wave team</strong></p>', '20px 28px 0');
 
     return mail_shell(
         "Your claim for {$page} is approved",
@@ -433,7 +433,7 @@ function denied_mail_text(string $first, string $page, bool $canReply, string $n
     return <<<TXT
 Hello {$first},
 
-Thank you for your interest in claiming "{$page}" on The Blue Holiday Wave.
+Thank you for your interest in claiming "{$page}" on The Holidays Blue Wave.
 Your claim number: {$number}
 
 We checked your request carefully, and we were not able to approve it at this time, because we could not confirm that you are connected to this business.
@@ -445,13 +445,13 @@ GOOD TO KNOW
  * Nothing has been charged and nothing is due.
  * Your page stays online for visitors to read and review.
 
-Thank you for being part of Cura\u{e7}ao's holiday season.
+Thank you for being part of the holidays in Cura\u{e7}ao.
 
 Warm regards,
-The Blue Holiday Wave team
+The Holidays Blue Wave team
 
 --
-You are receiving this because you asked to claim "{$page}". The Blue Holiday Wave is an independent guide and is not affiliated with the brands it lists.
+You are receiving this because you asked to claim "{$page}". The Holidays Blue Wave is an independent guide and is not affiliated with the brands it lists.
 TXT;
 }
 
@@ -465,7 +465,7 @@ function denied_mail_html(string $first, string $page, bool $canReply, string $n
 
     $inner = mail_row(
         '<h1 style="margin:0 0 10px;font-family:Georgia,\'Times New Roman\',serif;font-size:26px;line-height:1.25;color:#ffffff;">Hello ' . $f . ',</h1>'
-        . '<p style="margin:0 0 14px;font-size:16px;line-height:1.6;color:#f7f3ec;">Thank you for your interest in claiming <strong style="color:#d4a84b;">' . $p . '</strong> on The Blue Holiday Wave.</p>'
+        . '<p style="margin:0 0 14px;font-size:16px;line-height:1.6;color:#f7f3ec;">Thank you for your interest in claiming <strong style="color:#d4a84b;">' . $p . '</strong> on The Holidays Blue Wave.</p>'
         . '<p style="margin:0 0 14px;font-size:14px;color:#cdd6e6;">Your claim number: <strong style="color:#d4a84b;letter-spacing:1px;">' . mail_e($number) . '</strong></p>'
         . '<p style="margin:0 0 6px;font-size:16px;line-height:1.6;color:#f7f3ec;">We checked your request carefully, and we were not able to approve it at this time, because we could not confirm that you are connected to this business.</p>',
         '18px 28px 0'
@@ -479,7 +479,7 @@ function denied_mail_html(string $first, string $page, bool $canReply, string $n
         ]),
         '22px 28px 0'
     )
-    . mail_row('<p style="margin:0 0 6px;font-size:15px;line-height:1.6;color:#cdd6e6;">Thank you for being part of Cura&ccedil;ao&rsquo;s holiday season.</p><p style="margin:12px 0 6px;font-size:15px;color:#f7f3ec;">Warm regards,<br><strong>The Blue Holiday Wave team</strong></p>', '16px 28px 0');
+    . mail_row('<p style="margin:0 0 6px;font-size:15px;line-height:1.6;color:#cdd6e6;">Thank you for being part of the holidays in Cura&ccedil;ao.</p><p style="margin:12px 0 6px;font-size:15px;color:#f7f3ec;">Warm regards,<br><strong>The Holidays Blue Wave team</strong></p>', '16px 28px 0');
 
     return mail_shell(
         "About your claim for {$page}",

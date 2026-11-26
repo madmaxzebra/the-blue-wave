@@ -1,10 +1,10 @@
 export function PrivacyPage() {
   return (
     <section className="page">
-      <p className="page__kicker">The Blue Holiday Wave</p>
+      <p className="page__kicker">The Holidays Blue Wave</p>
       <h2 className="page__title">Privacy</h2>
       <p className="page__lead">
-        This app shows public holiday content: fashion, homes, culinary,
+        This app shows public seasonal guide content: fashion, homes, culinary,
         magazine, and sponsors. You can browse without an account.
       </p>
       <div className="grid">

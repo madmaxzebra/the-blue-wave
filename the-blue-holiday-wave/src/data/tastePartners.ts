@@ -50,7 +50,7 @@ export const tastePartners: PartnerProfile[] = [
     lifestyleText:
       'The Pen is one of those places where you book for dinner and stay until the stars are out. Reserve for the holidays.',
     lifestyleImg: `${base}taste-media/avila-hotel-beach.jpg`,
-    collectionLabel: 'Menu · Holiday season',
+    collectionLabel: 'Menu · Holidays season',
     phone: '+599 9 461 4377',
     whatsapp: '59997881949',
     websiteUrl: 'https://www.avilabeachhotel.com/discover-avila/restaurants-bars/',
@@ -106,7 +106,7 @@ export const tastePartners: PartnerProfile[] = [
     lifestyleText:
       'December in Curaçao means warm evenings and long sunsets. Blues is the best place on the island to watch it happen — feet near the water, drink in hand.',
     lifestyleImg: `${base}taste-media/avila-schooner-bar.jpg`,
-    collectionLabel: 'Menu · Holiday season',
+    collectionLabel: 'Menu · Holidays season',
     phone: '+599 9 461 4377',
     whatsapp: '59997881949',
     websiteUrl: 'https://www.avilabeachhotel.com/discover-avila/restaurants-bars/',
@@ -121,7 +121,7 @@ export const tastePartners: PartnerProfile[] = [
     name: 'Schooner Bar',
     area: 'Avila Beach Hotel · Pietermaai',
     intro:
-      "The Schooner Bar is Avila's beachfront tiki bar — a relaxed open-air bar on the sand, right at the water's edge. Cocktails, fresh juices, and beach vibes from midday until late. The most laid-back spot at the hotel during the holiday season.",
+      "The Schooner Bar is Avila's beachfront tiki bar — a relaxed open-air bar on the sand, right at the water's edge. Cocktails, fresh juices, and beach vibes from midday until late. The most laid-back spot at the hotel during the holidays.",
     tagline: 'Beachfront · cocktails · sand & sea',
     logoLabel: 'SB',
     logoColor: '#c47e1a',
@@ -163,7 +163,7 @@ export const tastePartners: PartnerProfile[] = [
     lifestyleText:
       "December in Curaçao is warm and sunny. Spend the afternoon at Avila's beach bar — no schedule, no rush.",
     lifestyleImg: `${base}taste-media/avila-hotel-beach.jpg`,
-    collectionLabel: 'Drinks · Holiday season',
+    collectionLabel: 'Drinks · Holidays season',
     phone: '+599 9 461 4377',
     whatsapp: '59997881949',
     websiteUrl: 'https://www.avilabeachhotel.com/discover-avila/restaurants-bars/',

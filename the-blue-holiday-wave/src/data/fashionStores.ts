@@ -79,7 +79,7 @@ export const fashionStores: FashionStore[] = [
     id: 'zara-sambil',
     name: 'ZARA',
     area: 'Sambil Mall',
-    partnerKicker: 'Blue Holiday Wave - Fashion Partner',
+    partnerKicker: 'Holidays Blue Wave - Fashion Partner',
     listBlurb: 'Women’s, men’s, and kids’ looks at Sambil Mall.',
     intro:
       'ZARA brings its latest women’s, men’s, and kids’ collections to Sambil Shopping Mall in Willemstad — global trends under one roof. The flagship store sits in the mall at units L-31, L-34, and L-40, a short ride from Punda and the hotel strip.',
@@ -139,7 +139,7 @@ export const fashionStores: FashionStore[] = [
     id: 'out-of-the-blue',
     name: 'Out of the Blue',
     area: 'Mambo Beach',
-    partnerKicker: 'Blue Holiday Wave - Fashion Partner',
+    partnerKicker: 'Holidays Blue Wave - Fashion Partner',
     listBlurb: 'Jewelry, local art, and gifts at Mambo Beach.',
     intro:
       'Out of the Blue is a gift gallery on Mambo Beach Boulevard in Willemstad. Their Facebook page describes the shop as local art, jewelry, and beach wear. Their own Tripadvisor note also names gift galleries at Mambo, Jan Thiel, and the Megapier.',
@@ -198,7 +198,7 @@ export const fashionStores: FashionStore[] = [
     id: 'only-curacao',
     name: 'ONLY',
     area: 'Willemstad',
-    partnerKicker: 'Blue Holiday Wave - Fashion Partner',
+    partnerKicker: 'Holidays Blue Wave - Fashion Partner',
     listBlurb: 'Women’s looks at Mambo, Sambil, and Saliña Galleries.',
     intro:
       'ONLY is a clothing store. Sambil’s store page calls it a denim shop for women, at units L-110 and L-112 by the Caracasbaai Entrance. Their Facebook page lists Saliña galleries 102, and their own posts name both Saliña Galleries and Sambil.',
@@ -262,7 +262,7 @@ export const fashionStores: FashionStore[] = [
     id: 'mayas-clothing',
     name: 'Mayas Clothing',
     area: 'Punda',
-    partnerKicker: 'Blue Holiday Wave – Fashion Partner',
+    partnerKicker: 'Holidays Blue Wave – Fashion Partner',
     listBlurb: 'Sneakers, slides, and clothing in the heart of Punda — 4.9 stars on Google.',
     intro:
       "Mayas is a shoes and clothing store on Prinsenstraat in the heart of historic Willemstad. Exclusive sneakers, Yeezy slides, and trending clothing — with nearly 50 Google reviews, a 4.9 rating, and a layaway plan if you can't pay in full.",
@@ -319,7 +319,7 @@ export const fashionStores: FashionStore[] = [
     id: 'emilia-boutique',
     name: 'Emilia Boutique',
     area: 'Punda & Zuikertuin',
-    partnerKicker: 'Blue Holiday Wave – Fashion Partner',
+    partnerKicker: 'Holidays Blue Wave – Fashion Partner',
     listBlurb: 'Dresses, swimwear & party looks — Punda & Zuikertuin.',
     intro:
       "Emilia Boutique is a women's fashion and swimwear store in Punda, with a second shop at Zuikertuin Mall. Dresses, party and concert outfits, bikinis, cover-ups, and beach essentials — new collections land often.",
@@ -376,10 +376,10 @@ export const fashionStores: FashionStore[] = [
     id: 'soho-boutique',
     name: 'SOHO Boutique',
     area: 'Rif Fort · Otrobanda',
-    partnerKicker: 'Blue Holiday Wave – Fashion Partner',
+    partnerKicker: 'Holidays Blue Wave – Fashion Partner',
     listBlurb: 'Designer to daytime — Rif Fort & Renaissance Mall.',
     intro:
-      "SOHO Boutique is a women's fashion boutique at the Renaissance Mall in Otrobanda, inside the Rif Fort. From designer dresses to smart casual, jeans, swimsuits, shoes, and accessories — every look for the holiday season, steps from the waterfront.",
+      "SOHO Boutique is a women's fashion boutique at the Renaissance Mall in Otrobanda, inside the Rif Fort. From designer dresses to smart casual, jeans, swimsuits, shoes, and accessories — every look for the holidays, steps from the waterfront.",
     hideVisitHeading: true,
     tagline: 'Designer · casual · Rif Fort',
     logoLabel: 'SH',
@@ -432,7 +432,7 @@ export const fashionStores: FashionStore[] = [
     id: 'victorias-secret-sambil',
     name: "Victoria's Secret",
     area: 'Sambil Mall',
-    partnerKicker: 'Blue Holiday Wave – Fashion Partner',
+    partnerKicker: 'Holidays Blue Wave – Fashion Partner',
     listBlurb: 'Lingerie, beauty, fragrance & accessories — just opened at Sambil.',
     intro:
       "Victoria's Secret is now open at Sambil Shopping Mall — the iconic global brand bringing its full range of lingerie, sleepwear, beauty, perfume, and accessories to Curaçao. Located at unit L-35 near the Cas Abou Entrance / Punda Square. Grand opening: 19 November 2026.",
@@ -476,7 +476,7 @@ export const fashionStores: FashionStore[] = [
         img: `${base}fashion-media/vs/vs-lingerie-5.jpg`,
         tag: 'Accessories',
         title: 'Gift sets & beauty',
-        text: 'The bestselling perfumes and gift sets — perfect for the holiday season.',
+        text: 'The bestselling perfumes and gift sets — perfect for the holidays.',
       },
     ],
     visitBannerImg: `${base}fashion-media/vs/vs-lingerie-6.jpg`,

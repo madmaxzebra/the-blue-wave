@@ -6,7 +6,7 @@ export function TastePage() {
     <PartnerDirectory
       kicker="Culinary"
       title="Restaurants & tables"
-      lead="Browse culinary partners for the holiday season. Tap a restaurant for their menu page — one advertiser, one table story."
+      lead="Browse culinary partners for the holidays. Tap a restaurant for their menu page — one advertiser, one table story."
       basePath="/taste"
       partners={tastePartners}
       foot="All restaurants are real places in Curaçao with verified contact details. Tap any restaurant for its full page, hours, WhatsApp, and directions."

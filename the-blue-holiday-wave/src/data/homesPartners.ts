@@ -93,7 +93,7 @@ export const homesPartners: PartnerProfile[] = [
     lifestyleText:
       'Curaçao real estate is in demand — holiday buyers, digital nomads, and long-term investors all look here. RE/MAX BonBini has the island knowledge to match you with the right property.',
     lifestyleImg: `${base}homes-media/remax-jan-sofat-villa.jpg`,
-    collectionLabel: 'Listings · Holiday season',
+    collectionLabel: 'Listings · Holidays season',
     websiteUrl: 'https://realestate-curacao.com/en/',
     websiteLabel: 'realestate-curacao.com',
     phone: '+599 9 843 9770',
@@ -148,7 +148,7 @@ export const homesPartners: PartnerProfile[] = [
     lifestyleText:
       'New to Curaçao? Many people start with a rental and take their time. Real Estate Caribe knows the rental market well and can guide you from the first viewing to the keys.',
     lifestyleImg: `${base}homes-media/real-estate-caribe-resort-pool-2.jpg`,
-    collectionLabel: 'Listings · Holiday season',
+    collectionLabel: 'Listings · Holidays season',
     phone: '+599 9 562 4089',
     whatsapp: '59995624089',
     websiteUrl: 'https://www.realestatecaribe.com/',
@@ -204,7 +204,7 @@ export const homesPartners: PartnerProfile[] = [
     lifestyleText:
       'Many homes on their list are in resort communities and residential areas with shared pools and green gardens — a good fit for a longer stay in Curaçao.',
     lifestyleImg: `${base}homes-media/gs-real-estate-family-home.jpg`,
-    collectionLabel: 'Listings · Holiday season',
+    collectionLabel: 'Listings · Holidays season',
     phone: '+599 9 524 4433',
     whatsapp: '59995244433',
     websiteUrl: 'https://www.gs-realestate.com/',
