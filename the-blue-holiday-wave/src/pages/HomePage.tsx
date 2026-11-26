@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 import { FlipDigit } from '../components/FlipDigit'
+import { SponsorTicker } from '../components/SponsorTicker'
 
 import './HomePage.css'
 
@@ -121,7 +122,7 @@ export function HomePage() {
 
       </div>
 
-
+      <SponsorTicker />
 
       <section className="get-app card" aria-label="Get the app">
 
