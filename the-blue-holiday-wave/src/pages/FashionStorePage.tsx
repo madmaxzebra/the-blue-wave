@@ -3,15 +3,19 @@ import { getFashionStore } from '../data/fashionStores'
 import { LogoImg } from '../components/LogoImg'
 import { ClaimPage } from '../components/community/ClaimPage'
 import { ReviewSection } from '../components/community/ReviewSection'
+import { PartnerGallery } from '../components/PartnerGallery'
+import { applyOverrides, useOwnerContent } from '../lib/ownerContent'
 import './FashionStorePage.css'
 
 export function FashionStorePage() {
   const { storeId } = useParams()
-  const store = getFashionStore(storeId)
+  const content = useOwnerContent()
+  const baseStore = getFashionStore(storeId)
 
-  if (!store) {
+  if (!baseStore) {
     return <Navigate to="/fashion" replace />
   }
+  const store = applyOverrides(baseStore, content[baseStore.id])
 
   return (
     <section
@@ -163,6 +167,8 @@ export function FashionStorePage() {
           ) : null}
         </article>
       ) : null}
+
+      <PartnerGallery photos={content[store.id]?.gallery} name={store.name} />
 
       <ClaimPage partnerId={store.id} partnerName={store.name} noun="store" />
       <ReviewSection partnerId={store.id} partnerName={store.name} />

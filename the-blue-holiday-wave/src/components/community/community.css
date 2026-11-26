@@ -359,3 +359,13 @@
     transition: none !important;
   }
 }
+
+.claim__login {
+  margin: 0.6rem 0 0;
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.claim__login a {
+  color: var(--gold);
+}

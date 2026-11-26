@@ -1,9 +1,11 @@
 import { Link } from 'react-router-dom'
 import { fashionStores } from '../data/fashionStores'
 import { LogoImg } from '../components/LogoImg'
+import { applyOverrides, useOwnerContent } from '../lib/ownerContent'
 import './FashionPage.css'
 
 export function FashionPage() {
+  const content = useOwnerContent()
   return (
     <section className="page fashion-dir">
       <p className="page__kicker">Fashion & Lifestyle</p>
@@ -14,7 +16,9 @@ export function FashionPage() {
       </p>
 
       <ul className="fashion-dir__list">
-        {fashionStores.map((store) => (
+        {fashionStores.map((baseStore) => {
+          const store = applyOverrides(baseStore, content[baseStore.id])
+          return (
           <li key={store.id}>
             <Link className="fashion-dir__row" to={`/fashion/${store.id}`}>
               <span
@@ -46,7 +50,8 @@ export function FashionPage() {
               </span>
             </Link>
           </li>
-        ))}
+          )
+        })}
       </ul>
 
       <p className="fashion-dir__foot">

@@ -3,6 +3,8 @@ import type { PartnerProfile } from '../data/homesPartners'
 import { LogoImg } from './LogoImg'
 import { ClaimPage } from './community/ClaimPage'
 import { ReviewSection } from './community/ReviewSection'
+import { PartnerGallery } from './PartnerGallery'
+import { applyOverrides, useOwnerContent } from '../lib/ownerContent'
 import '../pages/FashionStorePage.css'
 
 type Props = {
@@ -22,11 +24,13 @@ export function PartnerDetailPage({
   getPartner,
 }: Props) {
   const { partnerId } = useParams()
-  const partner = getPartner(partnerId)
+  const content = useOwnerContent()
+  const base = getPartner(partnerId)
 
-  if (!partner) {
+  if (!base) {
     return <Navigate to={listPath} replace />
   }
+  const partner = applyOverrides(base, content[base.id])
 
   return (
     <section className="page fashion-store">
@@ -138,6 +142,8 @@ export function PartnerDetailPage({
           <p>{partner.lifestyleText}</p>
         </div>
       </article>
+
+      <PartnerGallery photos={content[partner.id]?.gallery} name={partner.name} />
 
       <ClaimPage partnerId={partner.id} partnerName={partner.name} noun={noun} />
       <ReviewSection partnerId={partner.id} partnerName={partner.name} />

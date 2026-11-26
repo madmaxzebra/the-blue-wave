@@ -1,4 +1,5 @@
 import { useId, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { CommunityError, postClaim, prepareForm } from '../../lib/community'
 import './community.css'
 
@@ -56,6 +57,10 @@ export function ClaimPage({ partnerId, partnerName, noun }: Props) {
         If you are the owner of this {noun}, you can claim this page. You will get full control
         over the management of this page and you can change photos, change text, and add new
         photos.
+      </p>
+
+      <p className="claim__login">
+        Already claimed? <Link to="/owner">Log in to edit your page</Link>
       </p>
 
       {open ? (

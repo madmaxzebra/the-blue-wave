@@ -70,6 +70,11 @@ async function readyToken(refresh = false): Promise<string> {
   return token.value
 }
 
+/** The real-visitor code, for the owner activation form (empty when there is no server). */
+export async function getFormToken(): Promise<string> {
+  return readyToken()
+}
+
 /** POST with the real-visitor code; asks for a new code once if the old one was refused. */
 async function send(action: string, payload: Record<string, unknown>): Promise<ServerAnswer | null> {
   for (let attempt = 0; attempt < 2; attempt++) {

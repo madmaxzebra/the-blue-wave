@@ -10,3 +10,4 @@ backend/.env
 # Reviews/claims server files that must stay on the server
 the-blue-holiday-wave/public/api/config.php
 the-blue-holiday-wave/public/api/data/
+the-blue-holiday-wave/public/api/uploads/

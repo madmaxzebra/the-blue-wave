@@ -23,6 +23,13 @@ export function PrivacyPage() {
             your connection for up to a day; it cannot be turned back into
             your address. To remove a review or request, contact us.
           </p>
+          <p>
+            Owners who activate a page choose a username and a password. We
+            keep the username and a scrambled version of the password (we
+            cannot read it), the text and photos the owner adds to their page,
+            and the date of each change. Those texts and photos are shown
+            publicly on that page. To remove an owner account, contact us.
+          </p>
         </article>
         <article className="card">
           <h3>Third-party content</h3>
