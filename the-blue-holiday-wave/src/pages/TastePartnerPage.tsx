@@ -7,6 +7,7 @@ export function TastePartnerPage() {
       listPath="/taste"
       listLabel="All restaurants"
       partnerKind="Culinary partner"
+      noun="restaurant"
       getPartner={getTastePartner}
     />
   )

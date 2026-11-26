@@ -1,12 +1,16 @@
 import { Link, Navigate, useParams } from 'react-router-dom'
 import type { PartnerProfile } from '../data/homesPartners'
 import { LogoImg } from './LogoImg'
+import { ClaimPage } from './community/ClaimPage'
+import { ReviewSection } from './community/ReviewSection'
 import '../pages/FashionStorePage.css'
 
 type Props = {
   listPath: string
   listLabel: string
   partnerKind: string
+  /** restaurant, agency, company ... used in the claim text */
+  noun: string
   getPartner: (id: string | undefined) => PartnerProfile | undefined
 }
 
@@ -14,6 +18,7 @@ export function PartnerDetailPage({
   listPath,
   listLabel,
   partnerKind,
+  noun,
   getPartner,
 }: Props) {
   const { partnerId } = useParams()
@@ -133,6 +138,9 @@ export function PartnerDetailPage({
           <p>{partner.lifestyleText}</p>
         </div>
       </article>
+
+      <ClaimPage partnerId={partner.id} partnerName={partner.name} noun={noun} />
+      <ReviewSection partnerId={partner.id} partnerName={partner.name} />
     </section>
   )
 }

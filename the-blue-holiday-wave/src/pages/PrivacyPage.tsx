@@ -14,6 +14,15 @@ export function PrivacyPage() {
             The app itself does not ask for your name, email, photos, or
             location. We do not sell personal information.
           </p>
+          <p>
+            If you leave a review, we keep the stars, text, and name you type
+            (you can leave the name empty) and show them publicly on that
+            page. If you ask to claim a page as its owner, we keep the name,
+            email, phone, and message you type, only to contact you about
+            that page. To limit spam we also keep a one-way scrambled code of
+            your connection for up to a day; it cannot be turned back into
+            your address. To remove a review or request, contact us.
+          </p>
         </article>
         <article className="card">
           <h3>Third-party content</h3>
@@ -24,8 +33,8 @@ export function PrivacyPage() {
             <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">
               Google's privacy policy
             </a>
-            . Store photos are served by Unsplash; Unsplash may log your
-            request according to their own policy.
+            . Some photos and logos are the businesses' own, used to
+            describe them in this independent guide.
           </p>
         </article>
         <article className="card">

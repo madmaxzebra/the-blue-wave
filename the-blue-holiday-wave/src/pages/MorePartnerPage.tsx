@@ -7,6 +7,7 @@ export function MorePartnerPage() {
       listPath="/more"
       listLabel="All sponsors"
       partnerKind="Season sponsor"
+      noun="business"
       getPartner={getMorePartner}
     />
   )
