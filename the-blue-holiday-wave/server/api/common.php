@@ -88,6 +88,12 @@ function app_root(): string
     return dirname(__DIR__, 2);
 }
 
+/** Full repo checkout with PHP API; not a single-folder static publish. */
+function in_tree_storage_allowed(string $holidayRoot): bool
+{
+    return is_file($holidayRoot . '/package.json') && is_dir($holidayRoot . '/server');
+}
+
 /**
  * Sensitive JSON (claims, reviews, owner accounts) lives outside the web root,
  * never under a URL path such as /api/data/.
@@ -113,8 +119,13 @@ function data_dir(): string
         // On Bluehost-style hosts, keep data above public_html (not URL-fetchable).
         if (in_array(basename($parent), ['public_html', 'www', 'httpdocs', 'htdocs'], true)) {
             $dir = dirname($parent) . '/bhw-private/community';
-        } else {
+        } elseif (in_tree_storage_allowed($holidayRoot)) {
             $dir = $holidayRoot . '/storage/community';
+        } else {
+            fail(
+                503,
+                'Community storage is not configured for this host. Set DATA_DIR in api/config.php.'
+            );
         }
     }
 

@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import { FlipDigit } from '../components/FlipDigit'
 import { SponsorTicker } from '../components/SponsorTicker'
 import { StayUpdatedBox } from '../components/StayUpdatedBox'
+import { isStayUpdatedAllowed } from '../lib/stayUpdatedPolicy'
 
 import './HomePage.css'
 
@@ -125,7 +126,7 @@ export function HomePage() {
 
       <SponsorTicker />
 
-      <StayUpdatedBox />
+      {isStayUpdatedAllowed() ? <StayUpdatedBox /> : null}
 
       <section className="get-app card" aria-label="Get the app">
 

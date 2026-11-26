@@ -6,7 +6,6 @@ import {
   readCachedSubscriberCount,
   submitStayUpdatedSignup,
 } from '../lib/stayUpdated'
-
 import './StayUpdatedBox.css'
 
 const LOADING_MESSAGES = [

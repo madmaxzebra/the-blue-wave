@@ -30,3 +30,14 @@ owner data are stored in `storage/community/` on the server (outside `public_htm
 under a web URL.
 
 Copy `server/api/config.sample.php` to `config.php` on the host and set `ADMIN_KEY`.
+On Bluehost, set `DATA_DIR` if needed (defaults to `bhw-private/community` above `public_html`).
+
+## Publish (Cursor Apps)
+Build static assets only — the PHP API and `storage/` are not part of the hosted app bundle:
+
+```bash
+npm run build
+```
+
+Publish the `dist/` folder (not the repo root). Stay Updated appears only on
+`thebluewavefans.com`, or when `VITE_STAY_UPDATED_ENABLED=true` is set for your preview.

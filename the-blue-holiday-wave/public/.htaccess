@@ -1,6 +1,11 @@
 DirectoryIndex index.html
 Options -Indexes
 
+# Block direct HTTP access to on-disk community JSON (API only).
+<IfModule mod_rewrite.c>
+  RewriteRule ^storage(/|$) - [F,L]
+</IfModule>
+
 <IfModule mod_mime.c>
   AddType application/manifest+json .webmanifest
 </IfModule>
