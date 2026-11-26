@@ -10,9 +10,46 @@ declare(strict_types=1);
 header('Content-Type: application/json; charset=utf-8');
 header('X-Content-Type-Options: nosniff');
 header('Cache-Control: no-store');
-header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Headers: content-type');
-header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
+header('Vary: Origin');
+
+$config = is_file(__DIR__ . '/config.php') ? (include __DIR__ . '/config.php') : [];
+if (!is_array($config)) {
+    $config = [];
+}
+
+/**
+ * Only this website (same host) may call the server. Other sites, for example the mobile app,
+ * must be listed in config.php under ALLOWED_ORIGINS. No Origin header means a plain
+ * address-bar or server call, which is fine for reading.
+ */
+function origin_allowed(array $config): bool
+{
+    $origin = (string) ($_SERVER['HTTP_ORIGIN'] ?? '');
+    if ($origin === '') {
+        return true;
+    }
+    $host = (string) parse_url($origin, PHP_URL_HOST);
+    $port = parse_url($origin, PHP_URL_PORT);
+    $originHost = $host . ($port ? ':' . $port : '');
+    if ($originHost !== '' && strcasecmp($originHost, (string) ($_SERVER['HTTP_HOST'] ?? '')) === 0) {
+        return true;
+    }
+    $list = $config['ALLOWED_ORIGINS'] ?? [];
+    return is_array($list) && in_array($origin, $list, true);
+}
+
+if (!origin_allowed($config)) {
+    http_response_code(403);
+    echo json_encode(['error' => 'This website is not allowed to use this service.']);
+    exit;
+}
+
+$requestOrigin = (string) ($_SERVER['HTTP_ORIGIN'] ?? '');
+if ($requestOrigin !== '') {
+    header('Access-Control-Allow-Origin: ' . $requestOrigin);
+    header('Access-Control-Allow-Headers: content-type');
+    header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
+}
 
 if (($_SERVER['REQUEST_METHOD'] ?? '') === 'OPTIONS') {
     http_response_code(204);
@@ -133,6 +170,30 @@ function visitor_hash(): string
     return hash('sha256', ($_SERVER['REMOTE_ADDR'] ?? 'unknown') . $salt);
 }
 
+/** A short-lived signed code the page asks for when the form opens. A script that posts blindly has none. */
+function form_token(): string
+{
+    $issued = (string) time();
+    $saltFile = data_dir() . '/.salt';
+    visitor_hash();
+    $secret = (string) @file_get_contents($saltFile);
+    return $issued . '.' . hash_hmac('sha256', $issued, $secret);
+}
+
+function form_token_ok(mixed $token): bool
+{
+    if (!is_string($token) || !preg_match('/^(\d{9,12})\.([a-f0-9]{64})$/', $token, $m)) {
+        return false;
+    }
+    visitor_hash();
+    $secret = (string) @file_get_contents(data_dir() . '/.salt');
+    if (!hash_equals(hash_hmac('sha256', $m[1], $secret), $m[2])) {
+        return false;
+    }
+    $age = time() - (int) $m[1];
+    return $age >= 2 && $age <= 43200;
+}
+
 function too_many(string $bucket, int $limit, int $windowSeconds, string $who): bool
 {
     return (bool) mutate('ratelimit', function (array &$list) use ($bucket, $limit, $windowSeconds, $who) {
@@ -176,6 +237,11 @@ function summary(string $partner): array
 $method = $_SERVER['REQUEST_METHOD'] ?? 'GET';
 $action = (string) ($_GET['action'] ?? '');
 
+if ($method === 'GET' && $action === 'token') {
+    echo json_encode(['token' => form_token()]);
+    exit;
+}
+
 if ($method === 'GET' && $action === 'reviews') {
     echo json_encode(summary(partner_id($_GET['partner'] ?? '')), JSON_UNESCAPED_UNICODE);
     exit;
@@ -190,6 +256,10 @@ $input = body();
 if (clean($input['website'] ?? '', 200) !== '') {
     echo json_encode(['ok' => true]);
     exit;
+}
+
+if (!form_token_ok($input['token'] ?? null)) {
+    fail(400, 'Please reload the page and try again.');
 }
 
 if ($action === 'review') {
@@ -261,11 +331,6 @@ if ($action === 'claim') {
     mutate('claims', function (array &$list) use ($entry) {
         $list[] = $entry;
     });
-
-    $config = is_file(__DIR__ . '/config.php') ? (include __DIR__ . '/config.php') : [];
-    if (!is_array($config)) {
-        $config = [];
-    }
 
     require_once __DIR__ . '/claim-mail.php';
     $sent = send_claim_confirmation($entry, $config);

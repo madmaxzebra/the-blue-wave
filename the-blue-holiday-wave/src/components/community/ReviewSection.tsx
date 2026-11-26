@@ -1,5 +1,5 @@
 import { useEffect, useId, useState } from 'react'
-import { CommunityError, getReviews, postReview, type ReviewSummary } from '../../lib/community'
+import { CommunityError, getReviews, postReview, prepareForm, type ReviewSummary } from '../../lib/community'
 import { StarsDisplay, StarsInput } from './Stars'
 import './community.css'
 
@@ -33,6 +33,7 @@ export function ReviewSection({ partnerId, partnerName }: Props) {
     setRating(0)
     setText('')
     getReviews(partnerId).then((s) => alive && setSummary(s))
+    prepareForm()
     return () => {
       alive = false
     }
