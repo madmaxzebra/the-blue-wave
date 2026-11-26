@@ -8,6 +8,9 @@ const PRICE_FIRST_PERIOD_UNTIL = 'the end of January 2027';
 const PRICE_MONTHLY = 'XCG 49,50';
 const CONFIRM_WITHIN_HOURS = 4;
 
+/** Bank details shown in every approved email. {claim} becomes the owner's claim number. */
+const PAYMENT_TEXT = "Bank: Orcobank\nAccount number: 1098710195\nReference: Zebra Productions {claim}";
+
 const FEE_BASE = 175.00;
 const FEE_TAX_RATE = 0.06;
 const PAY_WITHIN_WORKING_DAYS = 5;
@@ -412,7 +415,8 @@ function send_approved_email(array $claim, array $config, string $activationUrl)
     $page = page_name($claim);
     $first = first_name($claim);
     $reply = can_reply($config);
-    $pay = str_replace(['\\r\\n', '\\n'], "\n", (string) ($config['PAYMENT_DETAILS'] ?? ''));
+    $configured = trim((string) ($config['PAYMENT_DETAILS'] ?? ''));
+    $pay = str_replace(['\\r\\n', '\\n'], "\n", $configured !== '' ? $configured : PAYMENT_TEXT);
     return deliver_mail(
         (string) $claim['email'],
         "Congratulations! Your claim for {$page} is approved \u{2726}",
