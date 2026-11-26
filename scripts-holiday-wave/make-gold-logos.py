@@ -98,9 +98,9 @@ def logo_mask(im: Image.Image, mode: str = "dark") -> tuple[np.ndarray, np.ndarr
         mask = np.clip((1.0 - rgba[..., :3].min(axis=-1) - 0.08) / 0.3, 0.0, 1.0)
     else:
         mask = np.clip((0.9 - lum) / 0.55, 0.0, 1.0)
-    if alpha.min() >= 0.98:
+    if alpha.min() >= 0.98 and min(mask.shape) > 320:
         # Scanned/JPEG logos often have a faint frame line at the very edge.
-        edge = max(3, int(0.004 * mask.shape[1]))
+        edge = max(2, int(0.003 * min(mask.shape)))
         mask[:edge, :] = mask[-edge:, :] = 0
         mask[:, :edge] = mask[:, -edge:] = 0
     return mask, lum
@@ -111,6 +111,16 @@ def gold_gradient(height: int, top: int, bottom: int) -> np.ndarray:
     pos = [p for p, _ in GOLD_STOPS]
     cols = np.stack([np.interp(ys, pos, [c[i] for _, c in GOLD_STOPS]) for i in range(3)], axis=-1)
     return cols / 255.0
+
+
+def pad_rgba(img: Image.Image, frac: float = 0.12) -> Image.Image:
+    """Transparent margin so wordmarks are not clipped in tight UI frames."""
+    w, h = img.size
+    pad_x = max(18, int(w * frac))
+    pad_y = max(18, int(h * frac))
+    out = Image.new("RGBA", (w + 2 * pad_x, h + 2 * pad_y), (0, 0, 0, 0))
+    out.paste(img, (pad_x, pad_y), img)
+    return out
 
 
 def blur(arr: np.ndarray, radius: float) -> np.ndarray:
@@ -157,11 +167,25 @@ def make_gold(src: Path, dst: Path, mode: str = "dark") -> None:
     result = np.dstack([out_rgb, out_a])
     img = Image.fromarray(np.clip(result * 255, 0, 255).astype(np.uint8), "RGBA")
 
-    bbox = img.getchannel("A").point(lambda v: 255 if v > 8 else 0).getbbox()
-    pad = int(0.02 * w)
-    img = img.crop((max(0, bbox[0] - pad), max(0, bbox[1] - pad), min(w, bbox[2] + pad), min(h, bbox[3] + pad)))
+    # Crop from the shape mask (not the drop shadow) so wide wordmarks stay intact.
+    left, right = int(xs.min()), int(xs.max())
+    top, bottom = int(ys.min()), int(ys.max())
+    span = max(right - left, bottom - top, 1)
+    pad = max(24, int(0.10 * span))
+    img = img.crop(
+        (
+            max(0, left - pad),
+            max(0, top - pad),
+            min(w, right + pad + 1),
+            min(h, bottom + pad + 1),
+        )
+    )
     if img.width > OUT_MAX_WIDTH:
-        img = img.resize((OUT_MAX_WIDTH, round(img.height * OUT_MAX_WIDTH / img.width)), Image.LANCZOS)
+        img = img.resize(
+            (OUT_MAX_WIDTH, max(1, round(img.height * OUT_MAX_WIDTH / img.width))),
+            Image.LANCZOS,
+        )
+    img = pad_rgba(img, 0.10)
     dst.parent.mkdir(parents=True, exist_ok=True)
     img.save(dst, optimize=True)
     print(f"{dst.relative_to(ROOT)}  {img.size[0]}x{img.size[1]}")
