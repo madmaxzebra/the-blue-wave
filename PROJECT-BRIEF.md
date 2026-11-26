@@ -47,13 +47,14 @@ Until then the hub is not reachable and nobody can use it. Carry on without it.
 **Both**: claim a folder before editing, post short updates, set the project status, release when done.
 
 ## 5b. Task for the Desktop agent, from Max (25 Nov 2026) - do this first
-Max approved: **upload the cloud version of the Blue Holiday Wave website to thebluewavefans.com/holidayseason/.**
+Max approved: **upload the LATEST Blue Holiday Wave website (folder `the-blue-holiday-wave`, real logos and photos) to thebluewavefans.com/holidayseason/.**
+The old cloud copy `the-blue-holiday-wave-cloud` is outdated - do not upload it.
 1. `git pull origin main`.
-2. Unzip `uploads/holidayseason-upload-cloud.zip` and upload everything in it to the remote folder
+2. Unzip `uploads/holidayseason-upload.zip` and upload everything in it to the remote folder
    `website_cba6a5f5/holidayseason` (replace existing files; keep `.htaccess`). `deploy-scripts/_ftp_upload_dist.py` shows the
    host, user and folder; use the FTP password from this PC. Never write the password into the repo.
 3. Do NOT touch your own folder `the-blue-holiday-wave`.
-4. Open thebluewavefans.com/holidayseason/ and check it loads with the real Curacao partners (Victoria's Secret under fashion).
+4. Open thebluewavefans.com/holidayseason/ and check it loads with the gold 3D logos and real photos in every section.
 5. Tell Max in one plain sentence whether it worked. Post it in Agent Hub if connected, and set the status to done.
 Delete this section when finished.
 
@@ -70,7 +71,8 @@ Starting ideas: phone alerts (Telegram or push), a "morning summary" of all proj
 
 ## 8. House rules
 - **Never overwrite another agent's folder.** Put new work in a new folder.
-  `the-blue-holiday-wave` = the desktop agent's version. `the-blue-holiday-wave-cloud` = the phone agent's version.
+  `the-blue-holiday-wave` = the LATEST version of the holiday app (all real logos and photos). Build and upload from here.
+  `the-blue-holiday-wave-cloud` = an old copy from 24 Nov. Outdated: never build or upload it.
 - Work on a side branch. When finished and tested, ask Max "Shall I put this into main?" and merge when he says yes.
   Work that is only on a side branch is not live.
 - Never put passwords, keys or tokens in the repo: it is public.
