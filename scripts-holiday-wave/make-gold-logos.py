@@ -19,8 +19,10 @@ ROOT = Path(__file__).resolve().parent.parent
 ORIGINALS = ROOT / "scripts-holiday-wave" / "logo-originals"
 PUBLIC = ROOT / "the-blue-holiday-wave" / "public"
 
-# (source file, output file)
+# (source file, output file[, mask mode]). Mask mode "colour" is for light or
+# coloured logos on white, where darkness alone would lose the shape.
 LOGOS = [
+    (ORIGINALS / "mayas-clothing.png", PUBLIC / "fashion-media/logos/mayas-clothing-gold.png", "colour"),
     (ORIGINALS / "emilia.jpg", PUBLIC / "fashion-media/logos/emilia-boutique-gold.png"),
     (ORIGINALS / "soho-boutique.png", PUBLIC / "fashion-media/logos/soho-boutique-gold.png"),
     (ORIGINALS / "victorias-secret.svg", PUBLIC / "fashion-media/logos/victorias-secret-gold.png"),
@@ -28,6 +30,8 @@ LOGOS = [
     (PUBLIC / "taste-media/logos/blues-logo.png", PUBLIC / "taste-media/logos/blues-gold.png"),
     (PUBLIC / "taste-media/logos/schooner-logo.png", PUBLIC / "taste-media/logos/schooner-bar-gold.png"),
     (PUBLIC / "homes-media/logos/remax-logo.png", PUBLIC / "homes-media/logos/remax-gold.png"),
+    (PUBLIC / "homes-media/logos/global-re.svg", PUBLIC / "homes-media/logos/global-re-gold.png"),
+    (PUBLIC / "homes-media/logos/caribbean-park.svg", PUBLIC / "homes-media/logos/caribbean-park-gold.png"),
 ]
 
 WORK_WIDTH = 1400
@@ -53,7 +57,7 @@ def load(path: Path) -> Image.Image:
     return im.resize((WORK_WIDTH, max(1, round(im.height * scale))), Image.LANCZOS)
 
 
-def logo_mask(im: Image.Image) -> tuple[np.ndarray, np.ndarray]:
+def logo_mask(im: Image.Image, mode: str = "dark") -> tuple[np.ndarray, np.ndarray]:
     """Return (mask 0..1, luminance 0..1). Uses alpha when the file is transparent,
     otherwise treats a white background as empty."""
     rgba = np.asarray(im).astype(np.float32) / 255.0
@@ -61,8 +65,11 @@ def logo_mask(im: Image.Image) -> tuple[np.ndarray, np.ndarray]:
     alpha = rgba[..., 3]
     if alpha.min() < 0.98:
         mask = alpha
+    elif mode == "colour":
+        mask = np.clip((1.0 - rgba[..., :3].min(axis=-1) - 0.08) / 0.3, 0.0, 1.0)
     else:
         mask = np.clip((0.9 - lum) / 0.55, 0.0, 1.0)
+    if alpha.min() >= 0.98:
         # Scanned/JPEG logos often have a faint frame line at the very edge.
         edge = max(3, int(0.004 * mask.shape[1]))
         mask[:edge, :] = mask[-edge:, :] = 0
@@ -82,9 +89,9 @@ def blur(arr: np.ndarray, radius: float) -> np.ndarray:
     return np.asarray(img.filter(ImageFilter.GaussianBlur(radius))).astype(np.float32) / 255.0
 
 
-def make_gold(src: Path, dst: Path) -> None:
+def make_gold(src: Path, dst: Path, mode: str = "dark") -> None:
     im = load(src)
-    mask, lum = logo_mask(im)
+    mask, lum = logo_mask(im, mode)
     ys, xs = np.nonzero(mask > 0.05)
     if len(ys) == 0:
         raise SystemExit(f"Empty logo: {src}")
@@ -132,5 +139,5 @@ def make_gold(src: Path, dst: Path) -> None:
 
 
 if __name__ == "__main__":
-    for source, target in LOGOS:
-        make_gold(source, target)
+    for source, target, *mode in LOGOS:
+        make_gold(source, target, *mode)
