@@ -1,12 +1,13 @@
-Blue Holiday Wave website upload (LATEST version: real logos and photos in all sections)
+Blue Holiday Wave website upload (latest: Stay Updated, sponsor ticker, home hero)
 
 File: holidayseason-upload.zip
-Built from the-blue-holiday-wave (main, commit 7db808d) with BLUEHOST_BUILD=1
+Built from the-blue-holiday-wave (main, commit b672976) with BLUEHOST_BUILD=1
 Goes to: thebluewavefans.com/holidayseason/
+
+Size is about 49 MB on disk (Explorer may show ~27–50 MB depending on how it counts).
 
 Bluehost File Manager
 1. Open the folder public_html/holidayseason (website_cba6a5f5/holidayseason).
-2. Delete the old holidayseason-upload-cloud.zip and the empty test files (index-curl-test.html, index-test-upload.html).
-3. Upload holidayseason-upload.zip, right-click it, Extract into this same folder, replace existing files.
-4. Check: index.html is about 1.4 KB, .htaccess about 1 KB, and assets/ contains index-DolsJU7T.js.
-5. Open thebluewavefans.com/holidayseason/ and hard refresh (Ctrl+F5).
+2. Upload holidayseason-upload.zip, right-click it, Extract into this same folder, replace existing files.
+3. Check: index.html is about 1.4 KB, api/ folder is present, assets/ contains index-DgdHDGqS.js.
+4. Open thebluewavefans.com/holidayseason/ and hard refresh (Ctrl+F5).
