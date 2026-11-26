@@ -8,7 +8,7 @@ import './HomePage.css'
 
 
 
-const LAUNCH = new Date('2026-12-01T00:00:00-04:00')
+const LAUNCH = new Date('2026-12-10T00:00:00-04:00')
 
 const TOPIC_ICONS = {
   fashion: `${import.meta.env.BASE_URL}holiday-media/icons/fashion-gold.png`,
@@ -84,7 +84,7 @@ export function HomePage() {
 
       <div className="page--home__content">
 
-      <p className="page__kicker">Coming 1 December 2026</p>
+      <p className="page__kicker">Coming 10 December 2026</p>
 
       <h2 className="page__title">Holiday season, Blue Wave style</h2>
 
