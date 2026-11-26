@@ -4,18 +4,18 @@ import './AppShell.css'
 const base = import.meta.env.BASE_URL
 
 const SECTION_ICONS: Record<string, { src: string; alt: string }> = {
-  fashion:  { src: `${base}holiday-media/icons/fashion-gold.png`,     alt: 'Fashion' },
+  fashion:  { src: `${base}holiday-media/icons/fashion-gold.png`,     alt: 'Fashion & Lifestyle' },
   homes:    { src: `${base}holiday-media/icons/realestate-gold.png`,  alt: 'Real Estate' },
-  taste:    { src: `${base}holiday-media/icons/culinary-gold.png`,    alt: 'Taste' },
+  taste:    { src: `${base}holiday-media/icons/culinary-gold.png`,    alt: 'Culinair' },
   magazine: { src: `${base}holiday-media/icons/magazine-gold.png`,    alt: 'Magazine' },
   more:     { src: `${base}holiday-media/icons/sponsors-gold.png`,    alt: 'More' },
 }
 
 const tabs = [
   { to: '/', label: 'Home', end: true },
-  { to: '/fashion', label: 'Fashion' },
-  { to: '/homes', label: 'Homes' },
-  { to: '/taste', label: 'Taste' },
+  { to: '/fashion', label: 'Fashion & Lifestyle' },
+  { to: '/homes', label: 'Real Estate' },
+  { to: '/taste', label: 'Culinair' },
   { to: '/magazine', label: 'Magazine' },
   { to: '/more', label: 'More' },
 ] as const

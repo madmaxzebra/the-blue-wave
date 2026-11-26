@@ -6,7 +6,7 @@ export function TastePartnerPage() {
     <PartnerDetailPage
       listPath="/taste"
       listLabel="All restaurants"
-      partnerKind="Culinary partner"
+      partnerKind="Culinair partner"
       noun="restaurant"
       getPartner={getTastePartner}
     />

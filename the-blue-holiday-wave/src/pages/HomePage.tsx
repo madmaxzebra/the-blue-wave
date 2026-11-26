@@ -103,7 +103,7 @@ export function HomePage() {
       <p className="home__tagline">Holidays season, Blue Wave style</p>
 
       <p className="page__lead home__focus">
-        Now focused on Fashion &amp; Lifestyle, Real Estate, and Culinary for the
+        Now focused on Fashion &amp; Lifestyle, Real Estate, and Culinair for the
         holidays in Curaçao.
       </p>
 
@@ -209,7 +209,7 @@ export function HomePage() {
 
           <div className="topic__copy">
 
-            <strong>Culinary</strong>
+            <strong>Culinair</strong>
 
             <span>Partner restaurants and holiday menus</span>
 

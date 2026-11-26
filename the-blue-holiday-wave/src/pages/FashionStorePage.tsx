@@ -41,7 +41,7 @@ export function FashionStorePage() {
           ) : null}
         </span>
         <p className="page__kicker fashion-store__kicker">
-          {store.partnerKicker ?? `${store.area} · Fashion partner`}
+          {store.partnerKicker ?? `${store.area} · Fashion & Lifestyle partner`}
         </p>
         <p className="page__lead fashion-store__tagline">{store.tagline}</p>
       </header>
