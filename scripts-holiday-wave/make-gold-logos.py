@@ -30,8 +30,8 @@ LOGOS = [
     (PUBLIC / "taste-media/logos/blues-logo.png", PUBLIC / "taste-media/logos/blues-gold.png"),
     (PUBLIC / "taste-media/logos/schooner-logo.png", PUBLIC / "taste-media/logos/schooner-bar-gold.png"),
     (PUBLIC / "homes-media/logos/remax-logo.png", PUBLIC / "homes-media/logos/remax-gold.png"),
-    (PUBLIC / "homes-media/logos/global-re.svg", PUBLIC / "homes-media/logos/global-re-gold.png"),
-    (PUBLIC / "homes-media/logos/caribbean-park.svg", PUBLIC / "homes-media/logos/caribbean-park-gold.png"),
+    (ORIGINALS / "real-estate-caribe.svg", PUBLIC / "homes-media/logos/real-estate-caribe-gold.png"),
+    (ORIGINALS / "gs-real-estate.png", PUBLIC / "homes-media/logos/gs-real-estate-gold.png"),
 ]
 
 WORK_WIDTH = 1400
