@@ -60,7 +60,7 @@ export function ClaimPage({ partnerId, partnerName, noun }: Props) {
           {done ? (
             <p className="claim__done" role="status">
               {done === 'live'
-                ? 'Thank you! We received your request. We will contact you by email to confirm that you are the owner.'
+                ? 'Thank you! We just emailed you a confirmation. Your request is being processed and will be confirmed within 4 hours.'
                 : 'Preview mode: this request was only kept on this device. On the live website it is sent to us.'}
             </p>
           ) : (
