@@ -7,6 +7,46 @@
   z-index: 1;
 }
 
+.page--home .home__kicker {
+  text-align: center;
+  margin-bottom: 0.65rem;
+}
+
+.page--home .home__hero {
+  display: flex;
+  justify-content: center;
+  margin: 0.15rem 0 0.85rem;
+}
+
+.page--home .home__hero-logo {
+  display: block;
+  width: min(100%, 22.5rem);
+  height: auto;
+  filter: drop-shadow(0 8px 28px rgba(2, 8, 20, 0.55));
+}
+
+.page--home .home__tagline {
+  margin: 0 0 0.45rem;
+  text-align: center;
+  color: var(--gold);
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(0.95rem, 4.2vw, 1.15rem);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.page--home .home__soon {
+  margin: 0 0 0.35rem;
+  text-align: center;
+  color: var(--gold);
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(1.35rem, 5.5vw, 1.75rem);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
 /* Flip-style countdown (WeStreamF1-inspired), blue holiday tint */
 .page--home .count {
   display: flex;
