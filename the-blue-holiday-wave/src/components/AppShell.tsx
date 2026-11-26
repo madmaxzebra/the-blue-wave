@@ -22,34 +22,37 @@ const tabs = [
 
 export function AppShell() {
   const { pathname } = useLocation()
-  const section = pathname === '/' ? null : pathname.split('/').filter(Boolean)[0]
+  const isHome = pathname === '/' || pathname === ''
+  const section = isHome ? null : pathname.split('/').filter(Boolean)[0]
   const sectionIcon = section ? SECTION_ICONS[section] : null
 
   return (
     <div className="shell shell--landing">
-      <header className={`shell__top${sectionIcon ? ' shell__top--fashion' : ''}`}>
-        <p className="shell__eyebrow">Curaçao · Holidays Season 2026</p>
-        <h1 className="shell__brand">
-          The <span>Holidays</span> Blue Wave
-        </h1>
-        {sectionIcon ? (
-          <div className="shell__fashion-mark">
-            <img src={sectionIcon.src} alt={sectionIcon.alt} width={128} height={128} />
-          </div>
-        ) : (
-          <div className="shell__garland" aria-hidden="true">
-            <i />
-            <i />
-            <i />
-            <i />
-            <i />
-            <i />
-            <i />
-            <i />
-            <i />
-          </div>
-        )}
-      </header>
+      {!isHome && (
+        <header className={`shell__top${sectionIcon ? ' shell__top--fashion' : ''}`}>
+          <p className="shell__eyebrow">Curaçao · Holidays Season 2026</p>
+          <h1 className="shell__brand">
+            The <span>Holidays</span> Blue Wave
+          </h1>
+          {sectionIcon ? (
+            <div className="shell__fashion-mark">
+              <img src={sectionIcon.src} alt={sectionIcon.alt} width={128} height={128} />
+            </div>
+          ) : (
+            <div className="shell__garland" aria-hidden="true">
+              <i />
+              <i />
+              <i />
+              <i />
+              <i />
+              <i />
+              <i />
+              <i />
+              <i />
+            </div>
+          )}
+        </header>
+      )}
 
       <main className="shell__main">
         <Outlet />
