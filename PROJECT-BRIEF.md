@@ -46,6 +46,17 @@ Until then the hub is not reachable and nobody can use it. Carry on without it.
 
 **Both**: claim a folder before editing, post short updates, set the project status, release when done.
 
+## 5b. Task for the Desktop agent, from Max (25 Nov 2026) - do this first
+Max approved: **upload the cloud version of the Blue Holiday Wave website to thebluewavefans.com/holidayseason/.**
+1. `git pull origin main`.
+2. Unzip `uploads/holidayseason-upload-cloud.zip` and upload everything in it to the remote folder
+   `website_cba6a5f5/holidayseason` (replace existing files; keep `.htaccess`). `deploy-scripts/_ftp_upload_dist.py` shows the
+   host, user and folder; use the FTP password from this PC. Never write the password into the repo.
+3. Do NOT touch your own folder `the-blue-holiday-wave`.
+4. Open thebluewavefans.com/holidayseason/ and check it loads with the real Curacao partners (Victoria's Secret under fashion).
+5. Tell Max in one plain sentence whether it worked. Post it in Agent Hub if connected, and set the status to done.
+Delete this section when finished.
+
 ## 6. First brainstorm (once the hub is online)
 Max starts it with the Brainstorm button. Topic: **"What should Agent Hub get next, and in what order?"**
 Starting ideas: phone alerts (Telegram or push), a "morning summary" of all projects, a button to hand a task from one agent to the other.
