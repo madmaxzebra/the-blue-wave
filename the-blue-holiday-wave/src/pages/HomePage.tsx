@@ -102,6 +102,11 @@ export function HomePage() {
 
       <p className="home__tagline">Holiday season, Blue Wave style</p>
 
+      <p className="page__lead home__focus">
+        Now focused on Fashion &amp; Lifestyle, Real Estate, and Culinary for the
+        holidays in Curaçao.
+      </p>
+
       <p className="home__soon">Coming soon!</p>
 
       <div className="count" aria-live="polite" role="timer">
