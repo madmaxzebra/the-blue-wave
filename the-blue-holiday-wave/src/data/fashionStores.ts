@@ -131,7 +131,7 @@ export const fashionStores: FashionStore[] = [
     lifestyleTitle: 'Lunch with friends, still dressed up',
     lifestyleText:
       'Holiday on the island is as much about the table as the wardrobe — easy looks that move from shopping to a long, sunny lunch without a change.',
-    lifestyleImg: `${base}fashion-media/zara-lifestyle-lunch.jpg`,
+    lifestyleImg: `${base}fashion-media/zara-sambil-store.jpg`,
   },
   {
     id: 'out-of-the-blue',

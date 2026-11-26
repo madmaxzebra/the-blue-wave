@@ -86,7 +86,7 @@ export const tastePartners: PartnerProfile[] = [
         text: 'The restaurant sits directly over the water — no better seat on the island.',
       },
       {
-        img: `${base}taste-media/avila-schooner-bar.jpg`,
+        img: `${base}taste-media/avila-blues-exterior.jpg`,
         tag: 'Drinks',
         title: 'Sundowner drinks',
         text: "Order a rum punch and watch the sun drop into the sea.",
@@ -105,7 +105,7 @@ export const tastePartners: PartnerProfile[] = [
     lifestyleTitle: 'Pier drinks at golden hour',
     lifestyleText:
       'December in Curaçao means warm evenings and long sunsets. Blues is the best place on the island to watch it happen — feet near the water, drink in hand.',
-    lifestyleImg: `${base}taste-media/avila-schooner-bar.jpg`,
+    lifestyleImg: `${base}taste-media/avila-blues-exterior.jpg`,
     collectionLabel: 'Menu · Holiday season',
     phone: '+599 9 461 4377',
     whatsapp: '59997881949',
