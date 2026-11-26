@@ -5,14 +5,14 @@ export function PrivacyPage() {
       <h2 className="page__title">Privacy</h2>
       <p className="page__lead">
         This app shows public holiday content: fashion, homes, culinary,
-        magazine, and sponsors. You do not need an account to use it.
+        magazine, and sponsors. You can browse without an account.
       </p>
       <div className="grid">
         <article className="card">
           <h3>What we collect</h3>
           <p>
-            The app itself does not ask for your name, email, photos, or
-            location. We do not sell personal information.
+            We do not sell personal information. On the public holiday guide you
+            can browse without signing in.
           </p>
           <p>
             If you leave a review, we keep the stars, text, and name you type
@@ -22,6 +22,12 @@ export function PrivacyPage() {
             that page. To limit spam we also keep a one-way scrambled code of
             your connection for up to a day; it cannot be turned back into
             your address. To remove a review or request, contact us.
+          </p>
+          <p>
+            On the hosted preview app, reviews and claim requests may stay on
+            your device only until a PHP-capable server is connected. When the
+            live site uses server storage, data is kept outside the public
+            website folder on that host.
           </p>
           <p>
             Owners who activate a page choose a username and a password. We

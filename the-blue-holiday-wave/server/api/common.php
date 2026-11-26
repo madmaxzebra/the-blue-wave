@@ -82,17 +82,75 @@ function fail(int $status, string $message): never
     exit;
 }
 
+/** App root (the-blue-holiday-wave/), one level above server/api and public/. */
+function app_root(): string
+{
+    return dirname(__DIR__, 2);
+}
+
+/**
+ * Sensitive JSON (claims, reviews, owner accounts) lives outside the web root,
+ * never under a URL path such as /api/data/.
+ */
 function data_dir(): string
 {
-    $dir = __DIR__ . '/data';
+    static $resolved = null;
+    if ($resolved !== null) {
+        return $resolved;
+    }
+
+    $configFile = __DIR__ . '/config.php';
+    $config = is_file($configFile) ? (include $configFile) : [];
+    if (!is_array($config)) {
+        $config = [];
+    }
+
+    if (!empty($config['DATA_DIR']) && is_string($config['DATA_DIR'])) {
+        $dir = $config['DATA_DIR'];
+    } else {
+        $holidayRoot = app_root();
+        $parent = dirname($holidayRoot);
+        // On Bluehost-style hosts, keep data above public_html (not URL-fetchable).
+        if (in_array(basename($parent), ['public_html', 'www', 'httpdocs', 'htdocs'], true)) {
+            $dir = dirname($parent) . '/bhw-private/community';
+        } else {
+            $dir = $holidayRoot . '/storage/community';
+        }
+    }
+
     if (!is_dir($dir) && !@mkdir($dir, 0750, true) && !is_dir($dir)) {
         fail(500, 'Storage is not available.');
     }
-    $guard = $dir . '/.htaccess';
-    if (!is_file($guard)) {
-        @file_put_contents($guard, "Require all denied\nDeny from all\n");
+    @chmod($dir, 0750);
+    $resolved = $dir;
+
+    $legacy = __DIR__ . '/data';
+    if (is_dir($legacy)) {
+        foreach (glob($legacy . '/*') ?: [] as $file) {
+            if (!is_file($file)) {
+                continue;
+            }
+            $name = basename($file);
+            $dest = $dir . '/' . $name;
+            if (!is_file($dest)) {
+                @rename($file, $dest);
+            }
+        }
     }
-    return $dir;
+    $publicLegacy = app_root() . '/public/api/data';
+    if (is_dir($publicLegacy)) {
+        foreach (glob($publicLegacy . '/*') ?: [] as $file) {
+            if (!is_file($file)) {
+                continue;
+            }
+            $name = basename($file);
+            $dest = $dir . '/' . $name;
+            if (!is_file($dest)) {
+                @rename($file, $dest);
+            }
+        }
+    }
+    return $resolved;
 }
 
 /** Read-modify-write a JSON list under an exclusive lock. */

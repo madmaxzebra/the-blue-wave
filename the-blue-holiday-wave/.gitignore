@@ -1,5 +1,9 @@
 node_modules
 dist
+storage/community/*
+!storage/community/.gitignore
+server/api/config.php
+server/api/uploads/
 holidayseason-upload
 holidayseason-upload.zip
 .DS_Store
