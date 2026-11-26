@@ -263,7 +263,21 @@ if ($action === 'claim') {
     });
 
     $config = is_file(__DIR__ . '/config.php') ? (include __DIR__ . '/config.php') : [];
-    $to = is_array($config) ? (string) ($config['ADMIN_EMAIL'] ?? '') : '';
+    if (!is_array($config)) {
+        $config = [];
+    }
+
+    require_once __DIR__ . '/claim-mail.php';
+    $sent = send_claim_confirmation($entry, $config);
+    mutate('claims', function (array &$list) use ($entry, $sent) {
+        foreach ($list as $i => $row) {
+            if (($row['id'] ?? '') === $entry['id']) {
+                $list[$i]['confirmationSent'] = $sent;
+            }
+        }
+    });
+
+    $to = (string) ($config['ADMIN_EMAIL'] ?? '');
     if ($to !== '' && filter_var($to, FILTER_VALIDATE_EMAIL)) {
         $subject = 'Claim request: ' . ($partnerName ?: $partner);
         $text = "Someone wants to claim a page on The Blue Holiday Wave.\n\n"
@@ -272,7 +286,7 @@ if ($action === 'claim') {
     }
 
     http_response_code(201);
-    echo json_encode(['ok' => true]);
+    echo json_encode(['ok' => true, 'confirmationSent' => $sent]);
     exit;
 }
 
