@@ -35,7 +35,7 @@ export function FashionPage() {
                 <span className="fashion-dir__intro">{store.listBlurb ?? store.intro}</span>
               </span>
               <span
-                className={`fashion-dir__logo${(store.listLogoLarge ?? store.logoLarge) ? ' fashion-dir__logo--large' : ''}`}
+                className={`fashion-dir__logo${(store.listLogoLarge ?? store.logoLarge) ? ' fashion-dir__logo--large' : ''}${store.logoWide ? ' fashion-dir__logo--wide' : ''}`}
               >
                 <LogoImg
                   src={store.logoImg}

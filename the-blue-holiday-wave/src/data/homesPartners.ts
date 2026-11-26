@@ -14,6 +14,8 @@ export type PartnerProfile = {
   logoLabel: string
   logoColor: string
   logoImg: string
+  /** Horizontal wordmark — extra width, lower height in the layout */
+  logoWide?: boolean
   highlightImg: string
   highlightCaption: string
   heroImg: string
@@ -54,7 +56,7 @@ export const homesPartners: PartnerProfile[] = [
     tagline: 'Villas · apartments · island-wide',
     logoLabel: 'RE',
     logoColor: '#cc0000',
-    logoImg: `${base}homes-media/logos/remax-gold.png?v=20261126`,
+    logoImg: `${base}homes-media/logos/remax-gold.png?v=20261127logo`,
     highlightImg: `${base}homes-media/remax-villa-1.jpg`,
     highlightCaption: 'Villa for sale — RE/MAX BonBini Curaçao',
     heroImg: `${base}homes-media/remax-curacao-bridge.jpg`,
@@ -108,7 +110,8 @@ export const homesPartners: PartnerProfile[] = [
     tagline: 'Sales · rentals · management',
     logoLabel: 'RC',
     logoColor: '#040245',
-    logoImg: `${base}homes-media/logos/real-estate-caribe-gold.png?v=20261126`,
+    logoImg: `${base}homes-media/logos/real-estate-caribe-gold.png?v=20261127logo`,
+    logoWide: true,
     highlightImg: `${base}homes-media/real-estate-caribe-garden-pool.jpg`,
     highlightCaption: 'Home with garden pool — Real Estate Caribe',
     heroImg: `${base}homes-media/real-estate-caribe-spanish-water-aerial.jpg`,
@@ -164,7 +167,7 @@ export const homesPartners: PartnerProfile[] = [
     tagline: 'Sales · rentals · management',
     logoLabel: 'GS',
     logoColor: '#2a6a8a',
-    logoImg: `${base}homes-media/logos/gs-real-estate-gold.png?v=20261126`,
+    logoImg: `${base}homes-media/logos/gs-real-estate-gold.png?v=20261127logo`,
     highlightImg: `${base}homes-media/gs-real-estate-seru-coral-pool.jpg`,
     highlightCaption: 'Seru Coral resort pool — GS Real Estate listing',
     heroImg: `${base}homes-media/gs-real-estate-resort-pool.jpg`,

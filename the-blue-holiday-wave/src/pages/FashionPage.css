@@ -126,23 +126,31 @@
   min-width: 0;
   min-height: 158px;
   height: 100%;
-  padding: 0.25rem;
+  padding: 0.35rem 0.5rem;
+  overflow: visible;
   background: transparent;
   border: none;
   box-shadow: none;
   border-radius: 0;
 }
 .fashion-dir__logo img {
-  width: min(100%, 168px);
+  width: auto;
+  max-width: min(100%, 200px);
   height: auto;
-  max-height: 150px;
+  max-height: 200px;
   object-fit: contain;
+  object-position: center;
   display: block;
   background: transparent;
 }
 .fashion-dir__logo--large img {
-  width: min(100%, 220px);
-  max-height: 190px;
+  max-width: min(100%, 260px);
+  max-height: 240px;
+}
+.fashion-dir__logo--wide img {
+  width: min(100%, 300px);
+  max-width: min(100%, 300px);
+  max-height: 92px;
 }
 .fashion-dir__logo-caption {
   display: block;
@@ -174,11 +182,15 @@
     height: 150px;
   }
   .fashion-dir__logo img {
-    width: min(100%, 180px);
-    max-height: 160px;
+    max-width: min(100%, 220px);
+    max-height: 220px;
   }
   .fashion-dir__logo--large img {
-    width: min(100%, 240px);
-    max-height: 210px;
+    max-width: min(100%, 280px);
+    max-height: 260px;
+  }
+  .fashion-dir__logo--wide img {
+    max-width: min(100%, 360px);
+    max-height: 100px;
   }
 }

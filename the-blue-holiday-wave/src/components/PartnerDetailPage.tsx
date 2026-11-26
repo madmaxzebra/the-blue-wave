@@ -39,7 +39,9 @@ export function PartnerDetailPage({
       </p>
 
       <header className="fashion-store__head">
-        <span className="fashion-store__logo fashion-store__logo--img">
+        <span
+          className={`fashion-store__logo fashion-store__logo--img${partner.logoWide ? ' fashion-store__logo--wide' : ''}`}
+        >
           <LogoImg
             src={partner.logoImg}
             alt={partner.name}

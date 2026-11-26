@@ -47,11 +47,14 @@
   min-height: 0;
 }
 .fashion-store__logo--img img {
-  width: 100%;
+  width: auto;
+  max-width: 100%;
   height: auto;
-  max-height: 220px;
+  max-height: 240px;
   object-fit: contain;
+  object-position: center;
   display: block;
+  margin-inline: auto;
   background: transparent;
 }
 .fashion-store__logo--large {
@@ -59,6 +62,13 @@
 }
 .fashion-store__logo--large img {
   max-height: 340px;
+}
+.fashion-store__logo--wide {
+  width: min(96vw, 520px);
+}
+.fashion-store__logo--wide img {
+  width: 100%;
+  max-height: 128px;
 }
 .fashion-store__logo-caption {
   display: block;

@@ -32,6 +32,8 @@ export type FashionStore = {
   logoOnDark?: boolean
   /** Wider wordmark — larger on detail + list */
   logoLarge?: boolean
+  /** Horizontal wordmark — extra width, lower height in the layout */
+  logoWide?: boolean
   /** Keep the fashion-list logo in the shared card height */
   listLogoLarge?: boolean
   /** Flat text under the logo image (not baked into the PNG) */
@@ -85,7 +87,7 @@ export const fashionStores: FashionStore[] = [
     tagline: 'Woman · Man · Kids',
     logoLabel: 'ZR',
     logoColor: '#2c2e35',
-    logoImg: `${base}fashion-media/logos/zara-gold-3d.png?v=20261014b`,
+    logoImg: `${base}fashion-media/logos/zara-gold-3d.png?v=20261127logo`,
     logoCaption: 'CURAÇAO',
     logoLarge: true,
     venue: 'Sambil Shopping Mall',
@@ -204,7 +206,7 @@ export const fashionStores: FashionStore[] = [
     tagline: 'Denim · tops · women’s wear',
     logoLabel: 'ONLY',
     logoColor: '#c4a574',
-    logoImg: `${base}fashion-media/logos/only-gold-3d.png?v=20261014i`,
+    logoImg: `${base}fashion-media/logos/only-gold-3d.png?v=20261127logo`,
     logoLarge: true,
     venue: 'Mambo, Sambil, and Saliña Galleries',
     address:
@@ -268,7 +270,7 @@ export const fashionStores: FashionStore[] = [
     tagline: 'Shoes & sneakers · clothing · Punda',
     logoLabel: 'MC',
     logoColor: '#c9a227',
-    logoImg: `${base}fashion-media/logos/mayas-clothing-gold.png?v=20261126`,
+    logoImg: `${base}fashion-media/logos/mayas-clothing-gold.png?v=20261127logo`,
     logoLarge: true,
     venue: 'Punda, Willemstad',
     address: 'Prinsenstraat 80, Punda, Willemstad, Curaçao',
@@ -325,7 +327,7 @@ export const fashionStores: FashionStore[] = [
     tagline: 'Dresses · swimwear · party looks',
     logoLabel: 'EB',
     logoColor: '#3d7ea6',
-    logoImg: `${base}fashion-media/logos/emilia-boutique-gold.png?v=20261126`,
+    logoImg: `${base}fashion-media/logos/emilia-boutique-gold.png?v=20261127logo`,
     logoLarge: true,
     venue: 'Punda & Zuikertuin Mall',
     address: 'Hanchi Snoa 11, Punda, Willemstad, Curaçao (+ Zuikertuin Mall)',
@@ -382,7 +384,7 @@ export const fashionStores: FashionStore[] = [
     tagline: 'Designer · casual · Rif Fort',
     logoLabel: 'SH',
     logoColor: '#1a1a2e',
-    logoImg: `${base}fashion-media/logos/soho-boutique-gold.png?v=20261126`,
+    logoImg: `${base}fashion-media/logos/soho-boutique-gold.png?v=20261127logo`,
     logoLarge: true,
     venue: 'Renaissance Mall & Rif Fort',
     address: 'Renaissance Mall #210, Baden Powellweg 1, Otrobanda, Willemstad, Curaçao',
@@ -438,8 +440,9 @@ export const fashionStores: FashionStore[] = [
     tagline: 'Lingerie · beauty · fragrance · accessories',
     logoLabel: 'VS',
     logoColor: '#1a1a2e',
-    logoImg: `${base}fashion-media/logos/victorias-secret-gold.png?v=20261126`,
+    logoImg: `${base}fashion-media/logos/victorias-secret-gold.png?v=20261127logo`,
     logoLarge: true,
+    logoWide: true,
     venue: 'Sambil Shopping Mall',
     address: "Veeris #27, Willemstad, Curaçao — Unit L-35, Cas Abou Entrance / Punda Square",
     openingHours: 'Mon–Thu 10:00–20:00 · Fri–Sat 10:00–21:00 · Sun 12:00–20:00',

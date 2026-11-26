@@ -27,7 +27,7 @@ export function FashionStorePage() {
 
       <header className="fashion-store__head">
         <span
-          className={`fashion-store__logo fashion-store__logo--img${store.logoLarge ? ' fashion-store__logo--large' : ''}`}
+          className={`fashion-store__logo fashion-store__logo--img${store.logoLarge ? ' fashion-store__logo--large' : ''}${store.logoWide ? ' fashion-store__logo--wide' : ''}`}
         >
           <LogoImg
             src={store.logoImg}

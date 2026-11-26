@@ -45,7 +45,9 @@ export function PartnerDirectory({
                 <strong>{partner.name}</strong>
                 <span className="fashion-dir__intro">{partner.intro}</span>
               </span>
-              <span className="fashion-dir__logo">
+              <span
+                className={`fashion-dir__logo${partner.logoWide ? ' fashion-dir__logo--wide' : ''}`}
+              >
                 <LogoImg
                   src={partner.logoImg}
                   alt={`${partner.name} logo`}
