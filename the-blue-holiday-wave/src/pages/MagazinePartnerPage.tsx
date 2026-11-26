@@ -7,6 +7,7 @@ export function MagazinePartnerPage() {
       listPath="/magazine"
       listLabel="All magazine partners"
       partnerKind="Magazine partner"
+      noun="company"
       getPartner={getMagazinePartner}
     />
   )

@@ -1,6 +1,8 @@
 import { Link, Navigate, useParams } from 'react-router-dom'
 import { getFashionStore } from '../data/fashionStores'
 import { LogoImg } from '../components/LogoImg'
+import { ClaimPage } from '../components/community/ClaimPage'
+import { ReviewSection } from '../components/community/ReviewSection'
 import './FashionStorePage.css'
 
 export function FashionStorePage() {
@@ -161,6 +163,9 @@ export function FashionStorePage() {
           ) : null}
         </article>
       ) : null}
+
+      <ClaimPage partnerId={store.id} partnerName={store.name} noun="store" />
+      <ReviewSection partnerId={store.id} partnerName={store.name} />
     </section>
   )
 }

@@ -7,6 +7,7 @@ export function HomesPartnerPage() {
       listPath="/homes"
       listLabel="All real estate partners"
       partnerKind="Real estate partner"
+      noun="real estate agency"
       getPartner={getHomesPartner}
     />
   )
