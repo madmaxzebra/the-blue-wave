@@ -1,0 +1,120 @@
+/* Matches thebluewavefans.com hero subscribe card */
+.stay-updated {
+  --stay-blue: #0066cc;
+  --stay-blue-soft: #e8f4fc;
+  --stay-ink: #1a1a1a;
+  --stay-ink-muted: #5c6370;
+  background: var(--stay-blue);
+  color: #fff;
+  margin: 1.25rem auto 1.5rem;
+  max-width: min(100%, 22.5rem);
+  padding: 1.35rem 1.15rem 1.2rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 102, 204, 0.28);
+  text-align: left;
+}
+
+.stay-updated__title {
+  margin: 0 0 0.2rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.stay-updated__counter {
+  margin: 0 0 0.65rem;
+  padding: 0.4rem 0.55rem;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  text-align: center;
+  font-size: 0.82rem;
+  line-height: 1.35;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.stay-updated__counter-number {
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: #fff;
+  font-variant-numeric: tabular-nums;
+}
+
+.stay-updated__form {
+  display: flex;
+  gap: 0.4rem;
+  margin: 0;
+  flex-wrap: wrap;
+}
+
+.stay-updated__honeypot {
+  display: none;
+}
+
+.stay-updated__form input[type='email'] {
+  flex: 1 1 160px;
+  min-width: 0;
+  padding: 0.55rem 0.75rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.92rem;
+  font-family: inherit;
+  background: #fff;
+  color: var(--stay-ink);
+}
+
+.stay-updated__form input[type='email']::placeholder {
+  color: var(--stay-ink-muted);
+}
+
+.stay-updated__form input[type='email']:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.6);
+}
+
+.stay-updated__form button {
+  padding: 0.55rem 0.9rem;
+  white-space: nowrap;
+  background: #fff;
+  color: var(--stay-blue);
+  border: none;
+  font-weight: 600;
+  font-size: 0.92rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.2s;
+}
+
+.stay-updated__form button:hover:not(:disabled) {
+  background: var(--stay-blue-soft);
+}
+
+.stay-updated__form button:disabled {
+  opacity: 0.85;
+  cursor: wait;
+}
+
+.stay-updated__hint {
+  color: #93c5fd;
+  margin: 0.45rem 0 0;
+  text-align: center;
+  font-size: 0.85rem;
+}
+
+.stay-updated__message--ok {
+  color: #86efac;
+  margin: 0.45rem 0 0;
+  text-align: center;
+  font-size: 0.85rem;
+  white-space: pre-line;
+  line-height: 1.5;
+}
+
+.stay-updated__message--err {
+  color: #fecaca;
+  margin: 0.45rem 0 0;
+  text-align: center;
+  font-size: 0.85rem;
+}
