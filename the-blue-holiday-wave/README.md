@@ -39,5 +39,6 @@ Build static assets only — the PHP API and `storage/` are not part of the host
 npm run build
 ```
 
-Publish the `dist/` folder (not the repo root). Stay Updated appears only on
+Run `npm run build:cursor` and publish the `publish-bundle/` folder (static site only,
+no PHP or `storage/`). Stay Updated appears only on
 `thebluewavefans.com`, or when `VITE_STAY_UPDATED_ENABLED=true` is set for your preview.
