@@ -9,7 +9,7 @@ export function TastePage() {
       lead="Browse culinary partners for the holiday season. Tap a restaurant for their menu page — one advertiser, one table story."
       basePath="/taste"
       partners={tastePartners}
-      foot="Sample restaurants for layout — real logos and menus replace these when partners confirm."
+      foot="All restaurants are real places in Curaçao with verified contact details. Tap any restaurant for its full page, hours, WhatsApp, and directions."
     />
   )
 }
