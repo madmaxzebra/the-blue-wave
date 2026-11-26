@@ -8,7 +8,7 @@ export const fashionStoresMore: FashionStore[] = [
     id: 'her-and-him',
     name: 'Her & Him',
     area: 'Sambil Mall',
-    partnerKicker: 'Blue Holiday Wave – Fashion Partner',
+    partnerKicker: 'Holidays Blue Wave – Fashion Partner',
     listBlurb: 'Men\'s and women\'s fashion at Sambil.',
     intro:
       'Her & Him at Sambil Shopping Mall — contemporary men\'s and women\'s fashion under one roof, easy parking and mall hours for holiday shopping.',
@@ -64,7 +64,7 @@ export const fashionStoresMore: FashionStore[] = [
     id: 'korswill',
     name: 'Korswill',
     area: 'Sambil Mall',
-    partnerKicker: 'Blue Holiday Wave – Fashion Partner',
+    partnerKicker: 'Holidays Blue Wave – Fashion Partner',
     listBlurb: 'Fashion and accessories at Sambil.',
     intro:
       'Korswill brings trendy women\'s and men\'s fashion to Sambil — dresses, sets, and accessories for the holiday party season.',
@@ -120,7 +120,7 @@ export const fashionStoresMore: FashionStore[] = [
     id: 'lc-waikiki',
     name: 'LC Waikiki',
     area: 'Sambil Mall',
-    partnerKicker: 'Blue Holiday Wave – Fashion Partner',
+    partnerKicker: 'Holidays Blue Wave – Fashion Partner',
     listBlurb: 'Affordable family fashion at Sambil.',
     intro:
       'LC Waikiki at Sambil — women\'s, men\'s, kids, and baby fashion with Turkish-European value pricing, perfect for packing extra holiday outfits.',
@@ -177,10 +177,10 @@ export const fashionStoresMore: FashionStore[] = [
     id: 'brandys',
     name: 'Brandy\'s',
     area: 'Sambil Mall',
-    partnerKicker: 'Blue Holiday Wave – Fashion Partner',
+    partnerKicker: 'Holidays Blue Wave – Fashion Partner',
     listBlurb: 'Island streetwear at Sambil.',
     intro:
-      'Brandy\'s at Sambil Shopping Mall — trendy island-inspired streetwear, curated weekly looks, and casual everyday apparel for the holiday season.',
+      'Brandy\'s at Sambil Shopping Mall — trendy island-inspired streetwear, curated weekly looks, and casual everyday apparel for the holidays.',
     hideVisitHeading: true,
     tagline: 'Streetwear · fits of the week · Sambil',
     logoLabel: 'BR',
@@ -233,7 +233,7 @@ export const fashionStoresMore: FashionStore[] = [
     id: 'affaire-de-femmes',
     name: 'Affaire de Femmes & Hommes',
     area: 'Saliña Galleries',
-    partnerKicker: 'Blue Holiday Wave – Fashion Partner',
+    partnerKicker: 'Holidays Blue Wave – Fashion Partner',
     listBlurb: 'European fashion boutique in Willemstad.',
     intro:
       'Affaire de Femmes & Hommes — European labels and everyday chic for women and men at Saliña Galleries and online.',

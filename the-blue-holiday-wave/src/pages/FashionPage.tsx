@@ -11,7 +11,7 @@ export function FashionPage() {
       <p className="page__kicker">Fashion & Lifestyle</p>
       <h2 className="page__title">Fashion stores</h2>
       <p className="page__lead">
-        Browse partner boutiques for the holiday season. Tap a store for their
+        Browse partner boutiques for the holidays. Tap a store for their
         full collection page — one advertiser, one lookbook.
       </p>
 

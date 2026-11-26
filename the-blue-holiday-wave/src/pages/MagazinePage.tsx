@@ -6,7 +6,7 @@ export function MagazinePage() {
     <PartnerDirectory
       kicker="Magazine"
       title="Magazine partners"
-      lead="Editorial, advertising, and print partners for the holiday edition. Tap one for their full feature page."
+      lead="Editorial, advertising, and print partners for the holidays edition. Tap one for their full feature page."
       basePath="/magazine"
       partners={magazinePartners}
       foot="All magazine partners are real businesses in Curaçao. Tap any partner for address, opening hours, WhatsApp, and Google Maps."

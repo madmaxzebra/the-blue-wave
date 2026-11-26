@@ -51,7 +51,7 @@ export const magazinePartners: PartnerProfile[] = [
     lifestyleText:
       'Ñapa, the Saturday supplement, brings longer stories on culture, travel, food, and business. 93% of Amigoe readers read it.',
     lifestyleImg: `${base}magazine-media/amigoe-nieuws-devices.jpg`,
-    collectionLabel: 'Editorial · Holiday edition',
+    collectionLabel: 'Editorial · Holidays edition',
     phone: '+599 9 767 2000',
     websiteUrl: 'https://www.amigoe.com',
     websiteLabel: 'amigoe.com',
@@ -106,7 +106,7 @@ export const magazinePartners: PartnerProfile[] = [
     lifestyleText:
       'Mammoet Printing has in-house experts who help with your design, and can also install your sign for you.',
     lifestyleImg: `${base}magazine-media/mammoet-printing-signboard.jpg`,
-    collectionLabel: 'Advertising · Holiday edition',
+    collectionLabel: 'Advertising · Holidays edition',
     phone: '+599 9 465 0607',
     whatsapp: '59994650607',
     websiteUrl: 'https://www.mammoetprinting.com',
@@ -162,7 +162,7 @@ export const magazinePartners: PartnerProfile[] = [
     lifestyleText:
       'Wall calendars, posters, notebooks, and greeting cards — made to hand out, hang up, and keep.',
     lifestyleImg: `${base}magazine-media/bo-printer-calendar.jpg`,
-    collectionLabel: 'Print · Holiday edition',
+    collectionLabel: 'Print · Holidays edition',
     phone: '+599 9 737 8088',
     whatsapp: '59995644504',
     websiteUrl: 'https://boprinter.com/en/',

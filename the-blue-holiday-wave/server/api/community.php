@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-// Reviews and "claim this page" requests for The Blue Holiday Wave.
+// Reviews and "claim this page" requests for The Holidays Blue Wave.
 // Plain PHP + JSON files, so it runs on normal shared hosting (Bluehost).
 //   GET  community.php?action=reviews&partner=<id>   -> reviews + average
 //   POST community.php?action=review                 -> leave a review (1-5 stars)
@@ -142,7 +142,7 @@ if ($action === 'claim') {
     $to = (string) ($config['ADMIN_EMAIL'] ?? '');
     if ($to !== '' && filter_var($to, FILTER_VALIDATE_EMAIL)) {
         $subject = 'Claim request: ' . ($partnerName ?: $partner);
-        $text = "Someone wants to claim a page on The Blue Holiday Wave.\n\n"
+        $text = "Someone wants to claim a page on The Holidays Blue Wave.\n\n"
             . "Page: {$partnerName} ({$partner})\nName: {$ownerName}\nEmail: {$email}\nPhone: {$phone}\n\n{$message}\n";
         @mail($to, $subject, $text, "Reply-To: {$email}\r\nContent-Type: text/plain; charset=utf-8\r\n");
     }

@@ -50,7 +50,7 @@ export const homesPartnersMore: PartnerProfile[] = [
     lifestyleText:
       'Thousands of island residents started with a CENTURY 21 viewing.',
     lifestyleImg: `${base}homes-media/c21-property-4.jpg`,
-    collectionLabel: 'Listings · Holiday season',
+    collectionLabel: 'Listings · Holidays season',
     websiteUrl: 'https://www.century21numberone.com/en/',
     websiteLabel: 'century21numberone.com',
     address: 'Santa Rosaweg 18, Willemstad, Curaçao',
@@ -106,7 +106,7 @@ export const homesPartnersMore: PartnerProfile[] = [
     lifestyleText:
       'From Punda townhouses to clifftop villas.',
     lifestyleImg: `${base}homes-media/c21-property-1.jpg`,
-    collectionLabel: 'Listings · Holiday season',
+    collectionLabel: 'Listings · Holidays season',
     websiteUrl: 'https://www.sothebysrealty.com',
     websiteLabel: 'sothebysrealty.com',
     address: 'Caracasbaaiweg 149-F, Willemstad, Curaçao',
@@ -161,7 +161,7 @@ export const homesPartnersMore: PartnerProfile[] = [
     lifestyleText:
       'One broker who knows your budget and your neighbourhood.',
     lifestyleImg: `${base}homes-media/palmstone-hero.jpg`,
-    collectionLabel: 'Listings · Holiday season',
+    collectionLabel: 'Listings · Holidays season',
     websiteUrl: 'https://palmstone.realestate',
     websiteLabel: 'palmstone.realestate',
     address: 'Willemstad, Curaçao',
@@ -216,7 +216,7 @@ export const homesPartnersMore: PartnerProfile[] = [
     lifestyleText:
       'Pick the lot first, then design the holiday home.',
     lifestyleImg: `${base}homes-media/terreinen-abc-team.jpg`,
-    collectionLabel: 'Listings · Holiday season',
+    collectionLabel: 'Listings · Holidays season',
     websiteUrl: 'https://www.terreinen-abc.com',
     websiteLabel: 'terreinen-abc.com',
     address: 'Willemstad, Curaçao',
@@ -272,7 +272,7 @@ export const homesPartnersMore: PartnerProfile[] = [
     lifestyleText:
       'Short-list online, then book viewings with local brokers.',
     lifestyleImg: `${base}homes-media/caribbean-island-living-hero.jpg`,
-    collectionLabel: 'Listings · Holiday season',
+    collectionLabel: 'Listings · Holidays season',
     websiteUrl: 'https://caribbeanislandliving.com/en/curacao',
     websiteLabel: 'caribbeanislandliving.com',
     address: 'Curaçao (online listings)',
@@ -327,7 +327,7 @@ export const homesPartnersMore: PartnerProfile[] = [
     lifestyleText:
       'Spaces made for long December afternoons outside.',
     lifestyleImg: `${base}homes-media/terrace.jpg`,
-    collectionLabel: 'Listings · Holiday season',
+    collectionLabel: 'Listings · Holidays season',
     websiteUrl: 'https://www.islandliving.com/',
     websiteLabel: 'islandliving.com',
     address: 'Curaçao',
@@ -381,7 +381,7 @@ export const homesPartnersMore: PartnerProfile[] = [
     lifestyleText:
       'Tax, financing, and viewing trips explained in Dutch.',
     lifestyleImg: `${base}homes-media/curacao-realestate-nl-hero.jpg`,
-    collectionLabel: 'Listings · Holiday season',
+    collectionLabel: 'Listings · Holidays season',
     websiteUrl: 'https://www.curacaorealestate.nl/',
     websiteLabel: 'curacaorealestate.nl',
     address: 'Willemstad, Curaçao',
@@ -429,13 +429,13 @@ export const homesPartnersMore: PartnerProfile[] = [
         ],
     visitLabel: 'Agency',
     visitTitle: 'Book Girasol Apartments',
-    shopNote: 'Check availability for the holiday season online.',
+    shopNote: 'Check availability for the holidays online.',
     lifestyleLabel: 'Island living',
     lifestyleTitle: 'Rent before you buy',
     lifestyleText:
       'Try Jan Thiel for a month before choosing a purchase area.',
     lifestyleImg: `${base}homes-media/girasol-rentals-hero.jpg`,
-    collectionLabel: 'Listings · Holiday season',
+    collectionLabel: 'Listings · Holidays season',
     websiteUrl: 'https://www.curacao-rentals.com/',
     websiteLabel: 'curacao-rentals.com',
     address: 'Jan Thiel, Curaçao',
@@ -489,7 +489,7 @@ export const homesPartnersMore: PartnerProfile[] = [
     lifestyleText:
       'Beach mornings and golf afternoons in one address.',
     lifestyleImg: `${base}homes-media/blue-bay-resort-hero.jpg`,
-    collectionLabel: 'Listings · Holiday season',
+    collectionLabel: 'Listings · Holidays season',
     websiteUrl: 'https://www.bluebay-curacao.com/',
     websiteLabel: 'bluebay-curacao.com',
     address: 'Blue Bay, Willemstad, Curaçao',

@@ -10,6 +10,8 @@ import './HomePage.css'
 
 const LAUNCH = new Date('2026-12-10T00:00:00-04:00')
 
+const HERO_LOGO = `${import.meta.env.BASE_URL}holiday-media/holidays-blue-wave-logo.png?v=20261126`
+
 const TOPIC_ICONS = {
   fashion: `${import.meta.env.BASE_URL}holiday-media/icons/fashion-gold.png`,
   realestate: `${import.meta.env.BASE_URL}holiday-media/icons/realestate-gold.png`,
@@ -84,19 +86,28 @@ export function HomePage() {
 
       <div className="page--home__content">
 
-      <p className="page__kicker">Coming 10 December 2026</p>
+      <p className="page__kicker home__kicker">Curaçao • Holidays Season 2026</p>
 
-      <h2 className="page__title">Holiday season, Blue Wave style</h2>
+      <div className="home__hero">
+        <img
+          className="home__hero-logo"
+          src={HERO_LOGO}
+          alt="The Holidays Blue Wave"
+          width={900}
+          height={783}
+          decoding="async"
+          fetchPriority="high"
+        />
+      </div>
 
-      <p className="page__lead">
+      <p className="home__tagline">Holidays season, Blue Wave style</p>
 
-        Same clean app feeling you know — now focused on Fashion & Lifestyle,
-
-        Real Estate, and Culinary for the holidays in Curaçao.
-
+      <p className="page__lead home__focus">
+        Now focused on Fashion &amp; Lifestyle, Real Estate, and Culinary for the
+        holidays in Curaçao.
       </p>
 
-
+      <p className="home__soon">Coming soon!</p>
 
       <div className="count" aria-live="polite" role="timer">
 
@@ -116,7 +127,7 @@ export function HomePage() {
 
         <p className="page__kicker">Get the app</p>
 
-        <h3>Blue Holiday Wave on your phone</h3>
+        <h3>Holidays Blue Wave on your phone</h3>
 
         <p className="get-app__row">
 

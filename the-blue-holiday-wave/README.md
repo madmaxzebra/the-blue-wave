@@ -1,6 +1,6 @@
-﻿# The Blue Holiday Wave
+﻿# The Holidays Blue Wave
 
-Holiday-season app in the clean style of The Blue Wave.
+Holidays-season app in the clean style of The Blue Wave.
 **Launch:** 10 December 2026  
 **Live path:** https://www.thebluewavefans.com/holidayseason/
 

@@ -49,7 +49,7 @@ export function FashionStorePage() {
       <figure className="fashion-store__hero">
         <img src={store.heroImg} alt={`${store.name} collection`} />
         <figcaption>
-          <span>Collection · Holiday season</span>
+          <span>Collection · Holidays season</span>
           <strong>{store.heroTitle}</strong>
           <p>{store.heroText}</p>
         </figcaption>

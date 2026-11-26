@@ -1,6 +1,6 @@
 {
   "appId": "com.thebluewavefans.holiday",
-  "appName": "Blue Holiday Wave",
+  "appName": "Holidays Blue Wave",
   "webDir": "dist",
   "android": {
     "allowMixedContent": false

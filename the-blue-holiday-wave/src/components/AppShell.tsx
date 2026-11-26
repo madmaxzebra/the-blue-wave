@@ -28,9 +28,9 @@ export function AppShell() {
   return (
     <div className="shell shell--landing">
       <header className={`shell__top${sectionIcon ? ' shell__top--fashion' : ''}`}>
-        <p className="shell__eyebrow">Curaçao · Holiday Season 2026</p>
+        <p className="shell__eyebrow">Curaçao · Holidays Season 2026</p>
         <h1 className="shell__brand">
-          The Blue <span>Holiday</span> Wave
+          The <span>Holidays</span> Blue Wave
         </h1>
         {sectionIcon ? (
           <div className="shell__fashion-mark">
@@ -71,7 +71,7 @@ export function AppShell() {
       </nav>
 
       <footer className="shell__disclaimer">
-        The Blue Holiday Wave is an independent lifestyle guide for Curaçao. All brand names, logos, and trademarks belong to their respective owners. This app is not affiliated with or endorsed by any of the listed businesses.
+        The Holidays Blue Wave is an independent lifestyle guide for Curaçao. All brand names, logos, and trademarks belong to their respective owners. This app is not affiliated with or endorsed by any of the listed businesses.
       </footer>
     </div>
   )
