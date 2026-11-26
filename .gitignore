@@ -7,7 +7,7 @@ backend/.env
 .DS_Store
 .cursor/hooks/.hub-state.json
 
-# Reviews/claims server files that must stay on the server
-the-blue-holiday-wave/public/api/config.php
-the-blue-holiday-wave/public/api/data/
-the-blue-holiday-wave/public/api/uploads/
+# Holiday Wave PHP backend (not shipped to Cursor; bundled only in Bluehost zip)
+the-blue-holiday-wave/server/api/config.php
+the-blue-holiday-wave/server/api/uploads/
+the-blue-holiday-wave/storage/

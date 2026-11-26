@@ -2,6 +2,9 @@
 // Copy this file to config.php on the server (same folder) and fill it in.
 // config.php stays on the server only. Never put the real one in GitHub.
 return [
+    // Optional: absolute path for claims/reviews/owners JSON (outside public_html).
+    // On Bluehost this is set automatically above public_html when left empty.
+    'DATA_DIR' => '',
     // Your own long password for the owner page (api/admin.php), at least 12 characters.
     // Leave it empty and the owner page stays switched off.
     'ADMIN_KEY' => '',

@@ -24,3 +24,9 @@ Open http://localhost:5195/holidayseason/
 npm run build:upload
 ```
 Upload `holidayseason-upload.zip` to `public_html/holidayseason/`, extract, Ctrl+F5.
+
+The zip contains the Vite build plus `api/` (from `server/api/`). Claims, reviews, and
+owner data are stored in `storage/community/` on the server (outside `public_html`), not
+under a web URL.
+
+Copy `server/api/config.sample.php` to `config.php` on the host and set `ADMIN_KEY`.
