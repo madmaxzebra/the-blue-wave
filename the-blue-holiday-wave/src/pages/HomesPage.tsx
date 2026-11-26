@@ -9,7 +9,7 @@ export function HomesPage() {
       lead="Browse agencies for the holiday season. Tap a partner for featured homes — one advertiser, one listing page."
       basePath="/homes"
       partners={homesPartners}
-      foot="Sample agencies for layout — real logos and listings replace these when partners confirm."
+      foot="All agencies are real real estate offices in Curaçao with verified contact details. Tap any agency for its full page, hours, WhatsApp, and directions."
     />
   )
 }
