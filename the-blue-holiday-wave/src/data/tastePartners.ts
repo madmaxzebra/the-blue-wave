@@ -1,4 +1,5 @@
 import type { PartnerProfile } from './homesPartners'
+import { tastePartnersMore } from './tastePartnersMore'
 
 const base = import.meta.env.BASE_URL
 
@@ -171,6 +172,7 @@ export const tastePartners: PartnerProfile[] = [
     mapsUrl: 'https://maps.google.com/?q=Avila+Beach+Hotel+Penstraat+130+Willemstad+Curaçao',
     mapsEmbed: 'https://maps.google.com/maps?q=12.1038,-68.9229&z=16&output=embed&iwloc=',
   },
+  ...tastePartnersMore,
 ]
 
 export function getTastePartner(id: string | undefined) {

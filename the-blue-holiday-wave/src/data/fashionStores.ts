@@ -67,6 +67,8 @@ export type FashionStore = {
   photoFit?: 'contain'
 }
 
+import { fashionStoresMore } from './fashionStoresMore'
+
 const base = import.meta.env.BASE_URL
 
 /** Sample advertisers — replace with real logos, photos, and copy later */
@@ -482,6 +484,7 @@ export const fashionStores: FashionStore[] = [
       "December at Victoria's Secret means limited-edition gift sets, holiday scents, and the pieces that always sell out. Get there early.",
     lifestyleImg: `${base}fashion-media/vs/vs-lingerie-3.jpg`,
   },
+  ...fashionStoresMore,
 ]
 
 export function getFashionStore(id: string | undefined) {

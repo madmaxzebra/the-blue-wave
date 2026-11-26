@@ -35,6 +35,32 @@ LOGOS = [
     (ORIGINALS / "harbor-hotel-curacao.png", PUBLIC / "more-media/logos/harbor-hotel-curacao-gold.png"),
     (ORIGINALS / "maduro-curiels-bank-flat.png", PUBLIC / "more-media/logos/maduro-curiels-bank-gold.png"),
     (ORIGINALS / "curacao-north-sea-jazz.svg", PUBLIC / "more-media/logos/curacao-north-sea-jazz-gold.png"),
+    # Taste expansion (12 partners)
+    (ORIGINALS / "gouverneur-de-rouville.webp", PUBLIC / "taste-media/logos/gouverneur-de-rouville-gold.png"),
+    (ORIGINALS / "kome.png", PUBLIC / "taste-media/logos/kome-gold.png", "colour"),
+    (ORIGINALS / "oliva.png", PUBLIC / "taste-media/logos/oliva-gold.png", "colour"),
+    (ORIGINALS / "fort-nassau.jpg", PUBLIC / "taste-media/logos/fort-nassau-gold.png"),
+    (ORIGINALS / "bijblauw.png", PUBLIC / "taste-media/logos/bijblauw-gold.png", "colour"),
+    (ORIGINALS / "mosa-cana.jpg", PUBLIC / "taste-media/logos/mosa-cana-gold.png"),
+    (ORIGINALS / "karakter.png", PUBLIC / "taste-media/logos/karakter-gold.png", "colour"),
+    (ORIGINALS / "brakkeput-ariba.jpg", PUBLIC / "taste-media/logos/brakkeput-ariba-gold.png"),
+    (ORIGINALS / "brisa-do-mar.jpg", PUBLIC / "taste-media/logos/brisa-do-mar-gold.png"),
+    # Homes expansion
+    (ORIGINALS / "century21-curacao.svg", PUBLIC / "homes-media/logos/century21-curacao-gold.png"),
+    (ORIGINALS / "sothebys-curacao.png", PUBLIC / "homes-media/logos/sothebys-curacao-gold.png"),
+    (ORIGINALS / "palmstone.png", PUBLIC / "homes-media/logos/palmstone-gold.png", "colour"),
+    (ORIGINALS / "terreinen-abc.png", PUBLIC / "homes-media/logos/terreinen-abc-gold.png", "colour"),
+    (ORIGINALS / "caribbean-island-living.svg", PUBLIC / "homes-media/logos/caribbean-island-living-gold.png"),
+    (ORIGINALS / "island-living-collective.svg", PUBLIC / "homes-media/logos/island-living-collective-gold.png"),
+    (ORIGINALS / "curacao-realestate-nl.png", PUBLIC / "homes-media/logos/curacao-realestate-nl-gold.png", "colour"),
+    (PUBLIC / "homes-media/girasol-rentals-hero.jpg", PUBLIC / "homes-media/logos/girasol-rentals-gold.png"),
+    (ORIGINALS / "blue-bay-curacao.svg", PUBLIC / "homes-media/logos/blue-bay-curacao-gold.png"),
+    # Fashion expansion
+    (ORIGINALS / "her-and-him.png", PUBLIC / "fashion-media/logos/her-and-him-gold.png", "colour"),
+    (ORIGINALS / "korswill.png", PUBLIC / "fashion-media/logos/korswill-gold.png", "colour"),
+    (ORIGINALS / "lc-waikiki.svg", PUBLIC / "fashion-media/logos/lc-waikiki-gold.png"),
+    (ORIGINALS / "brandys.png", PUBLIC / "fashion-media/logos/brandys-gold.png", "colour"),
+    (ORIGINALS / "affaire-de-femmes.jpg", PUBLIC / "fashion-media/logos/affaire-de-femmes-gold.png"),
 ]
 
 WORK_WIDTH = 1400

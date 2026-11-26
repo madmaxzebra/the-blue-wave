@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en" class="layout-fullwidth  " data-theme="light">
+<head>
+    <meta charset="utf-8">
+    <title>Girasol Apartments | Your home on sunny Curaçao!</title>
+<meta name="author" content="Girasol Apartments">
+<meta name="description" content="Discover the best of Curaçao from Girasol Apartments, your ideal place to stay for an unforgettable stay on the island.">
+<link rel="canonical" href="https://girasol-apartments.com">    <link rel="alternate" hreflang="x-default" href="https://girasol-apartments.com">
+<link rel="alternate" hreflang="en-US" href="https://girasol-apartments.com">    <meta property="og:title" content="Girasol Apartments | Your home on sunny Curaçao!">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://girasol-apartments.com">
+<meta property="og:description" content="Discover the best of Curaçao from Girasol Apartments, your ideal place to stay for an unforgettable stay on the island.">
+<meta property="og:site_name" content="Girasol Apartments">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://cdn.tfcms01.nl/zaas/production/2024/01/16/open-graph/big/girasol-apartments-logo-og-27259.jpg">    <meta name="csrf-token" content="DpkuX7lsbbrlaIKhOJeWQlpZcKWyDLgwHdWnAvlV">
+    <meta name="environment" content="front">
+
+    <!-- Icons -->
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <!-- Responsive & mobiel meta tags -->
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=3.0, shrink-to-fit=no">
+    <meta class="elastic" name="language" content="en">
+    <meta name="version" content="2023-02">
+    <meta name="fancybox-translations" data-translate-close="Close" data-translate-previous="Previous" data-translate-next="Next" content="Used for the translation of fancybox settings">
+
+    <style>
+        :root {
+            --accessibility: 0;
+            --body-desktop-font-size: 16px;
+            --body-font-family: 'Nunito Sans', sans-serif;
+            --body-mob-font-size: 14px;
+            --body-tablet-font-size: 15px;
+            --btn-border-radius: 50px;
+            --crumbs-position: above_content;
+            --dropdown-menu: 1;
+            --element-border-radius: 0;
+            --footer-color-scheme: 3;
+            --h1-desktop-font-size: 2.5rem;
+            --h1-line-height: 1.25;
+            --h1-margin: 0.75em;
+            --h1-mob-font-size: 1.5rem;
+            --h1-tablet-font-size: 2rem;
+            --h2-desktop-font-size: 2.25rem;
+            --h2-line-height: 1.375;
+            --h2-margin: 0.75em;
+            --h2-mob-font-size: 1.5rem;
+            --h2-tablet-font-size: 1.75rem;
+            --h3-desktop-font-size: 1.5rem;
+            --h3-line-height: 1.23;
+            --h3-margin: 0.75em;
+            --h3-mob-font-size: 1.2rem;
+            --h3-tablet-font-size: 1.35rem;
+            --h4-desktop-font-size: 1rem;
+            --h4-line-height: 1.166667;
+            --h4-margin: 0.75em;
+            --h4-mob-font-size: 1rem;
+            --h4-tablet-font-size: 1rem;
+            --heading-font-family: 'Nunito Sans', sans-serif;
+            --heading-font-weight: 800;
+            --heading-text-transform: none;
+            --menu-color-scheme: 2;
+            --menu-desktop-font-size: 18px;
+            --menu-font-family: 'Nunito Sans', sans-serif;
+            --menu-font-weight: 500;
+            --menu-mob-font-size: 16px;
+            --menu-tablet-font-size: 17px;
+            --menu-text-transform: none;
+            --scroll-reveal: 0;
+            --top-color-scheme: 1;
+            --top-style: menu_above;
+            --use-dark-theme: ;
+            --visible: 1;
+
+            --border-radius: 50px;
+            --df-app-border-color: #F5F5F5;
+            --df-app-button-bg-color: #ffca1e;
+            --df-app-button-text-color: #fff;
+            --df-app-card-bg-color: #ffffff;
+            --df-app-card-primary-color: #ffca1e;
+            --df-app-card-text-color: #000000;
+            --standard-font-family: skin('body_font_family');
+            --strong-font-weight: 700;
+
+            --color-1-background: #ffffff;
+            --color-1-block-background: #F5F5F5;
+            --color-1-block-body: #000000;
+            --color-1-block-borders: #eceff1;
+            --color-1-block-button: #ffca1e;
+            --color-1-block-button-ghost-border: #000000;
+            --color-1-block-button-ghost-text: #000000;
+            --color-1-block-button-secondary: #F5F5F5;
+            --color-1-block-button-secondary-text: #000000;
+            --color-1-block-button-text: #fff;
+            --color-1-block-heading: #000000;
+            --color-1-block-primary: #ffca1e;
+            --color-1-body: #000000;
+            --color-1-borders: #F5F5F5;
+            --color-1-button: #ffca1e;
+            --color-1-button-ghost-border: rgba(38, 50, 56, 0.25);
+            --color-1-button-ghost-text: #000000;
+            --color-1-button-secondary: #F5F5F5;
+            --color-1-button-secondary-text: #000000;
+            --color-1-button-text: #fff;
+            --color-1-enabled: 1;
+            --color-1-heading: #ffca1e;
+            --color-1-input-background: #ffffff;
+            --color-1-input-border: #818285;
+            --color-1-input-text: #3c3c3b;
+            --color-1-primary: #ffca1e;
+
+            --color-2-background: #F5F5F5;
+            --color-2-block-background: #ffffff;
+            --color-2-block-body: #000000;
+            --color-2-block-borders: rgba(255, 255, 255, 0.5);
+            --color-2-block-button: #ffca1e;
+            --color-2-block-button-ghost-border: #000000;
+            --color-2-block-button-ghost-text: #000000;
+            --color-2-block-button-secondary: #ffffff;
+            --color-2-block-button-secondary-text: #000000;
+            --color-2-block-button-text: #fff;
+            --color-2-block-heading: #000000;
+            --color-2-block-primary: #ffca1e;
+            --color-2-body: #000000;
+            --color-2-borders: rgba(38, 50, 56, 0.25);
+            --color-2-button: #ffca1e;
+            --color-2-button-ghost-border: rgba(38, 50, 56, 0.25);
+            --color-2-button-ghost-text: #000000;
+            --color-2-button-secondary: #ffffff;
+            --color-2-button-secondary-text: #000000;
+            --color-2-button-text: #fff;
+            --color-2-enabled: 1;
+            --color-2-heading: #ffca1e;
+            --color-2-input-background: #ffffff;
+            --color-2-input-border: rgba(38, 50, 56, 0.25);
+            --color-2-input-text: #3c3c3b;
+            --color-2-primary: #ffca1e;
+
+            --color-3-background: #ffca1e;
+            --color-3-block-background: #F5F5F5;
+            --color-3-block-body: #000000;
+            --color-3-block-borders: rgba(38, 50, 56, 0.25);
+            --color-3-block-button: #ffca1e;
+            --color-3-block-button-ghost-border: #000000;
+            --color-3-block-button-ghost-text: #000000;
+            --color-3-block-button-secondary: #000000;
+            --color-3-block-button-secondary-text: #ffffff;
+            --color-3-block-button-text: #ffffff;
+            --color-3-block-heading: #000000;
+            --color-3-block-primary: #ffca1e;
+            --color-3-body: #fff;
+            --color-3-borders: rgba(255, 255, 255, 0.25);
+            --color-3-button: #fff;
+            --color-3-button-ghost-border: #F5F5F5;
+            --color-3-button-ghost-text: #ffffff;
+            --color-3-button-secondary: #000000;
+            --color-3-button-secondary-text: #ffffff;
+            --color-3-button-text: #ffca1e;
+            --color-3-enabled: 1;
+            --color-3-heading: #fff;
+            --color-3-input-background: #ffffff;
+            --color-3-input-border: rgba(38, 50, 56, 0.25);
+            --color-3-input-text: #3c3c3b;
+            --color-3-primary: #000000;
+
+
+}
+
+            @media (-webkit-min-device-pixel-ratio: 0) {
+                .color-1 select, .color-1 select[size="0"], color-1 select[size="1"] {
+                    background-image: url('data:image/svg+xml,%3Csvg width="9" height="6" viewBox="0 0 9 6" fill="none" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M0.0348918 1.37842L3.89956 5.24308C3.89956 5.24308 4.38687 5.86136 4.98264 5.17964L8.57219 1.53445C8.72368 1.3804 8.80365 1.16269 8.76317 0.950318C8.73611 0.807806 8.65637 0.665522 8.46506 0.586991C7.98728 0.390913 7.70058 0.70466 7.70058 0.70466L4.40489 4.01171L1.08591 0.70466C1.08591 0.70466 0.693083 0.337244 0.31079 0.586991C-0.0715032 0.836749 -0.0130449 1.3304 0.0347466 1.37829" fill="%233c3c3b" /%3E%3C/svg%3E%0A');
+                }
+                .color-2 select, .color-2 select[size="0"], color-2 select[size="1"] {
+                    background-image: url('data:image/svg+xml,%3Csvg width="9" height="6" viewBox="0 0 9 6" fill="none" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M0.0348918 1.37842L3.89956 5.24308C3.89956 5.24308 4.38687 5.86136 4.98264 5.17964L8.57219 1.53445C8.72368 1.3804 8.80365 1.16269 8.76317 0.950318C8.73611 0.807806 8.65637 0.665522 8.46506 0.586991C7.98728 0.390913 7.70058 0.70466 7.70058 0.70466L4.40489 4.01171L1.08591 0.70466C1.08591 0.70466 0.693083 0.337244 0.31079 0.586991C-0.0715032 0.836749 -0.0130449 1.3304 0.0347466 1.37829" fill="%233c3c3b" /%3E%3C/svg%3E%0A');
+                }
+                .color-3 select, .color-3 select[size="0"], color-3 select[size="1"] {
+                    background-image: url('data:image/svg+xml,%3Csvg width="9" height="6" viewBox="0 0 9 6" fill="none" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M0.0348918 1.37842L3.89956 5.24308C3.89956 5.24308 4.38687 5.86136 4.98264 5.17964L8.57219 1.53445C8.72368 1.3804 8.80365 1.16269 8.76317 0.950318C8.73611 0.807806 8.65637 0.665522 8.46506 0.586991C7.98728 0.390913 7.70058 0.70466 7.70058 0.70466L4.40489 4.01171L1.08591 0.70466C1.08591 0.70466 0.693083 0.337244 0.31079 0.586991C-0.0715032 0.836749 -0.0130449 1.3304 0.0347466 1.37829" fill="%233c3c3b" /%3E%3C/svg%3E%0A');
+                }
+                .color-4 select, .color-4 select[size="0"], color-4 select[size="1"] {
+                    background-image: url('data:image/svg+xml,%3Csvg width="9" height="6" viewBox="0 0 9 6" fill="none" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M0.0348918 1.37842L3.89956 5.24308C3.89956 5.24308 4.38687 5.86136 4.98264 5.17964L8.57219 1.53445C8.72368 1.3804 8.80365 1.16269 8.76317 0.950318C8.73611 0.807806 8.65637 0.665522 8.46506 0.586991C7.98728 0.390913 7.70058 0.70466 7.70058 0.70466L4.40489 4.01171L1.08591 0.70466C1.08591 0.70466 0.693083 0.337244 0.31079 0.586991C-0.0715032 0.836749 -0.0130449 1.3304 0.0347466 1.37829" fill="" /%3E%3C/svg%3E%0A');
+                }
+                .color-5 select, .color-5 select[size="0"], color-5 select[size="1"] {
+                    background-image: url('data:image/svg+xml,%3Csvg width="9" height="6" viewBox="0 0 9 6" fill="none" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M0.0348918 1.37842L3.89956 5.24308C3.89956 5.24308 4.38687 5.86136 4.98264 5.17964L8.57219 1.53445C8.72368 1.3804 8.80365 1.16269 8.76317 0.950318C8.73611 0.807806 8.65637 0.665522 8.46506 0.586991C7.98728 0.390913 7.70058 0.70466 7.70058 0.70466L4.40489 4.01171L1.08591 0.70466C1.08591 0.70466 0.693083 0.337244 0.31079 0.586991C-0.0715032 0.836749 -0.0130449 1.3304 0.0347466 1.37829" fill="" /%3E%3C/svg%3E%0A');
+                }
+                            }
+
+                    .nav-contact .btn {
+    text-transform: none !important;
+  font-size: 18px !important;
+}
+
+.nav-contact-mob a {
+    text-transform: none !important;
+}
+.whatsapp-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+  	filter: drop-shadow(0px 0px 10px #ddd);
+  	z-index: 999;
+}
+
+/* apartment icons */
+.apartment-icons--container {
+	display: flex;
+    justify-content: center;
+    gap: 32px;
+  flex-wrap: wrap;
+}
+.apartment-icons--icon {
+	display: flex;
+    flex-direction: column;
+    gap: 8px;
+  align-items: center;
+}
+.apartment-icons--icon-text {
+	text-align: center;
+    font-weight: 700;
+    color: #ffca1e;
+  font-size: 14px;
+}
+
+table.slider tbody tr:nth-child(odd) {
+    background-color: #F5F5F5!important;
+}
+
+table ul {
+	margin-left: 0!important;
+}
+
+.map-fullwidth .iframe-container {
+	padding-bottom: 40% !important;
+  	margin: 0 !important;
+}
+
+.header-video-container--image::before {
+	content: none!important;
+}
+.header-video-container--content-inner h1 {
+	color: #ffffff!important;
+}
+.header-video-container--content-inner p {
+	color: #ffca1e!important;
+}
+.header-video-container--content-inner p a:hover {
+	color: #ffffff!important;
+}
+                    </style>
+
+    <!-- Stylesheets -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+    <link rel="preload" as="style" href="https://girasol-apartments.com/build/assets/app-Cr8InbYR.css" /><link rel="stylesheet" href="https://girasol-apartments.com/build/assets/app-Cr8InbYR.css" media="screen" />    <link rel="preload" as="style" href="https://girasol-apartments.com/build/assets/print-BqpGcA-R.css" /><link rel="stylesheet" href="https://girasol-apartments.com/build/assets/print-BqpGcA-R.css" media="print" />
+    
+            <script nonce="Bc3m6IWkXGxR6OmR383c0p2RkWZanUEb" type="application/ld+json">
+                {"@context":"https:\/\/schema.org","@graph":[{"@type":"LocalBusiness","@id":"#business","name":"Girasol Apartments","email":"info@sab-management.com","url":"https:\/\/girasol-apartments.com","description":"Girasol Apartments","telephone":"+59996905212","image":"https:\/\/cdn.tfcms01.nl\/zaas\/production\/2024\/01\/18\/girasol-apartments-logo-27533.svg","address":{"@type":"PostalAddress","postalCode":"0000","streetAddress":"Kaya Douwe Zalm 1-3","addressLocality":"Willemstad","addressCountry":"CW"}},{"@type":"BreadcrumbList","itemListElement":[[{"@type":"ListItem","position":1,"name":"Home","item":"https:\/\/girasol-apartments.com"}]]}]}
+            </script>
+        
+    <meta name="original-language" content="en">
+<meta name="intl-locale" content="en">
+<meta name="dayjs-locale" content="en">
+
+
+            <script nonce="Bc3m6IWkXGxR6OmR383c0p2RkWZanUEb">
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+            </script>
+
+            
+            
+                <script  nonce="Bc3m6IWkXGxR6OmR383c0p2RkWZanUEb">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({"gtm.start":new Date().getTime(),event:"gtm.js"});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!="dataLayer"?"&l="+l:"";j.async=true;j.src="https://www.googletagmanager.com/gtm.js?id="+i+dl;var n=d.querySelector("[nonce]");n&&j.setAttribute("nonce",n.nonce||n.getAttribute("nonce"));f.parentNode.insertBefore(j,f);})(window,document,"script","dataLayer","GTM-5WB2GV7T");</script>
+            
+            
+        
+    <script nonce="Bc3m6IWkXGxR6OmR383c0p2RkWZanUEb">document.documentElement.classList.add('js')</script>
+</head>
+
+<body data-elastic-exclude>
+
+
+
+<a class="skip-link" id="skip-link" href="">Skip and go to content</a>
+
+
+
+
+<div class="top color-1 top_has-no-secondary-menu menu_above">
+    <div class="container">
+
+        <div class="company-logo">
+            <a href="https://girasol-apartments.com" title="To the homepage of Girasol Apartments"><img src="https://cdn.tfcms01.nl/zaas/production/2024/01/18/girasol-apartments-logo-27533.svg" height="64" width="300" alt="Logo Girasol Apartments, home"></a>
+        </div>
+        
+        <nav class="nav-main">
+                            <ul>
+            <li >
+            <a href="https://girasol-apartments.com" title="Home" class="item active" aria-current="page">
+                Home
+
+                            </a>
+                    </li>
+            <li class=has-sub-items>
+            <a href="https://girasol-apartments.com/apartments" title="Apartments" class="item">
+                Apartments
+
+                            </a>
+                            <button type="button" class="submenu-toggle" aria-expanded="false" aria-controls="submenu-3591">
+                    <span class="visually-hidden">Open Apartments</span>
+                </button>
+                <ul id="submenu-3591">
+                                            <li >
+                            <a href="https://girasol-apartments.com/apartments/girasol-studio-apartment-willemstad" title="Studio" class="item">Studio</a>
+                        </li>
+                                            <li >
+                            <a href="https://girasol-apartments.com/apartments/girasol-1-bedroom-apartment-willemstad" title="1-bedroom apartment" class="item">1-bedroom apartment</a>
+                        </li>
+                                            <li >
+                            <a href="https://girasol-apartments.com/apartments/girasol-2-bedroom-apartment-willemstad" title="2-bedroom apartment" class="item">2-bedroom apartment</a>
+                        </li>
+                                    </ul>
+                    </li>
+            <li >
+            <a href="https://girasol-apartments.com/facilities" title="Facilities" class="item">
+                Facilities
+
+                            </a>
+                    </li>
+            <li >
+            <a href="https://girasol-apartments.com/location" title="Location" class="item">
+                Location
+
+                            </a>
+                    </li>
+            <li >
+            <a href="https://girasol-apartments.com/house-rules" title="House rules" class="item">
+                House rules
+
+                            </a>
+                    </li>
+            <li >
+            <a href="https://girasol-apartments.com/other" title="Other" class="item">
+                Other
+
+                            </a>
+                    </li>
+    </ul>
+
+                    </nav>
+        <div class="top-icons">
+            <div class="menu-trigger">
+                <button type="button" aria-expanded="false" aria-controls="menu-overlay" class="menu-trigger-wrapper">
+                    <span class="menu-trigger-spanwrapper">
+                        <span class="menu-icon"></span>
+                        <span class="visually-hidden">Menu</span>
+                    </span>
+                </button>
+            </div>
+            <div class="menu-overlay color-2" id="menu-overlay">
+                <div class="grid">
+                    <div class="grid-col">
+                        <div class="heading-h3 contact-title">Menu</div>
+                        <nav class="mainnav">
+    <ul>
+                    <li>
+                <a href="https://girasol-apartments.com" title="Home" class="item active" aria-current="page" >
+                    Home
+
+                                    </a>
+            </li>
+                    <li>
+                <a href="https://girasol-apartments.com/apartments" title="Apartments" class="item" data-subpages="https://girasol-apartments.com/apartments" aria-expanded="false" aria-label="Open Apartments" aria-controls="submenu-mob-3591">
+                    Apartments
+
+                                    </a>
+            </li>
+                    <li>
+                <a href="https://girasol-apartments.com/facilities" title="Facilities" class="item" >
+                    Facilities
+
+                                    </a>
+            </li>
+                    <li>
+                <a href="https://girasol-apartments.com/location" title="Location" class="item" >
+                    Location
+
+                                    </a>
+            </li>
+                    <li>
+                <a href="https://girasol-apartments.com/house-rules" title="House rules" class="item" >
+                    House rules
+
+                                    </a>
+            </li>
+                    <li>
+                <a href="https://girasol-apartments.com/other" title="Other" class="item" >
+                    Other
+
+                                    </a>
+            </li>
+            </ul>
+</nav>
+
+                <nav class="subnav" data-sub="https://girasol-apartments.com/apartments" id="submenu-mob-3591">
+    <button type="button" class="back"><span class="icon-sm icon-arrow-left" role="img"></span> Back <span class="visually-hidden">to the main menu</span></button>
+    <ul>
+        <li><div class="heading-h4"><a href="https://girasol-apartments.com/apartments" title="Apartments" class="item">Apartments</a></div></li>
+                    <li><a href="https://girasol-apartments.com/apartments/girasol-studio-apartment-willemstad" title="Studio" class="item"  >Studio</a></li>
+                    <li><a href="https://girasol-apartments.com/apartments/girasol-1-bedroom-apartment-willemstad" title="1-bedroom apartment" class="item"  >1-bedroom apartment</a></li>
+                    <li><a href="https://girasol-apartments.com/apartments/girasol-2-bedroom-apartment-willemstad" title="2-bedroom apartment" class="item"  >2-bedroom apartment</a></li>
+            </ul>
+</nav>
+
+            
+                    
+                    </div>
+                    <div class="grid-col menu-overlay_footer">
+                        <div class="heading-h3 contact-title">Girasol Apartments</div>
+                                                    <p>
+                                Kaya Douwe Zalm 1-3<br>
+                                0000 Willemstad
+                                                                    <br>Curaçao
+                                                            </p>
+                                                <p>
+                                                            +5999 690 5212<br>
+                                                        <a href="mailto:info@sab-management.com">info@sab-management.com</a>
+                        </p>
+                                                                            <ul class="socials">
+                                                                    <li>
+                                        <a href="https://www.facebook.com/girasolapartments/" class="icon-sm icon-facebook" target="_blank" rel="noreferrer">
+                                            <span class="visually-hidden">Follow us on Facebook</span>
+                                        </a>
+                                    </li>
+                                                                    <li>
+                                        <a href="https://www.instagram.com/girasolapartments/" class="icon-sm icon-instagram" target="_blank" rel="noreferrer">
+                                            <span class="visually-hidden">Follow us on Instagram</span>
+                                        </a>
+                                    </li>
+                                                                    <li>
+                                        <a href="https://www.linkedin.com/company/girasol-apartments/" class="icon-sm icon-linkedin" target="_blank" rel="noreferrer">
+                                            <span class="visually-hidden">Follow us on LinkedIn</span>
+                                        </a>
+                                    </li>
+                                                            </ul>
+                                            </div>
+                </div>
+            </div>
+            
+            <nav class="nav-lang">
+        <div>
+            <div class="ws-dropdown ws-dropdown-center">
+                <span class="icon-sm icon-globe" role="img"></span> EN
+                <button type="button" class="ws-dropdown-trigger"><span class="visually-hidden">Switch language</span></button>
+                <div class="ws-dropdown-content">
+                    <div class="ws-dropdown-content-inner">
+                                                                                                                                        <div>
+                                    <a href="https://girasol-apartments.com/nl">
+                                        NL
+                                        <span class="visually-hidden">(Nederlands)</span>
+                                    </a>
+                                </div>
+                                                                        </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+            
+        </div>
+        <div class="nav-contact">
+    <div>
+        <a href="https://girasol-apartments.com/contact" class="btn" title="Contact" target="_self">Contact</a>
+    </div>
+</div>
+
+    </div>
+    <div class="nav-contact-mob">
+    <div>
+        <a href="https://girasol-apartments.com/contact" title="Contact" target="_self">Contact</a>
+    </div>
+</div>
+
+</div>
+
+            <section class="header header-video color- header-video-text--center  headerNew--white-text ">
+    <div class="header-video-container">
+        <div class="header-video-container--image" id="header-content">
+            <div class="aspect-ratio-box aspect-ratio-box-5-2 header-video-minheight">
+                <video poster="https://cdn.tfcms01.nl/zaas/production/2024/01/17/widgets/header-video/image/big/girasol-apartments-introduction-27520.jpg"  autoplay="" loop="" muted="" playsinline="" aria-hidden="true">
+                    <source src="https://cdn.tfcms01.nl/zaas/production/2024/01/17/website-video-27518.mp4" type="video/mp4">
+                                            <source src="https://cdn.tfcms01.nl/zaas/production/2024/01/17/website-video-27519.webm" type="video/webm">
+                                        Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+            <div class="header-video-container--content">
+            <div class="container">
+                <div class="header-video-container--content-inner header-reveal header-reveal--from-left">
+                                            <h1>Feeling at home, safe and cozy!</h1>
+
+<p class="big">Book your stay in our apartment complex</p>
+
+<p><a class="btn btn--primary" href="https://girasol-apartments.com/contact">I want this!</a></p>
+                                    </div>
+            </div>
+        </div>
+        </div>
+</section>
+
+    
+            
+    
+        <main id="main-content" data-elastic-include>
+                    <section class="text-image color-1 connect-to-next ">
+    <div class="container">
+        <div class="grid  grid--md grid--2col grid--gutters-md">
+            <div class="grid-col grid-col-vertical-center">
+                <div>
+                    <p class="pre-heading">Welcome to Girasol Apartments</p>
+
+<h1>Your home on sunny Cura&ccedil;ao!</h1>
+
+<p>Discover the best of Cura&ccedil;ao from Girasol Apartments, your ideal place to stay for an unforgettable stay on the island. Our complex offers comfortable one- and two-room apartments and cozy studios, perfect for various needs. Whether you are here for work, study, internship or to explore the island, our complex is hospitable and encourages social contact and togetherness. Enjoy comfortable accommodations with a homely atmosphere, conveniently located near universities, businesses and beautiful beaches. Girasol Apartments is not just a place to stay, but a home away from home where friendships are formed and unforgettable memories are made. Book your stay today and experience an unforgettable time on Cura&ccedil;ao at Girasol Apartments!</p>
+
+<p><a class="btn btn--primary" href="/">Read more about us</a><br />
+&nbsp;</p>
+                </div>
+            </div>
+            <div class="grid-col">
+                <div class="aspect-ratio-box aspect-ratio-box-6-4 aspect-ratio-box-image">
+                    <picture>
+                        <source media="(max-width: 400px)" srcset="https://cdn.tfcms01.nl/zaas/production/2024/01/17/widgets/text-with-image/small/webp/girasol-apartments-zwembad-sfeer-1-27516.webp" type="image/webp">
+                        <source srcset="https://cdn.tfcms01.nl/zaas/production/2024/01/17/widgets/text-with-image/big/webp/girasol-apartments-zwembad-sfeer-1-27516.webp" type="image/webp">
+                        <source media="(max-width: 400px)" srcset="https://cdn.tfcms01.nl/zaas/production/2024/01/17/widgets/text-with-image/small/jpg/girasol-apartments-zwembad-sfeer-1-27516.jpg" type="image/jpeg">
+                        <source srcset="https://cdn.tfcms01.nl/zaas/production/2024/01/17/widgets/text-with-image/big/jpg/girasol-apartments-zwembad-sfeer-1-27516.jpg" type="image/jpeg">
+                        <img src="https://cdn.tfcms01.nl/zaas/production/2024/01/17/widgets/text-with-image/big/jpg/girasol-apartments-zwembad-sfeer-1-27516.jpg" alt="" loading="lazy">
+                    </picture>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="startblocks-wrapper   color-1  connect-to-next ">
+    <div class="container ">
+        
+        <div class="startblocks">
+                                                <div class="startblocks-item startblocks-item--link reveal reveal--from-bottom">
+                        <div class="startblocks-image ">
+                            <div>
+                                <picture>
+                                    <source media="(max-width: 400px)" srcset="https://cdn.tfcms01.nl/zaas/production/2024/01/17/widgets/image-startblocks/small/webp/girasol-apartments-studio-1-27512.webp" type="image/webp">
+                                    <source srcset="https://cdn.tfcms01.nl/zaas/production/2024/01/17/widgets/image-startblocks/big/webp/girasol-apartments-studio-1-27512.webp" type="image/webp">
+                                    <source media="(max-width: 400px)" srcset="https://cdn.tfcms01.nl/zaas/production/2024/01/17/widgets/image-startblocks/small/jpg/girasol-apartments-studio-1-27512.jpg" type="image/jpeg">
+                                    <source srcset="https://cdn.tfcms01.nl/zaas/production/2024/01/17/widgets/image-startblocks/big/jpg/girasol-apartments-studio-1-27512.jpg" type="image/jpeg">
+                                    <img src="https://cdn.tfcms01.nl/zaas/production/2024/01/17/widgets/image-startblocks/big/jpg/girasol-apartments-studio-1-27512.jpg" alt="" loading="lazy">
+                                </picture>
+                            </div>
+                        </div>
+                        <div class="startblocks-content">
+                            <h3>
+                            <a
+                                href="https://girasol-apartments.com/apartments/girasol-studio-apartment-willemstad" target="_self"
+                                                            >
+                                    <span class="visually-hidden">Read more</span> Studio
+                                </a>
+                            </h3>
+                                                            <p>At Girasol Apartments you can rent studios on the top floor, two of which have a balcony. These studios offer a complete living space with an integrated kitchen, living room and sleeping area. The rental price includes water and various facilities are available. The separate bathroom guarantees privacy and provides a practical layout. Ideal for those looking for affordable, high-quality living space with all amenities within easy reach.</p>
+                                                                                        <span class="more">Read more</span>
+                                                    </div>
+                    </div>
+                                                                <div class="startblocks-item startblocks-item--link reveal reveal--from-bottom">
+                        <div class="startblocks-image ">
+                            <div>
+                                <picture>
+                                    <source media="(max-width: 400px)" srcset="https://cdn.tfcms01.nl/zaas/production/2024/01/17/widgets/image-startblocks/small/webp/girasol-apartments-1-slaapkamer-1-27513.webp" type="image/webp">
+                                    <source srcset="https://cdn.tfcms01.nl/zaas/production/2024/01/17/widgets/image-startblocks/big/webp/girasol-apartments-1-slaapkamer-1-27513.webp" type="image/webp">
+                                    <source media="(max-width: 400px)" srcset="https://cdn.tfcms01.nl/zaas/production/2024/01/17/widgets/image-startblocks/small/jpg/girasol-apartments-1-slaapkamer-1-27513.jpg" type="image/jpeg">
+                                    <source srcset="https://cdn.tfcms01.nl/zaas/production/2024/01/17/widgets/image-startblocks/big/jpg/girasol-apartments-1-slaapkamer-1-27513.jpg" type="image/jpeg">
+                                    <img src="https://cdn.tfcms01.nl/zaas/production/2024/01/17/widgets/image-startblocks/big/jpg/girasol-apartments-1-slaapkamer-1-27513.jpg" alt="" loading="lazy">
+                                </picture>
+                            </div>
+                        </div>
+                        <div class="startblocks-content">
+                            <h3>
+                            <a
+                                href="https://girasol-apartments.com/apartments/girasol-1-bedroom-apartment-willemstad" target="_self"
+                                                            >
+                                    <span class="visually-hidden">Read more</span> 1-bedroom apartment
+                                </a>
+                            </h3>
+                                                            <p>At Girasol Apartments, one-bedroom apartments are available on the upper and lower floors. These well-appointed apartments offer a range of amenities and are perfect for people looking for affordable and high-quality self-contained living space, slightly larger than the studios.</p>
+                                                                                        <span class="more">Read more</span>
+                                                    </div>
+                    </div>
+                                                                <div class="startblocks-item startblocks-item--link reveal reveal--from-bottom">
+                        <div class="startblocks-image ">
+                            <div>
+                                <picture>
+                                    <source media="(max-width: 400px)" srcset="https://cdn.tfcms01.nl/zaas/production/2024/01/17/widgets/image-startblocks/small/webp/girasol-apartments-2-slaapkamer-1-27514.webp" type="image/webp">
+                                    <source srcset="https://cdn.tfcms01.nl/zaas/production/2024/01/17/widgets/image-startblocks/big/webp/girasol-apartments-2-slaapkamer-1-27514.webp" type="image/webp">
+                                    <source media="(max-width: 400px)" srcset="https://cdn.tfcms01.nl/zaas/production/2024/01/17/widgets/image-startblocks/small/jpg/girasol-apartments-2-slaapkamer-1-27514.jpg" type="image/jpeg">
+                                    <source srcset="https://cdn.tfcms01.nl/zaas/production/2024/01/17/widgets/image-startblocks/big/jpg/girasol-apartments-2-slaapkamer-1-27514.jpg" type="image/jpeg">
+                                    <img src="https://cdn.tfcms01.nl/zaas/production/2024/01/17/widgets/image-startblocks/big/jpg/girasol-apartments-2-slaapkamer-1-27514.jpg" alt="" loading="lazy">
+                                </picture>
+                            </div>
+                        </div>
+                        <div class="startblocks-content">
+                            <h3>
+                            <a
+                                href="https://girasol-apartments.com/apartments/girasol-2-bedroom-apartment-willemstad" target="_self"
+                                                            >
+                                    <span class="visually-hidden">Read more</span> 2-bedroom apartment
+                                </a>
+                            </h3>
+                                                            <p>At Girasol Apartments, two-bedroom apartments are available, spread over the upper and lower floors. These well-appointed apartments offer a range of amenities and are perfect for those looking for an affordable and quality living space to share with a friend.</p>
+                                                                                        <span class="more">Read more</span>
+                                                    </div>
+                    </div>
+                                    </div>
+    </div>
+
+    </section>
+<section class="text-widget color-1  ">
+    <div class="container">
+
+        
+            
+            <div class="grid--1col grid--gutters-md grid--md grid">
+                                                            <div class="grid-col">
+                            <p style="text-align:center"><a class="btn btn--primary" href="https://girasol-apartments.com/apartments">Find your rental apartment here!</a></p>
+                        </div>
+                                                                                                                        </div>
+
+            </div>
+</section>
+<section class="section-quotes quotesseries quotes--symbols quotes-block-transparant color-2  ">
+    <div class="container">
+                <div class="quotes">
+                            <div class="grid grid--md grid--1col grid--gutters-xl">
+                                            <div class="grid-col">
+                            <div class="quotes_block pv-sm ph-sm">
+                                <blockquote class="quotes_block_content">
+                                    <div class="quotes_block_text">
+                                        During my five-month internship in Curaçao, I stayed at Girasol Apartments, and I can say with certainty that my stay there was absolutely unforgettable. The studio I stayed in offered just the right mix of comfort and privacy that I needed in addition to my work. The community atmosphere was great and the location was perfect. Girasol Apartments completely exceeded my expectations, and I highly recommend it for anyone who wants to have a great experience on the island.
+                                    </div>
+                                                                            <div class="quotes_block_person">
+                                                                                            <div class="quotes_block_image">
+                                                    <div class="aspect-ratio-box aspect-ratio-box-image aspect-ratio-box-1-1">
+                                                        <picture>
+                                                            <source srcset="https://cdn.tfcms01.nl/zaas/production/2024/06/12/widgets/quote-multiple/thumb/webp/girasol-apartments-review-32772.webp" type="image/webp">
+                                                            <source srcset="https://cdn.tfcms01.nl/zaas/production/2024/06/12/widgets/quote-multiple/thumb/jpg/girasol-apartments-review-32772.jpg" type="image/jpeg">
+                                                            <img src="https://cdn.tfcms01.nl/zaas/production/2024/06/12/widgets/quote-multiple/thumb/jpg/girasol-apartments-review-32772.jpg" width="80" height="80" alt="">
+                                                        </picture>
+                                                    </div>
+                                                </div>
+                                                                                        <div>
+                                                                                                    <div class="quotes_block_name">Ganga</div>
+                                                                                                                                                    <div class="quotes_block_function">5 months rent | Internship</div>
+                                                                                            </div>
+                                        </div>
+                                                                    </blockquote>
+                            </div>
+                        </div>
+                                    </div>
+                    </div>
+
+            </div>
+</section>
+
+            </main>
+
+    
+            <div class="footer-widgets">
+            
+        </div>
+    
+<footer class="footer color-3">
+    <div class="footer_columns container">
+                                <div class="footer_col">
+                            <div class="heading-h3">Girasol Apartments</div>
+                                    <p>
+                        Kaya Douwe Zalm 1-3<br>
+                        0000 Willemstad
+                                                    <br>Curaçao
+                                            </p>
+                                                <p>
+                                            +5999 690 5212<br>
+                                        <a href="mailto:info@sab-management.com">info@sab-management.com</a>
+                </p>
+                
+                                    <ul class="socials">
+                                                    <li>
+                                <a href="https://www.facebook.com/girasolapartments/" class="icon-sm icon-facebook" target="_blank" rel="noreferrer">
+                                    <span class="visually-hidden">Follow us on Facebook Girasol Apartments</span>
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="https://www.instagram.com/girasolapartments/" class="icon-sm icon-instagram" target="_blank" rel="noreferrer">
+                                    <span class="visually-hidden">Follow us on Instagram Girasol Apartments</span>
+                                </a>
+                            </li>
+                                                    <li>
+                                <a href="https://www.linkedin.com/company/girasol-apartments/" class="icon-sm icon-linkedin" target="_blank" rel="noreferrer">
+                                    <span class="visually-hidden">Follow us on LinkedIn Girasol Apartments</span>
+                                </a>
+                            </li>
+                                            </ul>
+                            </div>
+                <div class="footer_col ">
+    <h3>About us</h3>
+
+<p>Girasol Apartments, active in Cura&ccedil;ao since 2018, offers comfortable stays and a vibrant community for young adults. Located close to universities, companies and beautiful beaches, we are the ideal place for an internship, work period or study on the island. It is the place where our memories meet those of our guests. Welcome to Girasol Apartments, where Cura&ccedil;ao becomes your home and memories are made for a lifetime.</p>
+</div>
+
+        <div class="footer_col ">
+    <h3>Opening hours</h3>
+
+<p>Monday to Thursday: 8:30 AM - 5:00 PM<br />
+Friday: 8:30 AM - 4:00 PM<br />
+Saturday &amp; Sunday: Closed</p>
+
+<p><strong>Please note the time difference with the Netherlands:</strong><br />
+April - October: -5 hours<br />
+November - March: -6 hours</p>
+
+<p><a class="whatsapp-button" href="https://wa.me/59996905212" target="_blank" title="Contact via WhatsApp: 59996905212"><img alt="" src="https://girasol-apartments.com/storage/uploads/af6b2e3/images/whatsapp-girasol.png" style="height:60px; width:60px" /></a></p>
+</div>
+
+    </div>
+</footer>
+
+<footer class="footer-bar color-3">
+    <div class="container">
+        &copy;2026 Girasol Apartments
+        <nav aria-label="Footerbar">
+    <ul>
+                <li>
+            <span class="divider" aria-hidden="true">•</span>
+            <a href="https://girasol-apartments.com/sitemap" title="Sitemap" class="item">Sitemap</a>
+        </li>
+                <li>
+            <span class="divider" aria-hidden="true">•</span>
+            <a href="https://girasol-apartments.com/privacy-statement" title="Privacy statement" class="item">Privacy statement</a>
+        </li>
+            </ul>
+</nav>
+
+            </div>
+</footer>
+<!-- Javascript -->
+<script>
+    window.routes = {"dragonfly-api.media.direct.store":"\/dragonfly-api\/media\/direct","dragonfly-api.media.direct.parts":"\/dragonfly-api\/media\/direct\/{key}\/parts","dragonfly-api.media.direct.sign-part":"\/dragonfly-api\/media\/direct\/{key}\/parts\/{part}","dragonfly-api.media.direct.complete":"\/dragonfly-api\/media\/direct\/{key}\/complete","dragonfly-api.media.direct.destroy":"\/dragonfly-api\/media\/direct\/{key}","dragonfly-api.media.tus":"\/dragonfly-api\/media\/tus\/{any?}","dragonfly-api.media.store":"\/dragonfly-api\/media\/{key}","dragonfly-api.media.update":"\/dragonfly-api\/media\/{asset}","dragonfly-api.media.show":"\/dragonfly-api\/media\/{asset}","dragonfly-api.media.duplicate":"\/dragonfly-api\/media\/{asset}\/duplicate"};
+    window.trans = {"cms-media::file.dropzone.button":"or click to browse","cms-media::notes.errors.error":"An error occured while uploading your file.","validation.file_uploader.exceeds_size":"The file you have selected is too large, you can upload a maximum of %{size}.","validation.file_uploader.invalid_type":"The file you have selected is not allowed, you may only upload %{types}.","activities::front.create_activity.delete":"Delete [date]","activities::front.create_activity.delete_empty":"Delete empty date","front::form.single_uploader.processing":"Processing..."};
+</script>
+
+<link rel="preload" as="style" href="https://girasol-apartments.com/build/assets/owl-DbSfKVxM.css" /><link rel="modulepreload" as="script" href="https://girasol-apartments.com/build/assets/app-DLiEdWru.js" /><link rel="modulepreload" as="script" href="https://girasol-apartments.com/build/assets/jquery-BrnSCgki.js" /><link rel="modulepreload" as="script" href="https://girasol-apartments.com/build/assets/jquery.module-COfKC7OZ.js" /><link rel="modulepreload" as="script" href="https://girasol-apartments.com/build/assets/Helpers-Doa3KnYs.js" /><link rel="modulepreload" as="script" href="https://girasol-apartments.com/build/assets/rolldown-runtime-BCiCTKAo.js" /><link rel="modulepreload" as="script" href="https://girasol-apartments.com/build/assets/owl.carousel-Dst3QIrm.js" /><link rel="modulepreload" as="script" href="https://girasol-apartments.com/build/assets/preload-helper-odF-skvc.js" /><link rel="modulepreload" as="script" href="https://girasol-apartments.com/build/assets/focus-trap.esm-AYUiubC2.js" /><link rel="stylesheet" href="https://girasol-apartments.com/build/assets/owl-DbSfKVxM.css" media="screen" /><script type="module" src="https://girasol-apartments.com/build/assets/app-DLiEdWru.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 48" fill="none">
+  <g transform="translate(4, 8)">
+    <path d="M2 20 Q8 14, 16 20 T30 20" stroke="#0C5E7F" stroke-width="2.5" fill="none" stroke-linecap="round"></path>
+    <path d="M2 26 Q8 20, 16 26 T30 26" stroke="#18A5B8" stroke-width="2.5" fill="none" stroke-linecap="round"></path>
+    <circle cx="26" cy="12" r="4" fill="#F26A3E"></circle>
+  </g>
+  <text x="44" y="22" font-family="DM Sans, sans-serif" font-size="16" font-weight="600" fill="#0C5E7F" letter-spacing="-0.3">Caribbean Island Living</text>
+  <text x="44" y="38" font-family="Inter, sans-serif" font-size="9" font-weight="500" fill="#6B6860" letter-spacing="2.4">ARUBA · BONAIRE · CURAÇAO</text>
+</svg>

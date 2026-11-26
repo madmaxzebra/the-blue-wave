@@ -40,6 +40,8 @@ export type PartnerProfile = {
   mapsUrl?: string
 }
 
+import { homesPartnersMore } from './homesPartnersMore'
+
 const base = import.meta.env.BASE_URL
 
 export const homesPartners: PartnerProfile[] = [
@@ -208,6 +210,7 @@ export const homesPartners: PartnerProfile[] = [
     mapsUrl: 'https://maps.google.com/?q=GS+Real+Estate+Santa+Rosaweg+70+C+Willemstad+Curaçao',
     mapsEmbed: 'https://maps.google.com/maps?q=12.1241,-68.8921&z=16&output=embed&iwloc=',
   },
+  ...homesPartnersMore,
 ]
 
 export function getHomesPartner(id: string | undefined) {

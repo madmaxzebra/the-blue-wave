@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="en-US" data-website-id="1" data-main-object="website.page(4,)">
+    <head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <meta name="generator" content="Odoo"/>
+        <meta name="description" content="This is the homepage of the website"/>
+            
+        <meta property="og:type" content="website"/>
+        <meta property="og:title" content="Home | Gouverneur"/>
+        <meta property="og:site_name" content="Gouverneur"/>
+        <meta property="og:url" content="https://www.de-gouverneur.com/"/>
+        <meta property="og:image" content="https://www.de-gouverneur.com/web/image/website/1/logo?unique=db33da6"/>
+        <meta property="og:description" content="This is the homepage of the website"/>
+            
+        <meta name="twitter:card" content="summary_large_image"/>
+        <meta name="twitter:title" content="Home | Gouverneur"/>
+        <meta name="twitter:image" content="https://www.de-gouverneur.com/web/image/website/1/logo/300x300?unique=db33da6"/>
+        <meta name="twitter:description" content="This is the homepage of the website"/>
+        
+        <link rel="alternate" hreflang="nl" href="https://www.de-gouverneur.com/nl"/>
+        <link rel="alternate" hreflang="en" href="https://www.de-gouverneur.com/"/>
+        <link rel="alternate" hreflang="x-default" href="https://www.de-gouverneur.com/"/>
+        <link rel="canonical" href="https://www.de-gouverneur.com/"/>
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin=""/>
+        <title>Home | Gouverneur</title>
+        <link type="image/x-icon" rel="shortcut icon" href="/web/image/website/1/favicon?unique=db33da6"/>
+        <link rel="preload" href="/web/static/src/libs/fontawesome/fonts/fontawesome-webfont.woff2?v=4.7.0" as="font" crossorigin=""/>
+        <link type="text/css" rel="stylesheet" href="/web/assets/1/6c174d9/web.assets_frontend.min.css"/>
+        <script id="web.layout.odooscript" type="text/javascript">
+            var odoo = {
+                csrf_token: '57e9af8d91c90422e586b63df0d83bac97826a75o1827246662',
+                debug: "",
+            };
+        </script>
+        <script type="text/javascript">
+            odoo.__session_info__ = {"is_admin": false, "is_system": false, "is_public": true, "is_internal_user": false, "is_website_user": true, "uid": null, "registry_hash": "fc3880bf20c779f9a209701e6cf980856c7ec1d9e11902fbfd9b63bcd474d29d", "is_frontend": true, "profile_session": null, "profile_collectors": null, "profile_params": null, "show_effect": true, "currencies": {"125": {"name": "EUR", "symbol": "\u20ac", "position": "before", "digits": [69, 2]}, "1": {"name": "USD", "symbol": "$", "position": "before", "digits": [69, 2]}, "71": {"name": "XCG", "symbol": "Xcg", "position": "before", "digits": [69, 2]}}, "quick_login": true, "bundle_params": {"lang": "en_US", "website_id": 1}, "test_mode": false, "websocket_worker_version": "19.0-3", "translationURL": "/website/translations", "translation_hash": "8943bfa3077f786851e6a7d2a6cfcfe1ec291d86", "geoip_country_code": "US", "geoip_phone_code": 1, "lang_url_code": "en"};
+            if (!/(^|;\s)tz=/.test(document.cookie)) {
+                const userTZ = Intl.DateTimeFormat().resolvedOptions().timeZone;
+                document.cookie = `tz=${userTZ}; path=/`;
+            }
+        </script>
+        <script type="text/javascript" defer="defer" src="/web/assets/1/b5be6a1/web.assets_frontend_minimal.min.js" onerror="__odooAssetError=1"></script>
+        <script type="text/javascript" data-src="/web/assets/1/dfcfce6/web.assets_frontend_lazy.min.js" onerror="__odooAssetError=1"></script>
+        
+            <script id="plausible_script" name="plausible" defer="defer" data-domain="diole.odoo.com" src="https://download.odoo.com/js/plausi_saas.js"></script>
+        
+    </head>
+    <body>
+        
+
+
+
+        <div id="wrapwrap" class="homepage   ">
+            <a class="o_skip_to_content btn btn-primary rounded-0 visually-hidden-focusable position-absolute start-0" href="#wrap">Skip to Content</a>
+                <header id="top" data-anchor="true" data-name="Header" data-extra-items-toggle-aria-label="Extra items button" class="   o_header_standard" style="background-color: #; color: #;">
+    <nav data-name="Navbar" aria-label="Main" class="navbar navbar-expand-lg navbar-light o_colored_level o_cc d-none d-lg-block shadow-sm ">
+        
+
+            <div id="o_main_nav" class="o_main_nav container">
+                
+    <a data-name="Navbar Logo" href="/" class="navbar-brand logo me-4">
+            
+            <span role="img" aria-label="Logo of Gouverneur" title="Gouverneur"><img src="/web/image/website/1/logo/Gouverneur?unique=db33da6" class="img img-fluid" width="95" height="40" alt="Gouverneur" loading="lazy"/></span>
+        </a>
+    
+                
+    <ul role="menu" id="top_menu" class="nav navbar-nav top_menu o_menu_loading  me-auto ">
+        
+                    
+
+    <li role="presentation" class="nav-item   dropdown">
+        <a href="#" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="menuitem" class="dropdown-toggle nav-link   ">
+            <span>MENU</span>
+        </a>
+        
+        
+        <ul role="menu" class="dropdown-menu ">
+
+    <li role="presentation" class=" ">
+        <a role="menuitem" href="/lunch-menu" class="dropdown-item ">
+            <span>LUNCH MENU</span>
+        </a>
+    </li>
+
+    <li role="presentation" class=" ">
+        <a role="menuitem" href="/dinner-menu" class="dropdown-item ">
+            <span>DINNER MENU</span>
+        </a>
+    </li>
+
+    <li role="presentation" class=" ">
+        <a role="menuitem" href="/dessert-menu" class="dropdown-item ">
+            <span>DESSERT MENU</span>
+        </a>
+    </li>
+
+    <li role="presentation" class=" ">
+        <a role="menuitem" href="/group-menu" class="dropdown-item ">
+            <span>GROUP MENU</span>
+        </a>
+    </li>
+        </ul>
+        
+    </li>
+
+    <li role="presentation" class="nav-item ">
+        <a role="menuitem" href="https://www.de-gouverneur.com/groups" class="nav-link ">
+            <span>GROUPS</span>
+        </a>
+    </li>
+
+    <li role="presentation" class="nav-item ">
+        <a role="menuitem" href="/meeting-room" class="nav-link ">
+            <span>MEETING ROOM</span>
+        </a>
+    </li>
+
+    <li role="presentation" class="nav-item ">
+        <a role="menuitem" href="/faq" class="nav-link ">
+            <span>FAQ</span>
+        </a>
+    </li>
+                
+    </ul>
+                
+                <ul class="navbar-nav align-items-center gap-2 flex-shrink-0 justify-content-end ps-3">
+                    
+                    
+        <li class="">
+                <div data-name="Text" class="s_text_block ">
+                    <a href="tel:+1 555-555-5556" class="nav-link o_nav-link_secondary p-2"><span class="o_force_ltr">​​​</span>
+                    <br/></a>
+                </div>
+        </li>
+                    
+                    
+        <li data-name="Language Selector" class="o_header_language_selector ">
+        <div class="js_language_selector  dropdown d-print-none">
+            <button type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true" class="border-0 dropdown-toggle nav-link">
+                <span class="">English (US)</span>
+            </button>
+            <div role="menu" class="dropdown-menu dropdown-menu-end">
+                    <a class="dropdown-item js_change_lang " role="menuitem" href="/nl" data-url_code="nl" title=" Nederlands">
+                        <span class=""> Nederlands</span>
+                    </a>
+                    <a class="dropdown-item js_change_lang active" role="menuitem" href="" data-url_code="en" title="English (US)">
+                        <span class="">English (US)</span>
+                    </a>
+            </div>
+        </div>
+        </li>
+                    
+                    
+                    
+                </ul>
+            </div>
+        
+    </nav>
+
+    <nav data-name="Navbar" aria-label="Mobile" class="navbar  navbar-light o_colored_level o_cc o_header_mobile d-block d-lg-none shadow-sm ">
+        
+
+        <div class="o_main_nav container flex-wrap justify-content-between">
+            <div class="d-flex flex-grow-1">
+                
+    <a data-name="Navbar Logo" href="/" class="navbar-brand logo ">
+            
+            <span role="img" aria-label="Logo of Gouverneur" title="Gouverneur"><img src="/web/image/website/1/logo/Gouverneur?unique=db33da6" class="img img-fluid" width="95" height="40" alt="Gouverneur" loading="lazy"/></span>
+        </a>
+    
+                <ul class="o_header_mobile_buttons_wrap navbar-nav d-flex flex-row align-items-center gap-2 mb-0 ms-auto"></ul>
+            </div>
+            <button class="nav-link btn p-2 o_not_editable" type="button" data-bs-toggle="offcanvas" data-bs-target="#top_menu_collapse_mobile" aria-controls="top_menu_collapse_mobile" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div id="top_menu_collapse_mobile" class="offcanvas offcanvas-end o_navbar_mobile">
+                <div class="offcanvas-header justify-content-end o_not_editable">
+                    <button type="button" class="nav-link btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body d-flex flex-column justify-content-between h-100 w-100 pt-0">
+                    <ul class="navbar-nav">
+                        
+                        
+                        <li>
+    <ul role="menu" class="nav navbar-nav top_menu  o_mega_menu_is_offcanvas mx-n3  ">
+        
+                                
+
+    <li role="presentation" class="nav-item border-top    accordion accordion-flush">
+        
+        
+        <div class="accordion-item">
+            <a href="#" data-bs-toggle="collapse" aria-expanded="false" class="nav-link p-3 text-wrap accordion-button collapsed" data-bs-target=".o_accordion_target_17" aria-controls="o_accordion_target_17">
+                <span>MENU</span>
+            </a>
+            <div class="o_accordion_target_17 accordion-collapse collapse" aria-labelledby="o_accordion_target_17" data-bs-parent="#top_menu_collapse_mobile">
+                <ul class="show list-group list-unstyled py-0" role="menu">
+
+    <li role="presentation" class=" px-0">
+        <a role="menuitem" href="/lunch-menu" class="nav-link list-group-item list-group-item-action border-0 rounded-0 px-4 text-wrap ">
+            <span>LUNCH MENU</span>
+        </a>
+    </li>
+
+    <li role="presentation" class=" px-0">
+        <a role="menuitem" href="/dinner-menu" class="nav-link list-group-item list-group-item-action border-0 rounded-0 px-4 text-wrap ">
+            <span>DINNER MENU</span>
+        </a>
+    </li>
+
+    <li role="presentation" class=" px-0">
+        <a role="menuitem" href="/dessert-menu" class="nav-link list-group-item list-group-item-action border-0 rounded-0 px-4 text-wrap ">
+            <span>DESSERT MENU</span>
+        </a>
+    </li>
+
+    <li role="presentation" class=" px-0">
+        <a role="menuitem" href="/group-menu" class="nav-link list-group-item list-group-item-action border-0 rounded-0 px-4 text-wrap ">
+            <span>GROUP MENU</span>
+        </a>
+    </li>
+                </ul>
+            </div>
+        </div>
+        
+    </li>
+
+    <li role="presentation" class="nav-item border-top  px-0">
+        <a role="menuitem" href="https://www.de-gouverneur.com/groups" class="nav-link p-3 text-wrap ">
+            <span>GROUPS</span>
+        </a>
+    </li>
+
+    <li role="presentation" class="nav-item border-top  px-0">
+        <a role="menuitem" href="/meeting-room" class="nav-link p-3 text-wrap ">
+            <span>MEETING ROOM</span>
+        </a>
+    </li>
+
+    <li role="presentation" class="nav-item border-top border-bottom px-0">
+        <a role="menuitem" href="/faq" class="nav-link p-3 text-wrap ">
+            <span>FAQ</span>
+        </a>
+    </li>
+                            
+    </ul>
+                        </li>
+                        
+        <li class="">
+                <div data-name="Text" class="s_text_block mt-2">
+                    <a href="tel:+1 555-555-5556" class="nav-link o_nav-link_secondary p-2"><span class="o_force_ltr">​​​</span>
+                    <br/></a>
+                </div>
+        </li>
+                        
+                    </ul>
+                    <ul class="navbar-nav gap-2 mt-3 w-100">
+                        
+        <li data-name="Language Selector" class="o_header_language_selector ">
+        <div class="js_language_selector dropup dropdown d-print-none">
+            <button type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true" class="border-0 dropdown-toggle nav-link d-flex align-items-center w-100">
+                <span class="me-auto small">English (US)</span>
+            </button>
+            <div role="menu" class="dropdown-menu w-100">
+                    <a class="dropdown-item js_change_lang " role="menuitem" href="/nl" data-url_code="nl" title=" Nederlands">
+                        <span class="me-auto small"> Nederlands</span>
+                    </a>
+                    <a class="dropdown-item js_change_lang active" role="menuitem" href="" data-url_code="en" title="English (US)">
+                        <span class="me-auto small">English (US)</span>
+                    </a>
+            </div>
+        </div>
+        </li>
+                        
+                        
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    
+    </nav>
+    </header>
+                <main>
+                    
+        <div id="wrap" class="oe_structure oe_empty"><section class="s_embed_code pt16 pb16 o_colored_level o_full_screen_height text-center" data-snippet="s_embed_code" data-name="Embed Code" style="background-color: rgb(247, 241, 230);">
+        <template class="s_embed_code_saved"><style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Lato:wght@300;400;700&display=swap');
+
+.gv *{box-sizing:border-box;margin:0;padding:0;}
+.gv{
+  --cream:#f7f1e6; --cream2:#efe5d3; --ink:#1f1a17; --muted:#5e544b;
+  --bordeaux:#8c1c26; --bordeaux2:#a8262f; --gold:#b08d57; --line:#d9c9a8;
+  font-family:'Lato',-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  background:var(--cream);color:var(--ink);line-height:1.65;width:100%;overflow:hidden;
+}
+.gv img{display:block;width:100%;height:100%;object-fit:cover;pointer-events:none;user-select:none;}
+.gv h1,.gv h2,.gv h3{font-family:'Playfair Display',Georgia,serif;font-weight:400;line-height:1.15;}
+.gv-wrap{max-width:1140px;margin:0 auto;padding:0 2rem;}
+.gv-eyebrow{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:14px;}
+.gv-orn{display:flex;align-items:center;justify-content:center;gap:14px;margin:0 auto 18px;color:var(--gold);}
+.gv-orn:before,.gv-orn:after{content:"";height:1px;width:70px;background:var(--gold);}
+.gv-orn span{font-size:14px;}
+
+/* knoppen */
+.gv-btn{display:inline-block;font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:14px 28px;border-radius:2px;transition:.25s;cursor:pointer;}
+.gv-btn-red{background:var(--bordeaux);color:#fff;border:1px solid var(--bordeaux);}
+.gv-btn-red:hover{background:var(--bordeaux2);border-color:var(--bordeaux2);}
+.gv-btn-line{border:1px solid rgba(255,255,255,.7);color:#fff;}
+.gv-btn-line:hover{background:#fff;color:var(--ink);}
+.gv-btn-dark{border:1px solid var(--ink);color:var(--ink);}
+.gv-btn-dark:hover{background:var(--ink);color:var(--cream);}
+
+/* HERO */
+.gv-hero{position:relative;min-height:88vh;display:flex;align-items:center;justify-content:center;text-align:center;background:#120d0b;}
+.gv-hero>img{position:absolute;inset:0;object-position:center 35%;}
+.gv-hero:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,10,8,.45) 0%,rgba(15,10,8,.35) 45%,rgba(15,10,8,.75) 100%);}
+.gv-hero-body{position:relative;z-index:2;padding:4rem 1.5rem;max-width:820px;}
+.gv-hero .gv-eyebrow{color:#e2c48f;}
+.gv-hero h1{font-size:clamp(40px,7vw,78px);color:#fff;margin-bottom:10px;}
+.gv-hero h1 em{font-style:italic;color:#e2c48f;}
+.gv-hero p{font-size:clamp(16px,2vw,19px);color:#efe6d6;font-weight:300;margin-bottom:30px;}
+.gv-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+.gv-hero-info{position:absolute;z-index:2;bottom:22px;left:0;right:0;text-align:center;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#d8cbb4;}
+
+/* WELKOM */
+.gv-welcome{padding:6rem 0 5rem;}
+.gv-welcome-grid{display:grid;grid-template-columns:1fr 1fr;gap:4.5rem;align-items:center;}
+.gv-welcome h2{font-size:clamp(30px,4vw,44px);margin-bottom:20px;}
+.gv-welcome h2 em{color:var(--bordeaux);font-style:italic;}
+.gv-welcome p{color:var(--muted);font-size:16px;margin-bottom:16px;}
+.gv-welcome-img{position:relative;height:500px;}
+.gv-welcome-img:before{content:"";position:absolute;inset:-14px 14px 14px -14px;border:1px solid var(--gold);z-index:0;}
+.gv-welcome-img img{position:relative;z-index:1;}
+.gv-sign{font-family:'Playfair Display',serif;font-style:italic;font-size:20px;color:var(--bordeaux);margin-top:8px;}
+
+/* MENU TEGELS */
+.gv-menus{padding:5rem 0;background:var(--cream2);text-align:center;}
+.gv-menus h2{font-size:clamp(30px,4vw,42px);margin-bottom:10px;}
+.gv-lead{color:var(--muted);max-width:560px;margin:0 auto 44px;}
+.gv-tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;text-align:left;}
+.gv-tile{display:block;background:#fff;transition:.3s;border:1px solid var(--line);}
+.gv-tile:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(60,40,20,.12);}
+.gv-tile-img{height:260px;overflow:hidden;}
+.gv-tile-img img{transition:transform .6s;}
+.gv-tile:hover .gv-tile-img img{transform:scale(1.05);}
+.gv-tile-body{padding:24px 26px 28px;}
+.gv-tile-time{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
+.gv-tile h3{font-size:24px;margin-bottom:8px;color:var(--ink);}
+.gv-tile p{font-size:14.5px;color:var(--muted);margin-bottom:14px;}
+.gv-tile-link{font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--bordeaux);}
+
+/* UITZICHT / QUOTE */
+.gv-view{position:relative;min-height:460px;display:flex;align-items:center;background:#120d0b;}
+.gv-view>img{position:absolute;inset:0;}
+.gv-view:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(15,10,8,.82) 0%,rgba(15,10,8,.55) 50%,rgba(15,10,8,.1) 100%);}
+.gv-view-body{position:relative;z-index:2;max-width:520px;}
+.gv-view .gv-eyebrow{color:#e2c48f;}
+.gv-view h2{font-size:clamp(28px,4vw,42px);color:#fff;margin-bottom:16px;}
+.gv-view p{color:#e6dccb;margin-bottom:26px;font-weight:300;font-size:16px;}
+
+/* GROEPEN */
+.gv-groups{padding:5.5rem 0;}
+.gv-groups-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;}
+.gv-group{border:1px solid var(--line);padding:42px 38px;background:#fff;position:relative;}
+.gv-group:before{content:"";position:absolute;top:0;left:38px;width:46px;height:3px;background:var(--bordeaux);}
+.gv-group h3{font-size:28px;margin-bottom:10px;}
+.gv-group p{color:var(--muted);margin-bottom:22px;font-size:15px;}
+.gv-group ul{list-style:none;margin-bottom:26px;}
+.gv-group li{font-size:14.5px;padding:7px 0;border-bottom:1px solid #eee4d2;color:var(--ink);}
+.gv-group li:before{content:"◆";color:var(--gold);font-size:9px;margin-right:12px;vertical-align:2px;}
+
+/* INFO */
+.gv-info{background:var(--ink);color:#d9cdb9;padding:5rem 0;}
+.gv-info-grid{display:grid;grid-template-columns:1fr 1fr 1.3fr;gap:3rem;}
+.gv-info h3{font-size:22px;color:#fff;margin-bottom:16px;}
+.gv-info p,.gv-info li{font-size:15px;color:#cfc2ac;}
+.gv-hours{list-style:none;}
+.gv-hours li{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid #3a322b;}
+.gv-hours span:last-child{color:#fff;}
+.gv-info .gv-small{font-size:13px;color:#a69a86;margin-top:12px;}
+.gv-map{height:250px;border:1px solid #3a322b;filter:grayscale(.35) contrast(1.05);}
+.gv-map iframe{width:100%;height:100%;border:0;display:block;}
+.gv-social{display:flex;gap:16px;margin-top:18px;flex-wrap:wrap;}
+.gv-social a{font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:#e2c48f;border-bottom:1px solid #6a5636;padding-bottom:2px;}
+
+/* SLOT CTA */
+.gv-cta{padding:5rem 0;text-align:center;background:var(--cream);}
+.gv-cta h2{font-size:clamp(28px,4vw,40px);margin-bottom:10px;}
+.gv-cta p{color:var(--muted);margin-bottom:28px;}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .gv-welcome-grid{grid-template-columns:1fr;gap:3rem;}
+  .gv-welcome-img{height:380px;margin:0 14px;}
+  .gv-tiles{grid-template-columns:1fr;max-width:520px;margin:0 auto;}
+  .gv-groups-grid{grid-template-columns:1fr;}
+  .gv-info-grid{grid-template-columns:1fr 1fr;}
+  .gv-info-grid>div:last-child{grid-column:1/-1;}
+}
+@media(max-width:640px){
+  .gv-wrap{padding:0 1.25rem;}
+  .gv-hero{min-height:82vh;}
+  .gv-hero-info{display:none;}
+  .gv-welcome{padding:4rem 0 3.5rem;}
+  .gv-menus,.gv-groups,.gv-info,.gv-cta{padding:3.5rem 0;}
+  .gv-tile-img{height:210px;}
+  .gv-view{min-height:420px;}
+  .gv-view:after{background:rgba(15,10,8,.62);}
+  .gv-group{padding:34px 24px;}
+  .gv-group:before{left:24px;}
+  .gv-info-grid{grid-template-columns:1fr;gap:2.5rem;}
+}
+
+/* Odoo-thema overschrijven */
+.gv a,.gv a:hover,.gv a:focus{text-decoration:none !important;}
+.gv a.gv-btn-red{color:#fff !important;}
+.gv a.gv-btn-line{color:#fff !important;}
+.gv a.gv-btn-line:hover{color:#1f1a17 !important;}
+.gv a.gv-btn-dark{color:#1f1a17 !important;}
+.gv a.gv-btn-dark:hover{color:#f7f1e6 !important;}
+.gv .gv-tile-link{color:#8c1c26 !important;}
+.gv .gv-social a{color:#e2c48f !important;}
+.gv .gv-hero h1,.gv .gv-view h2,.gv .gv-info h3{color:#fff !important;}
+.gv .gv-welcome h2,.gv .gv-menus h2,.gv .gv-tile h3,.gv .gv-group h3,.gv .gv-cta h2{color:#1f1a17 !important;}
+.gv .gv-eyebrow{color:#b08d57 !important;}
+.gv .gv-hero .gv-eyebrow,.gv .gv-view .gv-eyebrow,.gv .gv-hero h1 em{color:#e2c48f !important;}
+.gv .gv-welcome h2 em{color:#8c1c26 !important;}
+
+/* 'Powered by Odoo' in de footer verbergen */
+.o_brand_promotion{display:none !important;}
+</style>
+
+
+<div class="gv">
+
+  
+  <section class="gv-hero">
+    <img src="https://diole.odoo.com/web/image/1707-496fe7b1/Gouverneur.webp" alt="Grand Café Gouverneur de Rouville at night" loading="lazy"/>
+    <div class="gv-hero-body">
+      <p class="gv-eyebrow">Otrobanda · Willemstad · Curaçao</p>
+      <h1>Grand Café<br/><em>Gouverneur de Rouville</em></h1>
+      <p>International cuisine with a Caribbean twist, served with a view over the Handelskade.</p>
+      <div class="gv-btns">
+        <a class="gv-btn gv-btn-red" href="#gstpln_openWidget">Reserve a table</a>
+        <a class="gv-btn gv-btn-line" href="/dinner-menu">View the menu</a>
+      </div>
+    </div>
+    <div class="gv-hero-info">Open daily from 9:00 AM  ·  De Rouvilleweg 9F, 2nd floor</div>
+  </section>
+
+  
+  <section class="gv-welcome">
+    <div class="gv-wrap gv-welcome-grid">
+      <div>
+        <p class="gv-eyebrow">Welcome</p>
+        <h2>A grand café in the <em>heart of Willemstad</em></h2>
+        <p>In the lively neighbourhood of Otrobanda, in one of the most beautiful monumental buildings of the city, you'll find Grand Café Gouverneur de Rouville. Just a short walk from Pietermaai and the colourful streets of Punda.</p>
+        <p>Our kitchen brings together local and international flavours. Start your day with breakfast, enjoy a long lunch, or stay for dinner on the balcony while the city lights come on across the water.</p>
+        <p class="gv-sign">Welcome to the Gouverneur.</p>
+      </div>
+      <div class="gv-welcome-img">
+        <img src="https://diole.odoo.com/web/image/1552-cf27f678/home1.webp" alt="Bartender preparing a cocktail" loading="lazy"/>
+      </div>
+    </div>
+  </section>
+
+  
+  <section class="gv-menus">
+    <div class="gv-wrap">
+      <div class="gv-orn"><span>◆</span></div>
+      <h2>From morning to late</h2>
+      <p class="gv-lead">Coffee, drinks and snacks all day long. Pick your moment.</p>
+      <div class="gv-tiles">
+        <a class="gv-tile" href="/lunch-menu">
+          <div class="gv-tile-img"><img src="https://diole.odoo.com/web/image/30193" alt="Poké bowl" loading="lazy"/></div>
+          <div class="gv-tile-body">
+            <p class="gv-tile-time">9:00 AM – 4:00 PM</p>
+            <h3>Breakfast & lunch</h3>
+            <p>Fresh sandwiches, salads and local favourites, from a slow breakfast to a long lunch.</p>
+            <span class="gv-tile-link">Lunch menu →</span>
+          </div>
+        </a>
+        <a class="gv-tile" href="/dinner-menu">
+          <div class="gv-tile-img"><img src="https://diole.odoo.com/web/image/1693-cff0a830/home2.webp" alt="Chef at work in the kitchen" loading="lazy"/></div>
+          <div class="gv-tile-body">
+            <p class="gv-tile-time">5:30 PM – 10:00 PM</p>
+            <h3>Dinner</h3>
+            <p>International dishes with a Caribbean twist, best enjoyed on the balcony at sunset.</p>
+            <span class="gv-tile-link">Dinner menu →</span>
+          </div>
+        </a>
+        <a class="gv-tile" href="/dessert-menu">
+          <div class="gv-tile-img"><img src="https://diole.odoo.com/web/image/1552-cf27f678/home1.webp" alt="Cocktail being prepared at the bar" loading="lazy"/></div>
+          <div class="gv-tile-body">
+            <p class="gv-tile-time">All day</p>
+            <h3>Desserts & drinks</h3>
+            <p>Homemade sweets, special coffees and cocktails. Just the right finale to your meal.</p>
+            <span class="gv-tile-link">Dessert menu →</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  
+  <section class="gv-view">
+    <img src="https://diole.odoo.com/web/image/1556-db85aa4d/Home3.webp" alt="Evening on the terrace" loading="lazy"/>
+    <div class="gv-wrap" style="width:100%">
+      <div class="gv-view-body">
+        <p class="gv-eyebrow">The best seat in town</p>
+        <h2>Watch the city light up</h2>
+        <p>From our balcony on the second floor you look out over the water and the iconic Handelskade. The perfect place for a sundowner, a dinner for two or a night out with friends.</p>
+      </div>
+    </div>
+  </section>
+
+  
+  <section class="gv-groups">
+    <div class="gv-wrap">
+      <div style="text-align:center">
+        <div class="gv-orn"><span>◆</span></div>
+        <h2 style="font-size:clamp(30px,4vw,42px);margin-bottom:10px;color:#1f1a17">Celebrate & meet</h2>
+        <p class="gv-lead">From birthdays and company dinners to a quiet meeting with a view. We'll take care of the rest.</p>
+      </div>
+      <div class="gv-groups-grid">
+        <div class="gv-group">
+          <p class="gv-eyebrow">Groups</p>
+          <h3>Dinners & celebrations</h3>
+          <p>Special group menus for parties, company outings and every reason to get together.</p>
+          <ul>
+            <li>Dedicated group menus</li>
+            <li>Room for small and large groups</li>
+            <li>Drinks packages on request</li>
+          </ul>
+          <a class="gv-btn gv-btn-dark" href="/groups">Group options</a>
+        </div>
+        <div class="gv-group">
+          <p class="gv-eyebrow">Meeting room</p>
+          <h3>Meet in style</h3>
+          <p>A private space for meetings, presentations and workshops, with coffee and lunch from our own kitchen.</p>
+          <ul>
+            <li>Private and quiet</li>
+            <li>Catering from our kitchen</li>
+            <li>In the centre of Willemstad</li>
+          </ul>
+          <a class="gv-btn gv-btn-dark" href="/meeting-room">About the meeting room</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+  <section class="gv-info">
+    <div class="gv-wrap gv-info-grid">
+      <div>
+        <h3>Opening hours</h3>
+        <ul class="gv-hours">
+          <li><span>Breakfast & lunch</span><span>9:00 – 16:00</span></li>
+          <li><span>Dinner</span><span>17:30 – 22:00</span></li>
+          <li><span>Coffee & drinks</span><span>All day</span></li>
+        </ul>
+        <p class="gv-small">Open 7 days a week.</p>
+      </div>
+      <div>
+        <h3>Find us</h3>
+        <p>De Rouvilleweg 9F, 2nd floor<br/>Otrobanda, Willemstad<br/>Curaçao</p>
+        <p class="gv-small">Take the stairs up to the second floor.</p>
+        <div class="gv-social">
+          <a href="/website/social/instagram">Instagram</a>
+          <a href="/website/social/facebook">Facebook</a>
+          <a href="https://www.tripadvisor.com/Restaurant_Review-g147278-d1157134-Reviews-Gouverneur_de_Rouville-Willemstad_Curacao.html" target="_blank">Tripadvisor</a>
+        </div>
+      </div>
+      <div class="gv-map">
+        <iframe src="https://www.google.com/maps?q=De+Rouvilleweg+9F,+Willemstad,+Curacao&amp;output=embed" loading="lazy" title="Map of Grand Café Gouverneur de Rouville"></iframe>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+
+
+<script>
+(function () {
+  window._gstpln = window._gstpln || {};
+  _gstpln.accessKey = "ec1b468a3f8bce1859e722ba2d2fef40481203c9";
+  _gstpln.locale = (document.documentElement.lang || "en").slice(0, 2) === "nl" ? "nl" : "en";
+  _gstpln.useNewsletterSubscription = false;
+  _gstpln.servicesFirst = true;
+
+  if (!window._gstplnLoaded) {
+    window._gstplnLoaded = true;
+    var s = document.createElement("script");
+    s.async = true;
+    s.src = "https://cdn.guestplan.com/widget.js";
+    document.head.appendChild(s);
+  }
+})();
+</script></template>
+        <div class="s_embed_code_embedded o_not_editable container-fluid"><style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Lato:wght@300;400;700&display=swap');
+
+.gv *{box-sizing:border-box;margin:0;padding:0;}
+.gv{
+  --cream:#f7f1e6; --cream2:#efe5d3; --ink:#1f1a17; --muted:#5e544b;
+  --bordeaux:#8c1c26; --bordeaux2:#a8262f; --gold:#b08d57; --line:#d9c9a8;
+  font-family:'Lato',-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  background:var(--cream);color:var(--ink);line-height:1.65;width:100%;overflow:hidden;
+}
+.gv img{display:block;width:100%;height:100%;object-fit:cover;pointer-events:none;user-select:none;}
+.gv h1,.gv h2,.gv h3{font-family:'Playfair Display',Georgia,serif;font-weight:400;line-height:1.15;}
+.gv-wrap{max-width:1140px;margin:0 auto;padding:0 2rem;}
+.gv-eyebrow{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:14px;}
+.gv-orn{display:flex;align-items:center;justify-content:center;gap:14px;margin:0 auto 18px;color:var(--gold);}
+.gv-orn:before,.gv-orn:after{content:"";height:1px;width:70px;background:var(--gold);}
+.gv-orn span{font-size:14px;}
+
+/* knoppen */
+.gv-btn{display:inline-block;font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:14px 28px;border-radius:2px;transition:.25s;cursor:pointer;}
+.gv-btn-red{background:var(--bordeaux);color:#fff;border:1px solid var(--bordeaux);}
+.gv-btn-red:hover{background:var(--bordeaux2);border-color:var(--bordeaux2);}
+.gv-btn-line{border:1px solid rgba(255,255,255,.7);color:#fff;}
+.gv-btn-line:hover{background:#fff;color:var(--ink);}
+.gv-btn-dark{border:1px solid var(--ink);color:var(--ink);}
+.gv-btn-dark:hover{background:var(--ink);color:var(--cream);}
+
+/* HERO */
+.gv-hero{position:relative;min-height:88vh;display:flex;align-items:center;justify-content:center;text-align:center;background:#120d0b;}
+.gv-hero>img{position:absolute;inset:0;object-position:center 35%;}
+.gv-hero:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,10,8,.45) 0%,rgba(15,10,8,.35) 45%,rgba(15,10,8,.75) 100%);}
+.gv-hero-body{position:relative;z-index:2;padding:4rem 1.5rem;max-width:820px;}
+.gv-hero .gv-eyebrow{color:#e2c48f;}
+.gv-hero h1{font-size:clamp(40px,7vw,78px);color:#fff;margin-bottom:10px;}
+.gv-hero h1 em{font-style:italic;color:#e2c48f;}
+.gv-hero p{font-size:clamp(16px,2vw,19px);color:#efe6d6;font-weight:300;margin-bottom:30px;}
+.gv-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+.gv-hero-info{position:absolute;z-index:2;bottom:22px;left:0;right:0;text-align:center;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#d8cbb4;}
+
+/* WELKOM */
+.gv-welcome{padding:6rem 0 5rem;}
+.gv-welcome-grid{display:grid;grid-template-columns:1fr 1fr;gap:4.5rem;align-items:center;}
+.gv-welcome h2{font-size:clamp(30px,4vw,44px);margin-bottom:20px;}
+.gv-welcome h2 em{color:var(--bordeaux);font-style:italic;}
+.gv-welcome p{color:var(--muted);font-size:16px;margin-bottom:16px;}
+.gv-welcome-img{position:relative;height:500px;}
+.gv-welcome-img:before{content:"";position:absolute;inset:-14px 14px 14px -14px;border:1px solid var(--gold);z-index:0;}
+.gv-welcome-img img{position:relative;z-index:1;}
+.gv-sign{font-family:'Playfair Display',serif;font-style:italic;font-size:20px;color:var(--bordeaux);margin-top:8px;}
+
+/* MENU TEGELS */
+.gv-menus{padding:5rem 0;background:var(--cream2);text-align:center;}
+.gv-menus h2{font-size:clamp(30px,4vw,42px);margin-bottom:10px;}
+.gv-lead{color:var(--muted);max-width:560px;margin:0 auto 44px;}
+.gv-tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;text-align:left;}
+.gv-tile{display:block;background:#fff;transition:.3s;border:1px solid var(--line);}
+.gv-tile:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(60,40,20,.12);}
+.gv-tile-img{height:260px;overflow:hidden;}
+.gv-tile-img img{transition:transform .6s;}
+.gv-tile:hover .gv-tile-img img{transform:scale(1.05);}
+.gv-tile-body{padding:24px 26px 28px;}
+.gv-tile-time{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
+.gv-tile h3{font-size:24px;margin-bottom:8px;color:var(--ink);}
+.gv-tile p{font-size:14.5px;color:var(--muted);margin-bottom:14px;}
+.gv-tile-link{font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--bordeaux);}
+
+/* UITZICHT / QUOTE */
+.gv-view{position:relative;min-height:460px;display:flex;align-items:center;background:#120d0b;}
+.gv-view>img{position:absolute;inset:0;}
+.gv-view:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(15,10,8,.82) 0%,rgba(15,10,8,.55) 50%,rgba(15,10,8,.1) 100%);}
+.gv-view-body{position:relative;z-index:2;max-width:520px;}
+.gv-view .gv-eyebrow{color:#e2c48f;}
+.gv-view h2{font-size:clamp(28px,4vw,42px);color:#fff;margin-bottom:16px;}
+.gv-view p{color:#e6dccb;margin-bottom:26px;font-weight:300;font-size:16px;}
+
+/* GROEPEN */
+.gv-groups{padding:5.5rem 0;}
+.gv-groups-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;}
+.gv-group{border:1px solid var(--line);padding:42px 38px;background:#fff;position:relative;}
+.gv-group:before{content:"";position:absolute;top:0;left:38px;width:46px;height:3px;background:var(--bordeaux);}
+.gv-group h3{font-size:28px;margin-bottom:10px;}
+.gv-group p{color:var(--muted);margin-bottom:22px;font-size:15px;}
+.gv-group ul{list-style:none;margin-bottom:26px;}
+.gv-group li{font-size:14.5px;padding:7px 0;border-bottom:1px solid #eee4d2;color:var(--ink);}
+.gv-group li:before{content:"◆";color:var(--gold);font-size:9px;margin-right:12px;vertical-align:2px;}
+
+/* INFO */
+.gv-info{background:var(--ink);color:#d9cdb9;padding:5rem 0;}
+.gv-info-grid{display:grid;grid-template-columns:1fr 1fr 1.3fr;gap:3rem;}
+.gv-info h3{font-size:22px;color:#fff;margin-bottom:16px;}
+.gv-info p,.gv-info li{font-size:15px;color:#cfc2ac;}
+.gv-hours{list-style:none;}
+.gv-hours li{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid #3a322b;}
+.gv-hours span:last-child{color:#fff;}
+.gv-info .gv-small{font-size:13px;color:#a69a86;margin-top:12px;}
+.gv-map{height:250px;border:1px solid #3a322b;filter:grayscale(.35) contrast(1.05);}
+.gv-map iframe{width:100%;height:100%;border:0;display:block;}
+.gv-social{display:flex;gap:16px;margin-top:18px;flex-wrap:wrap;}
+.gv-social a{font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:#e2c48f;border-bottom:1px solid #6a5636;padding-bottom:2px;}
+
+/* SLOT CTA */
+.gv-cta{padding:5rem 0;text-align:center;background:var(--cream);}
+.gv-cta h2{font-size:clamp(28px,4vw,40px);margin-bottom:10px;}
+.gv-cta p{color:var(--muted);margin-bottom:28px;}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .gv-welcome-grid{grid-template-columns:1fr;gap:3rem;}
+  .gv-welcome-img{height:380px;margin:0 14px;}
+  .gv-tiles{grid-template-columns:1fr;max-width:520px;margin:0 auto;}
+  .gv-groups-grid{grid-template-columns:1fr;}
+  .gv-info-grid{grid-template-columns:1fr 1fr;}
+  .gv-info-grid>div:last-child{grid-column:1/-1;}
+}
+@media(max-width:640px){
+  .gv-wrap{padding:0 1.25rem;}
+  .gv-hero{min-height:82vh;}
+  .gv-hero-info{display:none;}
+  .gv-welcome{padding:4rem 0 3.5rem;}
+  .gv-menus,.gv-groups,.gv-info,.gv-cta{padding:3.5rem 0;}
+  .gv-tile-img{height:210px;}
+  .gv-view{min-height:420px;}
+  .gv-view:after{background:rgba(15,10,8,.62);}
+  .gv-group{padding:34px 24px;}
+  .gv-group:before{left:24px;}
+  .gv-info-grid{grid-template-columns:1fr;gap:2.5rem;}
+}
+
+/* Odoo-thema overschrijven */
+.gv a,.gv a:hover,.gv a:focus{text-decoration:none !important;}
+.gv a.gv-btn-red{color:#fff !important;}
+.gv a.gv-btn-line{color:#fff !important;}
+.gv a.gv-btn-line:hover{color:#1f1a17 !important;}
+.gv a.gv-btn-dark{color:#1f1a17 !important;}
+.gv a.gv-btn-dark:hover{color:#f7f1e6 !important;}
+.gv .gv-tile-link{color:#8c1c26 !important;}
+.gv .gv-social a{color:#e2c48f !important;}
+.gv .gv-hero h1,.gv .gv-view h2,.gv .gv-info h3{color:#fff !important;}
+.gv .gv-welcome h2,.gv .gv-menus h2,.gv .gv-tile h3,.gv .gv-group h3,.gv .gv-cta h2{color:#1f1a17 !important;}
+.gv .gv-eyebrow{color:#b08d57 !important;}
+.gv .gv-hero .gv-eyebrow,.gv .gv-view .gv-eyebrow,.gv .gv-hero h1 em{color:#e2c48f !important;}
+.gv .gv-welcome h2 em{color:#8c1c26 !important;}
+
+/* 'Powered by Odoo' in de footer verbergen */
+.o_brand_promotion{display:none !important;}
+</style><div class="gv">
+
+  
+  <section class="gv-hero">
+    <img src="https://diole.odoo.com/web/image/1707-496fe7b1/Gouverneur.webp" alt="Grand Café Gouverneur de Rouville at night" loading="lazy"/>
+    <div class="gv-hero-body">
+      <p class="gv-eyebrow">Otrobanda · Willemstad · Curaçao</p>
+      <h1>Grand Café<br/><em>Gouverneur de Rouville</em></h1>
+      <p>International cuisine with a Caribbean twist, served with a view over the Handelskade.</p>
+      <div class="gv-btns">
+        <a class="gv-btn gv-btn-red" href="#gstpln_openWidget">Reserve a table</a>
+        <a class="gv-btn gv-btn-line" href="/dinner-menu">View the menu</a>
+      </div>
+    </div>
+    <div class="gv-hero-info">Open daily from 9:00 AM &nbsp;·&nbsp; De Rouvilleweg 9F, 2nd floor</div>
+  </section>
+
+  
+  <section class="gv-welcome">
+    <div class="gv-wrap gv-welcome-grid">
+      <div>
+        <p class="gv-eyebrow">Welcome</p>
+        <h2>A grand café in the <em>heart of Willemstad</em></h2>
+        <p>In the lively neighbourhood of Otrobanda, in one of the most beautiful monumental buildings of the city, you'll find Grand Café Gouverneur de Rouville. Just a short walk from Pietermaai and the colourful streets of Punda.</p>
+        <p>Our kitchen brings together local and international flavours. Start your day with breakfast, enjoy a long lunch, or stay for dinner on the balcony while the city lights come on across the water.</p>
+        <p class="gv-sign">Welcome to the Gouverneur.</p>
+      </div>
+      <div class="gv-welcome-img">
+        <img src="https://diole.odoo.com/web/image/1552-cf27f678/home1.webp" alt="Bartender preparing a cocktail" loading="lazy"/>
+      </div>
+    </div>
+  </section>
+
+  
+  <section class="gv-menus">
+    <div class="gv-wrap">
+      <div class="gv-orn"><span>◆</span></div>
+      <h2>From morning to late</h2>
+      <p class="gv-lead">Coffee, drinks and snacks all day long. Pick your moment.</p>
+      <div class="gv-tiles">
+        <a class="gv-tile" href="/lunch-menu">
+          <div class="gv-tile-img"><img src="https://diole.odoo.com/web/image/30193" alt="Poké bowl" loading="lazy"/></div>
+          <div class="gv-tile-body">
+            <p class="gv-tile-time">9:00 AM – 4:00 PM</p>
+            <h3>Breakfast &amp; lunch</h3>
+            <p>Fresh sandwiches, salads and local favourites, from a slow breakfast to a long lunch.</p>
+            <span class="gv-tile-link">Lunch menu →</span>
+          </div>
+        </a>
+        <a class="gv-tile" href="/dinner-menu">
+          <div class="gv-tile-img"><img src="https://diole.odoo.com/web/image/1693-cff0a830/home2.webp" alt="Chef at work in the kitchen" loading="lazy"/></div>
+          <div class="gv-tile-body">
+            <p class="gv-tile-time">5:30 PM – 10:00 PM</p>
+            <h3>Dinner</h3>
+            <p>International dishes with a Caribbean twist, best enjoyed on the balcony at sunset.</p>
+            <span class="gv-tile-link">Dinner menu →</span>
+          </div>
+        </a>
+        <a class="gv-tile" href="/dessert-menu">
+          <div class="gv-tile-img"><img src="https://diole.odoo.com/web/image/1552-cf27f678/home1.webp" alt="Cocktail being prepared at the bar" loading="lazy"/></div>
+          <div class="gv-tile-body">
+            <p class="gv-tile-time">All day</p>
+            <h3>Desserts &amp; drinks</h3>
+            <p>Homemade sweets, special coffees and cocktails. Just the right finale to your meal.</p>
+            <span class="gv-tile-link">Dessert menu →</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  
+  <section class="gv-view">
+    <img src="https://diole.odoo.com/web/image/1556-db85aa4d/Home3.webp" alt="Evening on the terrace" loading="lazy"/>
+    <div class="gv-wrap" style="width:100%">
+      <div class="gv-view-body">
+        <p class="gv-eyebrow">The best seat in town</p>
+        <h2>Watch the city light up</h2>
+        <p>From our balcony on the second floor you look out over the water and the iconic Handelskade. The perfect place for a sundowner, a dinner for two or a night out with friends.</p>
+      </div>
+    </div>
+  </section>
+
+  
+  <section class="gv-groups">
+    <div class="gv-wrap">
+      <div style="text-align:center">
+        <div class="gv-orn"><span>◆</span></div>
+        <h2 style="font-size:clamp(30px,4vw,42px);margin-bottom:10px;color:#1f1a17">Celebrate &amp; meet</h2>
+        <p class="gv-lead">From birthdays and company dinners to a quiet meeting with a view. We'll take care of the rest.</p>
+      </div>
+      <div class="gv-groups-grid">
+        <div class="gv-group">
+          <p class="gv-eyebrow">Groups</p>
+          <h3>Dinners &amp; celebrations</h3>
+          <p>Special group menus for parties, company outings and every reason to get together.</p>
+          <ul>
+            <li>Dedicated group menus</li>
+            <li>Room for small and large groups</li>
+            <li>Drinks packages on request</li>
+          </ul>
+          <a class="gv-btn gv-btn-dark" href="/groups">Group options</a>
+        </div>
+        <div class="gv-group">
+          <p class="gv-eyebrow">Meeting room</p>
+          <h3>Meet in style</h3>
+          <p>A private space for meetings, presentations and workshops, with coffee and lunch from our own kitchen.</p>
+          <ul>
+            <li>Private and quiet</li>
+            <li>Catering from our kitchen</li>
+            <li>In the centre of Willemstad</li>
+          </ul>
+          <a class="gv-btn gv-btn-dark" href="/meeting-room">About the meeting room</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+  <section class="gv-info">
+    <div class="gv-wrap gv-info-grid">
+      <div>
+        <h3>Opening hours</h3>
+        <ul class="gv-hours">
+          <li><span>Breakfast &amp; lunch</span><span>9:00 – 16:00</span></li>
+          <li><span>Dinner</span><span>17:30 – 22:00</span></li>
+          <li><span>Coffee &amp; drinks</span><span>All day</span></li>
+        </ul>
+        <p class="gv-small">Open 7 days a week.</p>
+      </div>
+      <div>
+        <h3>Find us</h3>
+        <p>De Rouvilleweg 9F, 2nd floor<br/>Otrobanda, Willemstad<br/>Curaçao</p>
+        <p class="gv-small">Take the stairs up to the second floor.</p>
+        <div class="gv-social">
+          <a href="/website/social/instagram">Instagram</a>
+          <a href="/website/social/facebook">Facebook</a>
+          <a href="https://www.tripadvisor.com/Restaurant_Review-g147278-d1157134-Reviews-Gouverneur_de_Rouville-Willemstad_Curacao.html" target="_blank">Tripadvisor</a>
+        </div>
+      </div>
+      <div class="gv-map">
+        <iframe src="https://www.google.com/maps?q=De+Rouvilleweg+9F,+Willemstad,+Curacao&amp;output=embed" loading="lazy" title="Map of Grand Café Gouverneur de Rouville"></iframe>
+      </div>
+    </div>
+  </section>
+
+</div><script>
+(function () {
+  window._gstpln = window._gstpln || {};
+  _gstpln.accessKey = "ec1b468a3f8bce1859e722ba2d2fef40481203c9";
+  _gstpln.locale = (document.documentElement.lang || "en").slice(0, 2) === "nl" ? "nl" : "en";
+  _gstpln.useNewsletterSubscription = false;
+  _gstpln.servicesFirst = true;
+
+  if (!window._gstplnLoaded) {
+    window._gstplnLoaded = true;
+    var s = document.createElement("script");
+    s.async = true;
+    s.src = "https://cdn.guestplan.com/widget.js";
+    document.head.appendChild(s);
+  }
+})();
+</script></div>
+    </section></div>
+    
+        <div id="o_shared_blocks" class="oe_unremovable"></div>
+                </main>
+                <footer id="bottom" data-anchor="true" data-name="Footer" class="o_footer o_colored_level o_cc ">
+                    <div id="footer" class="oe_structure oe_structure_solo">
+            <section class="s_text_block pb16 pt0" data-snippet="s_text_block" data-name="Text">
+                <div class="container-fluid">
+                    <div class="row o_grid_mode" data-row-count="6">
+                        
+                        <div class="o_colored_level g-height-5 g-col-lg-4 o_grid_item col-lg-4" style="grid-area: 1 / 5 / 6 / 9; z-index: 2;">
+                            <h5 class="mb-3"><br/></h5>
+                            <section class="s_embed_code pt0 pb0 text-center" data-snippet="s_embed_code" data-name="Embed Code">
+        <template class="s_embed_code_saved"><section style="display: flex; align-items: center; justify-content: center; margin: 20px 0;">
+  <hr style="flex: 1; height: 1px; background: #000; border: none; margin: 0 20px;"/>
+  <h2 style="font-family: &#39;Playfair Display&#39;, serif; margin: 0;">
+    Opening hours
+  </h2>
+  <hr style="flex: 1; height: 1px; background: #000; border: none; margin: 0 20px;"/>
+</section>
+
+
+<div style="text-align: center; font-family: &#39;Playfair Display&#39;, serif; font-size: 18px; margin-top: -10px;">
+  Mo – Sun from 9.00 AM till late 
+</div></template>
+        <div class="s_embed_code_embedded container o_not_editable"><section style="display: flex; align-items: center; justify-content: center; margin: 20px 0;">
+  <hr style="flex: 1; height: 1px; background: #000; border: none; margin: 0 20px;"/>
+  <h2 style="font-family: &#39;Playfair Display&#39;, serif; margin: 0;">
+    Opening hours
+  </h2>
+  <hr style="flex: 1; height: 1px; background: #000; border: none; margin: 0 20px;"/>
+</section><div style="text-align: center; font-family: &#39;Playfair Display&#39;, serif; font-size: 18px; margin-top: -10px;">
+  Mo – Sun from 9.00 AM till late 
+</div></div>
+    </section><p><br/></p>
+                        </div>
+                        
+                    <div id="connect" class="o_colored_level col-lg-3 g-height-6 g-col-lg-3 o_grid_item" style="z-index: 3; grid-area: 1 / 9 / 7 / 12;">
+                            <h5 class="mb-3"><br/></h5>
+                            <section class="s_embed_code text-center pt0 pb0" data-snippet="s_embed_code" data-name="Embed Code">
+        <template class="s_embed_code_saved"><section style="display: flex; align-items: center; justify-content: center; margin: 20px 0;">
+  <hr style="flex: 1; height: 1px; background: #000; border: none; margin: 0 20px;"/>
+  <h2 style="font-family: &#39;Playfair Display&#39;, serif; margin: 0;">
+    Follow us on
+  </h2>
+  <hr style="flex: 1; height: 1px; background: #000; border: none; margin: 0 20px;"/>
+</section>
+
+
+<div style="text-align: center; font-family: &#39;Playfair Display&#39;, serif; font-size: 18px; margin-top: -10px;">
+   
+</div></template>
+        <div class="s_embed_code_embedded container o_not_editable"><section style="display: flex; align-items: center; justify-content: center; margin: 20px 0;">
+  <hr style="flex: 1; height: 1px; background: #000; border: none; margin: 0 20px;"/>
+  <h2 style="font-family: &#39;Playfair Display&#39;, serif; margin: 0;">
+    Follow us on
+  </h2>
+  <hr style="flex: 1; height: 1px; background: #000; border: none; margin: 0 20px;"/>
+</section><div style="text-align: center; font-family: &#39;Playfair Display&#39;, serif; font-size: 18px; margin-top: -10px;">
+   
+</div></div>
+    </section><div class="s_social_media o_not_editable text-center" data-snippet="s_social_media" data-name="Social Media">
+                                <h5 class="s_social_media_title d-none">Follow us</h5>
+<a href="/website/social/facebook" class="s_social_media_facebook" target="_blank" aria-label="Facebook">
+                                    <i class="fa fa-facebook o_editable_media fa-stack fa-2x"></i>
+                                </a>
+<a href="/website/social/instagram" class="s_social_media_instagram" target="_blank" aria-label="Instagram">
+                                    <i class="fa o_editable_media fa-instagram fa-stack fa-2x"></i>
+                                </a>
+<a href="https://www.tripadvisor.com/Restaurant_Review-g147278-d1157134-Reviews-Gouverneur_de_Rouville-Willemstad_Curacao.html" target="_blank" aria-label="tripadvisor">
+                                    <i class="fa o_editable_media fa-tripadvisor fa-stack fa-2x"></i>
+                                </a>
+</div>
+                        </div><div class="o_colored_level col-lg-3 g-height-5 g-col-lg-3 o_grid_item" style="z-index: 1; grid-area: 1 / 2 / 6 / 5;">
+                            <h5 class="mb-3"><br/></h5>
+                            <section class="s_embed_code text-center pb0 pt0" data-snippet="s_embed_code" data-name="Embed Code">
+        <template class="s_embed_code_saved"><section style="display: flex; align-items: center; justify-content: center; margin: 20px 0;">
+  <hr style="flex: 1; height: 1px; background: #000; border: none; margin: 0 20px;"/>
+  <h2 style="font-family: &#39;Playfair Display&#39;, serif; margin: 0;">
+    Address
+  </h2>
+  <hr style="flex: 1; height: 1px; background: #000; border: none; margin: 0 20px;"/>
+</section>
+
+
+<div style="text-align: center; font-family: &#39;Playfair Display&#39;, serif; font-size: 18px; margin-top: -10px;">
+  De Rouvilleweg 9F, 2nd floor
+  </div>
+  Willemstad, Curaçao  
+</template>
+        <div class="s_embed_code_embedded container o_not_editable"><section style="display: flex; align-items: center; justify-content: center; margin: 20px 0;">
+  <hr style="flex: 1; height: 1px; background: #000; border: none; margin: 0 20px;"/>
+  <h2 style="font-family: &#39;Playfair Display&#39;, serif; margin: 0;">
+    Address
+  </h2>
+  <hr style="flex: 1; height: 1px; background: #000; border: none; margin: 0 20px;"/>
+</section><div style="text-align: center; font-family: &#39;Playfair Display&#39;, serif; font-size: 18px; margin-top: -10px;">
+  De Rouvilleweg 9F, 2nd floor
+  </div></div>
+    </section><ul class="list-unstyled">
+                                <li><br/></li>
+                            </ul>
+                        </div></div>
+                </div>
+            </section>
+        </div>
+    <div class="o_footer_copyright o_colored_level o_cc" data-name="Copyright">
+                        <div class="py-3 container-fluid">
+                            <div class="row row-gap-2">
+                                <div class="col-sm text-center text-sm-start text-muted col-md">
+                                    <span class="o_footer_copyright_name me-2">Copyright © Grand Café Gouverneur de Rouville. Made by Wouter</span>
+        <div class="js_language_selector  dropup d-print-none small o_prevent_link_editor">
+            <div role="menu" class=" list-inline">
+                    <a class="js_change_lang  list-inline-item" role="menuitem" href="/nl" data-url_code="nl" title=" Nederlands">
+                        <span class=""> Nederlands</span>
+                    </a>
+            <span class="list-inline-item">|</span>
+                    <a class="js_change_lang active list-inline-item" role="menuitem" href="" data-url_code="en" title="English (US)">
+                        <span class="">English (US)</span>
+                    </a>
+            </div>
+        </div>
+                                </div>
+                                <div class="text-center col-md o_not_editable small col-md mt-auto mb-0 text-md-end">
+        <div class="o_brand_promotion">
+        Powered by 
+            <a target="_blank" class="badge text-bg-light" href="http://www.odoo.com?utm_source=db&amp;utm_medium=website">
+                <img alt="Odoo" src="/web/static/img/odoo_logo_tiny.png" width="62" height="20" style="width: auto; height: 1em; vertical-align: baseline;" loading="lazy"/>
+            </a>
+        - 
+            Create a <a target="_blank" href="http://www.odoo.com/app/website?utm_source=db&amp;utm_medium=website">free website</a>
+        
+    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        
+        </body>
+</html>
