@@ -9,7 +9,7 @@ export function MorePage() {
       lead="Official season partners — hospitality, finance, and events. Tap one for their full partner page."
       basePath="/more"
       partners={morePartners}
-      foot="Sample sponsors for layout — real logos and offers replace these when partners confirm."
+      foot="All sponsors are real businesses in Curaçao. Tap any sponsor for address, opening hours, phone, and Google Maps."
     />
   )
 }

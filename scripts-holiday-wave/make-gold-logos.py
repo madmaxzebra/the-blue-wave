@@ -32,6 +32,9 @@ LOGOS = [
     (PUBLIC / "homes-media/logos/remax-logo.png", PUBLIC / "homes-media/logos/remax-gold.png"),
     (ORIGINALS / "real-estate-caribe.svg", PUBLIC / "homes-media/logos/real-estate-caribe-gold.png"),
     (ORIGINALS / "gs-real-estate.png", PUBLIC / "homes-media/logos/gs-real-estate-gold.png"),
+    (ORIGINALS / "harbor-hotel-curacao.png", PUBLIC / "more-media/logos/harbor-hotel-curacao-gold.png"),
+    (ORIGINALS / "maduro-curiels-bank-flat.png", PUBLIC / "more-media/logos/maduro-curiels-bank-gold.png"),
+    (ORIGINALS / "curacao-north-sea-jazz.svg", PUBLIC / "more-media/logos/curacao-north-sea-jazz-gold.png"),
 ]
 
 WORK_WIDTH = 1400
