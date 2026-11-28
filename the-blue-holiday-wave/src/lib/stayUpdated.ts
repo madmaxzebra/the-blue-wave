@@ -10,8 +10,9 @@ const BLUEHOST_SUBSCRIBERS_URL =
 const BLUEHOST_COUNT_URL =
   (import.meta.env.VITE_BLUEHOST_SUBSCRIBER_COUNT_URL as string | undefined)?.trim() ||
   'https://www.thebluewavefans.com/thebluewave-subscribers/count.php'
-const BLUEHOST_WELCOME_URL =
-  (import.meta.env.VITE_BLUEHOST_WELCOME_URL as string | undefined)?.trim() ||
+const DEFAULT_HOLIDAY_WELCOME_URL =
+  'https://www.thebluewavefans.com/holidayseason/api/send-welcome.php'
+const LEGACY_WELCOME_URL =
   'https://www.thebluewavefans.com/thebluewave-subscribers/send-welcome.php'
 const RENDER_REGISTER_URL =
   (import.meta.env.VITE_RENDER_REGISTER_URL as string | undefined)?.trim() ||
@@ -55,6 +56,24 @@ function parseCount(data: unknown): number | null {
     if (Number.isFinite(n)) return n
   }
   return null
+}
+
+function localWelcomeUrl(): string | null {
+  if (typeof window === 'undefined') return null
+  const base = import.meta.env.BASE_URL || '/'
+  try {
+    return new URL('api/send-welcome.php', `${window.location.origin}${base}`).href
+  } catch {
+    return null
+  }
+}
+
+function welcomeEmailUrls(): string[] {
+  const fromEnv = (import.meta.env.VITE_BLUEHOST_WELCOME_URL as string | undefined)?.trim()
+  const urls = [fromEnv, localWelcomeUrl(), DEFAULT_HOLIDAY_WELCOME_URL, LEGACY_WELCOME_URL].filter(
+    (u): u is string => typeof u === 'string' && u.length > 0,
+  )
+  return [...new Set(urls)]
 }
 
 function localSubscriberCountUrl(): string | null {
@@ -144,22 +163,25 @@ async function registerOnRender(email: string) {
 }
 
 async function sendWelcomeEmail(email: string): Promise<boolean> {
-  try {
-    const res = await fetchWithTimeout(
-      BLUEHOST_WELCOME_URL,
-      {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({ email }),
-      },
-      REGISTER_TIMEOUT_MS,
-    )
-    if (!res.ok) return false
-    const data = (await res.json()) as { welcomeSent?: boolean }
-    return data.welcomeSent === true
-  } catch {
-    return false
+  for (const url of welcomeEmailUrls()) {
+    try {
+      const res = await fetchWithTimeout(
+        url,
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify({ email, source: 'holidays-blue-wave' }),
+        },
+        REGISTER_TIMEOUT_MS,
+      )
+      if (!res.ok) continue
+      const data = (await res.json()) as { welcomeSent?: boolean }
+      if (data.welcomeSent === true) return true
+    } catch {
+      /* try next endpoint */
+    }
   }
+  return false
 }
 
 export type StayUpdatedResult =

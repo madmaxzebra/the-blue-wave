@@ -1,0 +1,20 @@
+Blue Holidays Wave — welcome email (Stay Updated signups)
+
+Files in: thebluewave-subscribers-welcome.zip
+  welcome-subscriber-mail.php
+  send-welcome.php
+
+Where on Bluehost
+  public_html/thebluewave-subscribers/
+  (same folder as register.php and count.php)
+
+Upload
+  1. Upload the zip into thebluewave-subscribers/
+  2. Extract here and replace send-welcome.php
+  3. Test: sign up on thebluewavefans.com/holidayseason/ with a fresh email
+
+The holiday site zip (holidayseason-upload.zip) also includes
+  holidayseason/api/send-welcome.php
+  (uses the same Holidays branding + logo from the site)
+
+New email: Blue Holidays Wave logo, no magazine block, no Facebook button.

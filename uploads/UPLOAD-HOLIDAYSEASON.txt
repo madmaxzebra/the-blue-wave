@@ -1,4 +1,4 @@
-Blue Holiday Wave website upload (latest: subscriber counter uses full list ~12.5k)
+Blue Holiday Wave website upload (latest: Blue Holidays welcome email + counter ~12.5k)
 
 File: holidayseason-upload.zip
 Built from the-blue-holiday-wave (main, commit 5bddb77) with BLUEHOST_BUILD=1
@@ -10,7 +10,7 @@ Bluehost File Manager
 1. Open the folder public_html/holidayseason (website_cba6a5f5/holidayseason).
 2. Upload holidayseason-upload.zip, right-click it, Extract into this same folder, replace existing files.
 3. Keep the existing .htaccess in that folder if Bluehost asks.
-4. Check: index.html is about 1.4 KB, api/subscriber-count.php is present, assets/ contains index-B77pwVus.js.
+4. Check: api/send-welcome.php and api/subscriber-count.php are present, assets/ contains index-B8Vdx5sY.js.
    Quick test: thebluewavefans.com/holidayseason/api/subscriber-count.php should show ~12556 (not 5267).
 5. Open thebluewavefans.com/holidayseason/ and hard refresh (Ctrl+F5).
    Culinair: six new places first in the row (Green House and Lounge & Sportsbar are separate).
