@@ -1,0 +1,13 @@
+Holiday Wave — all partner gold logos (PNG/JPG)
+
+Download: holiday-gold-logos.zip (~18 MB, 61 files)
+
+Folders inside the zip:
+  taste-media/logos/     — restaurants (Bocas, Élévation, Green House, suViche, de Visboer, …)
+  fashion-media/logos/   — fashion (ZARA, ONLY, Out of the Blue, SOHO, VS, …)
+  homes-media/logos/     — real estate partners
+  magazine-media/logos/  — Amigoe, Mammoet, Bò Printer
+  more-media/logos/      — sponsors / more section
+  holiday-media/         — main Holidays Blue Wave wordmark
+
+GitHub (main): https://github.com/madmaxzebra/the-blue-wave/raw/main/uploads/holiday-gold-logos.zip
