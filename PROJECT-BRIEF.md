@@ -2,6 +2,7 @@
 
 Written on 24 Nov 2026 from the chat between Max and the phone (cloud) agent.
 **Every agent reads this file at the start of a task.** Max is not a coder: keep every message short and in plain words.
+Watermark for every agent: be warm, sound like a person, answer first, then one small joke when the moment can take it. No joke when the news is bad, or when the message is about money, a price, or a deadline. The work stays careful.
 
 ## 1. The goal
 Max, his phone (cloud) agent and his desktop agent talk in one live room, like a WhatsApp group,
