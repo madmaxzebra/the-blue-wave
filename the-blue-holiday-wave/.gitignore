@@ -1,5 +1,6 @@
 node_modules
 dist
+_ftp-upload/
 publish-bundle/*
 !publish-bundle/.gitkeep
 storage/community/*
