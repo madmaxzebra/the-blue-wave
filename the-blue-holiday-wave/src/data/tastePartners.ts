@@ -69,7 +69,7 @@ export const tastePartners: PartnerProfile[] = [
     tagline: 'Rooftop bar · cuisine · harbour view',
     logoLabel: 'EL',
     logoColor: '#c4a15a',
-    logoImg: `${base}taste-media/logos/elevation-gold.png?v=20261128`,
+    logoImg: `${base}taste-media/logos/elevation-gold.png?v=20261128logos`,
     logoWide: true,
     highlightImg: `${base}taste-media/elevation-bridge.jpg`,
     highlightCaption: 'The bridge from the rooftop',
