@@ -1,13 +1,14 @@
-Blue Holiday Wave website upload (latest: Stay Updated, sponsor ticker, home hero)
+Blue Holiday Wave website upload (latest: new Culinair row — Bocas, Élévation, The Green House, Greenhouse Lounge & Sportsbar, suViche, de Visboer)
 
 File: holidayseason-upload.zip
-Built from the-blue-holiday-wave (main, commit b672976) with BLUEHOST_BUILD=1
+Built from the-blue-holiday-wave (branch cursor/holiday-restaurants-e826, commit fca4120) with BLUEHOST_BUILD=1
 Goes to: thebluewavefans.com/holidayseason/
 
-Size is about 49 MB on disk (Explorer may show ~27–50 MB depending on how it counts).
+Size is about 54 MB on disk.
 
 Bluehost File Manager
 1. Open the folder public_html/holidayseason (website_cba6a5f5/holidayseason).
 2. Upload holidayseason-upload.zip, right-click it, Extract into this same folder, replace existing files.
-3. Check: index.html is about 1.4 KB, api/ folder is present, assets/ contains index-DgdHDGqS.js.
-4. Open thebluewavefans.com/holidayseason/ and hard refresh (Ctrl+F5).
+3. Keep the existing .htaccess in that folder if Bluehost asks.
+4. Check: index.html is about 1.4 KB, api/ folder is present, assets/ contains index-C46qF5cw.js.
+5. Open thebluewavefans.com/holidayseason/ and hard refresh (Ctrl+F5). Open Culinair — the six new places should be first in the row.
