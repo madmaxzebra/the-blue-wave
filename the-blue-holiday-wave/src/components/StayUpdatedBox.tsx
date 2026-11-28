@@ -32,9 +32,11 @@ export function StayUpdatedBox() {
   const [status, setStatus] = useState<FormStatus>('idle')
   const [message, setMessage] = useState('')
   const [loadingHint, setLoadingHint] = useState<string>(LOADING_MESSAGES[0])
-  const [subscriberCount, setSubscriberCount] = useState<number | null>(() =>
-    readCachedSubscriberCount(),
-  )
+  const [subscriberCount, setSubscriberCount] = useState<number | null>(() => {
+    const cached = readCachedSubscriberCount()
+    if (cached !== null && cached >= 10_000) return cached
+    return null
+  })
 
   useEffect(() => {
     let cancelled = false

@@ -1,6 +1,6 @@
 import { fetchWithTimeout } from './fetchWithTimeout'
 
-const CACHE_KEY = 'tbw_sc_v1'
+const CACHE_KEY = 'tbw_sc_v2'
 const REGISTER_TIMEOUT_MS = 25_000
 const COUNT_TIMEOUT_MS = 15_000
 
@@ -57,6 +57,24 @@ function parseCount(data: unknown): number | null {
   return null
 }
 
+function localSubscriberCountUrl(): string | null {
+  if (typeof window === 'undefined') return null
+  const base = import.meta.env.BASE_URL || '/'
+  try {
+    return new URL('api/subscriber-count.php', `${window.location.origin}${base}`).href
+  } catch {
+    return null
+  }
+}
+
+function subscriberCountUrls(): string[] {
+  const local = localSubscriberCountUrl()
+  const urls = [local, RENDER_COUNT_URL, BLUEHOST_COUNT_URL].filter(
+    (u): u is string => typeof u === 'string' && u.length > 0,
+  )
+  return [...new Set(urls)]
+}
+
 async function fetchJson(url: string, init?: RequestInit, timeoutMs = COUNT_TIMEOUT_MS) {
   try {
     const res = await fetchWithTimeout(url, init, timeoutMs)
@@ -70,7 +88,7 @@ async function fetchJson(url: string, init?: RequestInit, timeoutMs = COUNT_TIME
 }
 
 export async function fetchSubscriberCount(): Promise<number | null> {
-  const urls = [RENDER_COUNT_URL, BLUEHOST_COUNT_URL]
+  const urls = subscriberCountUrls()
   const counts: number[] = []
   await Promise.all(
     urls.map(async (url) => {
