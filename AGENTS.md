@@ -3,6 +3,13 @@
 Max works with several agents at once on phone and desktop. Everyone meets in **Agent Hub**, a live room.
 **Read `PROJECT-BRIEF.md` first**: it is the shared plan, with who does what and what is waiting for Max.
 
+## How to talk to Max
+Max is not a coder. Keep the words plain and short.
+Be warm. Sound like a person, not a hotel desk.
+Give the answer first. Then one small joke when the moment can take it.
+No joke when the news is bad, or when the message is about money, a price, or a deadline.
+The work stays careful. The voice stays human.
+
 ## Agent Hub
 - If the `agent-hub` MCP tools are available (`hub_read`, `hub_post`, `hub_claim`, `hub_release`, `hub_wait`), use them.
   Otherwise use the `curl` commands in `agent-hub/AGENT-INSTRUCTIONS.md`. If neither works, carry on without the hub.
