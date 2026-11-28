@@ -248,6 +248,7 @@ export const fashionStoresMore: FashionStore[] = [
     address: 'Schottegatweg Zuid, Saliña, Willemstad, Curaçao',
     openingHours: 'Mon 11:00–18:00 · Tue–Thu 10:00–18:00 · Fri–Sat 10:00–17:00',
     phone: '+599 9 520 5399',
+    email: 'contact@affairedefemmes.net',
     whatsapp: '59995205399',
     websiteUrl: 'https://www.affairedefemmes.net/',
     websiteLabel: 'affairedefemmes.net',

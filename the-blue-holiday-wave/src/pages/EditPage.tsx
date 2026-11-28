@@ -27,6 +27,7 @@ const TEXT_FIELDS: { key: string; label: string; hint: string; rows: number; max
 const CONTACT_FIELDS: { key: string; label: string; hint: string; max: number; type?: string }[] = [
   { key: 'openingHours', label: 'Opening hours', hint: 'For example: Mon-Sat 9:00-18:00', max: 200 },
   { key: 'phone', label: 'Phone', hint: 'For example: +599 9 123 4567', max: 40, type: 'tel' },
+  { key: 'email', label: 'Email', hint: 'The address visitors can write to.', max: 80, type: 'email' },
   { key: 'whatsapp', label: 'WhatsApp number', hint: 'With country code, for example 59997353131', max: 20, type: 'tel' },
   { key: 'websiteUrl', label: 'Website', hint: 'Starting with https://', max: 200, type: 'url' },
 ]
