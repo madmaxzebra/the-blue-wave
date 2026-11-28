@@ -104,6 +104,13 @@ export function PartnerDetailPage({
               </a>
             </p>
           ) : null}
+          {partner.email ? (
+            <p className="fashion-store__link-wrap">
+              <a className="fashion-store__link" href={`mailto:${partner.email}`}>
+                {partner.email}
+              </a>
+            </p>
+          ) : null}
           {partner.websiteUrl ? (
             <p className="fashion-store__link-wrap">
               <a className="fashion-store__link" href={partner.websiteUrl} target="_blank" rel="noopener noreferrer">

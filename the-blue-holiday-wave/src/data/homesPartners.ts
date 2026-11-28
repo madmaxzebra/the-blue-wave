@@ -33,6 +33,8 @@ export type PartnerProfile = {
   lifestyleImg: string
   collectionLabel: string
   phone?: string
+  /** Published contact email */
+  email?: string
   whatsapp?: string
   address?: string
   openingHours?: string
@@ -97,6 +99,7 @@ export const homesPartners: PartnerProfile[] = [
     websiteUrl: 'https://realestate-curacao.com/en/',
     websiteLabel: 'realestate-curacao.com',
     phone: '+599 9 843 9770',
+    email: 'info@realestate-curacao.com',
     address: 'Eden Shopping Mall, Caracasbaaiweg 280 #13, Jan Thiel, Curaçao',
     mapsUrl: 'https://maps.google.com/?q=RE/MAX+BonBini+Caracasbaaiweg+280+Curaçao',
     mapsEmbed: 'https://maps.google.com/maps?q=12.10487,-68.88036&z=16&output=embed&iwloc=',
@@ -150,6 +153,7 @@ export const homesPartners: PartnerProfile[] = [
     lifestyleImg: `${base}homes-media/real-estate-caribe-resort-pool-2.jpg`,
     collectionLabel: 'Listings · Holidays season',
     phone: '+599 9 562 4089',
+    email: 'info@realestatecaribe.com',
     whatsapp: '59995624089',
     websiteUrl: 'https://www.realestatecaribe.com/',
     websiteLabel: 'realestatecaribe.com',
@@ -206,6 +210,7 @@ export const homesPartners: PartnerProfile[] = [
     lifestyleImg: `${base}homes-media/gs-real-estate-family-home.jpg`,
     collectionLabel: 'Listings · Holidays season',
     phone: '+599 9 524 4433',
+    email: 'info@gs-realestate.com',
     whatsapp: '59995244433',
     websiteUrl: 'https://www.gs-realestate.com/',
     websiteLabel: 'gs-realestate.com',

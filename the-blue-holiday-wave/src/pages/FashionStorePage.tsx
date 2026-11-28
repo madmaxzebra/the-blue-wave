@@ -110,6 +110,13 @@ export function FashionStorePage() {
               </a>
             </p>
           ) : null}
+          {store.email ? (
+            <p className="fashion-store__link-wrap">
+              <a className="fashion-store__link" href={`mailto:${store.email}`}>
+                {store.email}
+              </a>
+            </p>
+          ) : null}
           {store.websiteUrl ? (
             <p className="fashion-store__link-wrap">
               <a

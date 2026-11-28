@@ -46,6 +46,8 @@ export type FashionStore = {
   openingHours?: string
   /** Published phone */
   phone?: string
+  /** Published contact email */
+  email?: string
   /** WhatsApp number (digits only, e.g. 59997353131) */
   whatsapp?: string
   /** Google Maps embed src URL */
@@ -154,6 +156,7 @@ export const fashionStores: FashionStore[] = [
     venue: 'Mambo Beach Boulevard',
     address: 'Willemstad, Curaçao',
     phone: '+599 9 461 3212',
+    email: 'outofthebluecuracao@gmail.com',
     openingHours: 'Every day 10:00–19:00 (from their Facebook page)',
     websiteUrl: 'https://www.facebook.com/outofthebluecuracao',
     websiteLabel: 'See Out of the Blue on Facebook',
@@ -333,6 +336,7 @@ export const fashionStores: FashionStore[] = [
     address: 'Hanchi Snoa 11, Punda, Willemstad, Curaçao (+ Zuikertuin Mall)',
     openingHours: 'Punda: Mon–Sat 09:00–18:00 · Zuikertuin Mall: Mon–Sat 09:00–19:00 · Closed Sunday',
     phone: '+599 9 461 1171',
+    email: 'emilia@emiliacuracao.com',
     whatsapp: '59994611171',
     websiteUrl: 'https://www.emiliacuracao.com',
     websiteLabel: 'emiliacuracao.com',
@@ -390,6 +394,7 @@ export const fashionStores: FashionStore[] = [
     address: 'Renaissance Mall #210, Baden Powellweg 1, Otrobanda, Willemstad, Curaçao',
     openingHours: 'Mon–Sat 09:30–18:30',
     phone: '+599 9 461 1114',
+    email: 'info@boutiquesoho.com',
     whatsapp: '59995235880',
     websiteUrl: 'https://www.shoprenaissancecuracao.com/soho-boutique/',
     websiteLabel: 'shoprenaissancecuracao.com',

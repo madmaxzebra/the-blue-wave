@@ -26,6 +26,7 @@ const TEXT_FIELDS = [
     'lifestyleText' => 600,
     'openingHours' => 200,
     'phone' => 40,
+    'email' => 80,
 ];
 const ITEMS_MAX = 6;
 const GALLERY_MAX = 12;
@@ -422,6 +423,9 @@ if ($action === 'save') {
     $clean = [];
     foreach (TEXT_FIELDS as $key => $max) {
         $clean[$key] = plain($input[$key] ?? '', $max);
+    }
+    if ($clean['email'] !== '' && filter_var($clean['email'], FILTER_VALIDATE_EMAIL) === false) {
+        fail(400, 'Please enter a valid email address.');
     }
     $wa = preg_replace('/\D+/', '', (string) ($input['whatsapp'] ?? '')) ?? '';
     if ($wa !== '' && (strlen($wa) < 8 || strlen($wa) > 15)) {

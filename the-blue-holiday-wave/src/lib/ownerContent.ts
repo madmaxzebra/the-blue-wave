@@ -14,6 +14,7 @@ export type Overrides = {
   lifestyleText?: string
   openingHours?: string
   phone?: string
+  email?: string
   whatsapp?: string
   websiteUrl?: string
   websiteLabel?: string
@@ -84,6 +85,7 @@ const TEXT_KEYS = [
   'lifestyleText',
   'openingHours',
   'phone',
+  'email',
   'whatsapp',
   'websiteUrl',
   'websiteLabel',
