@@ -33,6 +33,8 @@ export type PartnerProfile = {
   lifestyleImg: string
   collectionLabel: string
   phone?: string
+  /** Published contact email */
+  email?: string
   whatsapp?: string
   address?: string
   openingHours?: string
