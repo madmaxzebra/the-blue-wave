@@ -1,7 +1,7 @@
 Blue Holiday Wave website upload (latest: new Culinair row + partner emails on detail pages)
 
 File: holidayseason-upload.zip
-Built from the-blue-holiday-wave (main, commit 9a79700) with BLUEHOST_BUILD=1
+Built from the-blue-holiday-wave (main, commit 5bddb77) with BLUEHOST_BUILD=1
 Goes to: thebluewavefans.com/holidayseason/
 
 Size is about 54 MB on disk.
