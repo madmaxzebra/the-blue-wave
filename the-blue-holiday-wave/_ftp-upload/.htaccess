@@ -1,0 +1,39 @@
+DirectoryIndex index.html
+Options -Indexes
+
+# Block direct HTTP access to on-disk community JSON (API only).
+<IfModule mod_rewrite.c>
+  RewriteRule ^storage(/|$) - [F,L]
+</IfModule>
+
+<IfModule mod_mime.c>
+  AddType application/manifest+json .webmanifest
+</IfModule>
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /holidayseason/
+
+  RewriteRule ^index\.html$ - [L]
+  RewriteRule ^sw\.js$ - [L]
+  RewriteRule ^manifest\.webmanifest$ - [L]
+  RewriteRule ^apple-touch-icon\.png$ - [L]
+  RewriteRule ^icons/ - [L]
+  RewriteRule ^get-the-app\.html$ - [L]
+
+  # SPA section routes (must not collide with *-media folders)
+  RewriteRule ^fashion/?$ index.html [L]
+  RewriteRule ^fashion/ index.html [L]
+  RewriteRule ^homes/?$ index.html [L]
+  RewriteRule ^homes/ index.html [L]
+  RewriteRule ^taste/?$ index.html [L]
+  RewriteRule ^taste/ index.html [L]
+  RewriteRule ^magazine/?$ index.html [L]
+  RewriteRule ^magazine/ index.html [L]
+  RewriteRule ^more/?$ index.html [L]
+  RewriteRule ^more/ index.html [L]
+
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule . index.html [L]
+</IfModule>

@@ -1,20 +1,21 @@
-Blue Holidays Wave — welcome email (Stay Updated signups)
+Blue Holidays Wave — welcome email fix (Stay Updated signups)
 
-Files in: thebluewave-subscribers-welcome.zip
-  welcome-subscriber-mail.php
-  send-welcome.php
+WHY YOU STILL SAW THE OLD “RIDING THE BLUE WAVE” EMAIL
+The old mail is sent by register.php on Bluehost when someone signs up.
+Changing send-welcome.php alone is not enough until register.php is updated too.
 
-Where on Bluehost
-  public_html/thebluewave-subscribers/
-  (same folder as register.php and count.php)
+Upload BOTH zips below.
 
-Upload
-  1. Upload the zip into thebluewave-subscribers/
-  2. Extract here and replace send-welcome.php
-  3. Test: sign up on thebluewavefans.com/holidayseason/ with a fresh email
+1) Holiday site (required)
+   https://github.com/madmaxzebra/the-blue-wave/raw/main/uploads/holidayseason-upload.zip
+   → extract in public_html/holidayseason/
+   Includes api/register-subscriber.php (no old welcome) + api/send-welcome.php (Holidays mail).
 
-The holiday site zip (holidayseason-upload.zip) also includes
-  holidayseason/api/send-welcome.php
-  (uses the same Holidays branding + logo from the site)
+2) Subscriber folder (required)
+   https://github.com/madmaxzebra/the-blue-wave/raw/main/uploads/thebluewave-subscribers-welcome.zip
+   → extract in public_html/thebluewave-subscribers/
+   Replace register.php and send-welcome.php (back up the old register.php first).
 
-New email: Blue Holidays Wave logo, no magazine block, no Facebook button.
+Test with a NEW email (not one already on the list).
+You should get subject: “Welcome to the Blue Holidays Wave” and the gold holiday logo.
+No magazine button, no Facebook button.

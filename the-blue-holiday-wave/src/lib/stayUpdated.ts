@@ -58,6 +58,27 @@ function parseCount(data: unknown): number | null {
   return null
 }
 
+function localRegisterUrl(): string | null {
+  if (typeof window === 'undefined') return null
+  const base = import.meta.env.BASE_URL || '/'
+  try {
+    return new URL('api/register-subscriber.php', `${window.location.origin}${base}`).href
+  } catch {
+    return null
+  }
+}
+
+function registerEndpointUrls(): string[] {
+  const fromEnv = (import.meta.env.VITE_BLUEHOST_SUBSCRIBERS_URL as string | undefined)?.trim()
+  const urls = [
+    fromEnv,
+    localRegisterUrl(),
+    'https://www.thebluewavefans.com/holidayseason/api/register-subscriber.php',
+    BLUEHOST_SUBSCRIBERS_URL,
+  ].filter((u): u is string => typeof u === 'string' && u.length > 0)
+  return [...new Set(urls)]
+}
+
 function localWelcomeUrl(): string | null {
   if (typeof window === 'undefined') return null
   const base = import.meta.env.BASE_URL || '/'
@@ -127,21 +148,30 @@ export async function fetchSubscriberCount(): Promise<number | null> {
 }
 
 async function registerOnBluehost(email: string) {
-  const data = await fetchJson(
-    BLUEHOST_SUBSCRIBERS_URL,
-    {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-      body: JSON.stringify({ email, source: 'holidays-blue-wave' }),
-    },
-    REGISTER_TIMEOUT_MS,
-  )
-  if (!data || typeof data !== 'object') return null
-  const row = data as { count?: number; subscriberCount?: number; added?: boolean; welcomeSent?: boolean }
-  const count = parseCount(row)
-  if (count === null) return null
-  writeCachedSubscriberCount(count)
-  return { count, added: row.added === true, welcomeSent: row.welcomeSent === true }
+  const payload = JSON.stringify({ email, source: 'holidays-blue-wave' })
+  for (const url of registerEndpointUrls()) {
+    const data = await fetchJson(
+      url,
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: payload,
+      },
+      REGISTER_TIMEOUT_MS,
+    )
+    if (!data || typeof data !== 'object') continue
+    const row = data as { count?: number; subscriberCount?: number; added?: boolean; welcomeSent?: boolean }
+    const count = parseCount(row)
+    if (count === null) continue
+    writeCachedSubscriberCount(count)
+    const usedHolidayRegister = !url.includes('/thebluewave-subscribers/register.php')
+    return {
+      count,
+      added: row.added === true,
+      welcomeSent: usedHolidayRegister ? false : row.welcomeSent === true,
+    }
+  }
+  return null
 }
 
 async function registerOnRender(email: string) {
@@ -207,7 +237,7 @@ export async function submitStayUpdatedSignup(email: string): Promise<StayUpdate
   }
 
   let welcomeSent = result?.welcomeSent === true
-  if (!welcomeSent && result) {
+  if (!welcomeSent) {
     welcomeSent = await sendWelcomeEmail(trimmed)
   }
 
