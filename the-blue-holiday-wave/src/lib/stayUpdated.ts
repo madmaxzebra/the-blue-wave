@@ -70,15 +70,23 @@ async function fetchJson(url: string, init?: RequestInit, timeoutMs = COUNT_TIME
 }
 
 export async function fetchSubscriberCount(): Promise<number | null> {
-  for (const url of [BLUEHOST_COUNT_URL, RENDER_COUNT_URL]) {
-    const data = await fetchJson(url, { headers: { Accept: 'application/json' } })
-    const count = parseCount(data)
-    if (count !== null && count >= 1000) {
-      writeCachedSubscriberCount(count)
-      return count
-    }
+  const urls = [RENDER_COUNT_URL, BLUEHOST_COUNT_URL]
+  const counts: number[] = []
+  await Promise.all(
+    urls.map(async (url) => {
+      const data = await fetchJson(url, { headers: { Accept: 'application/json' } })
+      const count = parseCount(data)
+      if (count !== null && count >= 1000) counts.push(count)
+    }),
+  )
+  if (counts.length > 0) {
+    const best = Math.max(...counts)
+    writeCachedSubscriberCount(best)
+    return best
   }
-  return readCachedSubscriberCount()
+  const cached = readCachedSubscriberCount()
+  if (cached !== null && cached >= 1000) return cached
+  return null
 }
 
 async function registerOnBluehost(email: string) {
@@ -168,9 +176,10 @@ export async function submitStayUpdatedSignup(email: string): Promise<StayUpdate
     await sleep(MIN_LOADING_MS - elapsed)
   }
 
-  let subscriberCount = result?.count
-  if (subscriberCount === undefined) {
-    subscriberCount = (await fetchSubscriberCount()) ?? undefined
+  const liveCount = await fetchSubscriberCount()
+  let subscriberCount = liveCount ?? result?.count
+  if (liveCount !== null && typeof result?.count === 'number') {
+    subscriberCount = Math.max(liveCount, result.count)
   }
 
   const inboxHint = welcomeSent
